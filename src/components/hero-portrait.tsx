@@ -68,7 +68,7 @@ export function HeroPortrait({ alt }: { alt: string }) {
       className="aspect-4/5 w-full max-w-56 md:col-span-4 md:col-start-9 md:justify-self-end"
     >
       <motion.div
-        className="relative h-full w-full origin-top-right overflow-hidden bg-ink-soft will-change-transform"
+        className="relative h-full w-full origin-top-right overflow-hidden bg-paper-deep will-change-transform"
         style={reduced ? undefined : { scale }}
       >
         <img
