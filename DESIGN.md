@@ -25,7 +25,7 @@ fonts:
 
 Tenex Studio is a small studio website that performs as a wordmark. The visual identity is carried by typographic discipline rather than by color, illustration, or ornament — a Swiss-design grid sensibility (Müller-Brockmann, Hofmann, Ruder) filtered through 2026 web craft, where the page reads less like marketing and more like a printed monograph.
 
-The canvas is paper white (`--color-paper` `#FFFFFF`) for content surfaces, but the studio inserts dramatic dark slabs for the hero, testimonials, and stats cards — black-and-white pages alternating like a magazine spread. The dark is not pure black: it is the ink scale, `--color-ink` `#0F0F12` deepened by `--color-ink-soft` `#1C1C1F`, rendered as a two-stop gradient. There is no brand color in the conventional sense: ink _is_ the brand. The only chromatic accent on the entire site is a single vibrant blue (`--color-accent` `#4353FF`) used once as an internal highlight — a deliberate exception that proves the rule.
+The canvas is paper white (`--color-paper` `#FFFFFF`) for content surfaces, but the studio inserts dramatic dark slabs for the hero, testimonials, and stats cards — black-and-white pages alternating like a magazine spread. The dark is not pure black: it is the ink scale, `--color-ink` `#0F0F12` deepened by `--color-ink-soft` `#1C1C1F`, rendered as a two-stop gradient. Ink _is_ the structural brand — it carries the type, the slabs, the depth. The site's one chromatic voice is a single Swiss-poster red (`--color-accent` `#E2231A`), in the lineage of Müller-Brockmann's red-on-black-and-white posters: the lone signal color, used **sparingly and deliberately** — it punctuates, it never decorates. Restraint is what makes the red read as a brand rather than as marketing.
 
 Tenex Studio's typographic signature is **Arimo** — a modern, clean, humanist sans-serif used for **every title, headline, and display element**. Arimo carries the wordmark, the hero, every section heading, every sub-heading, every card title. Its balanced letterforms and even rhythm give the brand a precise, contemporary, editorial voice. Body, navigation, and UI text fall back to **Inter** so Arimo never gets diluted by appearing at small sizes — it stays a _display_ face exclusively. **Geist Mono** handles technical labels, counts, and yearmark stamps.
 
@@ -41,7 +41,7 @@ Surfaces are flat with subtle two-stop gradients (`--gradient-card-dark` on dark
 - **Geist Mono** for technical labels, parenthetical counts, yearmark stamps
 - Aggressive negative letter-spacing scaled to size on display: tight at hero scale, easing toward `-0.04em` for the wordmark
 - Compressed line-heights: `0.85` on hero, `1.10–1.4` everywhere else — text as dense slab
-- Ink is the brand — no chromatic identity color, monochrome by intention; `--color-accent` `#4353FF` is a one-off exception
+- Ink is the structural brand; the page stays monochrome-dominant — `--color-accent` `#E2231A` (Swiss-poster red) is the single chromatic signal, used with restraint
 - Subtle two-stop gradients on cards (`--gradient-card-dark` / `--gradient-card-light`) — never flat fills
 - Pill-shaped CTAs (`rounded-pill`), 10–20px radius cards, `0px` sharp edges for media plates
 - Depth is contrast first; soft elevation shadows are reserved for **floating UI only** (nav pill, testimonial cards)
@@ -57,7 +57,7 @@ All colors are Tailwind `@theme` tokens in `src/styles/global.css`. Each token b
 
 - **Ink** (`--color-ink` `#0F0F12`) → `text-ink` / `bg-ink`: Primary text, primary CTA fill, social glyphs — _the_ brand color (a near-black carbon, not pure `#000000`)
 - **Paper** (`--color-paper` `#FFFFFF`) → `bg-paper` / `text-paper`: Primary canvas, dark-section text — counterpart to ink
-- **Accent** (`--color-accent` `#4353FF`) → `bg-accent`: Single chromatic accent — used once across the entire site as a deliberate exception (e.g., a highlight pill, a feature badge)
+- **Accent / Signal** (`--color-accent` `#E2231A`) → `bg-accent` / `text-accent`: The sole chromatic voice — a Swiss-poster red used **sparingly and deliberately** for true emphasis: a key CTA, an active/selected marker, a single highlight pill, a yearmark or index that must be _seen_. One red moment per view, not per element. Never a fill for large surfaces, never a link default, never decorative.
 
 ### Token Scale
 
@@ -69,7 +69,7 @@ All colors are Tailwind `@theme` tokens in `src/styles/global.css`. Each token b
 | `--color-paper-warm` | `#F5F5F5` | `bg-paper-warm`       | Secondary surface (testimonials section), light grad start |
 | `--color-paper-cool` | `#F5F6F8` | (gradient stop)       | Mid-stop in `--gradient-card-light`                        |
 | `--color-paper-deep` | `#DEE0E4` | (gradient stop)       | End-stop in `--gradient-card-light` — cool undertone       |
-| `--color-accent`     | `#4353FF` | `bg-accent`           | Rare chromatic exception — one use site-wide               |
+| `--color-accent`     | `#E2231A` | `bg-accent` `text-accent` | Sole chromatic signal — Swiss-poster red, used sparingly for true emphasis |
 
 **Alpha-derived tones** (no separate token — use Tailwind alpha syntax on `ink`/`paper`):
 
@@ -223,7 +223,7 @@ Components live in `src/components/` — `.astro` for static shells/composers, `
 
 - **Default**: `a { color: inherit; text-decoration: none; }` (set in `@layer base`). Inherits ink on light, paper on dark.
 - **Underline accent**: a thin decorative bar element — _not_ `text-decoration`. Use a `border-ink/8` or `border-ink/5` hairline.
-- **No blue link color anywhere** — the site is monochrome (accent blue is a one-off, never for links).
+- **No colored link by default** — links inherit ink (on light) / paper (on dark). The accent red is reserved for deliberate emphasis, never a default link color.
 
 ### Navigation (`nav-bar.tsx`)
 
@@ -334,7 +334,7 @@ Depth is structural: a dark card next to a light card is the elevation; a two-st
 - Don't render body, nav, or UI text in Arimo — it is a _display_ face only, never below 24px
 - Don't render a hero or section heading in Inter — display type is Arimo's job
 - Don't use positive letter-spacing or normal tracking on display text — negative tracking is non-negotiable
-- Don't introduce a brand color — the site is monochrome; `--color-accent` `#4353FF` is a single one-off exception
+- Don't scatter the accent — `--color-accent` `#E2231A` is the single chromatic signal; one red moment per view, never a large fill, never decorative, never a default link color
 - Don't invent box-shadows — only the **two sanctioned values** (nav pill, testimonial card) exist; everything else on paper has no shadow
 - Don't apply rounded corners to media or work cards — use `rounded-plate` (0px), print-plate sharp
 - Don't flatten card surfaces — gradients carry the dimensional weight
@@ -382,7 +382,7 @@ card:
 surface_alt: "var(--color-paper-warm)  #F5F5F5"   # bg-paper-warm (testimonials section)
 dividers: "border-ink/8  |  border-ink/5"
 accent:
-  rare: "var(--color-accent)  #4353FF"      # one use site-wide only
+  signal: "var(--color-accent)  #E2231A"    # Swiss-poster red — sparing, deliberate emphasis only
 shadows:
   nav_pill:        "shadow-[0_10px_30px_-12px_rgba(0,0,0,0.18)]"
   testimonial_card: "shadow-[0_1px_0_rgba(15,15,18,0.04),0_30px_60px_-30px_rgba(15,15,18,0.12)]"
@@ -423,7 +423,7 @@ fonts:        # @theme inline → font-display | font-sans | font-mono
 colors:       # @theme → bg-* / text-* / border-* (+ /alpha)
   ink: "#0F0F12"   ink-soft: "#1C1C1F"
   paper: "#FFFFFF" paper-warm: "#F5F5F5" paper-cool: "#F5F6F8" paper-deep: "#DEE0E4"
-  accent: "#4353FF"
+  accent: "#E2231A"
 radius:       # @theme → rounded-*
   plate: 0   card-sm: 10   card: 14   card-lg: 20   pill: 9999
 space:        # @theme
@@ -536,7 +536,7 @@ Tailwind v4: `@theme inline` maps the Astro font variables onto the `font-*` uti
   --color-paper-warm: #f5f5f5;
   --color-paper-cool: #f5f6f8;
   --color-paper-deep: #dee0e4;
-  --color-accent: #4353ff;
+  --color-accent: #e2231a;
 
   --radius-pill: 9999px;
   --radius-card: 14px;
