@@ -1,57 +1,57 @@
-import type { Bilingual } from '@/data/_types'
+import type { Bilingual } from "@/data/_types";
 
 export type HeroCopy = Readonly<{
-  wordmark: string
-  monogram: string
-  monogramAriaLabel: Bilingual
-  withTenexStudio: Bilingual
-  monogramTagline: Bilingual
-  headline: Bilingual
-  subheadline: Bilingual
-  status: Bilingual
+  wordmark: string;
+  monogram: string;
+  monogramAriaLabel: Bilingual;
+  withTenexStudio: Bilingual;
+  monogramTagline: Bilingual;
+  headline: Bilingual;
+  subheadline: Bilingual;
+  status: Bilingual;
   primaryCta: Readonly<{
-    label: Bilingual
-    href: Bilingual
-  }>
+    label: Bilingual;
+    href: Bilingual;
+  }>;
   secondaryCta: Readonly<{
-    label: Bilingual
-    href: Bilingual
-  }>
-}>
+    label: Bilingual;
+    href: Bilingual;
+  }>;
+}>;
 
 export const HERO: HeroCopy = {
-  wordmark: 'Tenex Studio',
-  monogram: '10x',
+  wordmark: "Tenex Studio",
+  monogram: "10x",
   monogramAriaLabel: {
-    fr: 'Dix fois. Tenex Studio.',
-    en: 'Ten times. Tenex Studio.',
+    fr: "Dix fois. Tenex Studio.",
+    en: "Ten times. Tenex Studio.",
   },
   withTenexStudio: {
-    fr: 'Avec Tenex Studio.',
-    en: 'With Tenex Studio.',
+    fr: "Avec Tenex Studio.",
+    en: "With Tenex Studio.",
   },
   monogramTagline: {
-    fr: 'Dix fois le levier.',
-    en: 'Ten times the leverage.',
+    fr: "Dix fois le levier.",
+    en: "Ten times the leverage.",
   },
   headline: {
-    fr: 'SEO, sites web et automatisation propulsés par l’IA.',
-    en: 'AI-Powered SEO, Websites & Automation.',
+    fr: "Sites web sur mesure.",
+    en: "Custom websites.",
   },
   subheadline: {
-    fr: 'Nous concevons des moteurs de contenu intégrés à l’IA, pérennisons votre visibilité GEO & AEO, et automatisons votre croissance avec des workflows IA sur mesure.',
-    en: 'We build AI-integrated content engines, future-proof your search visibility with GEO & AEO, and automate your growth with custom AI workflows.',
+    fr: "Nous accompagnons les entrepreneurs pour créer un site web unique, avec une identité forte qui vous démarque — 10× plus personnalisé, 0 slop IA.",
+    en: "We work alongside entrepreneurs to craft a one-of-a-kind website with a strong identity that sets you apart — 10× more personalized, 0 AI slop.",
   },
   status: {
-    fr: 'Studio ouvert · 2026',
-    en: 'Studio open · 2026',
+    fr: "Studio ouvert · 2026",
+    en: "Studio open · 2026",
   },
   primaryCta: {
-    label: { fr: 'Parlons-en', en: 'Get in touch' },
-    href: { fr: '/contact', en: '/en/contact' },
+    label: { fr: "Parlons-en", en: "Get in touch" },
+    href: { fr: "/contact", en: "/en/contact" },
   },
   secondaryCta: {
-    label: { fr: 'Voir les services', en: 'See the services' },
-    href: { fr: '/#services', en: '/en#services' },
+    label: { fr: "Voir les services", en: "See the services" },
+    href: { fr: "/#services", en: "/en#services" },
   },
-} as const
+} as const;

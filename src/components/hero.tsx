@@ -1,11 +1,11 @@
-import type { Locale } from '@/lib/i18n'
-import { HERO } from '@/data/hero'
-import { HeroPortrait } from '@/components/hero-portrait'
+import type { Locale } from "@/lib/i18n";
+import { HERO } from "@/data/hero";
+import { HeroPortrait } from "@/components/hero-portrait";
 
 const PORTRAIT_ALT: Readonly<Record<Locale, string>> = {
-  fr: 'Portrait de Mathieu Thiry, fondateur de Tenex Studio',
-  en: 'Portrait of Mathieu Thiry, founder of Tenex Studio',
-}
+  fr: "Portrait de Mathieu Thiry, fondateur de Tenex Studio",
+  en: "Portrait of Mathieu Thiry, founder of Tenex Studio",
+};
 
 export function Hero({ locale }: { locale: Locale }) {
   return (
@@ -19,17 +19,17 @@ export function Hero({ locale }: { locale: Locale }) {
       </div>
 
       <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-4">
-        <p className="max-w-md font-sans text-base md:text-lg lg:text-xl leading-relaxed text-ink/65">
+        <p className="max-w-md md:max-w-2xl lg:max-w-3xl font-sans text-base md:text-lg lg:text-xl leading-relaxed text-ink/65">
           {HERO.subheadline[locale]}
         </p>
 
         <h2
           className="font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink"
-          style={{ fontSize: 'clamp(2.5rem, 12vw, 14rem)' }}
+          style={{ fontSize: "clamp(2.5rem, 12vw, 14rem)" }}
         >
-          tenEX studio
+          Ten<span className="opacity-40">e</span>X Studio
         </h2>
       </div>
     </section>
-  )
+  );
 }
