@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 120" role="img" aria-label="Tenex Studio">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 120" role="img" aria-label="Tenex Studio">
   <title>Tenex Studio</title>
   <defs>
     <style>
@@ -6,5 +6,21 @@
       .wm { font-family: 'Arimo', system-ui, -apple-system, 'Helvetica Neue', sans-serif; font-weight: 700; }
     </style>
   </defs>
-  <text class="wm" x="0" y="92" font-size="100" letter-spacing="-4.5" fill="#000000">Tenex Studio</text>
+
+  <!-- "Ten" -->
+  <text class="wm" x="0" y="92" font-size="100" letter-spacing="-4.5" fill="#000000">Ten</text>
+
+  <!-- red square holding the interlocked E + X -->
+  <rect x="152" y="8" width="150" height="104" fill="#e11d2a"/>
+
+  <!-- mirrored uppercase E, white, inside the square (spine toward the X) -->
+  <g transform="translate(236.7,0) scale(-1,1)">
+    <text class="wm" x="0" y="92" font-size="100" fill="#ffffff">E</text>
+  </g>
+
+  <!-- uppercase X, white, overlapping the E spine so terminations interlock -->
+  <text class="wm" x="250" y="92" font-size="100" text-anchor="middle" fill="#ffffff">X</text>
+
+  <!-- "Studio" -->
+  <text class="wm" x="324" y="92" font-size="100" letter-spacing="-4.5" fill="#000000">Studio</text>
 </svg>
