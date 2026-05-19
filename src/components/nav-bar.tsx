@@ -1,49 +1,53 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   motion,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-} from 'motion/react'
+} from "motion/react";
 
-import type { Locale } from '@/lib/i18n'
-import { NAV_LANDMARK, NAV_LINKS, TALK_PILL, WORDMARK } from '@/data/nav'
-import { LocaleSwitcher } from './locale-switcher'
+import type { Locale } from "@/lib/i18n";
+import { NAV_LANDMARK, NAV_LINKS, TALK_PILL, WORDMARK } from "@/data/nav";
+import { LocaleSwitcher } from "./locale-switcher";
 
-const REVEAL_THRESHOLD = 80
-const DELTA = 6
+const REVEAL_THRESHOLD = 80;
+const DELTA = 6;
 
 export function NavBar({ locale }: { locale: Locale }) {
-  const homeHref = locale === 'fr' ? '/' : '/en'
-  const reduceMotion = useReducedMotion()
-  const { scrollY } = useScroll()
-  const [hidden, setHidden] = useState(false)
+  const homeHref = locale === "fr" ? "/" : "/en";
+  const reduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
 
-  useMotionValueEvent(scrollY, 'change', (current) => {
+  useMotionValueEvent(scrollY, "change", (current) => {
     if (current < REVEAL_THRESHOLD) {
-      setHidden(false)
-      return
+      setHidden(false);
+      return;
     }
-    const previous = scrollY.getPrevious() ?? 0
-    const delta = current - previous
-    if (delta > DELTA) setHidden(true)
-    else if (delta < -DELTA) setHidden(false)
-  })
+    const previous = scrollY.getPrevious() ?? 0;
+    const delta = current - previous;
+    if (delta > DELTA) setHidden(true);
+    else if (delta < -DELTA) setHidden(false);
+  });
 
   return (
     <motion.header
       initial={false}
       animate={{ y: reduceMotion || !hidden ? 0 : -140 }}
-      transition={{ type: 'tween', duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ type: "tween", duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-3 md:pt-4"
     >
       <div className="flex w-full max-w-screen-xl items-center justify-between gap-4 rounded-full border border-ink/5 bg-paper/90 px-4 py-2 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.18)] backdrop-blur md:px-6 md:py-3">
         <a
           href={homeHref}
-          className="font-display text-base font-bold tracking-[-0.04em] text-ink transition hover:opacity-80 md:text-lg"
+          className="transition hover:opacity-80"
           aria-label={WORDMARK}
         >
-          {WORDMARK}
+          <img
+            src="/brand/tenex-mark.svg"
+            alt={WORDMARK}
+            className="h-5 w-auto md:h-6"
+          />
         </a>
 
         <nav
@@ -51,7 +55,7 @@ export function NavBar({ locale }: { locale: Locale }) {
           className="hidden items-center gap-7 md:flex"
         >
           {NAV_LINKS.map((link) => {
-            const href = link.href?.[locale]
+            const href = link.href?.[locale];
             if (!href) {
               return (
                 <span
@@ -61,7 +65,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                 >
                   {link.label[locale]}
                 </span>
-              )
+              );
             }
             return (
               <a
@@ -71,7 +75,7 @@ export function NavBar({ locale }: { locale: Locale }) {
               >
                 {link.label[locale]}
               </a>
-            )
+            );
           })}
         </nav>
 
@@ -86,5 +90,5 @@ export function NavBar({ locale }: { locale: Locale }) {
         </div>
       </div>
     </motion.header>
-  )
+  );
 }
