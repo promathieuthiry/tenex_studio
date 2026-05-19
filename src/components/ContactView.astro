@@ -1,0 +1,52 @@
+---
+import type { Locale } from '@/lib/i18n';
+import { CONTACT } from '@/data/legal';
+import { ContactForm } from '@/components/contact-form';
+
+const { locale } = Astro.props as { locale: Locale };
+const bookHref = import.meta.env.PUBLIC_BOOK_URL ?? null;
+---
+
+<article class="px-6 py-24 md:px-10 md:py-40">
+  <div class="mx-auto grid max-w-screen-xl gap-16 md:grid-cols-[1fr_2fr] md:gap-24">
+    <header>
+      <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink/60">
+        {CONTACT.eyebrow[locale]}
+      </p>
+      <h1 class="mt-6 font-display text-5xl leading-[1] tracking-[-0.04em] text-ink md:text-7xl">
+        {CONTACT.title[locale]}
+      </h1>
+      <p class="mt-8 max-w-prose font-sans text-base leading-7 text-ink/80 md:text-lg">
+        {CONTACT.body[locale]}
+      </p>
+
+      {
+        bookHref ? (
+          <div class="mt-10 flex flex-col gap-3">
+            <a
+              href={bookHref}
+              class="inline-block rounded-full border border-ink/20 px-5 py-3 font-sans text-sm text-ink transition hover:border-ink"
+            >
+              {CONTACT.bookCta.label[locale]}
+            </a>
+            <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink/50">
+              {CONTACT.bookCta.helper[locale]}
+            </p>
+          </div>
+        ) : null
+      }
+
+      <p class="mt-10 font-mono text-xs uppercase tracking-[0.12em] text-ink/60">
+        Direct
+      </p>
+      <a
+        href={`mailto:${CONTACT.confirmation.fallbackEmail}`}
+        class="mt-2 block font-display text-2xl tracking-[-0.02em] text-ink hover:opacity-80"
+      >
+        {CONTACT.confirmation.fallbackEmail}
+      </a>
+    </header>
+
+    <ContactForm client:load locale={locale} copy={CONTACT} />
+  </div>
+</article>

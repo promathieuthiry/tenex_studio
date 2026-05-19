@@ -1,0 +1,20 @@
+---
+import { OG_LOCALE } from '@/lib/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContactView from '@/components/ContactView.astro';
+
+const locale = 'fr' as const;
+
+const seo = {
+  title: 'Contact — Tenex Studio',
+  description:
+    'Décrivez votre projet en quelques lignes. Mathieu répond sous 24 heures ouvrées.',
+  canonical: '/contact',
+  ogLocale: OG_LOCALE[locale],
+  hreflang: { fr: '/contact', en: '/en/contact', 'x-default': '/contact' },
+};
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <ContactView locale={locale} />
+</BaseLayout>

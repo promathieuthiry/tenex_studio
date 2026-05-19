@@ -1,0 +1,39 @@
+---
+import { OG_LOCALE, SITE_ORIGIN } from '@/lib/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HomeView from '@/components/HomeView.astro';
+
+const locale = 'en' as const;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Tenex Studio',
+  url: `${SITE_ORIGIN}/en`,
+  logo: `${SITE_ORIGIN}/og/og-en.png`,
+  description:
+    'AI-native studio based in Nantes. AI-Powered SEO, Websites & Automation for the Modern Business.',
+  founder: { '@type': 'Person', name: 'Mathieu Thiry' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nantes',
+    addressCountry: 'FR',
+  },
+  inLanguage: ['en', 'fr-FR'],
+});
+
+const seo = {
+  title: 'Tenex Studio — AI-Powered SEO, Websites & Automation',
+  description:
+    'AI-native studio in Nantes. AI-Powered SEO, Websites & Automation for entrepreneurs and modern businesses. Tenex — ten times the leverage.',
+  canonical: '/en',
+  ogLocale: OG_LOCALE[locale],
+  ogImage: '/og/og-en.png',
+  hreflang: { fr: '/', en: '/en', 'x-default': '/' },
+  jsonLd,
+};
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <HomeView locale={locale} />
+</BaseLayout>

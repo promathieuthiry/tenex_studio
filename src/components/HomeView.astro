@@ -1,0 +1,22 @@
+---
+import type { Locale } from '@/lib/i18n';
+import { MonoHero } from '@/components/mono-hero';
+import { Services } from '@/components/services';
+import { WorkShowcase } from '@/components/work-showcase';
+import { MonogramReveal } from '@/components/monogram-reveal';
+import { Testimonials } from '@/components/testimonials';
+import { Pricing } from '@/components/pricing';
+import { Faq } from '@/components/faq';
+import { ContactCta } from '@/components/contact-cta';
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<MonoHero client:load locale={locale} />
+<Services locale={locale} />
+<WorkShowcase locale={locale} />
+<MonogramReveal client:visible locale={locale} />
+<Testimonials client:visible locale={locale} />
+<Pricing locale={locale} />
+<Faq locale={locale} />
+<ContactCta locale={locale} />

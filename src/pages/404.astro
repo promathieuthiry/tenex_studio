@@ -1,0 +1,19 @@
+---
+import { OG_LOCALE } from '@/lib/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NotFound from '@/components/not-found';
+
+const locale = 'fr' as const;
+
+const seo = {
+  title: 'Page introuvable — Tenex Studio',
+  description: 'Cette page n’existe pas.',
+  canonical: '/404',
+  ogLocale: OG_LOCALE[locale],
+  hreflang: { fr: '/', en: '/en', 'x-default': '/' },
+};
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <NotFound client:only="react" />
+</BaseLayout>

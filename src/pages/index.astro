@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { OG_LOCALE, SITE_ORIGIN } from '@/lib/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HomeView from '@/components/HomeView.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const locale = 'fr' as const;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Tenex Studio',
+  url: SITE_ORIGIN,
+  logo: `${SITE_ORIGIN}/og/og-fr.png`,
+  description:
+    'Studio IA-natif basé à Nantes. SEO, sites & automatisation IA pour l’entreprise moderne.',
+  founder: { '@type': 'Person', name: 'Mathieu Thiry' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nantes',
+    addressCountry: 'FR',
+  },
+  inLanguage: ['fr-FR', 'en'],
+});
+
+const seo = {
+  title: 'Tenex Studio — SEO, Sites & Automatisation IA',
+  description:
+    'Studio IA-natif à Nantes. SEO, sites & automatisation IA pour entrepreneurs et entreprise moderne. Tenex — dix fois le levier.',
+  canonical: '/',
+  ogLocale: OG_LOCALE[locale],
+  ogImage: '/og/og-fr.png',
+  hreflang: { fr: '/', en: '/en', 'x-default': '/' },
+  jsonLd,
+};
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout locale={locale} seo={seo}>
+  <HomeView locale={locale} />
+</BaseLayout>
