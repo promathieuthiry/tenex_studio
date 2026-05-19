@@ -13,9 +13,9 @@
   <!-- lowercase "e" = the "typo", same height as Ten, lighter, right after -->
   <text class="wm" x="156" y="92" font-size="100" fill="#9a9a9a">e</text>
 
-  <!-- single clean strike crossing the e out -->
-  <path d="M152,86 C172,72 196,56 216,40" fill="none" stroke="#141414"
-        stroke-width="8" stroke-linecap="round"/>
+  <!-- knockout bar: same color as page background so the e looks sliced -->
+  <path d="M152,86 C172,72 196,56 216,40" fill="none" stroke="#ffffff"
+        stroke-width="12" stroke-linecap="butt"/>
 
   <!-- red square ONLY on the X -->
   <rect x="218" y="4" width="104" height="104" fill="#E2231A"/>
