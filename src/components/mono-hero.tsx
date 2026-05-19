@@ -97,7 +97,7 @@ export function MonoHero({ locale }: { locale: Locale }) {
           style={reduced ? undefined : { scale }}
           className="relative z-10 w-full origin-center bg-paper"
         >
-          <Hero locale={locale} />
+          <Hero locale={locale} scrollProgress={scrollYProgress} />
         </motion.div>
       </div>
     </div>
