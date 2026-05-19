@@ -9,16 +9,38 @@ const MARQUEE_IMAGES = [
   '/work/maison-aubry-cover.jpg',
   '/work/studio-meridien-cover.jpg',
   '/work/verso-co-cover.jpg',
+  '/work/lumen-haus-cover.jpg',
+  '/work/cote-nord-cover.jpg',
+  '/work/brasserie-rade-cover.jpg',
+  '/work/atelier-fauve-cover.jpg',
+  '/work/nove-labs-cover.jpg',
+  '/work/rivage-co-cover.jpg',
+  '/work/maison-orso-cover.jpg',
+  '/work/signal-form-cover.jpg',
+  '/work/caldera-co-cover.jpg',
+  '/work/atelier-noor-cover.jpg',
+  '/work/maison-vela-cover.jpg',
+  '/work/studio-prim-cover.jpg',
+  '/work/forge-co-cover.jpg',
+  '/work/heline-haus-cover.jpg',
+  '/work/atelier-sora-cover.jpg',
+  '/work/vega-form-cover.jpg',
 ]
 
 function MarqueeColumn({
   direction,
   duration,
+  offset,
 }: {
   direction: 'up' | 'down'
   duration: number
+  offset: number
 }) {
-  const items = [...MARQUEE_IMAGES, ...MARQUEE_IMAGES, ...MARQUEE_IMAGES]
+  const rotated = [
+    ...MARQUEE_IMAGES.slice(offset),
+    ...MARQUEE_IMAGES.slice(0, offset),
+  ]
+  const items = [...rotated, ...rotated]
   return (
     <div className="pointer-events-none overflow-hidden">
       <ul
@@ -60,9 +82,15 @@ export function MonoHero({ locale }: { locale: Locale }) {
   return (
     <div ref={ref} className="relative h-[180vh] bg-[var(--color-ink)]">
       <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 grid grid-cols-2 gap-6 px-6 md:px-10">
-          <MarqueeColumn direction="up" duration={40} />
-          <MarqueeColumn direction="down" duration={50} />
+        <div className="pointer-events-none absolute inset-0 grid grid-cols-2 gap-6 px-6 md:grid-cols-4 md:px-10">
+          <MarqueeColumn direction="up" duration={40} offset={0} />
+          <MarqueeColumn direction="down" duration={50} offset={5} />
+          <div className="hidden md:block">
+            <MarqueeColumn direction="up" duration={46} offset={10} />
+          </div>
+          <div className="hidden md:block">
+            <MarqueeColumn direction="down" duration={54} offset={15} />
+          </div>
         </div>
 
         <motion.div
