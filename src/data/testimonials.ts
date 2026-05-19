@@ -35,7 +35,7 @@ export const TESTIMONIALS: ReadonlyArray<Testimonial> = [
       fr: 'Fondatrice, Women Equity Label',
       en: 'Founder, Women Equity Label',
     },
-    portrait: '/testimonials/eugénie_druart_wel.jpeg',
+    portrait: '/testimonials/eugenie_druart_wel.jpeg',
     website: 'https://womenequitylabel.fr/',
   },
   {
