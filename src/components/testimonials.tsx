@@ -40,7 +40,8 @@ const COPY = {
 const CARD_BASE =
   "group relative flex h-[28rem] w-[80vw] shrink-0 cursor-pointer flex-col rounded-[var(--radius-card-lg)] bg-paper p-7 text-left shadow-[0_1px_0_rgba(15,15,18,0.04),0_30px_60px_-30px_rgba(15,15,18,0.12)] transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-paper-cool hover:shadow-[0_1px_0_rgba(15,15,18,0.06),0_40px_80px_-30px_rgba(15,15,18,0.22)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink sm:h-[34rem] sm:w-[22rem] md:w-[28rem] md:p-9";
 
-const TRACK_BASE = "flex shrink-0 gap-6 px-6 md:gap-8 md:px-10";
+const TRACK_BASE =
+  "flex shrink-0 gap-6 px-6 md:gap-8 md:pr-10 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))]";
 
 function Card({
   t,
@@ -148,10 +149,10 @@ function Card({
             className="size-16 shrink-0 rounded-full bg-ink/5 object-cover"
           />
           <div className="min-w-0 flex-1">
-            <p className="truncate font-sans text-sm font-medium text-ink">
+            <p className="font-sans text-sm font-medium text-ink">
               {t.name[locale]}
             </p>
-            <p className="truncate font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
               {t.role[locale]}
             </p>
           </div>
