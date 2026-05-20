@@ -22,10 +22,11 @@ export const WORK: ReadonlyArray<WorkProject> = [
     tags: [
       { fr: "Design Website", en: "Website Design" },
       { fr: "Développement", en: "Development" },
+      { fr: "CMS", en: "CMS" },
     ],
     description: {
-      fr: "Imagerie électromagnétique portable pour diagnostiquer les réseaux électriques et infrastructures industrielles. Site vitrine technique qui traduit une deep tech complexe en proposition claire, avec parcours produit pour REACTY Vision.",
-      en: "Portable electromagnetic imaging for diagnosing electrical networks and industrial infrastructure. A technical site that turns complex deep tech into a clear proposition, with a product journey for REACTY Vision.",
+      fr: "Imagerie électromagnétique portable pour diagnostiquer réseaux électriques et infrastructures industrielles. Site qui rend une technologie pointue immédiatement compréhensible, avec un parcours produit détaillé.",
+      en: "Portable electromagnetic imaging for diagnosing electrical networks and industrial infrastructure. A technical site that turns complex tech into a clear proposition, with a product journey.",
     },
     headline: {
       fr: "DEEPTECH",
@@ -42,6 +43,7 @@ export const WORK: ReadonlyArray<WorkProject> = [
     tags: [
       { fr: "Design Website", en: "Website Design" },
       { fr: "Développement", en: "Development" },
+      { fr: "CMS", en: "CMS" },
     ],
     description: {
       fr: "Studio vidéo mobile pour entreprises. Site portfolio qui convertit, prise de rendez-vous Calendly et CMS Sanity sur mesure pour rester maître du contenu.",
