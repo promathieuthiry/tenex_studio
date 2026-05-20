@@ -1,130 +1,206 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 
-import { visitAriaLabel } from '@/lib/i18n'
-import type { Locale } from '@/lib/i18n'
-import { TESTIMONIALS, type Testimonial } from '@/data/testimonials'
-import { SectionHeader } from '@/components/section-header'
-import { ArrowGlyph } from '@/components/arrow-glyph'
+import { visitAriaLabel } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+import { TESTIMONIALS, type Testimonial } from "@/data/testimonials";
+import { SectionHeader } from "@/components/section-header";
+import { ArrowGlyph } from "@/components/arrow-glyph";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const COPY = {
   fr: {
-    eyebrow: 'Témoignages',
-    title: 'Clients qui nous recommandent',
+    eyebrow: "Témoignages",
+    title: "Clients qui nous recommandent",
+    readMore: "Lire le témoignage",
+    close: "Fermer",
   },
   en: {
-    eyebrow: 'Testimonials',
-    title: 'clients showing us some love',
+    eyebrow: "Testimonials",
+    title: "clients showing us some love",
+    readMore: "Read testimonial",
+    close: "Close",
   },
-} as const satisfies Record<Locale, { eyebrow: string; title: string }>
+} as const satisfies Record<
+  Locale,
+  { eyebrow: string; title: string; readMore: string; close: string }
+>;
 
 const CARD_BASE =
-  'group relative flex w-[80vw] shrink-0 flex-col rounded-[var(--radius-card-lg)] bg-paper p-7 shadow-[0_1px_0_rgba(15,15,18,0.04),0_30px_60px_-30px_rgba(15,15,18,0.12)] sm:w-[22rem] md:w-[28rem] md:p-9'
+  "group relative flex h-[28rem] w-[80vw] shrink-0 cursor-pointer flex-col rounded-[var(--radius-card-lg)] bg-paper p-7 text-left shadow-[0_1px_0_rgba(15,15,18,0.04),0_30px_60px_-30px_rgba(15,15,18,0.12)] transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-paper-cool hover:shadow-[0_1px_0_rgba(15,15,18,0.06),0_40px_80px_-30px_rgba(15,15,18,0.22)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink sm:h-[34rem] sm:w-[22rem] md:w-[28rem] md:p-9";
 
-const TRACK_BASE = 'flex shrink-0 gap-6 px-6 md:gap-8 md:px-10'
+const TRACK_BASE = "flex shrink-0 gap-6 px-6 md:gap-8 md:px-10";
 
 function Card({
   t,
   locale,
   className,
 }: {
-  t: Testimonial
-  locale: Locale
-  className?: string
+  t: Testimonial;
+  locale: Locale;
+  className?: string;
 }) {
-  const ariaLabel = visitAriaLabel(locale, t.name[locale])
+  const copy = COPY[locale];
+  const ariaLabel = visitAriaLabel(locale, t.name[locale]);
+
+  const handleVisitClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
 
   return (
-    <article className={className ? `${CARD_BASE} ${className}` : CARD_BASE}>
-      <div className="flex items-start justify-between">
-        <span
-          aria-hidden
-          className="font-display text-7xl leading-[0.7] text-ink md:text-8xl"
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          type="button"
+          aria-label={`${copy.readMore}: ${t.name[locale]}`}
+          className={className ? `${CARD_BASE} ${className}` : CARD_BASE}
         >
-          &ldquo;
-        </span>
+          <div className="flex items-start justify-between">
+            <span
+              aria-hidden
+              className="font-display text-7xl leading-[0.7] text-ink md:text-8xl"
+            >
+              &ldquo;
+            </span>
+
+            <a
+              href={t.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={ariaLabel}
+              onClick={handleVisitClick}
+              className="grid size-9 -translate-y-0.5 place-items-center rounded-full bg-ink text-paper opacity-0 transition duration-300 ease-out hover:bg-ink-soft focus-visible:translate-y-0 focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100"
+            >
+              <ArrowGlyph size={20} />
+            </a>
+          </div>
+
+          <blockquote className="mb-6 mt-10 line-clamp-8 font-display text-lg leading-[1.4] tracking-[-0.005em] text-ink md:mb-8 md:text-[20px] md:line-clamp-9">
+            {t.quote[locale]}
+          </blockquote>
+
+          <div className="mt-auto flex items-center gap-4 border-t border-ink/8 pt-6">
+            <img
+              src={t.portrait}
+              alt=""
+              width={56}
+              height={56}
+              loading="lazy"
+              decoding="async"
+              className="size-14 shrink-0 rounded-full bg-ink/5 object-cover"
+            />
+            <div className="min-w-0">
+              <p className="truncate font-sans text-sm font-medium text-ink">
+                {t.name[locale]}
+              </p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
+                {t.role[locale]}
+              </p>
+            </div>
+          </div>
+        </button>
+      </DialogTrigger>
+
+      <DialogContent closeLabel={copy.close}>
+        <DialogTitle className="sr-only">{t.name[locale]}</DialogTitle>
+        <DialogDescription className="sr-only">
+          {t.role[locale]}
+        </DialogDescription>
+
+        <div>
+          <span
+            aria-hidden
+            className="font-display text-6xl leading-[0.7] text-ink md:text-7xl"
+          >
+            &ldquo;
+          </span>
+        </div>
+
+        <blockquote className="max-h-[60svh] overflow-y-auto pb-4 pr-2 font-display text-base leading-normal tracking-[-0.005em] text-ink md:pb-6 md:text-lg">
+          {t.quote[locale]}
+        </blockquote>
 
         <a
           href={t.website}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={ariaLabel}
-          className="grid size-9 -translate-y-0.5 place-items-center rounded-full bg-ink text-paper opacity-0 transition duration-300 ease-out hover:bg-ink-soft focus-visible:translate-y-0 focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100"
+          className="flex items-center gap-4 border-t border-ink/8 pt-6 transition-opacity duration-300 ease-out hover:opacity-70 focus-visible:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
         >
-          <ArrowGlyph size={20} />
+          <img
+            src={t.portrait}
+            alt=""
+            width={64}
+            height={64}
+            loading="lazy"
+            decoding="async"
+            className="size-16 shrink-0 rounded-full bg-ink/5 object-cover"
+          />
+          <div className="min-w-0 flex-1">
+            <p className="truncate font-sans text-sm font-medium text-ink">
+              {t.name[locale]}
+            </p>
+            <p className="truncate font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
+              {t.role[locale]}
+            </p>
+          </div>
+          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-ink text-paper">
+            <ArrowGlyph size={18} />
+          </span>
         </a>
-      </div>
-
-      <blockquote className="mt-10 flex-1 font-display text-lg leading-[1.4] tracking-[-0.005em] text-ink md:text-[20px]">
-        {t.quote[locale]}
-      </blockquote>
-
-      <a
-        href={t.website}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={ariaLabel}
-        className="mt-10 flex items-center gap-4 border-t border-ink/8 pt-6 transition-opacity duration-300 ease-out hover:opacity-70 focus-visible:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
-      >
-        <img
-          src={t.portrait}
-          alt=""
-          width={44}
-          height={44}
-          loading="lazy"
-          decoding="async"
-          className="size-11 shrink-0 rounded-full bg-ink/5 object-cover"
-        />
-        <div className="min-w-0">
-          <p className="truncate font-sans text-sm font-medium text-ink">
-            {t.name[locale]}
-          </p>
-          <p className="truncate font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
-            {t.role[locale]}
-          </p>
-        </div>
-      </a>
-    </article>
-  )
+      </DialogContent>
+    </Dialog>
+  );
 }
 
 export function Testimonials({ locale }: { locale: Locale }) {
-  const copy = COPY[locale]
-  const pinWrapRef = useRef<HTMLDivElement>(null)
-  const trackRef = useRef<HTMLDivElement>(null)
-  const [scrollDistance, setScrollDistance] = useState(0)
-  const reduced = useReducedMotion()
+  const copy = COPY[locale];
+  const pinWrapRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [scrollDistance, setScrollDistance] = useState(0);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
     if (reduced) {
-      setScrollDistance((prev) => (prev === 0 ? prev : 0))
-      return
+      setScrollDistance((prev) => (prev === 0 ? prev : 0));
+      return;
     }
     const measure = () => {
-      const track = trackRef.current
-      const wrap = pinWrapRef.current
-      if (!track || !wrap) return
-      const distance = Math.max(0, track.scrollWidth - wrap.clientWidth)
-      setScrollDistance((prev) => (prev === distance ? prev : distance))
-    }
-    measure()
-    const ro = new ResizeObserver(measure)
-    const track = trackRef.current
-    const wrap = pinWrapRef.current
+      const track = trackRef.current;
+      const wrap = pinWrapRef.current;
+      if (!track || !wrap) return;
+      const distance = Math.max(0, track.scrollWidth - wrap.clientWidth);
+      setScrollDistance((prev) => (prev === distance ? prev : distance));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    const track = trackRef.current;
+    const wrap = pinWrapRef.current;
     if (track && wrap) {
-      ro.observe(track)
-      ro.observe(wrap)
+      ro.observe(track);
+      ro.observe(wrap);
     }
-    return () => ro.disconnect()
-  }, [reduced])
+    return () => ro.disconnect();
+  }, [reduced]);
 
   const { scrollYProgress } = useScroll({
     target: pinWrapRef,
-    offset: ['start start', 'end end'],
-  })
-  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance])
+    offset: ["start start", "end end"],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
 
-  const pinned = !reduced && scrollDistance > 0
+  const pinned = !reduced && scrollDistance > 0;
 
   return (
     <section
@@ -151,10 +227,10 @@ export function Testimonials({ locale }: { locale: Locale }) {
         <div
           className={
             pinned
-              ? 'sticky top-0 flex h-svh items-center'
-              : 'flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4 md:gap-8'
+              ? "sticky top-0 flex h-svh items-center"
+              : "flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4 md:gap-8"
           }
-          style={pinned ? undefined : { scrollbarWidth: 'thin' }}
+          style={pinned ? undefined : { scrollbarWidth: "thin" }}
         >
           <motion.div
             ref={trackRef}
@@ -168,12 +244,12 @@ export function Testimonials({ locale }: { locale: Locale }) {
                 key={t.id}
                 t={t}
                 locale={locale}
-                className={pinned ? undefined : 'snap-start'}
+                className={pinned ? undefined : "snap-start"}
               />
             ))}
           </motion.div>
         </div>
       </div>
     </section>
-  )
+  );
 }
