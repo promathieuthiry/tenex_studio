@@ -25,12 +25,10 @@ const TRACK_BASE = 'flex shrink-0 gap-6 px-6 md:gap-8 md:px-10'
 
 function Card({
   t,
-  i,
   locale,
   className,
 }: {
   t: Testimonial
-  i: number
   locale: Locale
   className?: string
 }) {
@@ -41,9 +39,9 @@ function Card({
       <div className="flex items-start justify-between">
         <span
           aria-hidden
-          className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink/40"
+          className="font-display text-7xl leading-[0.7] text-ink md:text-8xl"
         >
-          ({String(i + 1).padStart(2, '0')})
+          &ldquo;
         </span>
 
         <a
@@ -58,7 +56,7 @@ function Card({
       </div>
 
       <blockquote className="mt-10 flex-1 font-display text-lg leading-[1.4] tracking-[-0.005em] text-ink md:text-[20px]">
-        &ldquo;{t.quote[locale]}&rdquo;
+        {t.quote[locale]}
       </blockquote>
 
       <a
@@ -165,11 +163,10 @@ export function Testimonials({ locale }: { locale: Locale }) {
               pinned ? `${TRACK_BASE} will-change-transform` : TRACK_BASE
             }
           >
-            {TESTIMONIALS.map((t, i) => (
+            {TESTIMONIALS.map((t) => (
               <Card
                 key={t.id}
                 t={t}
-                i={i}
                 locale={locale}
                 className={pinned ? undefined : 'snap-start'}
               />
