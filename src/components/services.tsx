@@ -14,17 +14,15 @@ const COPY = {
     eyebrow: 'Services',
     titleStart: 'Pensé pour',
     titleEnd: 'l’entrepreneur moderne.',
-    scopeLabel: 'Périmètre',
   },
   en: {
     eyebrow: 'Services',
     titleStart: 'Designed for',
     titleEnd: 'forward-thinking founders.',
-    scopeLabel: 'Scope',
   },
 } as const satisfies Record<
   Locale,
-  { eyebrow: string; titleStart: string; titleEnd: string; scopeLabel: string }
+  { eyebrow: string; titleStart: string; titleEnd: string }
 >
 
 const STICKY_TOP_PX = 96
@@ -35,7 +33,6 @@ function StackedCard({
   index,
   total,
   locale,
-  scopeLabel,
   reduced,
   stackProgress,
 }: {
@@ -43,7 +40,6 @@ function StackedCard({
   index: number
   total: number
   locale: Locale
-  scopeLabel: string
   reduced: boolean
   stackProgress: MotionValue<number>
 }) {
@@ -58,6 +54,7 @@ function StackedCard({
   )
 
   const Icon = service.icon
+  const imageOnLeft = index % 2 === 1
 
   return (
     <motion.article
@@ -66,16 +63,20 @@ function StackedCard({
         top: `${STICKY_TOP_PX}px`,
         transformOrigin: 'center top',
       }}
-      className="sticky flex min-h-[560px] flex-col overflow-hidden rounded-[var(--radius-card-lg)] border border-paper/10 bg-[#141417] p-8 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)] md:min-h-[640px] md:p-14"
+      className="sticky overflow-hidden rounded-card-lg border border-paper/10 bg-[#141417] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)]"
     >
-      <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
-        <div className="flex flex-col">
+      <div
+        className={`grid min-h-140 md:min-h-160 md:grid-cols-[0.85fr_1.15fr] ${
+          imageOnLeft ? 'md:[&>*:first-child]:order-2' : ''
+        }`}
+      >
+        <div className="flex flex-col p-8 md:p-12 lg:p-14">
           <div className="flex items-center gap-4">
             <span className="font-mono text-xs uppercase tracking-[0.14em] text-paper/45">
               {service.number}
             </span>
             <span className="h-px flex-1 bg-paper/10" />
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] border border-paper/15 text-paper/75">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-paper/15 text-paper/75">
               <Icon className="size-5" aria-hidden />
             </span>
           </div>
@@ -84,29 +85,38 @@ function StackedCard({
             {service.name[locale]}
           </h3>
 
-          <p className="mt-6 max-w-xl font-sans text-base leading-7 text-paper/60 md:text-lg md:leading-8">
+          <p className="mt-6 max-w-md font-sans text-base leading-7 text-paper/60 md:text-lg md:leading-8">
             {service.description[locale]}
           </p>
-        </div>
 
-        <div className="flex flex-col">
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-paper/40">
-            {scopeLabel}
-          </p>
-          <ul className="mt-6 grid gap-3">
-            {service.scope[locale].map((item) => (
+          <ul className="mt-auto flex flex-wrap gap-2 pt-10">
+            {service.pills[locale].map((pill) => (
               <li
-                key={item}
-                className="flex items-start gap-3 border-b border-paper/8 pb-3 font-sans text-sm leading-6 text-paper/70 md:text-[15px]"
+                key={pill}
+                className="rounded-full border border-paper/12 bg-paper/5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/70"
               >
-                <span
-                  aria-hidden
-                  className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
-                />
-                <span>{item}</span>
+                {pill}
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="relative aspect-4/3 overflow-hidden md:aspect-auto md:h-full">
+          <img
+            src={service.image.src}
+            alt={service.image.alt[locale]}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            aria-hidden
+            className={`absolute inset-0 bg-linear-to-b from-[#141417]/40 via-transparent to-[#141417]/60 md:bg-linear-to-r ${
+              imageOnLeft
+                ? 'md:from-transparent md:via-transparent md:to-[#141417]/80'
+                : 'md:from-[#141417]/80 md:via-transparent md:to-transparent'
+            }`}
+          />
         </div>
       </div>
     </motion.article>
@@ -126,9 +136,9 @@ export function Services({ locale }: { locale: Locale }) {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="relative bg-[var(--color-ink)] px-6 pb-32 pt-24 md:px-10 md:pb-48 md:pt-40"
+      className="relative bg-ink px-6 pb-32 pt-24 md:px-10 md:pb-48 md:pt-40"
     >
-      <div className="relative mx-auto max-w-screen-xl">
+      <div className="relative mx-auto max-w-7xl">
         <p className="font-mono text-xs uppercase tracking-[0.12em] text-paper/55">
           {copy.eyebrow}
         </p>
@@ -151,7 +161,6 @@ export function Services({ locale }: { locale: Locale }) {
               index={i}
               total={SERVICES.length}
               locale={locale}
-              scopeLabel={copy.scopeLabel}
               reduced={reduced}
               stackProgress={scrollYProgress}
             />

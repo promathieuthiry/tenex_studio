@@ -17,6 +17,8 @@ export type Service = Readonly<{
   name: Bilingual
   description: Bilingual
   scope: Bilingual<ReadonlyArray<string>>
+  pills: Bilingual<ReadonlyArray<string>>
+  image: Readonly<{ src: string; alt: Bilingual }>
   icon: ServiceIcon
 }>
 
@@ -27,8 +29,8 @@ export const SERVICES: ReadonlyArray<Service> = [
     icon: LayoutIcon,
     name: { fr: 'Design UI/UX', en: 'UI/UX Design' },
     description: {
-      fr: 'Design d’interfaces web et mobile centré utilisateur. Du wireframe au design system, des écrans prêts à être développés et pensés pour convertir.',
-      en: 'User-centered web and mobile interface design. From wireframes to a complete design system — screens ready to ship and built to convert.',
+      fr: 'Interfaces web et mobile centrées utilisateur. Des écrans prêts à développer, pensés pour convertir.',
+      en: 'User-centered web and mobile interfaces. Screens ready to ship and built to convert.',
     },
     scope: {
       fr: [
@@ -48,6 +50,17 @@ export const SERVICES: ReadonlyArray<Service> = [
         'Usability testing',
       ],
     },
+    pills: {
+      fr: ['Recherche', 'Wireframes', 'Prototypes', 'Design System', 'Accessibilité'],
+      en: ['Research', 'Wireframes', 'Prototypes', 'Design System', 'Accessibility'],
+    },
+    image: {
+      src: '/services/ui-ux-design.jpg',
+      alt: {
+        fr: 'Interface design haute-fidélité',
+        en: 'High-fidelity interface design',
+      },
+    },
   },
   {
     number: '002',
@@ -55,8 +68,8 @@ export const SERVICES: ReadonlyArray<Service> = [
     icon: DesktopIcon,
     name: { fr: 'Création de site internet', en: 'Website Creation' },
     description: {
-      fr: 'Sites vitrines, e-commerce ou sur mesure. Rapides, sécurisés et adaptés à votre activité — conçus pour convertir, optimisés pour le SEO et pensés pour durer.',
-      en: 'Showcase, e-commerce, or custom websites. Fast, secure, and tailored to your business — built to convert, SEO-optimized, and designed to last.',
+      fr: 'Sites vitrines, e-commerce ou sur mesure. Rapides, sécurisés, conçus pour convertir et durer.',
+      en: 'Showcase, e-commerce, or custom websites. Fast, secure, built to convert and last.',
     },
     scope: {
       fr: [
@@ -76,6 +89,17 @@ export const SERVICES: ReadonlyArray<Service> = [
         'Vercel deployment and CI/CD',
       ],
     },
+    pills: {
+      fr: ['Vitrine', 'E-commerce', 'Next.js', 'Sanity', 'Performance'],
+      en: ['Showcase', 'E-commerce', 'Next.js', 'Sanity', 'Performance'],
+    },
+    image: {
+      src: '/services/website-creation.jpg',
+      alt: {
+        fr: 'Site web sur mesure en production',
+        en: 'Custom website in production',
+      },
+    },
   },
   {
     number: '003',
@@ -86,8 +110,8 @@ export const SERVICES: ReadonlyArray<Service> = [
       en: 'SaaS Application',
     },
     description: {
-      fr: 'Conception et développement d’applications web SaaS sur mesure. Architectures modernes en Next.js, React et TypeScript, prêtes à évoluer avec votre produit.',
-      en: 'Design and engineering of custom SaaS applications. Modern Next.js, React, and TypeScript architectures, ready to scale with your product.',
+      fr: 'Applications web SaaS sur mesure. Architectures Next.js, React et TypeScript, prêtes à évoluer.',
+      en: 'Custom SaaS applications. Modern Next.js, React, and TypeScript stacks, ready to scale.',
     },
     scope: {
       fr: [
@@ -107,6 +131,17 @@ export const SERVICES: ReadonlyArray<Service> = [
         'Vercel deployment and CI/CD',
       ],
     },
+    pills: {
+      fr: ['Multi-tenant', 'Auth', 'Dashboards', 'API', 'Facturation'],
+      en: ['Multi-tenant', 'Auth', 'Dashboards', 'API', 'Billing'],
+    },
+    image: {
+      src: '/services/saas-application.jpg',
+      alt: {
+        fr: 'Interface produit SaaS',
+        en: 'SaaS product interface',
+      },
+    },
   },
   {
     number: '004',
@@ -114,8 +149,8 @@ export const SERVICES: ReadonlyArray<Service> = [
     icon: MagnifyingGlassIcon,
     name: { fr: 'SEO et GEO', en: 'SEO & GEO' },
     description: {
-      fr: 'Stratégie de référencement complète pour Google et les moteurs de recherche IA — ChatGPT, Perplexity, Gemini. Plus de visibilité, plus de trafic qualifié, plus de leads.',
-      en: 'Full search strategy for Google and AI-powered engines — ChatGPT, Perplexity, Gemini. More visibility, more qualified traffic, more leads.',
+      fr: 'Référencement pour Google et moteurs IA — ChatGPT, Perplexity, Gemini. Plus de visibilité, plus de leads.',
+      en: 'Search strategy for Google and AI engines — ChatGPT, Perplexity, Gemini. More visibility, more leads.',
     },
     scope: {
       fr: [
@@ -137,6 +172,17 @@ export const SERVICES: ReadonlyArray<Service> = [
         'Link building and domain authority',
       ],
     },
+    pills: {
+      fr: ['Audit', 'Mots-clés', 'GEO', 'Contenu', 'SEO local', 'Netlinking'],
+      en: ['Audit', 'Keywords', 'GEO', 'Content', 'Local SEO', 'Backlinks'],
+    },
+    image: {
+      src: '/services/seo-geo.jpg',
+      alt: {
+        fr: 'Tableau de bord de performance SEO',
+        en: 'SEO performance dashboard',
+      },
+    },
   },
   {
     number: '005',
@@ -147,8 +193,8 @@ export const SERVICES: ReadonlyArray<Service> = [
       en: 'AI Automations & Workflows',
     },
     description: {
-      fr: 'Agents IA et workflows d’automatisation pour vos opérations quotidiennes. Moins de tâches répétitives, plus de temps pour ce qui compte vraiment.',
-      en: 'AI agents and automation workflows for your day-to-day operations. Less repetitive work, more time for what actually matters.',
+      fr: 'Agents IA et workflows pour vos opérations. Moins de tâches répétitives, plus de temps utile.',
+      en: 'AI agents and automation workflows for your operations. Less repetitive work, more time that counts.',
     },
     scope: {
       fr: [
@@ -170,6 +216,17 @@ export const SERVICES: ReadonlyArray<Service> = [
         'AI-assisted development lifecycle',
       ],
     },
+    pills: {
+      fr: ['Workflows', 'Agents', 'Leads', 'Contenu', 'CRM', 'Slack'],
+      en: ['Workflows', 'Agents', 'Leads', 'Content', 'CRM', 'Slack'],
+    },
+    image: {
+      src: '/services/ai-automations.webp',
+      alt: {
+        fr: 'Workflow IA en action',
+        en: 'AI workflow in motion',
+      },
+    },
   },
   {
     number: '006',
@@ -177,8 +234,8 @@ export const SERVICES: ReadonlyArray<Service> = [
     icon: BackpackIcon,
     name: { fr: 'Formation et support', en: 'Training & Support' },
     description: {
-      fr: 'Formation sur les outils que vous utilisez au quotidien et accompagnement tout au long de vos projets — et bien après leur livraison.',
-      en: 'Training on the tools you use every day and hands-on guidance throughout your projects — and long after delivery.',
+      fr: 'Formation sur vos outils du quotidien et accompagnement, pendant et bien après la livraison.',
+      en: 'Training on the tools you use daily and guidance — during the project and well beyond delivery.',
     },
     scope: {
       fr: [
@@ -198,9 +255,21 @@ export const SERVICES: ReadonlyArray<Service> = [
         'Maintenance and improvements',
       ],
     },
+    pills: {
+      fr: ['Formation', 'Docs', 'Onboarding', 'Conseil', 'Support', 'Maintenance'],
+      en: ['Training', 'Docs', 'Onboarding', 'Advisory', 'Support', 'Maintenance'],
+    },
+    image: {
+      src: '/services/training-support.jpg',
+      alt: {
+        fr: 'Session de formation en studio',
+        en: 'Studio training session',
+      },
+    },
   },
 ] as const
 
 for (const service of SERVICES) {
   assertArrayParity(`services.${service.number}.scope`, service.scope)
+  assertArrayParity(`services.${service.number}.pills`, service.pills)
 }
