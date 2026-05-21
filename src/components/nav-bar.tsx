@@ -8,6 +8,7 @@ import {
 
 import type { Locale } from "@/lib/i18n";
 import { NAV_LANDMARK, NAV_LINKS, TALK_PILL, WORDMARK } from "@/data/nav";
+import { GradientOrb } from "./gradient-orb";
 import { LocaleSwitcher } from "./locale-switcher";
 
 const REVEAL_THRESHOLD = 80;
@@ -40,14 +41,22 @@ export function NavBar({ locale }: { locale: Locale }) {
       <div className="flex w-full max-w-screen-xl items-center justify-between gap-4 rounded-full border border-ink/5 bg-paper/90 px-4 py-2 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.18)] backdrop-blur md:px-6 md:py-3">
         <a
           href={homeHref}
-          className="transition hover:opacity-80"
+          className="flex items-center gap-2 transition hover:opacity-80"
           aria-label={WORDMARK}
         >
-          <img
-            src="/brand/tenex-mark.svg"
-            alt={WORDMARK}
-            className="h-5 w-auto md:h-6"
-          />
+          <span className="relative inline-flex items-center justify-center">
+            <GradientOrb size="1.75rem" className="md:hidden" />
+            <GradientOrb size="2.25rem" className="hidden md:inline-flex" />
+            <img
+              src="/brand/tenex-monogram-inverse.svg"
+              alt=""
+              aria-hidden="true"
+              className="absolute h-3.5 w-auto md:h-7"
+            />
+          </span>
+          <span className="font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg md:text-xl">
+            Studio
+          </span>
         </a>
 
         <nav
