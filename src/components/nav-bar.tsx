@@ -14,6 +14,9 @@ import { LocaleSwitcher } from "./locale-switcher";
 const REVEAL_THRESHOLD = 80;
 const DELTA = 6;
 
+const GLASS_PILL =
+  "relative overflow-hidden rounded-lg bg-paper/40 backdrop-blur-2xl backdrop-saturate-150 [box-shadow:inset_0_1px_0_0_rgba(255,255,255,0.6),inset_0_-1px_0_0_rgba(255,255,255,0.15)] before:pointer-events-none before:absolute before:inset-0 before:rounded-lg before:bg-[linear-gradient(135deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0)_55%,rgba(255,255,255,0.2)_100%)] before:opacity-80 before:mix-blend-overlay";
+
 export function NavBar({ locale }: { locale: Locale }) {
   const homeHref = locale === "fr" ? "/" : "/en";
   const reduceMotion = useReducedMotion();
@@ -71,13 +74,13 @@ export function NavBar({ locale }: { locale: Locale }) {
       transition={{ type: "tween", duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-3 md:pt-4"
     >
-      <div className="flex w-full max-w-screen-xl items-center justify-between gap-4 rounded-full border border-ink/5 bg-paper/90 px-4 py-2 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.18)] backdrop-blur md:px-6 md:py-3">
+      <div className={`${GLASS_PILL} flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2 md:px-6 md:py-3`}>
         <a
           href={homeHref}
-          className="flex items-center gap-2 transition hover:opacity-80"
+          className="relative z-10 flex items-center gap-2 transition hover:opacity-80"
           aria-label={WORDMARK}
         >
-          <span className="relative inline-flex items-center justify-center">
+          <span className="relative z-10 inline-flex items-center justify-center">
             <GradientOrb size="1.75rem" className="md:hidden" />
             <GradientOrb size="2.25rem" className="hidden md:inline-flex" />
             <img
@@ -87,14 +90,14 @@ export function NavBar({ locale }: { locale: Locale }) {
               className="absolute h-3.5 w-auto md:h-7"
             />
           </span>
-          <span className="font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg md:text-xl">
+          <span className="relative z-10 font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg md:text-xl">
             Studio
           </span>
         </a>
 
         <nav
           aria-label={NAV_LANDMARK[locale]}
-          className="hidden items-center gap-7 md:flex"
+          className="relative z-10 hidden items-center gap-7 md:flex"
         >
           {NAV_LINKS.map((link) => {
             const href = link.href?.[locale];
@@ -103,7 +106,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                 <span
                   key={link.id}
                   aria-disabled="true"
-                  className="font-sans text-sm text-ink/40"
+                  className="relative z-10 font-sans text-sm text-ink/40"
                 >
                   {link.label[locale]}
                 </span>
@@ -114,7 +117,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                 key={link.id}
                 href={href}
                 onClick={(event) => handleHashClick(event, href)}
-                className="font-sans text-sm text-ink transition hover:opacity-70"
+                className="relative z-10 font-sans text-sm text-ink transition hover:opacity-70"
               >
                 {link.label[locale]}
               </a>
@@ -122,7 +125,7 @@ export function NavBar({ locale }: { locale: Locale }) {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="relative z-10 flex items-center gap-3">
           <LocaleSwitcher locale={locale} />
           <a
             href={TALK_PILL.href[locale]}
