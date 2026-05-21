@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 import {
   motion,
   useMotionValueEvent,
@@ -19,8 +19,11 @@ export function NavBar({ locale }: { locale: Locale }) {
   const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const programmaticScroll = useRef(false);
+  const programmaticScrollTimer = useRef<number | null>(null);
 
   useMotionValueEvent(scrollY, "change", (current) => {
+    if (programmaticScroll.current) return;
     if (current < REVEAL_THRESHOLD) {
       setHidden(false);
       return;
@@ -30,6 +33,36 @@ export function NavBar({ locale }: { locale: Locale }) {
     if (delta > DELTA) setHidden(true);
     else if (delta < -DELTA) setHidden(false);
   });
+
+  const handleHashClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const url = new URL(href, window.location.origin);
+    if (!url.hash || url.pathname !== window.location.pathname) return;
+    const id = url.hash.slice(1);
+    const target =
+      document.getElementById(`${id}-heading`) ?? document.getElementById(id);
+    if (!target) return;
+    event.preventDefault();
+    const headerEl = document.querySelector("header");
+    const offset = headerEl ? headerEl.getBoundingClientRect().height + 24 : 88;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    programmaticScroll.current = true;
+    setHidden(false);
+    window.scrollTo({
+      top: targetTop,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+    window.history.pushState(null, "", url.hash);
+
+    if (programmaticScrollTimer.current !== null) {
+      window.clearTimeout(programmaticScrollTimer.current);
+    }
+    programmaticScrollTimer.current = window.setTimeout(() => {
+      programmaticScroll.current = false;
+      programmaticScrollTimer.current = null;
+    }, reduceMotion ? 50 : 900);
+  };
 
   return (
     <motion.header
@@ -80,6 +113,7 @@ export function NavBar({ locale }: { locale: Locale }) {
               <a
                 key={link.id}
                 href={href}
+                onClick={(event) => handleHashClick(event, href)}
                 className="font-sans text-sm text-ink transition hover:opacity-70"
               >
                 {link.label[locale]}
