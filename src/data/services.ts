@@ -24,7 +24,7 @@ export type Service = Readonly<{
 
 export const SERVICES: ReadonlyArray<Service> = [
   {
-    number: '001',
+    number: '1',
     slug: 'ui-ux-design',
     icon: LayoutIcon,
     name: { fr: 'Design UI/UX', en: 'UI/UX Design' },
@@ -63,7 +63,7 @@ export const SERVICES: ReadonlyArray<Service> = [
     },
   },
   {
-    number: '002',
+    number: '2',
     slug: 'website-creation',
     icon: DesktopIcon,
     name: { fr: 'Création de site internet', en: 'Website Creation' },
@@ -102,7 +102,7 @@ export const SERVICES: ReadonlyArray<Service> = [
     },
   },
   {
-    number: '003',
+    number: '3',
     slug: 'saas-application',
     icon: CodeIcon,
     name: {
@@ -144,7 +144,7 @@ export const SERVICES: ReadonlyArray<Service> = [
     },
   },
   {
-    number: '004',
+    number: '4',
     slug: 'seo-geo',
     icon: MagnifyingGlassIcon,
     name: { fr: 'SEO et GEO', en: 'SEO & GEO' },
@@ -185,7 +185,7 @@ export const SERVICES: ReadonlyArray<Service> = [
     },
   },
   {
-    number: '005',
+    number: '5',
     slug: 'ai-automations',
     icon: MagicWandIcon,
     name: {
@@ -229,7 +229,7 @@ export const SERVICES: ReadonlyArray<Service> = [
     },
   },
   {
-    number: '006',
+    number: '6',
     slug: 'training-support',
     icon: BackpackIcon,
     name: { fr: 'Formation et support', en: 'Training & Support' },

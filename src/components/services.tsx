@@ -71,15 +71,24 @@ function StackedCard({
         }`}
       >
         <div className="flex flex-col p-8 md:p-12 lg:p-14">
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-xs uppercase tracking-[0.14em] text-paper/45">
-              {service.number}
-            </span>
-            <span className="h-px flex-1 bg-paper/10" />
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-baseline gap-2 leading-none">
+              <span
+                aria-hidden
+                className="font-display text-5xl tracking-tighter tabular-nums text-paper md:text-7xl"
+              >
+                {service.number}
+              </span>
+              <span
+                aria-hidden
+                className="size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_18px_var(--color-accent)]"
+              />
+            </div>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-paper/15 text-paper/75">
               <Icon className="size-5" aria-hidden />
             </span>
           </div>
+          <span aria-hidden className="mt-6 block h-px w-full bg-paper/10" />
 
           <h3 className="mt-10 font-display text-3xl leading-[1.05] tracking-[-0.02em] text-paper md:text-5xl lg:text-6xl">
             {service.name[locale]}
