@@ -13,7 +13,7 @@ const { locale } = Astro.props as { locale: Locale };
 ---
 
 <MonoHero client:load locale={locale} />
-<Services locale={locale} />
+<Services client:visible locale={locale} />
 <WorkShowcase locale={locale} />
 <MonogramReveal client:visible locale={locale} />
 <Testimonials client:visible locale={locale} />
