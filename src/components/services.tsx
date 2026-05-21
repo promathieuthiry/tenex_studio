@@ -120,10 +120,18 @@ function StackedCard({
           />
           <div
             aria-hidden
-            className={`absolute inset-0 bg-linear-to-b from-[#141417]/40 via-transparent to-[#141417]/60 md:bg-linear-to-r ${
-              imageOnLeft
-                ? 'md:from-transparent md:via-transparent md:to-[#141417]/80'
-                : 'md:from-[#141417]/80 md:via-transparent md:to-transparent'
+            className={`absolute inset-0 ${
+              service.image.tone === 'light'
+                ? `bg-linear-to-b from-[#141417]/15 via-transparent to-[#141417]/25 md:bg-linear-to-r ${
+                    imageOnLeft
+                      ? 'md:from-transparent md:via-transparent md:to-[#141417]/30'
+                      : 'md:from-[#141417]/30 md:via-transparent md:to-transparent'
+                  }`
+                : `bg-linear-to-b from-[#141417]/40 via-transparent to-[#141417]/60 md:bg-linear-to-r ${
+                    imageOnLeft
+                      ? 'md:from-transparent md:via-transparent md:to-[#141417]/80'
+                      : 'md:from-[#141417]/80 md:via-transparent md:to-transparent'
+                  }`
             }`}
           />
         </div>

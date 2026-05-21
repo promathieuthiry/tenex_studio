@@ -11,6 +11,8 @@ import { assertArrayParity } from "@/data/__guards";
 
 export type ServiceIcon = typeof LayoutIcon;
 
+export type ImageTone = 'dark' | 'light';
+
 export type Service = Readonly<{
   number: string;
   slug: string;
@@ -18,7 +20,7 @@ export type Service = Readonly<{
   description: Bilingual;
   scope: Bilingual<ReadonlyArray<string>>;
   pills: Bilingual<ReadonlyArray<string>>;
-  image: Readonly<{ src: string; alt: Bilingual }>;
+  image: Readonly<{ src: string; alt: Bilingual; tone?: ImageTone }>;
   icon: ServiceIcon;
 }>;
 
@@ -67,7 +69,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       ],
     },
     image: {
-      src: "/services/ui-ux-design.jpg",
+      src: "/services/ui-ux-design.webp",
       alt: {
         fr: "Interface design haute-fidélité",
         en: "High-fidelity interface design",
@@ -120,7 +122,8 @@ export const SERVICES: ReadonlyArray<Service> = [
       ],
     },
     image: {
-      src: "/services/website-creation.jpg",
+      src: "/services/website-creation.webp",
+      tone: "light",
       alt: {
         fr: "Site web sur mesure en production",
         en: "Custom website in production",
@@ -162,7 +165,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       en: ["Architecture", "Auth", "Dashboards", "API", "Payments"],
     },
     image: {
-      src: "/services/saas-application.jpg",
+      src: "/services/saas-application.webp",
       alt: {
         fr: "Interface produit SaaS",
         en: "SaaS product interface",
@@ -203,7 +206,8 @@ export const SERVICES: ReadonlyArray<Service> = [
       en: ["Audit", "Keywords", "GEO", "Content", "Local SEO", "Authority"],
     },
     image: {
-      src: "/services/seo-geo.jpg",
+      src: "/services/seo-geo.webp",
+      tone: "light",
       alt: {
         fr: "Tableau de bord de performance SEO",
         en: "SEO performance dashboard",
@@ -300,7 +304,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       ],
     },
     image: {
-      src: "/services/training-support.jpg",
+      src: "/services/training-support.webp",
       alt: {
         fr: "Session de formation en studio",
         en: "Studio training session",
