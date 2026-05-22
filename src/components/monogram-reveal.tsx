@@ -10,50 +10,8 @@ import {
 
 import type { Locale } from '@/lib/i18n'
 import { HERO } from '@/data/hero'
+import { VALUE_WORDS } from '@/data/value-words'
 
-// What the studio 10×s — the second line of the "10x ___" headline. Words
-// are 1-noun declaratives matching BRAND.md voice rules; "leverage" closes
-// the loop because that word IS the brand promise (BRAND.md §6).
-const VALUE_WORDS: Readonly<Record<Locale, readonly string[]>> = {
-  en: [
-    'revenue',
-    'sales',
-    'leads',
-    'conversions',
-    'bookings',
-    'signups',
-    'growth',
-    'traffic',
-    'reach',
-    'visibility',
-    'retention',
-    'referrals',
-    'engagement',
-    'authority',
-    'impact',
-    'productivity',
-    'velocity',
-  ],
-  fr: [
-    'revenus',
-    'ventes',
-    'prospects',
-    'conversions',
-    'réservations',
-    'inscriptions',
-    'croissance',
-    'trafic',
-    'audience',
-    'visibilité',
-    'fidélisation',
-    'recommandations',
-    'engagement',
-    'autorité',
-    'impact',
-    'productivité',
-    'vélocité',
-  ],
-}
 const WORD_INTERVAL_MS = 2200
 
 // Radius the traveling glow dot rides at, in vmin from the orbit center; sits
