@@ -70,6 +70,9 @@ export function HeroPortrait({ alt }: { alt: string }) {
       <motion.div
         className="relative h-full w-full origin-top-right overflow-hidden bg-paper-deep will-change-transform"
         style={reduced ? undefined : { scale }}
+        initial={reduced ? false : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+        animate={reduced ? {} : { opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+        transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
       >
         <img
           src="/portrait/mathieu_thiry_founder_tenex_studio.webp"

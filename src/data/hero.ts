@@ -39,8 +39,8 @@ export const HERO: HeroCopy = {
     en: "Custom websites.",
   },
   subheadline: {
-    fr: "Nous accompagnons les entrepreneurs pour créer un site web unique, avec une identité forte qui vous démarque — 10× plus personnalisé, 0 slop IA.",
-    en: "We work alongside entrepreneurs to craft a one-of-a-kind website with a strong identity that sets you apart — 10× more personalized, 0 AI slop.",
+    fr: "Nous accompagnons les entrepreneurs pour créer un site web unique, avec une identité forte qui vous démarque: 10× plus personnalisé, 0 slop IA.",
+    en: "We work alongside entrepreneurs to craft a one-of-a-kind website with a strong identity that sets you apart: 10× more personalized, 0 AI slop.",
   },
   status: {
     fr: "Studio ouvert · 2026",
