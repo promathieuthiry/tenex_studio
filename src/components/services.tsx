@@ -8,7 +8,7 @@ import {
 } from 'motion/react'
 import type { Locale } from '@/lib/i18n'
 import { SERVICES, type Service } from '@/data/services'
-import { RevealText } from '@/components/ui/reveal-text'
+import { SectionHeader } from '@/components/section-header'
 
 const COPY = {
   fr: {
@@ -139,30 +139,14 @@ export function Services({ locale }: { locale: Locale }) {
       className="relative bg-ink px-6 pb-32 pt-24 md:px-10 md:pb-48 md:pt-40"
     >
       <div className="relative mx-auto max-w-7xl">
-        <RevealText
-          as="p"
-          inView
-          text={copy.eyebrow}
-          duration={0.7}
-          className="font-mono text-xs uppercase tracking-[0.12em] text-paper/55"
+        <SectionHeader
+          eyebrow={copy.eyebrow}
+          title={copy.titleStart}
+          titleTail={copy.titleEnd}
+          headingId="services-heading"
+          tone="dark"
+          animate
         />
-        <h2
-          id="services-heading"
-          className="mt-8 max-w-5xl font-display text-4xl leading-[1.05] tracking-[-0.03em] md:text-7xl"
-        >
-          <RevealText
-            inView
-            text={copy.titleStart}
-            delay={0.1}
-            className="text-paper"
-          />{' '}
-          <RevealText
-            inView
-            text={copy.titleEnd}
-            delay={0.1 + copy.titleStart.split(' ').length * 0.07}
-            className="text-paper/35"
-          />
-        </h2>
 
         <div
           ref={stackRef}
