@@ -79,9 +79,13 @@ export function MonoHero({ locale }: { locale: Locale }) {
   })
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.55])
 
+  // Sized in `svh` (small viewport height), not `vh`/`dvh`. svh is a fixed
+  // reference that ignores the mobile address bar showing/hiding, so the
+  // scroll-driven scale never re-measures mid-scroll — that re-measure was
+  // what made the hero snap on mobile.
   return (
-    <div ref={ref} className="relative h-[180vh] bg-[var(--color-ink)]">
-      <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
+    <div ref={ref} className="relative h-[180svh] bg-[var(--color-ink)]">
+      <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden">
         <div className="pointer-events-none absolute inset-0 grid grid-cols-2 gap-6 px-6 md:grid-cols-4 md:px-10">
           <MarqueeColumn direction="up" duration={40} offset={0} />
           <MarqueeColumn direction="down" duration={50} offset={5} />
