@@ -23,9 +23,7 @@ export function Hero({
 }) {
   const reduced = useReducedMotion();
 
-  // Underline draws over the same scroll range that shrinks the portrait
-  // (MonoHero scale runs [0,1]); it is fully drawn by 0.7 progress.
-  const underlineScale = useTransform(scrollProgress, [0, 0.7], [0, 1]);
+  const underlineScale = useTransform(scrollProgress, [0, 1], [0, 1]);
 
   return (
     <section className="relative flex min-h-dvh flex-col justify-between gap-10 border-y border-ink/15 bg-paper px-6 py-8 md:px-12 md:py-10 lg:px-16 lg:py-12">
@@ -53,7 +51,7 @@ export function Hero({
 
         <h2
           className="font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink"
-          style={{ fontSize: "clamp(2.5rem, 12vw, 14rem)" }}
+          style={{ fontSize: "clamp(2.5rem, 12vw, 11rem)" }}
         >
           Ten<span className="opacity-40">e</span>X Studio
         </h2>

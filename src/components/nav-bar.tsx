@@ -15,7 +15,7 @@ const REVEAL_THRESHOLD = 80;
 const DELTA = 6;
 
 const GLASS_PILL =
-  "relative overflow-hidden rounded-lg bg-paper/40 backdrop-blur-2xl backdrop-saturate-150 [box-shadow:inset_0_1px_0_0_rgba(255,255,255,0.6),inset_0_-1px_0_0_rgba(255,255,255,0.15)] before:pointer-events-none before:absolute before:inset-0 before:rounded-lg before:bg-[linear-gradient(135deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0)_55%,rgba(255,255,255,0.2)_100%)] before:opacity-80 before:mix-blend-overlay";
+  "relative overflow-hidden rounded-lg bg-paper/40 backdrop-blur-2xl backdrop-saturate-150 before:pointer-events-none before:absolute before:inset-0 before:rounded-lg before:bg-[linear-gradient(135deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0)_55%,rgba(255,255,255,0.2)_100%)] before:opacity-80 before:mix-blend-overlay";
 
 export function NavBar({ locale }: { locale: Locale }) {
   const homeHref = locale === "fr" ? "/" : "/en";
@@ -125,7 +125,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                 <span
                   key={link.id}
                   aria-disabled="true"
-                  className="relative z-10 font-sans text-sm text-ink/40"
+                  className="relative z-10 font-sans font-semibold text-sm text-ink/40"
                 >
                   {link.label[locale]}
                 </span>
@@ -136,7 +136,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                 key={link.id}
                 href={href}
                 onClick={(event) => handleHashClick(event, href)}
-                className="relative z-10 font-sans text-sm text-ink transition hover:opacity-70"
+                className="relative z-10 font-sans font-semibold text-sm text-ink transition hover:opacity-70"
               >
                 {link.label[locale]}
               </a>
@@ -148,7 +148,7 @@ export function NavBar({ locale }: { locale: Locale }) {
           <LocaleSwitcher locale={locale} />
           <a
             href={TALK_PILL.href[locale]}
-            className="hidden rounded-full bg-ink px-4 py-2 font-sans text-xs text-paper transition hover:opacity-80 md:inline-block"
+            className="rounded-full bg-ink px-4 py-2 font-sans text-xs font-semibold text-paper transition hover:opacity-80"
           >
             {TALK_PILL.label[locale]}
           </a>

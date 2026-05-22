@@ -1,36 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-import type { Locale } from '@/lib/i18n'
-import { SWITCHER_LABEL } from '@/data/nav'
+import type { Locale } from "@/lib/i18n";
+import { SWITCHER_LABEL } from "@/data/nav";
 
 function useCurrentPathname(fallback: string): string {
-  const [pathname, setPathname] = useState(fallback)
+  const [pathname, setPathname] = useState(fallback);
   useEffect(() => {
-    setPathname(window.location.pathname)
-  }, [])
-  return pathname
+    setPathname(window.location.pathname);
+  }, []);
+  return pathname;
 }
 
 function canonicalPath(pathname: string): string {
-  if (pathname === '/fr' || pathname === '/en') return '/'
-  if (pathname.startsWith('/fr/') || pathname.startsWith('/en/')) {
-    return pathname.slice(3)
+  if (pathname === "/fr" || pathname === "/en") return "/";
+  if (pathname.startsWith("/fr/") || pathname.startsWith("/en/")) {
+    return pathname.slice(3);
   }
-  return pathname
+  return pathname;
 }
 
 function equivalentPath(pathname: string, target: Locale): string {
-  const canonical = canonicalPath(pathname)
-  if (target === 'fr') return canonical
-  return canonical === '/' ? '/en' : `/en${canonical}`
+  const canonical = canonicalPath(pathname);
+  if (target === "fr") return canonical;
+  return canonical === "/" ? "/en" : `/en${canonical}`;
 }
 
 export function LocaleSwitcher({ locale }: { locale: Locale }) {
-  const pathname = useCurrentPathname(locale === 'fr' ? '/' : '/en')
-  const otherLocale: Locale = locale === 'fr' ? 'en' : 'fr'
-  const otherHref = equivalentPath(pathname, otherLocale)
+  const pathname = useCurrentPathname(locale === "fr" ? "/" : "/en");
+  const otherLocale: Locale = locale === "fr" ? "en" : "fr";
+  const otherHref = equivalentPath(pathname, otherLocale);
   const ariaLabel =
-    otherLocale === 'fr' ? SWITCHER_LABEL.toFr : SWITCHER_LABEL.toEn
+    otherLocale === "fr" ? SWITCHER_LABEL.toFr : SWITCHER_LABEL.toEn;
 
   return (
     <div
@@ -52,5 +52,5 @@ export function LocaleSwitcher({ locale }: { locale: Locale }) {
         {otherLocale.toUpperCase()}
       </a>
     </div>
-  )
+  );
 }
