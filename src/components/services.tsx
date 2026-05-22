@@ -8,6 +8,7 @@ import {
 } from 'motion/react'
 import type { Locale } from '@/lib/i18n'
 import { SERVICES, type Service } from '@/data/services'
+import { RevealText } from '@/components/ui/reveal-text'
 
 const COPY = {
   fr: {
@@ -138,15 +139,29 @@ export function Services({ locale }: { locale: Locale }) {
       className="relative bg-ink px-6 pb-32 pt-24 md:px-10 md:pb-48 md:pt-40"
     >
       <div className="relative mx-auto max-w-7xl">
-        <p className="font-mono text-xs uppercase tracking-[0.12em] text-paper/55">
-          {copy.eyebrow}
-        </p>
+        <RevealText
+          as="p"
+          inView
+          text={copy.eyebrow}
+          duration={0.7}
+          className="font-mono text-xs uppercase tracking-[0.12em] text-paper/55"
+        />
         <h2
           id="services-heading"
           className="mt-8 max-w-5xl font-display text-4xl leading-[1.05] tracking-[-0.03em] md:text-7xl"
         >
-          <span className="text-paper">{copy.titleStart}</span>{' '}
-          <span className="text-paper/35">{copy.titleEnd}</span>
+          <RevealText
+            inView
+            text={copy.titleStart}
+            delay={0.1}
+            className="text-paper"
+          />{' '}
+          <RevealText
+            inView
+            text={copy.titleEnd}
+            delay={0.1 + copy.titleStart.split(' ').length * 0.07}
+            className="text-paper/35"
+          />
         </h2>
 
         <div

@@ -22,6 +22,8 @@ export function RevealText({
   stagger = 0.07,
   duration = 0.9,
   className,
+  inView = false,
+  viewportAmount = 0.5,
 }: {
   text: string;
   as?: Tag;
@@ -30,6 +32,8 @@ export function RevealText({
   stagger?: number;
   duration?: number;
   className?: string;
+  inView?: boolean;
+  viewportAmount?: number;
 }) {
   const reduced = useReducedMotion();
 
@@ -51,12 +55,16 @@ export function RevealText({
 
   const words = text.split(" ");
 
+  const trigger = inView
+    ? ({ whileInView: "show", viewport: { once: true, amount: viewportAmount } } as const)
+    : ({ animate: "show" } as const);
+
   return (
     <Comp
       className={className}
       variants={container}
       initial="hidden"
-      animate="show"
+      {...trigger}
       aria-label={text}
     >
       {words.map((word, wi) => (
