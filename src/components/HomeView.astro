@@ -4,6 +4,7 @@ import { MonoHero } from '@/components/mono-hero';
 import { Services } from '@/components/services';
 import { WorkShowcase } from '@/components/work-showcase';
 import { MonogramReveal } from '@/components/monogram-reveal';
+import ToolsMarquee from '@/components/tools-marquee.astro';
 import { Testimonials } from '@/components/testimonials';
 import { Pricing } from '@/components/pricing';
 import { Faq } from '@/components/faq';
@@ -16,6 +17,7 @@ const { locale } = Astro.props as { locale: Locale };
 <Services client:visible locale={locale} />
 <WorkShowcase client:visible locale={locale} />
 <MonogramReveal client:visible locale={locale} />
+<ToolsMarquee locale={locale} />
 <Testimonials client:visible locale={locale} />
 <Pricing locale={locale} />
 <Faq locale={locale} />

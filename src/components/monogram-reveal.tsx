@@ -56,94 +56,13 @@ const VALUE_WORDS: Readonly<Record<Locale, readonly string[]>> = {
 }
 const WORD_INTERVAL_MS = 2200
 
-// Logos sourced from `/public/logos/`. Order is editorial (build → deploy →
-// commerce → ops → marketing → AI → design); positions on the orbit are
-// derived evenly from this order.
-const TOOLS = [
-  { name: 'Next.js', file: 'nextjs' },
-  { name: 'React', file: 'react' },
-  { name: 'TypeScript', file: 'typescript' },
-  { name: 'Astro', file: 'astro' },
-  { name: 'Tailwind CSS', file: 'tailwind' },
-  { name: 'GSAP', file: 'gsap' },
-  { name: 'Framer Motion', file: 'framer-motion' },
-  { name: 'Sanity', file: 'sanity' },
-  { name: 'Vercel', file: 'vercel' },
-  { name: 'Supabase', file: 'supabase' },
-  { name: 'Stripe', file: 'stripe' },
-  { name: 'Shopify', file: 'shopify' },
-  { name: 'Notion', file: 'notion' },
-  { name: 'Slack', file: 'slack' },
-  { name: 'Calendly', file: 'calendly' },
-  { name: 'Cal.com', file: 'cal-com' },
-  { name: 'Mailchimp', file: 'mailchimp' },
-  { name: 'Brevo', file: 'brevo' },
-  { name: 'Resend', file: 'resend' },
-  { name: 'HubSpot', file: 'hubspot' },
-  { name: 'Google Analytics', file: 'google-analytics' },
-  { name: 'Claude', file: 'claude' },
-  { name: 'Figma', file: 'figma' },
-] as const
-
-const CHIP_SIZE = 44
-// Chip orbit sits on the ring border at scale=1; rides outward as `ringScale`
-// carries it past the wordmark.
+// Radius the traveling glow dot rides at, in vmin from the orbit center; sits
+// on the ring border at scale=1 and rides outward as `ringScale` carries it
+// past the wordmark.
 const ORBIT_RADIUS_VMIN = 35
-// Seconds for one full revolution of the constellation. Linear, calm pace —
+// Seconds for one full revolution of the orbit. Linear, calm pace —
 // readable, not dizzying.
 const ORBIT_REV_SECONDS = 38
-
-// Frosted glass card (DESIGN.md §4) over dark — the canonical paper gradient
-// at reduced opacity so the section bleeds through.
-const CHIP_BASE_STYLE = {
-  width: CHIP_SIZE,
-  height: CHIP_SIZE,
-  padding: CHIP_SIZE * 0.22,
-  borderRadius: 'var(--radius-card)',
-  background:
-    'linear-gradient(180deg, color-mix(in srgb, var(--color-paper-warm) 92%, transparent) 0%, color-mix(in srgb, var(--color-paper-cool) 88%, transparent) 60%, color-mix(in srgb, var(--color-paper-deep) 84%, transparent) 100%)',
-  backdropFilter: 'blur(14px) saturate(160%)',
-} as const
-
-// Mobile shows a curated subset — 23 chips overflow the smaller orbit and
-// crowd the wordmark. Desktop keeps the full editorial stack.
-const MOBILE_FILES = new Set([
-  'nextjs',
-  'sanity',
-  'vercel',
-  'supabase',
-  'stripe',
-  'shopify',
-  'notion',
-  'slack',
-  'calendly',
-  'mailchimp',
-  'google-analytics',
-  'claude',
-  'figma',
-])
-
-// Polar conversion: 0° = 12 o'clock, increasing clockwise. Tools are evenly
-// distributed around 360° — continuous rotation makes a bottom gap unnecessary.
-function positionTools<T extends { name: string; file: string }>(
-  tools: readonly T[],
-) {
-  const step = 360 / tools.length
-  return tools.map((tool, i) => {
-    const rad = ((i * step - 90) * Math.PI) / 180
-    return {
-      ...tool,
-      index: i,
-      x: Math.cos(rad) * ORBIT_RADIUS_VMIN,
-      y: Math.sin(rad) * ORBIT_RADIUS_VMIN,
-    }
-  })
-}
-
-const POSITIONED_DESKTOP = positionTools(TOOLS)
-const POSITIONED_MOBILE = positionTools(
-  TOOLS.filter((t) => MOBILE_FILES.has(t.file)),
-)
 
 export function MonogramReveal({ locale }: { locale: Locale }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -292,65 +211,6 @@ export function MonogramReveal({ locale }: { locale: Locale }) {
               />
             </motion.div>
           </div>
-
-          {/* Two chip lists with different angle distributions; only one
-              renders at a time per breakpoint. */}
-          {(
-            [
-              { tools: POSITIONED_MOBILE, visibility: 'md:hidden' },
-              { tools: POSITIONED_DESKTOP, visibility: 'hidden md:block' },
-            ] as const
-          ).map(({ tools, visibility }) => (
-            <div key={visibility} className={visibility}>
-              {tools.map((tool) => (
-                <div
-                  key={tool.file}
-                  className="absolute left-1/2 top-1/2"
-                  style={{
-                    transform: `translate(calc(-50% + ${tool.x}vmin), calc(-50% + ${tool.y}vmin))`,
-                  }}
-                >
-                  <motion.div
-                    className="flex items-center justify-center border border-white/50"
-                    style={{
-                      ...CHIP_BASE_STYLE,
-                      scale: reduced ? 1 : chipCounterScale,
-                    }}
-                    animate={
-                      reduced
-                        ? undefined
-                        : {
-                            rotate: -360,
-                            y: [0, -3, 0, 3, 0],
-                          }
-                    }
-                    transition={
-                      reduced
-                        ? undefined
-                        : {
-                            rotate: chipUnspin,
-                            y: {
-                              duration: 5.5 + (tool.index % 5) * 0.4,
-                              repeat: Infinity,
-                              ease: 'easeInOut',
-                            },
-                          }
-                    }
-                  >
-                    <img
-                      src={`/logos/${tool.file}.svg`}
-                      alt=""
-                      width={CHIP_SIZE}
-                      height={CHIP_SIZE}
-                      className="block h-full w-full object-contain"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-          ))}
         </motion.div>
 
         <motion.h2
