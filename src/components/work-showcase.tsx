@@ -1,16 +1,9 @@
 import type { Locale } from '@/lib/i18n'
-import { WORK } from '@/data/work'
+import { WORK, WORK_HEADER } from '@/data/work'
 import { SectionHeader } from '@/components/section-header'
 import { WorkCard } from '@/components/work-card'
 
-const COPY = {
-  fr: { eyebrow: 'Projets sélectionnés', title: 'Quelques projets récents.' },
-  en: { eyebrow: 'Selected projects', title: 'A few recent projects.' },
-} as const satisfies Record<Locale, { eyebrow: string; title: string }>
-
 export function WorkShowcase({ locale }: { locale: Locale }) {
-  const copy = COPY[locale]
-
   return (
     <section
       id="work"
@@ -19,10 +12,11 @@ export function WorkShowcase({ locale }: { locale: Locale }) {
     >
       <div className="mx-auto max-w-screen-xl">
         <SectionHeader
-          eyebrow={copy.eyebrow}
-          title={copy.title}
+          eyebrow={WORK_HEADER.eyebrow[locale]}
+          title={WORK_HEADER.title[locale]}
           headingId="work-heading"
           constrained
+          animate
         />
         <ul className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8">
           {WORK.map((project, i) => (

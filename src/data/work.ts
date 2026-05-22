@@ -13,6 +13,11 @@ export type WorkProject = Readonly<{
   liveUrl?: Url;
 }>;
 
+export const WORK_HEADER: Readonly<{ eyebrow: Bilingual; title: Bilingual }> = {
+  eyebrow: { fr: "Réalisations", en: "Realizations" },
+  title: { fr: "Quelques projets récents.", en: "A few recent projects." },
+} as const;
+
 export const WORK: ReadonlyArray<WorkProject> = [
   {
     slug: slug("renardo-tech"),
