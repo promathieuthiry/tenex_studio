@@ -37,8 +37,18 @@ export function NavBar({ locale }: { locale: Locale }) {
     else if (delta < -DELTA) setHidden(false);
   });
 
-  const handleHashClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const handleHashClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (
+      event.defaultPrevented ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
     const url = new URL(href, window.location.origin);
     if (!url.hash || url.pathname !== window.location.pathname) return;
     const id = url.hash.slice(1);
@@ -48,7 +58,8 @@ export function NavBar({ locale }: { locale: Locale }) {
     event.preventDefault();
     const headerEl = document.querySelector("header");
     const offset = headerEl ? headerEl.getBoundingClientRect().height + 24 : 88;
-    const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - offset;
 
     programmaticScroll.current = true;
     setHidden(false);
@@ -61,10 +72,13 @@ export function NavBar({ locale }: { locale: Locale }) {
     if (programmaticScrollTimer.current !== null) {
       window.clearTimeout(programmaticScrollTimer.current);
     }
-    programmaticScrollTimer.current = window.setTimeout(() => {
-      programmaticScroll.current = false;
-      programmaticScrollTimer.current = null;
-    }, reduceMotion ? 50 : 900);
+    programmaticScrollTimer.current = window.setTimeout(
+      () => {
+        programmaticScroll.current = false;
+        programmaticScrollTimer.current = null;
+      },
+      reduceMotion ? 50 : 900,
+    );
   };
 
   return (
@@ -74,20 +88,25 @@ export function NavBar({ locale }: { locale: Locale }) {
       transition={{ type: "tween", duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-3 md:pt-4"
     >
-      <div className={`${GLASS_PILL} flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2 md:px-6 md:py-3`}>
+      <div
+        className={`${GLASS_PILL} flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2 md:px-6 md:py-3`}
+      >
         <a
           href={homeHref}
           className="relative z-10 flex items-center gap-2 transition hover:opacity-80"
           aria-label={WORDMARK}
         >
           <span className="relative z-10 inline-flex items-center justify-center">
-            <GradientOrb size="1.75rem" className="md:hidden" />
-            <GradientOrb size="2.25rem" className="hidden md:inline-flex" />
-            <img
-              src="/brand/tenex-monogram-inverse.svg"
-              alt=""
+            <span className="md:hidden">
+              <GradientOrb size="2.5rem" />
+            </span>
+            <span className="hidden md:block">
+              <GradientOrb size="3rem" />
+            </span>
+            <span
               aria-hidden="true"
-              className="absolute h-3.5 w-auto md:h-7"
+              className="absolute h-7 w-7 mask-contain mask-center mask-no-repeat backdrop-blur-[300px] backdrop-saturate-150 drop-shadow-[0_0.5px_1px_rgba(0,0,0,0.35)] [-webkit-mask-image:url(/brand/tenex-monogram-inverse.svg)] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] mask-[url(/brand/tenex-monogram-inverse.svg)] md:h-9 md:w-9"
+              // style={{ backgroundColor: "rgba(255,255,255,0.55)" }}
             />
           </span>
           <span className="relative z-10 font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg md:text-xl">
