@@ -32,7 +32,7 @@ export function Hero({
           <span className="relative inline-block">
             <motion.span
               aria-hidden="true"
-              className="absolute bottom-[0.25em] left-0 z-0 block h-[0.5em] w-full origin-left bg-accent md:bottom-[0.28em] md:h-[0.68em] lg:bottom-[0.30em] lg:h-[0.82em]"
+              className="absolute bottom-[0.2em] left-0 z-0 block h-[0.35em] w-full origin-left bg-accent md:bottom-[0.28em] md:h-[0.68em] lg:bottom-[0.30em] lg:h-[0.82em]"
               style={{ scaleX: reduced ? 1 : underlineScale }}
             />
             <h1 className="relative z-10 font-display text-xl font-bold uppercase leading-[1.15] tracking-tight text-ink md:text-3xl lg:text-4xl">

@@ -8,6 +8,7 @@ import {
   initialNewsletterState,
   type NewsletterFormState,
 } from '@/actions/contact-types'
+import { Button } from '@/components/ui/button'
 
 export function NewsletterForm({ locale }: { locale: Locale }) {
   const copy = FOOTER.newsletter
@@ -64,13 +65,9 @@ export function NewsletterForm({ locale }: { locale: Locale }) {
           required
           className="flex-1 rounded-full border border-ink/15 bg-paper px-4 py-2 font-sans text-sm text-ink placeholder:text-ink/40 focus-visible:border-ink focus-visible:outline-none"
         />
-        <button
-          type="submit"
-          disabled={pending}
-          className="rounded-full bg-ink px-4 py-2 font-sans text-sm text-paper transition hover:opacity-80 disabled:opacity-50"
-        >
+        <Button type="submit" disabled={pending} variant="primary" surface="light" size="sm">
           {copy.submitLabel[locale]}
-        </button>
+        </Button>
       </div>
       {state.fieldError ? (
         <p

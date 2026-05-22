@@ -7,6 +7,7 @@ import {
   type ContactFormState,
 } from '@/actions/contact-types'
 import type { ContactCopy } from '@/data/legal'
+import { Button } from '@/components/ui/button'
 
 export function ContactForm({
   locale,
@@ -130,13 +131,9 @@ export function ContactForm({
       </p>
 
       <div>
-        <button
-          type="submit"
-          disabled={pending}
-          className="rounded-full bg-ink px-6 py-3 font-sans text-sm text-paper transition hover:opacity-80 disabled:opacity-50"
-        >
+        <Button type="submit" disabled={pending} variant="primary" surface="light" size="md">
           {pending ? copy.submittingLabel[locale] : copy.submitLabel[locale]}
-        </button>
+        </Button>
       </div>
 
     </form>

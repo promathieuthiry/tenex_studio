@@ -1,6 +1,7 @@
 
 import type { Locale } from '@/lib/i18n'
 import { PRICING } from '@/data/pricing'
+import { Button } from '@/components/ui/button'
 
 const COPY = {
   fr: {
@@ -197,19 +198,15 @@ export function Pricing({ locale }: { locale: Locale }) {
                     </p>
 
                     <div className="mt-8">
-                      <a
+                      <Button
                         href={bookHref}
-                        className={`inline-flex items-center gap-2 rounded-full px-6 py-3 font-sans text-sm transition ${
-                          isDark
-                            ? 'bg-paper text-ink hover:opacity-80'
-                            : 'border border-ink/15 text-ink hover:border-ink'
-                        }`}
+                        variant={isDark ? 'primary' : 'secondary'}
+                        surface={isDark ? 'dark' : 'light'}
+                        size="md"
+                        withArrow
                       >
                         {tier.ctaLabel[locale]}
-                        <span aria-hidden className="text-base leading-none">
-                          →
-                        </span>
-                      </a>
+                      </Button>
                     </div>
                   </div>
                 </article>

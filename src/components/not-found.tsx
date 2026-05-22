@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import type { Locale } from '@/lib/i18n'
+import { Button } from '@/components/ui/button'
 
 const COPY = {
   fr: {
@@ -42,18 +43,12 @@ export default function NotFound() {
         {copy.body}
       </p>
       <div className="flex gap-3">
-        <a
-          href={copy.primaryHref}
-          className="rounded-full bg-ink px-5 py-2 font-sans text-sm text-paper transition hover:opacity-80"
-        >
+        <Button href={copy.primaryHref} variant="primary" surface="light" size="sm">
           {copy.primary}
-        </a>
-        <a
-          href={copy.secondaryHref}
-          className="rounded-full border border-ink/20 px-5 py-2 font-sans text-sm text-ink transition hover:border-ink"
-        >
+        </Button>
+        <Button href={copy.secondaryHref} variant="secondary" surface="light" size="sm">
           {copy.secondary}
-        </a>
+        </Button>
       </div>
     </section>
   )

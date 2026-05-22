@@ -1,5 +1,6 @@
 
 import type { Locale } from '@/lib/i18n'
+import { Button } from '@/components/ui/button'
 
 const COPY = {
   fr: {
@@ -55,18 +56,12 @@ export function ContactCta({ locale }: { locale: Locale }) {
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <a
-            href={copy.primaryHref}
-            className="rounded-full bg-paper px-6 py-3 font-sans text-sm text-ink transition hover:opacity-80"
-          >
+          <Button href={copy.primaryHref} variant="primary" surface="dark" size="md">
             {copy.primary}
-          </a>
-          <a
-            href={bookHref}
-            className="rounded-full border border-paper/30 px-6 py-3 font-sans text-sm text-paper transition hover:border-paper"
-          >
+          </Button>
+          <Button href={bookHref} variant="secondary" surface="dark" size="md">
             {copy.secondary}
-          </a>
+          </Button>
         </div>
       </div>
     </section>
