@@ -1,0 +1,46 @@
+---
+import type { Locale } from '@/lib/i18n';
+import { LEGAL } from '@/data/legal';
+
+const { locale } = Astro.props as { locale: Locale };
+const doc = LEGAL.doc[locale];
+---
+
+<section class="w-full bg-paper text-ink">
+  <div class="mx-auto max-w-3xl px-6 py-32 md:px-10 md:py-40">
+    <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink/50">
+      {LEGAL.eyebrow[locale]}
+    </p>
+    <h1
+      class="mt-6 font-display text-4xl leading-[1.05] tracking-[-0.03em] text-ink md:text-6xl"
+    >
+      {doc.title}
+    </h1>
+    <p class="mt-8 max-w-prose font-sans text-base leading-7 text-ink/70 md:text-lg">
+      {doc.intro}
+    </p>
+
+    <div class="mt-16 flex flex-col gap-12 md:mt-20 md:gap-16">
+      {
+        doc.sections.map((section) => (
+          <div class="border-t border-ink/8 pt-8">
+            <h2 class="font-display text-xl tracking-[-0.02em] text-ink md:text-2xl">
+              {section.heading}
+            </h2>
+            <div class="mt-4 flex flex-col gap-2">
+              {section.body.map((line) => (
+                <p class="max-w-prose font-sans text-sm leading-7 text-ink/70 md:text-base">
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-16 font-mono text-xs uppercase tracking-[0.12em] text-ink/40">
+      {doc.updated}
+    </p>
+  </div>
+</section>

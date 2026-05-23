@@ -1,0 +1,24 @@
+---
+import { OG_LOCALE } from '@/lib/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LegalDoc from '@/components/legal-doc.astro';
+
+const locale = 'fr' as const;
+
+const seo = {
+  title: 'Mentions légales — Tenex Studio',
+  description:
+    'Mentions légales du site Tenex Studio, studio web et IA à Nantes.',
+  canonical: '/mentions-legales',
+  ogLocale: OG_LOCALE[locale],
+  hreflang: {
+    fr: '/mentions-legales',
+    en: '/en/legal-notice',
+    'x-default': '/mentions-legales',
+  },
+};
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <LegalDoc locale={locale} />
+</BaseLayout>

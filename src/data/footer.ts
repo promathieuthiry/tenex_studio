@@ -1,69 +1,52 @@
-import type { Bilingual } from '@/data/_types'
-import { BOOK_URL } from '@/lib/book'
+import type { Bilingual } from "@/data/_types";
 
-export type FooterColumn = Readonly<{
-  id: string
-  heading: Bilingual
-  links: ReadonlyArray<
-    Readonly<{
-      id: string
-      label: Bilingual
-      href: Bilingual | null
-      external?: boolean
-    }>
-  >
-}>
+export type FooterLink = Readonly<{
+  label: Bilingual;
+  href: Bilingual;
+}>;
 
 export type FooterCopy = Readonly<{
-  tagline: Bilingual
-  columns: ReadonlyArray<FooterColumn>
-  legalLine: Bilingual
-  yearmark: string
-}>
+  tagline: Bilingual;
+  navHeading: Bilingual;
+  contactHeading: Bilingual;
+  addressHeading: Bilingual;
+  email: string;
+  linkedin: string;
+  address: ReadonlyArray<string>;
+  legalLinks: ReadonlyArray<FooterLink>;
+  rights: Bilingual;
+  closingTagline: Bilingual;
+  yearmark: string;
+}>;
 
 export const FOOTER: FooterCopy = {
   tagline: {
-    fr: 'Studio IA-natif. Mêmes mains, dix fois le rendement.',
-    en: 'AI-native studio. Same hands, ten times the output.',
+    fr: "Agence spécialisée en développement de site web et applications SaaS sur mesure.",
+    en: "AI-native studio. Same hands, ten times the output.",
   },
-  columns: [
+  navHeading: { fr: "Navigation", en: "Navigation" },
+  contactHeading: { fr: "Contact", en: "Contact" },
+  addressHeading: { fr: "Adresse", en: "Address" },
+  email: "contact@tenex.studio",
+  linkedin: "https://www.linkedin.com/company/113208945/",
+  address: [
+    "La Cantine x La French Tech Nantes",
+    "40 Rue la Tour d'Auvergne",
+    "44200 Nantes",
+  ],
+  legalLinks: [
     {
-      id: 'studio',
-      heading: { fr: 'Studio', en: 'Studio' },
-      links: [
-        {
-          id: 'home',
-          label: { fr: 'Accueil', en: 'Home' },
-          href: { fr: '/', en: '/en' },
-        },
-        {
-          id: 'contact',
-          label: { fr: 'Contact', en: 'Contact' },
-          href: { fr: BOOK_URL, en: BOOK_URL },
-          external: true,
-        },
-      ],
-    },
-    {
-      id: 'content',
-      heading: { fr: 'Lecture', en: 'Reading' },
-      links: [
-        {
-          id: 'journal',
-          label: { fr: 'Journal', en: 'Journal' },
-          href: null,
-        },
-        {
-          id: 'work',
-          label: { fr: 'Travail', en: 'Work' },
-          href: null,
-        },
-      ],
+      label: { fr: "Mentions légales", en: "Legal notice" },
+      href: { fr: "/mentions-legales", en: "/en/legal-notice" },
     },
   ],
-  legalLine: {
-    fr: '© 2026 Tenex Studio. Tous droits réservés.',
-    en: '© 2026 Tenex Studio. All rights reserved.',
+  rights: {
+    fr: "Tous droits réservés.",
+    en: "All rights reserved.",
   },
-  yearmark: '(©26)',
-} as const
+  closingTagline: {
+    fr: "Agence web et IA à Nantes",
+    en: "Web & AI agency in Nantes",
+  },
+  yearmark: "(©26)",
+} as const;
