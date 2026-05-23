@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { RevealText } from '@/components/ui/reveal-text'
+import { RevealText, type RevealVariant } from '@/components/ui/reveal-text'
 
 const TITLE_SIZES = {
   md: 'text-4xl leading-[1.05] md:text-6xl',
@@ -20,8 +20,8 @@ type SectionHeaderProps = {
   size?: keyof typeof TITLE_SIZES
   constrained?: boolean
   className?: string
-  animate?: boolean
   tone?: keyof typeof TONES
+  animation?: RevealVariant
 }
 
 export function SectionHeader({
@@ -32,8 +32,8 @@ export function SectionHeader({
   size = 'lg',
   constrained = false,
   className,
-  animate = false,
   tone = 'light',
+  animation = 'mask',
 }: SectionHeaderProps) {
   const tones = TONES[tone]
   const eyebrowClass = `font-mono text-xs uppercase tracking-[0.12em] ${tones.eyebrow}`
@@ -45,36 +45,30 @@ export function SectionHeader({
 
   return (
     <div className={className}>
-      {animate ? (
-        <RevealText
-          as="p"
-          inView
-          text={eyebrow}
-          duration={0.7}
-          className={eyebrowClass}
-        />
-      ) : (
-        <p className={eyebrowClass}>{eyebrow}</p>
-      )}
+      <RevealText
+        as="p"
+        inView
+        variant={animation}
+        text={eyebrow}
+        duration={0.7}
+        className={eyebrowClass}
+      />
       <h2 id={headingId} className={titleClass}>
-        {animate && typeof title === 'string' ? (
-          <RevealText inView text={title} delay={0.1} />
+        {typeof title === 'string' ? (
+          <RevealText inView variant={animation} text={title} delay={0.1} />
         ) : (
           title
         )}
         {titleTail ? (
           <>
             {' '}
-            {animate ? (
-              <RevealText
-                inView
-                text={titleTail}
-                delay={0.1 + titleWords * 0.07}
-                className={tones.tail}
-              />
-            ) : (
-              <span className={tones.tail}>{titleTail}</span>
-            )}
+            <RevealText
+              inView
+              variant={animation}
+              text={titleTail}
+              delay={0.1 + titleWords * 0.07}
+              className={tones.tail}
+            />
           </>
         ) : null}
       </h2>

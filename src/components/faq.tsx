@@ -1,25 +1,25 @@
-import type { Locale } from '@/lib/i18n'
-import { FAQ } from '@/data/faq'
-import { SectionHeader } from '@/components/section-header'
+import type { Locale } from "@/lib/i18n";
+import { FAQ } from "@/data/faq";
+import { SectionHeader } from "@/components/section-header";
 
 const COPY = {
   fr: {
-    eyebrow: 'Questions',
-    title: 'Ce qu’on demande souvent.',
+    eyebrow: "Questions",
+    title: "Ce qu’on demande souvent.",
   },
   en: {
-    eyebrow: 'Questions',
-    title: 'What people often ask.',
+    eyebrow: "Questions",
+    title: "What people often ask.",
   },
-} as const satisfies Record<Locale, { eyebrow: string; title: string }>
+} as const satisfies Record<Locale, { eyebrow: string; title: string }>;
 
 export function Faq({ locale }: { locale: Locale }) {
-  const copy = COPY[locale]
+  const copy = COPY[locale];
 
   return (
     <section
       id="faq"
-      className="border-t border-ink/10 px-6 py-24 md:px-10 md:py-40"
+      className="border-t border-ink/10 bg-paper-warm px-6 py-24 md:px-10 md:py-40"
       aria-labelledby="faq-heading"
     >
       <div className="mx-auto max-w-screen-xl">
@@ -58,5 +58,5 @@ export function Faq({ locale }: { locale: Locale }) {
         </ul>
       </div>
     </section>
-  )
+  );
 }

@@ -9,6 +9,16 @@ export type Testimonial = Readonly<{
   website: string;
 }>;
 
+export const TESTIMONIALS_HEADER: Readonly<{
+  eyebrow: Bilingual;
+  titleLead: Bilingual;
+  titleTail: Bilingual;
+}> = {
+  eyebrow: { fr: "Témoignages", en: "Testimonials" },
+  titleLead: { fr: "Clients qui nous", en: "clients showing us some" },
+  titleTail: { fr: "recommandent", en: "love" },
+} as const;
+
 export const TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
     id: "renardo-tech.fr",

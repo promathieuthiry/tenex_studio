@@ -71,7 +71,6 @@ export function Pricing({ locale }: { locale: Locale }) {
           titleTail={copy.titleAccent}
           headingId="pricing-heading"
           size="xl"
-          animate
         />
 
         <div className="mt-16 overflow-hidden rounded-[var(--radius-card-lg)] bg-paper shadow-[0_0_0_1px_rgba(15,15,18,0.06),0_2px_6px_rgba(15,15,18,0.04),0_24px_64px_-24px_rgba(15,15,18,0.16)] md:mt-24">

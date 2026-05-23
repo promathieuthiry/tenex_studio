@@ -16,7 +16,6 @@ export function WorkShowcase({ locale }: { locale: Locale }) {
           title={WORK_HEADER.title[locale]}
           headingId="work-heading"
           constrained
-          animate
         />
         <ul className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8">
           {WORK.map((project, i) => (

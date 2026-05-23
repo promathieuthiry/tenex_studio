@@ -8,7 +8,11 @@ import {
 
 import { visitAriaLabel } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
-import { TESTIMONIALS, type Testimonial } from "@/data/testimonials";
+import {
+  TESTIMONIALS,
+  TESTIMONIALS_HEADER,
+  type Testimonial,
+} from "@/data/testimonials";
 import { SectionHeader } from "@/components/section-header";
 import { ArrowGlyph } from "@/components/arrow-glyph";
 import {
@@ -21,21 +25,14 @@ import {
 
 const COPY = {
   fr: {
-    eyebrow: "Témoignages",
-    title: "Clients qui nous recommandent",
     readMore: "Lire le témoignage",
     close: "Fermer",
   },
   en: {
-    eyebrow: "Testimonials",
-    title: "clients showing us some love",
     readMore: "Read testimonial",
     close: "Close",
   },
-} as const satisfies Record<
-  Locale,
-  { eyebrow: string; title: string; readMore: string; close: string }
->;
+} as const satisfies Record<Locale, { readMore: string; close: string }>;
 
 const CARD_BASE =
   "group relative flex h-[28rem] w-[80vw] shrink-0 cursor-pointer flex-col rounded-[var(--radius-card-lg)] bg-paper p-7 text-left shadow-[0_1px_0_rgba(15,15,18,0.04),0_30px_60px_-30px_rgba(15,15,18,0.12)] transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-paper-cool hover:shadow-[0_1px_0_rgba(15,15,18,0.06),0_40px_80px_-30px_rgba(15,15,18,0.22)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink sm:h-[34rem] sm:w-[22rem] md:w-[28rem] md:p-9";
@@ -166,7 +163,6 @@ function Card({
 }
 
 export function Testimonials({ locale }: { locale: Locale }) {
-  const copy = COPY[locale];
   const pinWrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [scrollDistance, setScrollDistance] = useState(0);
@@ -211,8 +207,9 @@ export function Testimonials({ locale }: { locale: Locale }) {
     >
       <div className="mx-auto max-w-screen-xl px-6 md:px-10">
         <SectionHeader
-          eyebrow={copy.eyebrow}
-          title={<span className="text-ink">{copy.title}</span>}
+          eyebrow={TESTIMONIALS_HEADER.eyebrow[locale]}
+          title={TESTIMONIALS_HEADER.titleLead[locale]}
+          titleTail={TESTIMONIALS_HEADER.titleTail[locale]}
           headingId="testimonials-heading"
           constrained
         />

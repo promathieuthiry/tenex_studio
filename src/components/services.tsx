@@ -145,7 +145,6 @@ export function Services({ locale }: { locale: Locale }) {
           titleTail={copy.titleEnd}
           headingId="services-heading"
           tone="dark"
-          animate
         />
 
         <div

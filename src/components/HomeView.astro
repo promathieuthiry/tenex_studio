@@ -20,5 +20,5 @@ const { locale } = Astro.props as { locale: Locale };
 <!-- <ToolsMarquee locale={locale} /> -->
 <Testimonials client:visible locale={locale} />
 <Pricing client:visible locale={locale} />
-<Faq locale={locale} />
+<Faq client:visible locale={locale} />
 <ContactCta locale={locale} />

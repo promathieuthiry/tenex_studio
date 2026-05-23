@@ -3,6 +3,8 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 
 export const REVEAL_EASE = [0.22, 1, 0.36, 1] as const;
 
+export type RevealVariant = "mask" | "fade";
+
 type Tag = "h1" | "h2" | "p" | "span";
 
 const TAGS = {
@@ -12,11 +14,24 @@ const TAGS = {
   span: motion.span,
 } as const;
 
-// Splits text into units (words or chars) that rise out of an overflow-hidden
-// mask on mount, staggered. Plain text under prefers-reduced-motion.
+// Per-unit enter animations. Add a key here to expose a new reveal style.
+const UNIT_VARIANTS: Record<RevealVariant, (duration: number) => Variants> = {
+  mask: (duration) => ({
+    hidden: { y: "115%", opacity: 0 },
+    show: { y: "0%", opacity: 1, transition: { duration, ease: REVEAL_EASE } },
+  }),
+  fade: (duration) => ({
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { duration, ease: REVEAL_EASE } },
+  }),
+};
+
+// Splits text into units (words or chars) that animate in, staggered.
+// Plain text under prefers-reduced-motion.
 export function RevealText({
   text,
   as = "span",
+  variant = "mask",
   splitBy = "word",
   delay = 0,
   stagger = 0.07,
@@ -27,6 +42,7 @@ export function RevealText({
 }: {
   text: string;
   as?: Tag;
+  variant?: RevealVariant;
   splitBy?: "word" | "char";
   delay?: number;
   stagger?: number;
@@ -48,10 +64,7 @@ export function RevealText({
     hidden: {},
     show: { transition: { delayChildren: delay, staggerChildren: stagger } },
   };
-  const unit: Variants = {
-    hidden: { y: "115%", opacity: 0 },
-    show: { y: "0%", opacity: 1, transition: { duration, ease: REVEAL_EASE } },
-  };
+  const unit = UNIT_VARIANTS[variant](duration);
 
   const words = text.split(" ");
 
