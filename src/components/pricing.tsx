@@ -2,13 +2,13 @@
 import type { Locale } from '@/lib/i18n'
 import { PRICING } from '@/data/pricing'
 import { Button } from '@/components/ui/button'
+import { SectionHeader } from '@/components/section-header'
 
 const COPY = {
   fr: {
     eyebrow: 'Tarifs',
     titleLead: 'Trois façons',
     titleAccent: 'de travailler ensemble.',
-    body: 'Du site éclair pour valider une idée à l’application web sur mesure pensée pour durer. Forfaits clairs, livrables précis, calendriers tenus.',
     featuresLabel: 'Inclus :',
     inheritsFromBefore: 'Tout inclus dans ',
     inheritsFromAfter: ', et en plus :',
@@ -19,7 +19,6 @@ const COPY = {
     eyebrow: 'Pricing',
     titleLead: 'Three ways',
     titleAccent: 'to work together.',
-    body: 'From a rapid landing page that validates a position to a bespoke web app built to last. Clear scopes, precise deliverables, timelines we hold.',
     featuresLabel: 'Plan Features:',
     inheritsFromBefore: 'Everything in ',
     inheritsFromAfter: ', plus:',
@@ -32,7 +31,6 @@ const COPY = {
     eyebrow: string
     titleLead: string
     titleAccent: string
-    body: string
     featuresLabel: string
     inheritsFromBefore: string
     inheritsFromAfter: string
@@ -67,23 +65,14 @@ export function Pricing({ locale }: { locale: Locale }) {
       className="bg-paper-warm px-6 py-24 md:px-10 md:py-40"
     >
       <div className="mx-auto max-w-screen-xl">
-        <header>
-          <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/55">
-            {copy.eyebrow}
-          </p>
-          <div className="mt-8 grid gap-x-12 gap-y-8 md:mt-12 md:grid-cols-12 md:gap-x-16">
-            <h2
-              id="pricing-heading"
-              className="font-display text-5xl leading-[0.98] tracking-[-0.03em] text-ink md:col-span-8 md:text-7xl xl:text-8xl"
-            >
-              <span>{copy.titleLead}</span>{' '}
-              <span className="text-ink/25">{copy.titleAccent}</span>
-            </h2>
-            <p className="max-w-md font-sans text-base leading-7 text-ink/65 md:col-span-4 md:self-end md:text-[17px] md:leading-8">
-              {copy.body}
-            </p>
-          </div>
-        </header>
+        <SectionHeader
+          eyebrow={copy.eyebrow}
+          title={copy.titleLead}
+          titleTail={copy.titleAccent}
+          headingId="pricing-heading"
+          size="xl"
+          animate
+        />
 
         <div className="mt-16 overflow-hidden rounded-[var(--radius-card-lg)] bg-paper shadow-[0_1px_0_rgba(15,15,18,0.04),0_40px_80px_-40px_rgba(15,15,18,0.18)] md:mt-24">
           <div className="grid md:grid-cols-2 lg:grid-cols-3">
