@@ -1,7 +1,6 @@
 import type { Bilingual } from "@/data/_types";
 
 export type ContactCtaCopy = Readonly<{
-  eyebrow?: Bilingual;
   title: Bilingual;
   body: Bilingual;
   cta: Bilingual;
