@@ -1,4 +1,5 @@
 import type { Bilingual } from '@/data/_types'
+import { BOOK_URL } from '@/lib/book'
 
 export type FooterColumn = Readonly<{
   id: string
@@ -8,6 +9,7 @@ export type FooterColumn = Readonly<{
       id: string
       label: Bilingual
       href: Bilingual | null
+      external?: boolean
     }>
   >
 }>
@@ -15,14 +17,6 @@ export type FooterColumn = Readonly<{
 export type FooterCopy = Readonly<{
   tagline: Bilingual
   columns: ReadonlyArray<FooterColumn>
-  newsletter: Readonly<{
-    heading: Bilingual
-    description: Bilingual
-    placeholder: Bilingual
-    submitLabel: Bilingual
-    consentLabel: Bilingual
-    successLabel: Bilingual
-  }>
   legalLine: Bilingual
   yearmark: string
 }>
@@ -45,7 +39,8 @@ export const FOOTER: FooterCopy = {
         {
           id: 'contact',
           label: { fr: 'Contact', en: 'Contact' },
-          href: { fr: '/contact', en: '/en/contact' },
+          href: { fr: BOOK_URL, en: BOOK_URL },
+          external: true,
         },
       ],
     },
@@ -66,23 +61,6 @@ export const FOOTER: FooterCopy = {
       ],
     },
   ],
-  newsletter: {
-    heading: { fr: 'Restez en orbite', en: 'Stay in orbit' },
-    description: {
-      fr: 'Une note brève chaque trimestre. Pas de bruit.',
-      en: 'A short note every quarter. No noise.',
-    },
-    placeholder: { fr: 'Votre courriel', en: 'Your email' },
-    submitLabel: { fr: "S'inscrire", en: 'Subscribe' },
-    consentLabel: {
-      fr: 'En vous inscrivant, vous acceptez de recevoir un courriel par trimestre.',
-      en: 'By subscribing, you agree to receive one email per quarter.',
-    },
-    successLabel: {
-      fr: 'Merci. Vous êtes en orbite.',
-      en: 'Thanks. You are in orbit.',
-    },
-  },
   legalLine: {
     fr: '© 2026 Tenex Studio. Tous droits réservés.',
     en: '© 2026 Tenex Studio. All rights reserved.',

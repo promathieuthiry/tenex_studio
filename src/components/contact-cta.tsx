@@ -1,23 +1,20 @@
 
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/ui/button'
+import { BOOK_URL, BOOK_LINK_ATTRS } from '@/lib/book'
 
 const COPY = {
   fr: {
     eyebrow: 'Allons-y',
     title: 'Un projet en tête ?',
     body: 'Décrivez-le en quelques lignes. Mathieu répond sous 24 heures ouvrées.',
-    primary: 'Parlons-en',
-    primaryHref: '/contact',
-    secondary: 'Réserver un appel',
+    cta: 'Réserver un appel',
   },
   en: {
     eyebrow: 'Let’s go',
     title: 'A project in mind?',
     body: 'Describe it in a few lines. Mathieu replies within one business day.',
-    primary: 'Get in touch',
-    primaryHref: '/en/contact',
-    secondary: 'Book a call',
+    cta: 'Book a call',
   },
 } as const satisfies Record<
   Locale,
@@ -25,15 +22,12 @@ const COPY = {
     eyebrow: string
     title: string
     body: string
-    primary: string
-    primaryHref: string
-    secondary: string
+    cta: string
   }
 >
 
 export function ContactCta({ locale }: { locale: Locale }) {
   const copy = COPY[locale]
-  const bookHref = import.meta.env.PUBLIC_BOOK_URL ?? copy.primaryHref
 
   return (
     <section className="px-6  md:px-10 " aria-labelledby="contact-cta-heading">
@@ -56,11 +50,8 @@ export function ContactCta({ locale }: { locale: Locale }) {
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Button href={copy.primaryHref} variant="primary" surface="dark" size="md">
-            {copy.primary}
-          </Button>
-          <Button href={bookHref} variant="secondary" surface="dark" size="md">
-            {copy.secondary}
+          <Button href={BOOK_URL} {...BOOK_LINK_ATTRS} variant="primary" surface="dark" size="md">
+            {copy.cta}
           </Button>
         </div>
       </div>

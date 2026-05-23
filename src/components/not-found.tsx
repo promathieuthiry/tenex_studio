@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/ui/button'
+import { BOOK_URL, BOOK_LINK_ATTRS } from '@/lib/book'
 
 const COPY = {
   fr: {
@@ -11,7 +12,7 @@ const COPY = {
     primary: 'Retour à l’accueil',
     primaryHref: '/',
     secondary: 'Parlons-en',
-    secondaryHref: '/contact',
+    secondaryHref: BOOK_URL,
   },
   en: {
     eyebrow: '(404) NOT FOUND',
@@ -20,7 +21,7 @@ const COPY = {
     primary: 'Back to home',
     primaryHref: '/en',
     secondary: 'Get in touch',
-    secondaryHref: '/en/contact',
+    secondaryHref: BOOK_URL,
   },
 } satisfies Record<Locale, Record<string, string>>
 
@@ -46,7 +47,7 @@ export default function NotFound() {
         <Button href={copy.primaryHref} variant="primary" surface="light" size="sm">
           {copy.primary}
         </Button>
-        <Button href={copy.secondaryHref} variant="secondary" surface="light" size="sm">
+        <Button href={copy.secondaryHref} {...BOOK_LINK_ATTRS} variant="secondary" surface="light" size="sm">
           {copy.secondary}
         </Button>
       </div>

@@ -26,10 +26,8 @@ export const NAV_LINKS: ReadonlyArray<NavLink> = [
 
 export const TALK_PILL: Readonly<{
   label: Bilingual;
-  href: Bilingual;
 }> = {
   label: { fr: "Contact", en: "Contact" },
-  href: { fr: "/contact", en: "/en/contact" },
 } as const;
 
 export const SKIP_LINK: Bilingual = {

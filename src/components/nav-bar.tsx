@@ -11,6 +11,7 @@ import { NAV_LANDMARK, NAV_LINKS, TALK_PILL, WORDMARK } from "@/data/nav";
 import { GradientOrb } from "./gradient-orb";
 import { LocaleSwitcher } from "./locale-switcher";
 import { Button } from "@/components/ui/button";
+import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
 
 const REVEAL_THRESHOLD = 80;
 const DELTA = 6;
@@ -148,7 +149,8 @@ export function NavBar({ locale }: { locale: Locale }) {
         <div className="relative z-10 flex items-center gap-3">
           <LocaleSwitcher locale={locale} />
           <Button
-            href={TALK_PILL.href[locale]}
+            href={BOOK_URL}
+            {...BOOK_LINK_ATTRS}
             variant="primary"
             surface="light"
             size="md"

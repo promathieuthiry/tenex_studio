@@ -1,4 +1,5 @@
 import type { Bilingual } from "@/data/_types";
+import { BOOK_URL } from "@/lib/book";
 
 export type HeroCopy = Readonly<{
   wordmark: string;
@@ -48,7 +49,7 @@ export const HERO: HeroCopy = {
   },
   primaryCta: {
     label: { fr: "Parlons-en", en: "Get in touch" },
-    href: { fr: "/contact", en: "/en/contact" },
+    href: { fr: BOOK_URL, en: BOOK_URL },
   },
   secondaryCta: {
     label: { fr: "Voir les services", en: "See the services" },

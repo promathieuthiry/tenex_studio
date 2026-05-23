@@ -3,6 +3,7 @@ import type { Locale } from '@/lib/i18n'
 import { PRICING } from '@/data/pricing'
 import { Button } from '@/components/ui/button'
 import { SectionHeader } from '@/components/section-header'
+import { BOOK_URL, BOOK_LINK_ATTRS } from '@/lib/book'
 
 const COPY = {
   fr: {
@@ -56,7 +57,6 @@ const PLUS_ICON = (
 
 export function Pricing({ locale }: { locale: Locale }) {
   const copy = COPY[locale]
-  const bookHref = import.meta.env.PUBLIC_BOOK_URL ?? '/contact'
 
   return (
     <section
@@ -188,7 +188,8 @@ export function Pricing({ locale }: { locale: Locale }) {
 
                     <div className="mt-8">
                       <Button
-                        href={bookHref}
+                        href={BOOK_URL}
+                        {...BOOK_LINK_ATTRS}
                         variant={isDark ? 'primary' : 'secondary'}
                         surface={isDark ? 'dark' : 'light'}
                         size="md"

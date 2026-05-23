@@ -1,17 +1,13 @@
 import type { Locale } from "@/lib/i18n";
-import { pathFor } from "@/lib/i18n";
 import { FAQ, FAQ_HEADER, type FAQLink } from "@/data/faq";
-import { CONTACT } from "@/data/legal";
 import { SectionHeader } from "@/components/section-header";
+import { BOOK_URL } from "@/lib/book";
 
-function resolveLink(link: FAQLink, locale: Locale) {
+function resolveLink(link: FAQLink) {
   if (link.kind === "email") {
-    return { href: `mailto:${CONTACT.confirmation.fallbackEmail}`, external: false };
+    return { href: `mailto:${link.label.en}`, external: false };
   }
-  const bookUrl = import.meta.env.PUBLIC_BOOK_URL as string | undefined;
-  return bookUrl
-    ? { href: bookUrl, external: /^https?:\/\//.test(bookUrl) }
-    : { href: pathFor(locale, "/contact"), external: false };
+  return { href: BOOK_URL, external: true };
 }
 
 export function Faq({ locale }: { locale: Locale }) {
@@ -53,7 +49,7 @@ export function Faq({ locale }: { locale: Locale }) {
                   {item.links && item.links.length > 0 ? (
                     <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2">
                       {item.links.map((link) => {
-                        const { href, external } = resolveLink(link, locale);
+                        const { href, external } = resolveLink(link);
                         return (
                           <a
                             key={link.kind}

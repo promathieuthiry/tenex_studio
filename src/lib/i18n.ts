@@ -18,7 +18,7 @@ export const OG_LOCALE: Readonly<Record<Locale, string>> = {
   en: 'en_US',
 } as const
 
-export function pathFor(locale: Locale, path: '' | '/contact'): string {
+export function pathFor(locale: Locale, path: string = ''): string {
   if (locale === 'fr') return path === '' ? '/' : path
   return path === '' ? '/en' : `/en${path}`
 }
