@@ -35,7 +35,11 @@ function FaqRow({
       initial={reduced ? false : { opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-12%" }}
-      transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.05,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       className={isOpen ? "bg-paper" : undefined}
     >
       <h3>
@@ -45,7 +49,7 @@ function FaqRow({
           onClick={onToggle}
           aria-expanded={isOpen}
           aria-controls={panelId}
-          className="flex w-full cursor-pointer items-baseline gap-6 px-4 py-6 text-left transition-colors hover:bg-paper/60 md:px-6"
+          className="flex w-full cursor-pointer items-baseline gap-3 md:gap-6 px-4 py-6 text-left transition-colors hover:bg-paper/60 md:px-6"
         >
           <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink/60">
             ({item.number})
@@ -70,9 +74,15 @@ function FaqRow({
             role="region"
             aria-labelledby={buttonId}
             key="content"
-            initial={reduced ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+            initial={
+              reduced
+                ? { height: "auto", opacity: 1 }
+                : { height: 0, opacity: 0 }
+            }
             animate={{ height: "auto", opacity: 1 }}
-            exit={reduced ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
+            exit={
+              reduced ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }
+            }
             transition={{
               height: { duration: reduced ? 0 : 0.32, ease: [0.4, 0, 0.2, 1] },
               opacity: { duration: reduced ? 0 : 0.22, ease: "easeOut" },
