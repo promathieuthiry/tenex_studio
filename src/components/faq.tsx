@@ -1,6 +1,18 @@
 import type { Locale } from "@/lib/i18n";
-import { FAQ, FAQ_HEADER } from "@/data/faq";
+import { pathFor } from "@/lib/i18n";
+import { FAQ, FAQ_HEADER, type FAQLink } from "@/data/faq";
+import { CONTACT } from "@/data/legal";
 import { SectionHeader } from "@/components/section-header";
+
+function resolveLink(link: FAQLink, locale: Locale) {
+  if (link.kind === "email") {
+    return { href: `mailto:${CONTACT.confirmation.fallbackEmail}`, external: false };
+  }
+  const bookUrl = import.meta.env.PUBLIC_BOOK_URL as string | undefined;
+  return bookUrl
+    ? { href: bookUrl, external: /^https?:\/\//.test(bookUrl) }
+    : { href: pathFor(locale, "/contact"), external: false };
+}
 
 export function Faq({ locale }: { locale: Locale }) {
   return (
@@ -38,6 +50,25 @@ export function Faq({ locale }: { locale: Locale }) {
                   <p className="max-w-prose font-sans text-base leading-7 text-ink/80">
                     {item.answer[locale]}
                   </p>
+                  {item.links && item.links.length > 0 ? (
+                    <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2">
+                      {item.links.map((link) => {
+                        const { href, external } = resolveLink(link, locale);
+                        return (
+                          <a
+                            key={link.kind}
+                            href={href}
+                            {...(external
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
+                            className="font-mono text-xs uppercase tracking-[0.12em] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-accent hover:text-accent"
+                          >
+                            {link.label[locale]}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : null}
                 </div>
               </details>
             </li>
