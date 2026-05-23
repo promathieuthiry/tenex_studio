@@ -97,7 +97,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                       {tier.name[locale]}
                     </h3>
                     <span
-                      className={`font-mono text-[10px] uppercase tracking-[0.16em] ${
+                      className={`shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] ${
                         isDark ? 'text-paper/55' : 'text-ink/55'
                       }`}
                     >
@@ -122,9 +122,9 @@ export function Pricing({ locale }: { locale: Locale }) {
                   />
 
                   <div>
-                    {previousTier && (
+                    {previousTier ? (
                       <p
-                        className={`mb-2 font-mono text-[10px] uppercase tracking-[0.18em] ${
+                        className={`font-mono text-[10px] uppercase tracking-[0.18em] ${
                           isDark ? 'text-paper/45' : 'text-ink/40'
                         }`}
                       >
@@ -132,14 +132,15 @@ export function Pricing({ locale }: { locale: Locale }) {
                         {previousTier.name[locale]}
                         {copy.inheritsFromAfter}
                       </p>
+                    ) : (
+                      <p
+                        className={`font-sans text-sm font-medium ${
+                          isDark ? 'text-paper' : 'text-ink'
+                        }`}
+                      >
+                        {copy.featuresLabel}
+                      </p>
                     )}
-                    <p
-                      className={`font-sans text-sm font-medium ${
-                        isDark ? 'text-paper' : 'text-ink'
-                      }`}
-                    >
-                      {copy.featuresLabel}
-                    </p>
                     <ul className="mt-5 space-y-3 font-sans text-[15px] leading-6">
                       {tier.scope[locale].map((item) => (
                         <li
