@@ -1,21 +1,8 @@
 import type { Locale } from "@/lib/i18n";
-import { FAQ } from "@/data/faq";
+import { FAQ, FAQ_HEADER } from "@/data/faq";
 import { SectionHeader } from "@/components/section-header";
 
-const COPY = {
-  fr: {
-    eyebrow: "Questions",
-    title: "Ce qu’on demande souvent.",
-  },
-  en: {
-    eyebrow: "Questions",
-    title: "What people often ask.",
-  },
-} as const satisfies Record<Locale, { eyebrow: string; title: string }>;
-
 export function Faq({ locale }: { locale: Locale }) {
-  const copy = COPY[locale];
-
   return (
     <section
       id="faq"
@@ -24,8 +11,8 @@ export function Faq({ locale }: { locale: Locale }) {
     >
       <div className="mx-auto max-w-screen-xl">
         <SectionHeader
-          eyebrow={copy.eyebrow}
-          title={copy.title}
+          eyebrow={FAQ_HEADER.eyebrow[locale]}
+          title={FAQ_HEADER.title[locale]}
           headingId="faq-heading"
         />
 

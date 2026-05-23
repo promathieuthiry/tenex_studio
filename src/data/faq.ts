@@ -6,6 +6,14 @@ export type FAQItem = Readonly<{
   answer: Bilingual;
 }>;
 
+export const FAQ_HEADER: Readonly<{ eyebrow: Bilingual; title: Bilingual }> = {
+  eyebrow: { fr: "Questions", en: "Questions" },
+  title: {
+    fr: "Ce qu’on demande souvent.",
+    en: "What people often ask.",
+  },
+} as const;
+
 export const FAQ: ReadonlyArray<FAQItem> = [
   {
     number: "01",
