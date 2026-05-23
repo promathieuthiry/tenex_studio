@@ -32,8 +32,8 @@ export function Faq({ locale }: { locale: Locale }) {
         <ul className="mt-16 divide-y divide-ink/10 border-y border-ink/10">
           {FAQ.map((item) => (
             <li key={item.number}>
-              <details className="group">
-                <summary className="flex cursor-pointer list-none items-baseline gap-6 py-6 transition hover:opacity-80">
+              <details className="group transition-colors open:bg-paper">
+                <summary className="flex cursor-pointer list-none items-baseline gap-6 px-4 py-6 transition-colors hover:bg-paper/60 md:px-6">
                   <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink/60">
                     ({item.number})
                   </span>
@@ -42,12 +42,12 @@ export function Faq({ locale }: { locale: Locale }) {
                   </span>
                   <span
                     aria-hidden
-                    className="font-mono text-xs uppercase tracking-[0.12em] text-ink/40 transition group-open:rotate-45"
+                    className="font-mono text-xs uppercase tracking-[0.12em] text-ink/40 transition-transform duration-200 group-open:rotate-45"
                   >
                     +
                   </span>
                 </summary>
-                <div className="pb-8 pl-12 pr-12 md:pl-20">
+                <div className="pb-8 pl-12 pr-4 md:pl-20 md:pr-6">
                   <p className="max-w-prose font-sans text-base leading-7 text-ink/80">
                     {item.answer[locale]}
                   </p>
