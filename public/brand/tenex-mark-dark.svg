@@ -6,5 +6,5 @@
       .wm { font-family: 'Arimo', system-ui, -apple-system, 'Helvetica Neue', sans-serif; font-weight: 700; }
     </style>
   </defs>
-  <text class="wm" x="0" y="92" font-size="100" letter-spacing="-4.5" fill="#FFFFFF">TeneX Studio</text>
+  <text class="wm" x="0" y="92" font-size="100" letter-spacing="-4.5" fill="#0F0F12">TeneX Studio</text>
 </svg>
