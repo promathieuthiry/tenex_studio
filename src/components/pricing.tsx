@@ -62,7 +62,7 @@ export function Pricing({ locale }: { locale: Locale }) {
     <section
       id="pricing"
       aria-labelledby="pricing-heading"
-      className="bg-paper-warm px-6 py-24 md:px-10 md:py-40"
+      className="bg-paper px-6 py-24 md:px-10 md:py-40"
     >
       <div className="mx-auto max-w-screen-xl">
         <SectionHeader
@@ -74,7 +74,7 @@ export function Pricing({ locale }: { locale: Locale }) {
           animate
         />
 
-        <div className="mt-16 overflow-hidden rounded-[var(--radius-card-lg)] bg-paper shadow-[0_1px_0_rgba(15,15,18,0.04),0_40px_80px_-40px_rgba(15,15,18,0.18)] md:mt-24">
+        <div className="mt-16 overflow-hidden rounded-[var(--radius-card-lg)] bg-paper shadow-[0_0_0_1px_rgba(15,15,18,0.06),0_2px_6px_rgba(15,15,18,0.04),0_24px_64px_-24px_rgba(15,15,18,0.16)] md:mt-24">
           <div className="grid md:grid-cols-2 lg:grid-cols-3">
             {PRICING.map((tier, idx) => {
               const isDark = idx === 1
@@ -92,7 +92,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                       : undefined
                   }
                 >
-                  <header className="flex items-baseline justify-between gap-6">
+                  <header className="flex items-baseline justify-between gap-6 md:min-h-18">
                     <h3 className="font-display text-2xl tracking-[-0.02em] md:text-3xl">
                       {tier.name[locale]}
                     </h3>
@@ -124,7 +124,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                   <div>
                     {previousTier ? (
                       <p
-                        className={`font-mono text-[10px] uppercase tracking-[0.18em] ${
+                        className={`flex min-h-9 items-start font-mono text-[10px] uppercase leading-4 tracking-[0.18em] ${
                           isDark ? 'text-paper/45' : 'text-ink/40'
                         }`}
                       >
@@ -134,7 +134,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                       </p>
                     ) : (
                       <p
-                        className={`font-sans text-sm font-medium ${
+                        className={`flex min-h-9 items-start font-sans text-sm font-medium ${
                           isDark ? 'text-paper' : 'text-ink'
                         }`}
                       >
