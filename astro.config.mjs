@@ -10,7 +10,15 @@ export default defineConfig({
   site: 'https://tenex.studio',
   output: 'static',
   adapter: vercel(),
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'fr',
+        locales: { fr: 'fr-FR', en: 'en-US' },
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
