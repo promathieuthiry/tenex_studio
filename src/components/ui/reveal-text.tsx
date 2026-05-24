@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 export const REVEAL_EASE = [0.22, 1, 0.36, 1] as const;
@@ -52,6 +52,33 @@ export function RevealText({
   viewportAmount?: number;
 }) {
   const reduced = useReducedMotion();
+  const ref = useRef<HTMLElement | null>(null);
+  const [shown, setShown] = useState(!inView);
+
+  // whileInView + `once` only fires on *enter*. When this island hydrates late
+  // (client:visible) the heading may already be in or past the viewport, so the
+  // enter event never comes and it stays stuck hidden. Reveal it on mount if
+  // it's already visible; otherwise observe for the normal scroll-in.
+  useEffect(() => {
+    if (reduced || !inView || shown) return;
+    const el = ref.current;
+    if (!el) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      setShown(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: viewportAmount },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduced, inView, shown, viewportAmount]);
 
   if (reduced) {
     const Plain = as;
@@ -68,16 +95,15 @@ export function RevealText({
 
   const words = text.split(" ");
 
-  const trigger = inView
-    ? ({ whileInView: "show", viewport: { once: true, amount: viewportAmount } } as const)
-    : ({ animate: "show" } as const);
-
   return (
     <Comp
+      ref={(node) => {
+        ref.current = node;
+      }}
       className={className}
       variants={container}
       initial="hidden"
-      {...trigger}
+      animate={shown ? "show" : "hidden"}
       aria-label={text}
     >
       {words.map((word, wi) => (
