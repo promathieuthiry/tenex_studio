@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
+import { RevealText } from "@/components/ui/reveal-text";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
 import { CONTACT_CTA } from "@/data/contact-cta";
 
@@ -16,11 +17,17 @@ export function ContactCta({ locale }: { locale: Locale }) {
             id="contact-cta-heading"
             className="max-w-4xl font-display text-5xl leading-none tracking-[-0.03em] text-paper md:text-8xl"
           >
-            {CONTACT_CTA.title[locale]}
+            <RevealText inView variant="mask" text={CONTACT_CTA.title[locale]} />
           </h2>
-          <p className="mt-8 max-w-prose font-sans text-base leading-7 text-paper/80 md:text-lg">
-            {CONTACT_CTA.body[locale]}
-          </p>
+          <RevealText
+            as="p"
+            inView
+            variant="fade"
+            text={CONTACT_CTA.body[locale]}
+            delay={0.3}
+            duration={0.6}
+            className="mt-8 max-w-prose font-sans text-base leading-7 text-paper/80 md:text-lg"
+          />
         </div>
         <div className="flex shrink-0 flex-wrap gap-3">
           <Button

@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
 
 import type { Locale } from "@/lib/i18n";
+import { RevealText } from "@/components/ui/reveal-text";
 import { FOOTER } from "@/data/footer";
 import { NAV_LINKS } from "@/data/nav";
 
@@ -38,10 +39,24 @@ export function Footer({ locale }: { locale: Locale }) {
               />
             </a>
             <div className="flex flex-col gap-3">
-              <p className="font-display max-w-md text-xl leading-[1.15] tracking-[-0.02em] text-paper md:text-2xl">
-                {FOOTER.tagline[locale]}
-              </p>
-              <p className={HEADING}>{FOOTER.closingTagline[locale]}</p>
+              <RevealText
+                as="p"
+                inView
+                variant="mask"
+                text={FOOTER.tagline[locale]}
+                delay={0.1}
+                duration={0.7}
+                className="font-display max-w-md text-xl leading-[1.15] tracking-[-0.02em] text-paper md:text-2xl"
+              />
+              <RevealText
+                as="p"
+                inView
+                variant="fade"
+                text={FOOTER.closingTagline[locale]}
+                delay={0.3}
+                duration={0.6}
+                className={HEADING}
+              />
             </div>
           </div>
 
