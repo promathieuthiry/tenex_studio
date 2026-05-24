@@ -12,7 +12,8 @@ import { HeroPortrait } from "@/components/hero-portrait";
 import { RevealText, REVEAL_EASE } from "@/components/ui/reveal-text";
 
 const WORDMARK = "TeneX Studio";
-const DIM_CHAR_INDEX = 3; // the second "e" stays at reduced opacity
+const DIM_CHAR_INDICES = new Set([0, 1, 2]); // "Ten" stays at reduced opacity
+const ACCENT_CHAR_INDICES = new Set([15]); // "eX" carries the accent color
 
 const wordmarkContainer: Variants = {
   hidden: {},
@@ -89,7 +90,8 @@ export function Hero({
         >
           {reduced ? (
             <>
-              Ten<span className="opacity-40">e</span>X Studio
+              <span className="opacity-40">Ten</span>
+              <span className="text-accent">eX</span> Studio
             </>
           ) : (
             [...WORDMARK].map((char, i) =>
@@ -101,8 +103,8 @@ export function Hero({
                 <motion.span
                   key={i}
                   aria-hidden="true"
-                  className="inline-block"
-                  variants={wordmarkChar(i === DIM_CHAR_INDEX ? 0.4 : 1)}
+                  className={`inline-block${ACCENT_CHAR_INDICES.has(i) ? " text-accent" : ""}`}
+                  variants={wordmarkChar(DIM_CHAR_INDICES.has(i) ? 0.4 : 1)}
                 >
                   {char}
                 </motion.span>
