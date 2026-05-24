@@ -1,14 +1,16 @@
-import { useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import {
+  animate,
   motion,
+  useMotionValue,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
+  useTransform,
 } from "motion/react";
 
 import type { Locale } from "@/lib/i18n";
 import { NAV_LANDMARK, NAV_LINKS, TALK_PILL, WORDMARK } from "@/data/nav";
-import { GradientOrb } from "./gradient-orb";
 import { LocaleSwitcher } from "./locale-switcher";
 import { Button } from "@/components/ui/button";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
@@ -26,6 +28,21 @@ export function NavBar({ locale }: { locale: Locale }) {
   const [hidden, setHidden] = useState(false);
   const programmaticScroll = useRef(false);
   const programmaticScrollTimer = useRef<number | null>(null);
+
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (value) => Math.round(value));
+
+  useEffect(() => {
+    if (reduceMotion) {
+      count.set(10);
+      return;
+    }
+    const controls = animate(count, 10, {
+      duration: 1.6,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return () => controls.stop();
+  }, [reduceMotion, count]);
 
   useMotionValueEvent(scrollY, "change", (current) => {
     if (programmaticScroll.current) return;
@@ -98,18 +115,13 @@ export function NavBar({ locale }: { locale: Locale }) {
           className="relative z-10 flex items-center gap-2 transition hover:opacity-80"
           aria-label={WORDMARK}
         >
-          <span className="relative z-10 inline-flex items-center justify-center">
-            <span className="md:hidden">
-              <GradientOrb size="2.5rem" />
+          <span
+            aria-hidden="true"
+            className="relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent md:h-12 md:w-12"
+          >
+            <span className="font-display font-bold leading-none tracking-[-0.07em] text-paper/50 text-[1.1rem] md:text-[1.4rem] tabular-nums">
+              <motion.span>{rounded}</motion.span>x
             </span>
-            <span className="hidden md:block">
-              <GradientOrb size="3rem" />
-            </span>
-            <span
-              aria-hidden="true"
-              className="absolute h-7 w-7 mask-contain mask-center mask-no-repeat backdrop-blur-[300px] backdrop-saturate-150 drop-shadow-[0_0.5px_1px_rgba(0,0,0,0.35)] [-webkit-mask-image:url(/brand/tenex-monogram-inverse.svg)] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] mask-[url(/brand/tenex-monogram-inverse.svg)] md:h-9 md:w-9"
-              // style={{ backgroundColor: "rgba(255,255,255,0.55)" }}
-            />
           </span>
           <span className="relative z-10 font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg md:text-xl">
             Studio
