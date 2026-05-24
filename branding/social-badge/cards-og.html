@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f0f12;--paper:#ffffff;--paper-warm:#f5f5f5;--paper-cool:#f5f6f8;--paper-deep:#dee0e4;--accent:#e2231a;
+    --display:'Arimo',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;--mono:'Geist Mono',ui-monospace,monospace;
+    --s:0.9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#fff}
+  .stage{
+    margin:0 auto;
+    width:1200px;height:630px;position:relative;overflow:hidden;
+    background:radial-gradient(120% 90% at 50% -10%, var(--paper-warm) 0%, var(--paper-cool) 55%, var(--paper-deep) 130%);
+    font-family:var(--sans);display:flex;align-items:center;justify-content:center;
+  }
+  .cards{display:flex;align-items:center;gap:48px;transform:scale(var(--s));transform-origin:center}
+  .badge{position:relative;width:392px;filter:drop-shadow(0 30px 50px rgba(15,15,18,.20))}
+  .card{position:relative;border-radius:16px;overflow:hidden;background:var(--paper);
+    box-shadow:0 0 0 1px rgba(15,15,18,.08);height:600px}
+
+  .front .card{display:flex;flex-direction:column;padding:26px 26px 24px}
+  .photo{position:relative;flex:1 1 auto;min-height:0;width:100%;background:#fff;overflow:hidden}
+  .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+  .tick{position:absolute;width:22px;height:22px;border:2px solid var(--ink)}
+  .tick.tl{top:6px;left:6px;border-right:0;border-bottom:0}
+  .tick.tr{top:6px;right:6px;border-left:0;border-bottom:0}
+  .tick.bl{bottom:6px;left:6px;border-right:0;border-top:0}
+  .tick.br{bottom:6px;right:6px;border-left:0;border-top:0}
+  .role{margin-top:22px;font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#76767c}
+  .name{font-family:var(--display);font-weight:700;color:var(--ink);font-size:56px;line-height:.92;letter-spacing:-.03em;text-transform:uppercase;margin-top:8px}
+  .rule{height:3px;background:var(--accent);margin:22px 0 0;width:100%}
+  .frow{display:flex;align-items:flex-end;justify-content:space-between;margin-top:18px}
+  .brandmark{height:22px}
+  .tag{font-family:var(--mono);font-size:13px;letter-spacing:.02em;color:#76767c;white-space:nowrap;margin-bottom:6px}
+
+  .back .card{background:var(--accent)}
+  .panel{position:relative;width:100%;height:100%;overflow:hidden}
+  .bigword{position:absolute;top:18px;left:8px;font-family:var(--display);font-weight:700;color:var(--ink);font-size:108px;line-height:.84;letter-spacing:-.05em;text-transform:uppercase;white-space:nowrap}
+  .bigword span{display:block}
+  .bigmark{position:absolute;right:-14px;bottom:188px;font-family:var(--display);font-weight:700;
+    font-size:236px;line-height:.8;letter-spacing:-.07em;color:#fff;opacity:.15;white-space:nowrap}
+  .foot{position:absolute;left:34px;right:30px;bottom:40px;color:#fff;font-family:var(--mono)}
+  .foot .rule{height:1px;background:rgba(255,255,255,.30);width:100%}
+  .foot .links{margin-top:18px;display:flex;flex-direction:column;gap:7px}
+  .foot .u{font-size:19px;letter-spacing:.02em;font-weight:700}
+  .foot .m{font-size:19px;letter-spacing:.02em;font-weight:600}
+</style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="cards">
+      <div class="badge front">
+        <div class="card">
+          <div class="photo">
+            <img src="photo.webp" alt="Mathieu Thiry" />
+            <span class="tick tl"></span><span class="tick tr"></span>
+            <span class="tick bl"></span><span class="tick br"></span>
+          </div>
+          <div class="role">Fondateur</div>
+          <div class="name">Mathieu<br/>Thiry</div>
+          <div class="rule"></div>
+          <div class="frow">
+            <div>
+              <svg class="brandmark" viewBox="0 0 720 120" xmlns="http://www.w3.org/2000/svg" aria-label="Tenex Studio">
+                <text x="0" y="92" font-family="Arimo, sans-serif" font-weight="700" font-size="100" letter-spacing="-4.5" fill="#0f0f12">TeneX Studio</text>
+              </svg>
+            </div>
+            <div class="tag">Agence Web et IA</div>
+          </div>
+        </div>
+      </div>
+      <div class="badge back">
+        <div class="card">
+          <div class="panel">
+            <div class="bigword"><span>Tenex</span><span>Studio</span></div>
+            <div class="bigmark">10x</div>
+            <div class="foot">
+              <div class="rule"></div>
+              <div class="links">
+                <div class="u">www.tenex.studio</div>
+                <div class="m">contact@tenex.studio</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
