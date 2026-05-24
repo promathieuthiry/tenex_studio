@@ -39,8 +39,8 @@ const BIGMARK = {
   opacity: 0.08,
 };
 const LOCALES = {
-  fr: { out: 'public/og/og-fr.png', subtitle: 'Agence Web<br>et&nbsp;IA' },
-  en: { out: 'public/og/og-en.png', subtitle: 'Web &amp; AI<br>Agency' },
+  fr: { out: 'public/og/og-fr.jpg', subtitle: 'Agence Web<br>et&nbsp;IA' },
+  en: { out: 'public/og/og-en.jpg', subtitle: 'Web &amp; AI<br>Agency' },
 };
 // ---------------------------------------------------------------------------
 
@@ -150,7 +150,7 @@ for (const [loc, { out, subtitle }] of Object.entries(LOCALES)) {
   ], { stdio: 'ignore' });
   await sharp(shot)
     .resize(WIDTH, HEIGHT, { kernel: 'lanczos3' })
-    .png({ compressionLevel: 9 })
+    .jpeg({ quality: 82, mozjpeg: true, chromaSubsampling: '4:4:4' })
     .toFile(resolve(ROOT, out));
   console.log(`wrote ${out}`);
 }
