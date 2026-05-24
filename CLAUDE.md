@@ -19,7 +19,7 @@ This repo is the **public marketing site + content engine** (blog, case studies)
 - **Tailwind v4** — loaded as Vite plugin, **no `tailwind.config.js`**; theme lives in `src/styles/global.css` via `@theme`
 - **TypeScript strict** (`astro/tsconfigs/strict`) — no `any`, path alias `@/* → src/*`
 - **`motion`** (`motion/react`) for animation — respect `prefers-reduced-motion`
-- **Resend** for contact form (server action)
+- **Cal.com** booking link (`PUBLIC_BOOK_URL`) is the contact path — no contact form, no server action
 - **Vercel** deploy — Analytics + Speed Insights wired
 - **Node ≥ 22.12**
 
@@ -27,12 +27,11 @@ This repo is the **public marketing site + content engine** (blog, case studies)
 
 ```text
 src/
-├── actions/        # Astro server actions (contact form)
 ├── components/     # .astro + .tsx components, one component per file
 ├── data/           # bilingual content as TS modules (services, faq, work, etc.)
 ├── layouts/        # BaseLayout.astro
 ├── lib/            # i18n helpers, pure utilities
-├── pages/          # / (FR), /en/* (EN), /contact, /404
+├── pages/          # / (FR), /en/ (EN), /mentions-legales, /en/legal-notice, /404
 └── styles/         # global.css — Tailwind v4 @theme tokens
 ```
 
@@ -41,7 +40,7 @@ src/
 ## i18n (locked)
 
 - `defaultLocale: 'fr'`, `locales: ['fr','en']`, `prefixDefaultLocale: false`
-- Routes: FR at `/`, `/contact` — EN at `/en/`, `/en/contact`
+- Routes: FR at `/`, `/mentions-legales` — EN at `/en/`, `/en/legal-notice`
 - All copy uses `Bilingual<T>` from `src/data/_types.ts`: `{ fr: ..., en: ... }`
 - Use `pathFor(locale, path)` from `@/lib/i18n` for locale-aware links
 - **Every FR string MUST have an EN counterpart.** Never ship FR without EN, or vice versa.
