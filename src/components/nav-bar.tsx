@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import {
+  AnimatePresence,
   animate,
   motion,
   useMotionValue,
@@ -10,7 +11,13 @@ import {
 } from "motion/react";
 
 import type { Locale } from "@/lib/i18n";
-import { NAV_LANDMARK, NAV_LINKS, TALK_PILL, WORDMARK } from "@/data/nav";
+import {
+  MENU_LABEL,
+  NAV_LANDMARK,
+  NAV_LINKS,
+  TALK_PILL,
+  WORDMARK,
+} from "@/data/nav";
 import { LocaleSwitcher } from "./locale-switcher";
 import { Button } from "@/components/ui/button";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
@@ -26,8 +33,12 @@ export function NavBar({ locale }: { locale: Locale }) {
   const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const programmaticScroll = useRef(false);
   const programmaticScrollTimer = useRef<number | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuWasOpen = useRef(false);
 
   const count = useMotionValue(0);
   const rounded = useTransform(count, (value) => Math.round(value));
@@ -43,6 +54,26 @@ export function NavBar({ locale }: { locale: Locale }) {
     });
     return () => controls.stop();
   }, [reduceMotion, count]);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      if (menuWasOpen.current) menuButtonRef.current?.focus();
+      return;
+    }
+    menuWasOpen.current = true;
+    setHidden(false);
+    closeButtonRef.current?.focus();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
 
   useMotionValueEvent(scrollY, "change", (current) => {
     if (programmaticScroll.current) return;
@@ -100,7 +131,20 @@ export function NavBar({ locale }: { locale: Locale }) {
     );
   };
 
+  const handleOverlayLink = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    setMenuOpen(false);
+    handleHashClick(event, href);
+  };
+
+  const overlayItem = reduceMotion
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+    : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+
   return (
+    <>
     <motion.header
       initial={false}
       animate={{ y: reduceMotion || !hidden ? 0 : -140 }}
@@ -158,7 +202,7 @@ export function NavBar({ locale }: { locale: Locale }) {
           })}
         </nav>
 
-        <div className="relative z-10 flex items-center gap-3">
+        <div className="relative z-10 hidden items-center gap-3 md:flex">
           <LocaleSwitcher locale={locale} />
           <Button
             href={BOOK_URL}
@@ -171,7 +215,146 @@ export function NavBar({ locale }: { locale: Locale }) {
             {TALK_PILL.label[locale]}
           </Button>
         </div>
+
+        <button
+          ref={menuButtonRef}
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          aria-label={MENU_LABEL.open[locale]}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          className="relative z-10 -mr-2 inline-flex h-11 w-11 items-center justify-center text-ink transition hover:opacity-70 md:hidden"
+        >
+          <svg
+            aria-hidden="true"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          >
+            <line x1="3" y1="7" x2="21" y2="7" />
+            <line x1="3" y1="14" x2="21" y2="14" />
+          </svg>
+        </button>
       </div>
     </motion.header>
+
+    <AnimatePresence>
+      {menuOpen ? (
+        <motion.div
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label={NAV_LANDMARK[locale]}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.25, ease: "easeOut" }}
+          className="fixed inset-0 z-50 flex flex-col bg-paper md:hidden"
+        >
+          <div className="flex items-center justify-between px-4 pt-3">
+            <a
+              href={homeHref}
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-2 transition hover:opacity-80"
+              aria-label={WORDMARK}
+            >
+              <span
+                aria-hidden="true"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent"
+              >
+                <span className="font-display font-bold leading-none tracking-[-0.07em] text-paper/50 text-[1.1rem] tabular-nums">
+                  <motion.span>{rounded}</motion.span>x
+                </span>
+              </span>
+              <span className="font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg">
+                Studio
+              </span>
+            </a>
+            <button
+              ref={closeButtonRef}
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label={MENU_LABEL.close[locale]}
+              className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-ink transition hover:opacity-70"
+            >
+              <svg
+                aria-hidden="true"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
+                <line x1="5" y1="5" x2="19" y2="19" />
+                <line x1="19" y1="5" x2="5" y2="19" />
+              </svg>
+            </button>
+          </div>
+
+          <motion.nav
+            aria-label={NAV_LANDMARK[locale]}
+            initial="hidden"
+            animate="visible"
+            transition={{ staggerChildren: reduceMotion ? 0 : 0.06, delayChildren: 0.05 }}
+            className="flex flex-1 flex-col justify-center border-t border-ink/10 px-6"
+          >
+            {NAV_LINKS.map((link) => {
+              const href = link.href?.[locale];
+              if (!href) {
+                return (
+                  <motion.span
+                    key={link.id}
+                    variants={overlayItem}
+                    aria-disabled="true"
+                    className="border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink/30 text-4xl"
+                  >
+                    {link.label[locale]}
+                  </motion.span>
+                );
+              }
+              return (
+                <motion.a
+                  key={link.id}
+                  variants={overlayItem}
+                  href={href}
+                  onClick={(event) => handleOverlayLink(event, href)}
+                  className="border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink text-4xl transition hover:text-accent"
+                >
+                  {link.label[locale]}
+                </motion.a>
+              );
+            })}
+          </motion.nav>
+
+          <motion.div
+            variants={overlayItem}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: reduceMotion ? 0 : 0.25 }}
+            className="flex items-center justify-between gap-4 border-t border-ink/8 px-6 py-6"
+          >
+            <LocaleSwitcher locale={locale} />
+            <Button
+              href={BOOK_URL}
+              {...BOOK_LINK_ATTRS}
+              onClick={() => setMenuOpen(false)}
+              variant="primary"
+              surface="light"
+              size="md"
+              className="font-semibold"
+            >
+              {TALK_PILL.label[locale]}
+            </Button>
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+    </>
   );
 }

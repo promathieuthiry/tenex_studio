@@ -48,4 +48,12 @@ export const NAV_LANDMARK: Bilingual = {
   en: "Main navigation",
 } as const;
 
+export const MENU_LABEL: Readonly<{
+  open: Bilingual;
+  close: Bilingual;
+}> = {
+  open: { fr: "Ouvrir le menu", en: "Open menu" },
+  close: { fr: "Fermer le menu", en: "Close menu" },
+} as const;
+
 export const WORDMARK = "Tenex Studio" as const;
