@@ -28,3 +28,4 @@ pnpm-debug.log*
 
 # stray agent-browser screenshot artifacts
 --full-page
+.vercel

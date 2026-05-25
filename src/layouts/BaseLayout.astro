@@ -1,7 +1,6 @@
 ---
 import { Font } from 'astro:assets';
 import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
 
 import type { Locale } from '@/lib/i18n';
 import { SKIP_LINK } from '@/data/nav';
@@ -57,6 +56,5 @@ const { locale, seo } = Astro.props;
     <Footer client:visible locale={locale} />
 
     <Analytics />
-    <SpeedInsights />
   </body>
 </html>
