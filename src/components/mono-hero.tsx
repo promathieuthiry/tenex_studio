@@ -1,6 +1,3 @@
-import { useRef } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
-
 import type { Locale } from '@/lib/i18n'
 import { Hero } from '@/components/hero'
 
@@ -53,10 +50,14 @@ function MarqueeColumn({
         {items.map((src, i) => (
           <li
             key={`${src}-${i}`}
-            className="relative aspect-[3/4] w-full overflow-hidden rounded-card bg-ink-soft"
+            className="relative aspect-3/4 w-full overflow-hidden rounded-card bg-ink-soft"
           >
             <img
               src={src}
+              srcSet={`${src.replace('.webp', '-480.webp')} 480w, ${src} 720w`}
+              sizes="(min-width: 768px) 25vw, 50vw"
+              width={720}
+              height={960}
               alt=""
               loading="lazy"
               decoding="async"
@@ -69,23 +70,15 @@ function MarqueeColumn({
   )
 }
 
+// The shrink-on-scroll scrub lives in `global.css` (`.hero-track` / `.hero-pane`
+// / `.hero-card`) as a compositor-thread scroll-driven animation. It runs there
+// instead of a JS `useScroll` listener so it stays smooth on mobile, where the
+// main thread can't track touch scroll. Unsupported browsers and reduced-motion
+// users fall back to a static single screen.
 export function MonoHero({ locale }: { locale: Locale }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const reduced = useReducedMotion()
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end end'],
-  })
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.55])
-
-  // Sized in `svh` (small viewport height), not `vh`/`dvh`. svh is a fixed
-  // reference that ignores the mobile address bar showing/hiding, so the
-  // scroll-driven scale never re-measures mid-scroll — that re-measure was
-  // what made the hero snap on mobile.
   return (
-    <div ref={ref} className="relative h-[180svh] bg-[var(--color-ink)]">
-      <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden">
+    <div className="hero-track relative bg-ink">
+      <div className="hero-pane flex items-center justify-center overflow-hidden">
         <div className="pointer-events-none absolute inset-0 grid grid-cols-2 gap-6 px-6 md:grid-cols-4 md:px-10">
           <MarqueeColumn direction="up" duration={40} offset={0} />
           <MarqueeColumn direction="down" duration={50} offset={5} />
@@ -97,12 +90,9 @@ export function MonoHero({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <motion.div
-          style={reduced ? undefined : { scale }}
-          className="relative z-10 w-full origin-center bg-paper"
-        >
-          <Hero locale={locale} scrollProgress={scrollYProgress} />
-        </motion.div>
+        <div className="hero-card relative z-10 w-full origin-center bg-paper">
+          <Hero locale={locale} />
+        </div>
       </div>
     </div>
   )

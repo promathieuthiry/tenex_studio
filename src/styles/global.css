@@ -117,3 +117,68 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Hero scroll-scrub. The card shrinks and the headline underline fills as the
+   pinned hero scrolls past, driven on the compositor thread by a scroll-driven
+   animation (no main-thread scroll listener, so it stays smooth on mobile).
+   Range 0 -> 80svh = the track (180svh) minus the pinned pane (100svh), i.e.
+   the scroll distance before the pane unpins. The 80svh is an svh length, a
+   fixed reference the mobile address bar can't shift. Browsers without
+   scroll-driven animations, and reduced-motion users, get a static single
+   screen (no tall track, no scrub). */
+@keyframes hero-shrink {
+  to {
+    transform: scale(0.55);
+  }
+}
+
+@keyframes hero-underline {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-pane {
+  min-height: 100svh;
+}
+
+@supports (animation-timeline: scroll()) {
+  .hero-track {
+    height: 180svh;
+  }
+  .hero-pane {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+  }
+  .hero-card {
+    animation: hero-shrink linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 80svh;
+    will-change: transform;
+  }
+  .hero-underline {
+    animation: hero-underline linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 80svh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-track {
+      height: auto;
+    }
+    .hero-pane {
+      position: static;
+      height: auto;
+      min-height: 100svh;
+    }
+    .hero-card,
+    .hero-underline {
+      animation: none;
+    }
+  }
+}

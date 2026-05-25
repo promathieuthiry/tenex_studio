@@ -1,10 +1,4 @@
-import {
-  motion,
-  useReducedMotion,
-  useTransform,
-  type MotionValue,
-  type Variants,
-} from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import type { Locale } from "@/lib/i18n";
 import { HERO } from "@/data/hero";
@@ -34,26 +28,17 @@ const PORTRAIT_ALT: Readonly<Record<Locale, string>> = {
   en: "Portrait of Mathieu Thiry, founder of Tenex Studio",
 };
 
-export function Hero({
-  locale,
-  scrollProgress,
-}: {
-  locale: Locale;
-  scrollProgress: MotionValue<number>;
-}) {
+export function Hero({ locale }: { locale: Locale }) {
   const reduced = useReducedMotion();
 
-  const underlineScale = useTransform(scrollProgress, [0, 1], [0, 1]);
-
   return (
-    <section className="relative flex min-h-dvh flex-col justify-between gap-10 border-y border-ink/15 bg-paper px-6 py-8 md:px-12 md:py-10 lg:px-16 lg:py-12">
+    <section className="relative flex min-h-svh flex-col justify-between gap-10 border-y border-ink/15 bg-paper px-6 py-8 md:px-12 md:py-10 lg:px-16 lg:py-12">
       <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 items-start gap-10 pt-20 md:grid-cols-12 md:gap-12">
         <div className="md:col-span-7">
           <span className="relative inline-block">
-            <motion.span
+            <span
               aria-hidden="true"
-              className="absolute bottom-[0.2em] left-0 z-0 block h-[0.35em] w-full origin-left bg-accent md:bottom-[0.28em] md:h-[0.68em] lg:bottom-[0.30em] lg:h-[0.82em]"
-              style={{ scaleX: reduced ? 1 : underlineScale }}
+              className="hero-underline absolute bottom-[0.2em] left-0 z-0 block h-[0.35em] w-full origin-left bg-accent md:bottom-[0.28em] md:h-[0.68em] lg:bottom-[0.30em] lg:h-[0.82em]"
             />
             <RevealText
               as="h1"
