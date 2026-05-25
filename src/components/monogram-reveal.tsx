@@ -112,7 +112,7 @@ export function MonogramReveal({ locale }: { locale: Locale }) {
       aria-label={HERO.monogramAriaLabel[locale]}
       className="relative h-[200vh] bg-ink"
     >
-      <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
+      <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
