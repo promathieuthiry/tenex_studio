@@ -379,8 +379,8 @@ export function NavBar({ locale }: { locale: Locale }) {
                 onClick={() => setMenuOpen(false)}
                 variant="primary"
                 surface="light"
-                size="md"
-                className="font-semibold"
+                size="lg"
+                className=" justify-center py-4 text-base! font-semibold"
               >
                 {TALK_PILL.label[locale]}
               </Button>
