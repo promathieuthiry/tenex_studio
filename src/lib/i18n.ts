@@ -34,5 +34,5 @@ export const NEW_TAB_HINT: Readonly<Record<Locale, string>> = {
 } as const
 
 export function visitAriaLabel(locale: Locale, name: string): string {
-  return `${VISIT_LABEL[locale]} — ${name} (${NEW_TAB_HINT[locale]})`
+  return `${VISIT_LABEL[locale]}: ${name} (${NEW_TAB_HINT[locale]})`
 }

@@ -61,9 +61,9 @@ function Card({
       <DialogTrigger asChild>
         <button
           type="button"
-          aria-label={`${copy.readMore}: ${t.name[locale]}`}
           className={className ? `${CARD_BASE} ${className}` : CARD_BASE}
         >
+          <span className="sr-only">{copy.readMore}</span>
           <div className="flex items-start justify-between">
             <span
               aria-hidden
@@ -102,7 +102,7 @@ function Card({
               <p className="truncate font-sans text-sm font-medium text-ink">
                 {t.name[locale]}
               </p>
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70">
                 {t.role[locale]}
               </p>
             </div>
@@ -149,7 +149,7 @@ function Card({
             <p className="font-sans text-sm font-medium text-ink">
               {t.name[locale]}
             </p>
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70">
               {t.role[locale]}
             </p>
           </div>

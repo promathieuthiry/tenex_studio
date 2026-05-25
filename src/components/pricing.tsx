@@ -97,7 +97,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                     </h3>
                     <span
                       className={`shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] ${
-                        isDark ? 'text-paper/55' : 'text-ink/55'
+                        isDark ? 'text-paper/55' : 'text-ink/70'
                       }`}
                     >
                       {tier.timeline[locale]}
@@ -124,7 +124,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                     {previousTier ? (
                       <p
                         className={`flex min-h-9 items-start font-mono text-[10px] uppercase leading-4 tracking-[0.18em] ${
-                          isDark ? 'text-paper/45' : 'text-ink/40'
+                          isDark ? 'text-paper/45' : 'text-ink/70'
                         }`}
                       >
                         ↳ {copy.inheritsFromBefore}
@@ -149,7 +149,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                           }`}
                         >
                           <span
-                            className={isDark ? 'text-paper/55' : 'text-ink/45'}
+                            className={isDark ? 'text-paper/55' : 'text-ink/70'}
                           >
                             {PLUS_ICON}
                           </span>
@@ -168,7 +168,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                       {!isFixedPrice && (
                         <span
                           className={`mr-2 align-middle font-sans text-sm font-normal ${
-                            isDark ? 'text-paper/55' : 'text-ink/55'
+                            isDark ? 'text-paper/55' : 'text-ink/70'
                           }`}
                         >
                           {copy.priceFromPrefix}
@@ -178,7 +178,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                       {isFixedPrice && (
                         <span
                           className={`ml-2 align-middle font-sans text-sm font-normal ${
-                            isDark ? 'text-paper/55' : 'text-ink/55'
+                            isDark ? 'text-paper/55' : 'text-ink/70'
                           }`}
                         >
                           {copy.priceFixedSuffix}

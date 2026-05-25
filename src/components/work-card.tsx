@@ -67,10 +67,7 @@ export function WorkCard({ project, locale, priority = false }: WorkCardProps) {
         ) : null}
       </header>
 
-      <p
-        className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/55"
-        aria-label={tags.join(", ")}
-      >
+      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/70">
         {tags.map((tag, i) => (
           <span key={tag}>
             {tag}
@@ -92,10 +89,10 @@ export function WorkCard({ project, locale, priority = false }: WorkCardProps) {
           href={liveUrl}
           target="_blank"
           rel="noreferrer noopener"
-          aria-label={ariaLabel}
           className="mt-auto block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
         >
           {figure}
+          <span className="sr-only">{ariaLabel}</span>
         </a>
       ) : (
         figure
