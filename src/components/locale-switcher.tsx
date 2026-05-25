@@ -36,7 +36,7 @@ export function LocaleSwitcher({ locale }: { locale: Locale }) {
     <div
       role="group"
       aria-label="Language"
-      className="flex items-center gap-1 font-mono text-xs uppercase tracking-[0.12em]"
+      className="flex items-center gap-1 font-mono text-sm uppercase tracking-[0.12em]"
     >
       <span aria-current="true" className="text-ink">
         {locale.toUpperCase()}

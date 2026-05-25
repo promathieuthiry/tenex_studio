@@ -143,209 +143,74 @@ export function NavBar({ locale }: { locale: Locale }) {
     ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
     : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
+  const revealItem = reduceMotion
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+    : { hidden: { y: "110%" }, visible: { y: 0 } };
+
   return (
     <>
-    <motion.header
-      initial={false}
-      animate={{ y: reduceMotion || !hidden ? 0 : -140 }}
-      transition={{ type: "tween", duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-3 md:pt-4"
-    >
-      <div
-        className={`${GLASS_PILL} flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2 md:px-6 md:py-3`}
+      <motion.header
+        initial={false}
+        animate={{ y: reduceMotion || !hidden ? 0 : -140 }}
+        transition={{ type: "tween", duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-3 md:pt-4"
       >
-        <a
-          href={homeHref}
-          className="relative z-10 flex items-center gap-2 transition hover:opacity-80"
-          aria-label={WORDMARK}
+        <div
+          className={`${GLASS_PILL} flex w-full max-w-screen-xl items-center justify-between gap-4 px-4 py-2 md:px-6 md:py-3`}
         >
-          <span
-            aria-hidden="true"
-            className="relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent md:h-12 md:w-12"
+          <a
+            href={homeHref}
+            className="relative z-10 flex items-center gap-2 transition hover:opacity-80"
+            aria-label={WORDMARK}
           >
-            <span className="font-display font-bold leading-none tracking-[-0.07em] text-paper/50 text-[1.1rem] md:text-[1.4rem] tabular-nums">
-              <motion.span>{rounded}</motion.span>x
+            <span
+              aria-hidden="true"
+              className="relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent md:h-12 md:w-12"
+            >
+              <span className="font-display font-bold leading-none tracking-[-0.07em] text-paper/50 text-[1.1rem] md:text-[1.4rem] tabular-nums">
+                <motion.span>{rounded}</motion.span>x
+              </span>
             </span>
-          </span>
-          <span className="relative z-10 font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg md:text-xl">
-            Studio
-          </span>
-        </a>
+            <span className="relative z-10 font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg md:text-xl">
+              Studio
+            </span>
+          </a>
 
-        <nav
-          aria-label={NAV_LANDMARK[locale]}
-          className="relative z-10 hidden items-center gap-7 md:flex"
-        >
-          {NAV_LINKS.map((link) => {
-            const href = link.href?.[locale];
-            if (!href) {
-              return (
-                <span
-                  key={link.id}
-                  aria-disabled="true"
-                  className="relative z-10 font-sans font-semibold text-sm text-ink/40"
-                >
-                  {link.label[locale]}
-                </span>
-              );
-            }
-            return (
-              <a
-                key={link.id}
-                href={href}
-                onClick={(event) => handleHashClick(event, href)}
-                className="relative z-10 font-sans font-semibold text-sm text-ink transition hover:opacity-70"
-              >
-                {link.label[locale]}
-              </a>
-            );
-          })}
-        </nav>
-
-        <div className="relative z-10 hidden items-center gap-3 md:flex">
-          <LocaleSwitcher locale={locale} />
-          <Button
-            href={BOOK_URL}
-            {...BOOK_LINK_ATTRS}
-            variant="primary"
-            surface="light"
-            size="md"
-            className="font-semibold"
-          >
-            {TALK_PILL.label[locale]}
-          </Button>
-        </div>
-
-        <button
-          ref={menuButtonRef}
-          type="button"
-          onClick={() => setMenuOpen(true)}
-          aria-label={MENU_LABEL.open[locale]}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          className="relative z-10 -mr-2 inline-flex h-11 w-11 items-center justify-center text-ink transition hover:opacity-70 md:hidden"
-        >
-          <svg
-            aria-hidden="true"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          >
-            <line x1="3" y1="7" x2="21" y2="7" />
-            <line x1="3" y1="14" x2="21" y2="14" />
-          </svg>
-        </button>
-      </div>
-    </motion.header>
-
-    <AnimatePresence>
-      {menuOpen ? (
-        <motion.div
-          id="mobile-menu"
-          role="dialog"
-          aria-modal="true"
-          aria-label={NAV_LANDMARK[locale]}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: reduceMotion ? 0 : 0.25, ease: "easeOut" }}
-          className="fixed inset-0 z-50 flex flex-col bg-paper md:hidden"
-        >
-          <div className="px-4 pt-3">
-            <div className="flex items-center justify-between px-4 py-2">
-              <a
-                href={homeHref}
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-2 transition hover:opacity-80"
-                aria-label={WORDMARK}
-              >
-                <span
-                  aria-hidden="true"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent"
-                >
-                  <span className="font-display font-bold leading-none tracking-[-0.07em] text-paper/50 text-[1.1rem] tabular-nums">
-                    <motion.span>{rounded}</motion.span>x
-                  </span>
-                </span>
-                <span className="font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg">
-                  Studio
-                </span>
-              </a>
-              <button
-                ref={closeButtonRef}
-                type="button"
-                onClick={() => setMenuOpen(false)}
-                aria-label={MENU_LABEL.close[locale]}
-                className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-ink transition hover:opacity-70"
-              >
-                <svg
-                  aria-hidden="true"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                >
-                  <line x1="5" y1="5" x2="19" y2="19" />
-                  <line x1="19" y1="5" x2="5" y2="19" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <motion.nav
+          <nav
             aria-label={NAV_LANDMARK[locale]}
-            initial="hidden"
-            animate="visible"
-            transition={{ staggerChildren: reduceMotion ? 0 : 0.06, delayChildren: 0.05 }}
-            className="flex flex-1 flex-col justify-center border-t border-ink/10 px-6"
+            className="relative z-10 hidden items-center gap-7 md:flex"
           >
             {NAV_LINKS.map((link) => {
               const href = link.href?.[locale];
               if (!href) {
                 return (
-                  <motion.span
+                  <span
                     key={link.id}
-                    variants={overlayItem}
                     aria-disabled="true"
-                    className="border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink/30 text-4xl"
+                    className="relative z-10 font-sans font-semibold text-sm text-ink/40"
                   >
                     {link.label[locale]}
-                  </motion.span>
+                  </span>
                 );
               }
               return (
-                <motion.a
+                <a
                   key={link.id}
-                  variants={overlayItem}
                   href={href}
-                  onClick={(event) => handleOverlayLink(event, href)}
-                  className="border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink text-4xl transition hover:text-accent"
+                  onClick={(event) => handleHashClick(event, href)}
+                  className="relative z-10 font-sans font-semibold text-sm text-ink transition hover:opacity-70"
                 >
                   {link.label[locale]}
-                </motion.a>
+                </a>
               );
             })}
-          </motion.nav>
+          </nav>
 
-          <motion.div
-            variants={overlayItem}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: reduceMotion ? 0 : 0.25 }}
-            className="flex items-center justify-between gap-4 border-t border-ink/8 px-6 py-6"
-          >
+          <div className="relative z-10 hidden items-center gap-3 md:flex">
             <LocaleSwitcher locale={locale} />
             <Button
               href={BOOK_URL}
               {...BOOK_LINK_ATTRS}
-              onClick={() => setMenuOpen(false)}
               variant="primary"
               surface="light"
               size="md"
@@ -353,10 +218,176 @@ export function NavBar({ locale }: { locale: Locale }) {
             >
               {TALK_PILL.label[locale]}
             </Button>
+          </div>
+
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label={MENU_LABEL.open[locale]}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className="relative z-10 -mr-2 inline-flex h-11 w-11 items-center justify-center text-ink transition hover:opacity-70 md:hidden"
+          >
+            <svg
+              aria-hidden="true"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <line x1="3" y1="7" x2="21" y2="7" />
+              <line x1="3" y1="14" x2="21" y2="14" />
+            </svg>
+          </button>
+        </div>
+      </motion.header>
+
+      <AnimatePresence>
+        {menuOpen ? (
+          <motion.div
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label={NAV_LANDMARK[locale]}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.25, ease: "easeOut" }}
+            className="fixed inset-0 z-50 flex flex-col bg-paper md:hidden"
+          >
+            <div className="px-4 pt-3">
+              <div className="flex items-center justify-between px-4 py-2">
+                <a
+                  href={homeHref}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2 transition hover:opacity-80"
+                  aria-label={WORDMARK}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent"
+                  >
+                    <span className="font-display font-bold leading-none tracking-[-0.07em] text-paper/50 text-[1.1rem] tabular-nums">
+                      <motion.span>{rounded}</motion.span>x
+                    </span>
+                  </span>
+                  <span className="font-display font-bold leading-[0.85] tracking-[-0.04em] text-ink text-lg">
+                    Studio
+                  </span>
+                </a>
+                <button
+                  ref={closeButtonRef}
+                  type="button"
+                  onClick={() => setMenuOpen(false)}
+                  aria-label={MENU_LABEL.close[locale]}
+                  className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-ink transition hover:opacity-70"
+                >
+                  <svg
+                    aria-hidden="true"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  >
+                    <line x1="5" y1="5" x2="19" y2="19" />
+                    <line x1="19" y1="5" x2="5" y2="19" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <motion.nav
+              aria-label={NAV_LANDMARK[locale]}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                staggerChildren: reduceMotion ? 0 : 0.05,
+                delayChildren: reduceMotion ? 0 : 0.08,
+              }}
+              className="flex flex-1 flex-col justify-center border-t border-ink/10 px-6"
+            >
+              {NAV_LINKS.map((link) => {
+                const href = link.href?.[locale];
+                if (!href) {
+                  return (
+                    <span
+                      key={link.id}
+                      aria-disabled="true"
+                      className="block border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink/30 text-4xl"
+                    >
+                      <span className="block overflow-hidden">
+                        <motion.span
+                          variants={revealItem}
+                          transition={{
+                            duration: reduceMotion ? 0 : 0.4,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
+                          className="block"
+                        >
+                          {link.label[locale]}
+                        </motion.span>
+                      </span>
+                    </span>
+                  );
+                }
+                return (
+                  <a
+                    key={link.id}
+                    href={href}
+                    onClick={(event) => handleOverlayLink(event, href)}
+                    className="block border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink text-4xl transition hover:text-accent"
+                  >
+                    <span className="block overflow-hidden">
+                      <motion.span
+                        variants={revealItem}
+                        transition={{
+                          duration: reduceMotion ? 0 : 0.4,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="block"
+                      >
+                        {link.label[locale]}
+                      </motion.span>
+                    </span>
+                  </a>
+                );
+              })}
+            </motion.nav>
+
+            <motion.div
+              variants={overlayItem}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                delay: reduceMotion ? 0 : 0.25,
+                duration: reduceMotion ? 0 : 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="flex items-center justify-between gap-4 border-t border-ink/8 px-6 py-6"
+            >
+              <LocaleSwitcher locale={locale} />
+              <Button
+                href={BOOK_URL}
+                {...BOOK_LINK_ATTRS}
+                onClick={() => setMenuOpen(false)}
+                variant="primary"
+                surface="light"
+                size="md"
+                className="font-semibold"
+              >
+                {TALK_PILL.label[locale]}
+              </Button>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }
