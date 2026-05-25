@@ -123,7 +123,7 @@ export function Footer({ locale }: { locale: Locale }) {
             alt="La Cantine x La French Tech Nantes"
             className="h-20 w-auto opacity-60 transition-opacity duration-200 ease-out hover:opacity-100 md:h-26"
           />
-          <p className="font-sans text-xs text-paper/50">
+          <p className="font-sans text-xs text-paper/50 text-center md:text-left">
             © {year} Tenex Studio. {FOOTER.rights[locale]}
           </p>
         </div>
