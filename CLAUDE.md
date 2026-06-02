@@ -22,6 +22,27 @@ Delivery is mainly **websites and web apps** — the studio ships production fro
 
 This repo is the **public marketing site + content engine** (blog, case studies). Not an app, not a product platform.
 
+## Cible client (ICP)
+
+Cible définie par le **moment**, pas par l'industrie. Garde le positionnement premium sans enfermer dans une verticale.
+
+**En une ligne :** des fondateurs à un moment décisif (levée, lancement, salon) où le site est *load-bearing* — il gagne ou perd des deals, de l'argent ou de la crédibilité dans les 90 jours.
+
+- **Offre cœur :** site complet sur mesure, 3 500 €+. Ne jamais ancrer ces acheteurs sur le tier 1 500 €.
+- **Portée :** France + international, FR/EN actif.
+- **Croissance :** viser des clients plus gros (ticket), pas le volume.
+
+**Moments déclencheurs** (le vrai ciblage) : levée de fonds, lancement / go-to-market avec deadline, ouverture à l'international, gros événement (salon, demo day, presse), site qui ne convertit pas. Pas de déclencheur = pas la cible.
+
+**Qualify IN :** deadline réelle, résultat lié au site, veut une identité forte, veut craft + ownership.
+**Qualify OUT :** "juste un truc basique", shopping sans deadline, compare au prix des template shops.
+
+**Pourquoi ils paient premium (colonne vertébrale du pitch) :** 1. vitesse sous pression ("en ligne en 2 semaines", preuve #1 de tous les témoignages) · 2. identité sur mesure, 0 slop · 3. le site convertit / crédibilise.
+
+**Message marché (modèle 🎯 cible / 🚀 service / 💎 valeur) :**
+
+> J'aide **les fondateurs en lancement ou en levée** à faire de leur **site un argument de vente**, en ligne en **2 semaines**.
+
 ## Stack (locked)
 
 - **Astro 6** — `output: 'static'`, `@astrojs/vercel` adapter

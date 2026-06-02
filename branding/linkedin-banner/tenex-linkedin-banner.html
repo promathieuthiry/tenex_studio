@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0f0f12;
+    --ink-soft: #1c1c1f;
+    --paper: #ffffff;
+    --paper-warm: #f5f5f5;
+    --paper-cool: #f5f6f8;
+    --paper-deep: #dee0e4;
+    --accent: #e2231a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #333; }
+
+  .banner {
+    position: relative;
+    width: 1584px;
+    height: 396px;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+    --bg: linear-gradient(165deg, var(--ink-soft) 0%, var(--ink) 60%);
+    --fg: var(--paper);
+    --fg-dim: rgba(255,255,255,0.72);
+    --grid: rgba(255,255,255,0.04);
+    --pill-bd: rgba(255,255,255,0.22);
+    --pill-fg: rgba(255,255,255,0.9);
+    --panel: #ffffff;
+    --panel-bd: rgba(0,0,0,0.07);
+    --panel-label: rgba(15,15,18,0.45);
+    --panel-fg: #0f0f12;
+    background: var(--bg);
+    color: var(--fg);
+  }
+  body.light .banner {
+    --bg: linear-gradient(165deg, var(--paper-warm) 0%, var(--paper-cool) 55%, var(--paper-deep) 100%);
+    --fg: var(--ink);
+    --fg-dim: rgba(15,15,18,0.66);
+    --grid: rgba(15,15,18,0.045);
+    --pill-bd: rgba(15,15,18,0.2);
+    --pill-fg: rgba(15,15,18,0.82);
+    --panel: rgba(255,255,255,0.7);
+    --panel-bd: rgba(15,15,18,0.1);
+    --panel-label: rgba(15,15,18,0.45);
+    --panel-fg: #0f0f12;
+  }
+
+  .banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(110% 130% at 75% 40%, #000 35%, transparent 78%);
+            mask-image: radial-gradient(110% 130% at 75% 40%, #000 35%, transparent 78%);
+  }
+  .bigmark {
+    position: absolute; right: -24px; top: 50%; transform: translateY(-50%);
+    font-family: 'Arimo', sans-serif; font-weight: 700;
+    font-size: 248px; line-height: 0.8; letter-spacing: -0.07em;
+    color: var(--fg); opacity: 0.07; white-space: nowrap; z-index: 0;
+  }
+
+  /* avatar reserved zone: left 0-320px stays empty */
+  .wordmark { position: absolute; top: 28px; left: 392px; display: flex; align-items: center; gap: 16px; }
+  .wordmark .mark { height: 40px; display: block; }
+  .wordmark .l { display: none; }
+  body.light .wordmark .d { display: none; }
+  body.light .wordmark .l { display: block; }
+  .wordmark .div { width: 1px; height: 28px; background: var(--pill-bd); }
+  .wordmark .tag {
+    font-family: 'Geist Mono', monospace; font-size: 20px; font-weight: 500;
+    letter-spacing: 1px; color: var(--fg-dim);
+  }
+
+  .content {
+    position: absolute; left: 392px; top: 60%; transform: translateY(-50%);
+    width: 1140px; z-index: 1;
+  }
+  h1 {
+    font-family: 'Arimo', sans-serif; font-weight: 700;
+    font-size: 57px; line-height: 1.07; letter-spacing: -1.6px; color: var(--fg);
+  }
+  h1 .accent { color: var(--accent); }
+
+  .pills { display: flex; gap: 12px; margin-top: 22px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 19px; border-radius: 9999px;
+    border: 1px solid var(--pill-bd); color: var(--pill-fg);
+    font-size: 17px; font-weight: 600; letter-spacing: -0.1px;
+  }
+  .pill.solid { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .pill.solid .dot { background: #fff; }
+
+  .trustbar {
+    margin-top: 26px;
+    display: inline-flex; align-items: center; gap: 32px;
+    padding: 12px 24px; border-radius: 14px;
+    background: var(--panel); border: 1px solid var(--panel-bd);
+  }
+  .trustbar .cred { display: flex; flex-direction: column; gap: 7px; }
+  .trustbar .label {
+    font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--panel-label);
+  }
+  .trustbar .stars { font-size: 15px; letter-spacing: 3px; color: #f5b301; line-height: 1; }
+  .trustbar .logos { display: inline-flex; align-items: center; gap: 18px; }
+  .trustbar .logos img { height: 32px; width: 32px; display: block; border-radius: 7px; }
+  .trustbar img.wel { height: 34px; width: auto; display: block; border-radius: 8px; }
+  .trustbar .sep { width: 1px; height: 22px; background: rgba(15,15,18,0.12); }
+
+  .note {
+    position: absolute; right: 190px; bottom: 56px; z-index: 2;
+    display: flex; align-items: center; gap: 10px;
+    color: var(--fg); transform: rotate(-4deg);
+  }
+  .note svg { width: 92px; height: 46px; flex: none; }
+  .note span {
+    font-family: 'Caveat', cursive; font-weight: 700; font-size: 38px;
+    line-height: 1; white-space: nowrap;
+  }
+</style>
+</head>
+<body class="light">
+  <div class="banner">
+    <div class="bigmark">10x</div>
+
+    <div class="wordmark">
+      <img class="mark d" src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/brand/tenex-mark-inverse.svg" alt="Tenex Studio" />
+      <img class="mark l" src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/brand/tenex-mark-dark.svg" alt="Tenex Studio" />
+      <span class="div"></span>
+      <span class="tag">Agence web et IA</span>
+    </div>
+
+    <div class="content">
+      <h1>Je fais de votre site web<br /><span class="accent">votre meilleur argument de vente.</span></h1>
+
+      <div class="pills">
+        <span class="pill solid"><span class="dot"></span>En ligne en 2 semaines</span>
+        <span class="pill"><span class="dot"></span>100% sur mesure</span>
+        <span class="pill"><span class="dot"></span>Optimisé pour convertir</span>
+      </div>
+
+      <div class="trustbar">
+        <span class="cred">
+          <span class="label">Déjà livré pour</span>
+          <span class="stars">★★★★★</span>
+        </span>
+        <span class="logos">
+          <img src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/work/icons/renardo-tech.svg" alt="Renardo Tech" />
+          <img src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/work/icons/studio-lumen.svg" alt="Studio Lumen" />
+          <img class="wel" src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/work/icons/wel-logo.png" alt="wel" />
+        </span>
+      </div>
+    </div>
+
+    <div class="note">
+      <svg viewBox="0 0 92 46" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11 C 28 4, 58 12, 82 33" />
+        <path d="M66 35 L85 33 L77 17" />
+      </svg>
+      <span>3 places / mois</span>
+    </div>
+  </div>
+</body>
+</html>
