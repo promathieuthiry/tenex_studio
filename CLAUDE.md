@@ -2,11 +2,21 @@
 
 ## What this is
 
-Tenex Studio is an **AI-native studio** in Nantes for entrepreneurs and modern businesses, working bilingually FR/EN. The studio sells **leverage** — the name is the multiple, *Tenex, ten times*. Three services, one promise: 10× the output with the same hands.
+**FR.** Tenex Studio est une agence web spécialisée dans la création de sites et applications web sur mesures. Basée à Nantes, nous accompagnons les entrepreneurs et entreprises modernes dans leur transformation digitale. Notre expertise couvre :
 
-- **AI-integrated content engines**
-- **SEO & GEO** (future-proof search + generative engine visibility)
-- **Custom AI workflows** to automate growth
+- ✅ Sites web premium
+- ✅ Applications web sur mesure
+- ✅ Intégration d'IA dans les workflows
+
+Notre approche centrée sur le client garantit des solutions 10× plus personnalisées qui répondent à vos besoins spécifiques.
+
+**EN.** Tenex Studio is a web agency specialized in building custom websites and web apps. Based in Nantes, we support entrepreneurs and modern businesses through their digital transformation. Our expertise covers:
+
+- ✅ Premium websites
+- ✅ Custom web apps
+- ✅ AI integration into workflows
+
+Our client-centered approach delivers solutions 10× more personalized that meet your specific needs.
 
 Delivery is mainly **websites and web apps** — the studio ships production frontends and lightweight web apps as the surface for every engagement.
 
