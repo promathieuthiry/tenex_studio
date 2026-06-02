@@ -41,7 +41,7 @@ Cible définie par le **moment**, pas par l'industrie. Garde le positionnement p
 
 **Message marché (modèle 🎯 cible / 🚀 service / 💎 valeur) :**
 
-> J'aide **les fondateurs en lancement ou en levée** à faire de leur **site un argument de vente**, en ligne en **2 semaines**.
+> Site web 100% sur-mesure qui convertit. En ligne en 2 semaines.
 
 ## Stack (locked)
 
