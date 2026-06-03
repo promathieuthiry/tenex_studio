@@ -11,7 +11,7 @@ import { assertArrayParity } from "@/data/__guards";
 
 export type ServiceIcon = typeof LayoutIcon;
 
-export type ImageTone = 'dark' | 'light';
+export type ImageTone = "dark" | "light";
 
 export type Service = Readonly<{
   number: string;
@@ -170,11 +170,12 @@ export const SERVICES: ReadonlyArray<Service> = [
     icon: MagnifyingGlassIcon,
     name: { fr: "Le référencement naturel", en: "SEO, AEO & GEO" },
     description: {
-      fr: "Optimisation SEO, AEO et GEO pour vous rendre visible sur Google et dans les réponses des LLM.",
-      en: "SEO, AEO and GEO optimization to make you visible on Google and inside LLM answers.",
+      fr: "Optimisation technique pour vous positionner top 5 sur Google et apparaitre dans les réponses des LLM comme ChatGPT.",
+      en: "Technical optimization to secure a top 5 Google ranking and surface in LLM responses like ChatGPT.",
     },
     scope: {
       fr: [
+        "Google",
         "Audit SEO technique",
         "Recherche de mots-clés",
         "Optimisation AEO pour les moteurs de réponse",
@@ -183,6 +184,7 @@ export const SERVICES: ReadonlyArray<Service> = [
         "Structure des contenus",
       ],
       en: [
+        "Google",
         "Technical SEO audit",
         "Keyword research",
         "AEO optimization for answer engines",
@@ -237,7 +239,7 @@ export const SERVICES: ReadonlyArray<Service> = [
       en: ["UI", "Identity", "Mockups", "Responsive", "Accessibility"],
     },
     image: {
-      src: "/services/ai-automations.webp",
+      src: "/services/ai-automations.webp?v=20260603-design-centered",
       alt: {
         fr: "Interface web moderne",
         en: "Modern web interface",
@@ -290,10 +292,10 @@ export const SERVICES: ReadonlyArray<Service> = [
       ],
     },
     image: {
-      src: "/services/training-support.webp",
+      src: "/services/training-support.webp?v=20260603-support-mark",
       alt: {
-        fr: "Session de formation en studio",
-        en: "Studio training session",
+        fr: "Casque de support avec coche de validation",
+        en: "Support headset with validation checkmark",
       },
     },
   },
