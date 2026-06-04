@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face{font-family:'Arimo';font-weight:700;src:url(data:font/woff2;base64,__ARIMO_700__) format('woff2');}
+  @font-face{font-family:'Inter';font-weight:500;src:url(data:font/woff2;base64,__INTER_500__) format('woff2');}
+  @font-face{font-family:'Geist Mono';font-weight:500;src:url(data:font/woff2;base64,__GEIST_500__) format('woff2');}
+
+  :root {
+    --ink: #0f0f12;
+    --paper: #ffffff;
+    --paper-warm: #f5f5f5;
+    --paper-cool: #f5f6f8;
+    --paper-deep: #dee0e4;
+    --accent: #e2231a;
+  }
+
+  * { box-sizing: border-box; }
+  html,
+  body {
+    width: 1200px;
+    height: 630px;
+    margin: 0;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 86% 18%, rgba(226,35,26,0.12) 0 11%, transparent 28%),
+      linear-gradient(180deg, var(--paper-warm) 0%, var(--paper-cool) 62%, var(--paper-deep) 100%);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(15,15,18,0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,15,18,0.05) 1px, transparent 1px);
+    background-size: 54px 54px;
+  }
+
+  .signal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 16px;
+    height: 630px;
+    background: var(--accent);
+  }
+
+  .profile-card {
+    position: absolute;
+    z-index: 2;
+    left: 76px;
+    top: 70px;
+    width: 338px;
+    height: 488px;
+    transform: rotate(5deg);
+    transform-origin: center;
+    background: var(--paper);
+    border-radius: 18px;
+    border: 1px solid rgba(15,15,18,0.08);
+    box-shadow:
+      0 1px 0 rgba(15,15,18,0.06),
+      0 34px 70px -34px rgba(15,15,18,0.32);
+    overflow: hidden;
+  }
+
+  .profile-card::before {
+    content: none;
+  }
+
+  .portrait {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 30px;
+    width: 142px;
+    height: 142px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--ink);
+    border: 6px solid var(--paper);
+  }
+
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 44%;
+    filter: grayscale(100%);
+    display: block;
+  }
+
+  .calendar-title {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    top: 184px;
+    text-align: center;
+    font-family: 'Arimo', sans-serif;
+    font-size: 31px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1.4px;
+    white-space: nowrap;
+  }
+
+  .calendar-subtitle {
+    display: none;
+  }
+
+  .weekdays,
+  .days {
+    position: absolute;
+    z-index: 2;
+    left: 34px;
+    right: 34px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+  }
+
+  .weekdays {
+    top: 246px;
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: rgba(15,15,18,0.42);
+  }
+
+  .days {
+    top: 280px;
+    row-gap: 10px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(15,15,18,0.62);
+  }
+
+  .day {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+  }
+
+  .day.muted { color: rgba(15,15,18,0.22); }
+
+  .day.selected {
+    color: var(--paper);
+  }
+
+  .day.selected::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .content {
+    position: absolute;
+    z-index: 3;
+    left: 502px;
+    top: 118px;
+    width: 642px;
+  }
+
+  .kicker {
+    margin-bottom: 32px;
+    font-family: 'Arimo', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1.8px;
+    color: var(--accent);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Arimo', sans-serif;
+    font-size: 79px;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -4.6px;
+    color: var(--ink);
+  }
+
+  .name {
+    position: relative;
+    display: inline-block;
+  }
+
+  .name::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 4px;
+    right: -5px;
+    bottom: 10px;
+    height: 13px;
+    background: var(--accent);
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 58px;
+    min-width: 382px;
+    padding: 31px 54px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 44px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .cursor {
+    position: absolute;
+    z-index: 5;
+    right: 78px;
+    bottom: 82px;
+    width: 76px;
+    height: 76px;
+    transform: rotate(-12deg);
+  }
+
+  .cursor svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 6px 0 rgba(15,15,18,0.14));
+  }
+
+  .bigmark {
+    position: absolute;
+    right: -52px;
+    bottom: -70px;
+    font-family: 'Arimo', sans-serif;
+    font-size: 278px;
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: -0.07em;
+    color: var(--accent);
+    opacity: 0.08;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="signal"></div>
+    <div class="bigmark">10x</div>
+
+    <section class="profile-card" aria-label="Portrait Mathieu">
+      <div class="portrait">
+        <img src="data:image/webp;base64,__PORTRAIT__" alt="">
+      </div>
+      <div class="calendar-title">Appel avec Mathieu</div>
+      <div class="weekdays">
+        <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+      </div>
+      <div class="days">
+        <span class="day muted">30</span><span class="day muted">31</span><span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span>
+        <span class="day">6</span><span class="day">7</span><span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span>
+        <span class="day">13</span><span class="day">14</span><span class="day selected">15</span><span class="day selected">16</span><span class="day">17</span><span class="day selected">18</span><span class="day">19</span>
+        <span class="day">20</span><span class="day">21</span><span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span>
+        <span class="day">27</span><span class="day">28</span><span class="day">29</span><span class="day">30</span><span class="day">31</span><span class="day muted">1</span><span class="day muted">2</span>
+        <span class="day muted">3</span><span class="day muted">4</span><span class="day muted">5</span><span class="day muted">6</span><span class="day muted">7</span><span class="day muted">8</span><span class="day muted">9</span>
+      </div>
+    </section>
+
+    <section class="content" aria-label="Appel avec Mathieu">
+      <div class="kicker">Une question ?</div>
+      <h1>Prends un appel<br>avec <span class="name">Mathieu</span></h1>
+      <div class="cta">Je réserve</div>
+    </section>
+
+    <div class="cursor" aria-hidden="true">
+      <svg viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 7L63 56L39 59L28 74L10 7Z" fill="#0F0F12" stroke="#FFFFFF" stroke-width="6" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </main>
+</body>
+</html>

@@ -19,7 +19,7 @@ function fontB64(family, weight) {
 }
 
 function fileB64(path) {
-  return readFileSync(resolve(DIR, path)).toString('base64');
+  return readFileSync(resolve(ROOT, path)).toString('base64');
 }
 
 function findChrome() {
@@ -41,14 +41,14 @@ function findChrome() {
   throw new Error('No headless Chrome found.');
 }
 
-const template = readFileSync(resolve(DIR, 'tenex-featured-linkedin-card.html'), 'utf8')
+const template = readFileSync(resolve(DIR, 'tenex-call-linkedin-card.html'), 'utf8')
   .replace('__ARIMO_700__', fontB64('arimo', 700))
   .replace('__INTER_500__', fontB64('inter', 500))
   .replace('__GEIST_500__', fontB64('geist-mono', 500))
-  .replace('__PORTFOLIO_SCREENSHOT__', fileB64('portfolio-screenshot.png'));
+  .replace('__PORTRAIT__', fileB64('public/portrait/mathieu_thiry_founder_tenex_studio.webp'));
 
-const html = join(tmpdir(), 'tenex-featured-linkedin-card.html');
-const shot = join(tmpdir(), 'tenex-featured-linkedin-card@2x.png');
+const html = join(tmpdir(), 'tenex-call-linkedin-card.html');
+const shot = join(tmpdir(), 'tenex-call-linkedin-card@2x.png');
 
 writeFileSync(html, template);
 
@@ -66,6 +66,6 @@ execFileSync(findChrome(), [
 await sharp(shot)
   .resize(WIDTH, HEIGHT, { kernel: 'lanczos3' })
   .png({ compressionLevel: 9, palette: false })
-  .toFile(resolve(DIR, 'tenex-featured-linkedin-card.png'));
+  .toFile(resolve(DIR, 'tenex-call-linkedin-card.png'));
 
-console.log('wrote branding/linkedin/selections/tenex-featured-linkedin-card.png');
+console.log('wrote branding/linkedin/selections/tenex-call-linkedin-card.png');
