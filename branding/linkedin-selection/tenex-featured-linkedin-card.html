@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face{font-family:'Arimo';font-weight:700;src:url(data:font/woff2;base64,__ARIMO_700__) format('woff2');}
+  @font-face{font-family:'Inter';font-weight:500;src:url(data:font/woff2;base64,__INTER_500__) format('woff2');}
+  @font-face{font-family:'Geist Mono';font-weight:500;src:url(data:font/woff2;base64,__GEIST_500__) format('woff2');}
+
+  :root {
+    --ink: #0f0f12;
+    --paper: #ffffff;
+    --paper-warm: #f5f5f5;
+    --paper-cool: #f5f6f8;
+    --paper-deep: #dee0e4;
+    --accent: #e2231a;
+  }
+
+  * { box-sizing: border-box; }
+  html,
+  body {
+    width: 1200px;
+    height: 630px;
+    margin: 0;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    color: var(--ink);
+    background:
+      linear-gradient(115deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.96) 42%, rgba(245,246,248,0.68) 58%, rgba(15,15,18,0.96) 100%),
+      linear-gradient(180deg, var(--paper-warm) 0%, var(--paper-cool) 62%, var(--paper-deep) 100%);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(15,15,18,0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,15,18,0.05) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.78) 48%, transparent 78%);
+  }
+
+  .signal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 16px;
+    height: 630px;
+    background: var(--accent);
+  }
+
+  .content {
+    position: absolute;
+    z-index: 2;
+    left: 72px;
+    top: 110px;
+    width: 478px;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 38px;
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: rgba(15,15,18,0.52);
+  }
+
+  .meta::before {
+    content: '';
+    width: 38px;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Arimo', sans-serif;
+    font-size: 92px;
+    font-weight: 700;
+    line-height: 0.88;
+    letter-spacing: -5px;
+    color: var(--ink);
+  }
+
+  .strike {
+    position: relative;
+    display: inline-block;
+  }
+
+  .strike::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 3px;
+    right: -4px;
+    bottom: 12px;
+    height: 14px;
+    background: var(--accent);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 52px;
+    min-width: 390px;
+    padding: 29px 48px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .bigmark {
+    position: absolute;
+    left: 312px;
+    bottom: -72px;
+    font-family: 'Arimo', sans-serif;
+    font-size: 284px;
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: -0.07em;
+    color: var(--accent);
+    opacity: 0.075;
+    white-space: nowrap;
+  }
+
+  .browser {
+    position: absolute;
+    z-index: 1;
+    right: -166px;
+    top: 82px;
+    width: 748px;
+    height: 456px;
+    transform: rotate(4deg);
+    transform-origin: 50% 50%;
+    background: var(--paper);
+    border: 1px solid rgba(255,255,255,0.72);
+    overflow: hidden;
+  }
+
+  .browser::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 33px;
+    background: rgba(245,245,245,0.96);
+    border-bottom: 1px solid rgba(15,15,18,0.08);
+  }
+
+  .dots {
+    position: absolute;
+    z-index: 3;
+    left: 17px;
+    top: 12px;
+    display: flex;
+    gap: 7px;
+  }
+
+  .dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .dots span:nth-child(1) { background: #f0655b; }
+  .dots span:nth-child(2) { background: #f0bc47; }
+  .dots span:nth-child(3) { background: #57c35d; }
+
+  .address {
+    position: absolute;
+    z-index: 3;
+    left: 262px;
+    top: 10px;
+    width: 232px;
+    height: 14px;
+    border-radius: 999px;
+    background: rgba(15,15,18,0.07);
+  }
+
+  .browser img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    display: block;
+  }
+
+  .scrim {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(15,15,18,0) 0%, rgba(15,15,18,0.08) 62%, rgba(15,15,18,0.46) 100%),
+      linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 36%);
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="signal"></div>
+    <div class="bigmark">10x</div>
+
+    <section class="content" aria-label="Tenex Studio">
+      <h1>Ton site web<br><span class="strike">sur-mesure.</span></h1>
+      <div class="pill">Je commande</div>
+    </section>
+
+    <section class="browser" aria-label="Screenshot portfolio Tenex Studio">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="address"></div>
+      <img src="data:image/png;base64,__PORTFOLIO_SCREENSHOT__" alt="">
+      <div class="scrim"></div>
+    </section>
+  </main>
+</body>
+</html>
