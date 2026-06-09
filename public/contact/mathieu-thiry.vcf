@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Thiry;Mathieu;;;
+FN:Mathieu Thiry
+ORG:Tenex Studio
+TITLE:Founder
+EMAIL;TYPE=WORK:contact@tenex.studio
+TEL;TYPE=CELL:+33759953031
+URL:https://tenex.studio/mathieu
+PHOTO;VALUE=URI:https://tenex.studio/portrait/mathieu_thiry_founder_tenex_studio.webp
+ADR;TYPE=WORK:;;40 Rue la Tour d'Auvergne;Nantes;;44200;France
+NOTE:Tenex Studio, custom websites and web apps.
+REV:20260609T000000Z
+END:VCARD

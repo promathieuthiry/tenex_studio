@@ -1,0 +1,12 @@
+---
+import DigitalCard from "@/components/digital-card.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { buildDigitalCardSeo } from "@/lib/seo";
+
+const locale = "en" as const;
+const seo = buildDigitalCardSeo(locale);
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <DigitalCard locale={locale} />
+</BaseLayout>
