@@ -9,7 +9,7 @@ const LINK = "transition-opacity duration-200 ease-out hover:opacity-60";
 const HEADING = "font-mono text-xs uppercase tracking-[0.12em] text-paper/40";
 
 export function Footer({ locale }: { locale: Locale }) {
-  const homeHref = locale === "fr" ? "/" : "/en";
+  const homeHref = locale === "fr" ? "/" : "/en/";
   const reduceMotion = useReducedMotion();
   const year = new Date().getFullYear();
 

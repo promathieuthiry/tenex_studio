@@ -5,9 +5,30 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
+import { SITE_ORIGIN } from './src/lib/site.ts';
+
+const sitemapAlternates = new Map(
+  [
+    ['/', '/en/'],
+    ['/mathieu/', '/en/mathieu/'],
+    ['/mentions-legales/', '/en/legal-notice/'],
+  ].flatMap(([fr, en]) => {
+    const links = [
+      { lang: 'fr-FR', url: `${SITE_ORIGIN}${fr}` },
+      { lang: 'en-US', url: `${SITE_ORIGIN}${en}` },
+      { lang: 'x-default', url: `${SITE_ORIGIN}${fr}` },
+    ];
+
+    return [
+      [`${SITE_ORIGIN}${fr}`, links],
+      [`${SITE_ORIGIN}${en}`, links],
+    ];
+  }),
+);
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tenex.studio',
+  site: SITE_ORIGIN,
   output: 'static',
   adapter: vercel(),
   integrations: [
@@ -16,6 +37,12 @@ export default defineConfig({
       i18n: {
         defaultLocale: 'fr',
         locales: { fr: 'fr-FR', en: 'en-US' },
+      },
+      serialize(item) {
+        return {
+          url: item.url,
+          links: sitemapAlternates.get(item.url) ?? item.links,
+        };
       },
     }),
   ],

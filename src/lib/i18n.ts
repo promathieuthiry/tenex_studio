@@ -11,16 +11,15 @@ export function isLocale(value: unknown): value is Locale {
   )
 }
 
-export const SITE_ORIGIN = 'https://tenex.studio'
-
 export const OG_LOCALE: Readonly<Record<Locale, string>> = {
   fr: 'fr_CA',
   en: 'en_US',
 } as const
 
 export function pathFor(locale: Locale, path: string = ''): string {
-  if (locale === 'fr') return path === '' ? '/' : path
-  return path === '' ? '/en' : `/en${path}`
+  const normalizedPath = path === '' ? '/' : `${path.replace(/\/$/, '')}/`
+  if (locale === 'fr') return normalizedPath
+  return normalizedPath === '/' ? '/en/' : `/en${normalizedPath}`
 }
 
 export const VISIT_LABEL: Readonly<Record<Locale, string>> = {

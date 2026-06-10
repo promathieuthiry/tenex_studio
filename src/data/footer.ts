@@ -37,7 +37,7 @@ export const FOOTER: FooterCopy = {
   legalLinks: [
     {
       label: { fr: "Mentions légales", en: "Legal notice" },
-      href: { fr: "/mentions-legales", en: "/en/legal-notice" },
+      href: { fr: "/mentions-legales/", en: "/en/legal-notice/" },
     },
   ],
   rights: {

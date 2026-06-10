@@ -22,11 +22,11 @@ function canonicalPath(pathname: string): string {
 function equivalentPath(pathname: string, target: Locale): string {
   const canonical = canonicalPath(pathname);
   if (target === "fr") return canonical;
-  return canonical === "/" ? "/en" : `/en${canonical}`;
+  return canonical === "/" ? "/en/" : `/en${canonical}`;
 }
 
 export function LocaleSwitcher({ locale }: { locale: Locale }) {
-  const pathname = useCurrentPathname(locale === "fr" ? "/" : "/en");
+  const pathname = useCurrentPathname(locale === "fr" ? "/" : "/en/");
   const otherLocale: Locale = locale === "fr" ? "en" : "fr";
   const otherHref = equivalentPath(pathname, otherLocale);
   const ariaLabel =

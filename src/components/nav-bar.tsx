@@ -29,7 +29,7 @@ const GLASS_PILL =
   "relative overflow-hidden rounded-lg bg-paper/40 backdrop-blur-2xl backdrop-saturate-150 before:pointer-events-none before:absolute before:inset-0 before:rounded-lg before:bg-[linear-gradient(135deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0)_55%,rgba(255,255,255,0.2)_100%)] before:opacity-80 before:mix-blend-overlay";
 
 export function NavBar({ locale }: { locale: Locale }) {
-  const homeHref = locale === "fr" ? "/" : "/en";
+  const homeHref = locale === "fr" ? "/" : "/en/";
   const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);

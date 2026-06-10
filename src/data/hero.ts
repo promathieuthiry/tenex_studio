@@ -53,6 +53,6 @@ export const HERO: HeroCopy = {
   },
   secondaryCta: {
     label: { fr: "Voir les services", en: "See the services" },
-    href: { fr: "/#services", en: "/en#services" },
+    href: { fr: "/#services", en: "/en/#services" },
   },
 } as const;

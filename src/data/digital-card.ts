@@ -44,7 +44,7 @@ export const DIGITAL_CARD_EMAIL = "contact@tenex.studio";
 export const DIGITAL_CARD_PHONE = "07 59 95 30 31";
 export const DIGITAL_CARD_PHONE_HREF = "tel:+33759953031";
 export const DIGITAL_CARD_PHOTO = "/portrait/mathieu-thiry-linkedin.webp";
-export const DIGITAL_CARD_WEBSITE = "https://www.tenex.studio";
+export const DIGITAL_CARD_WEBSITE = "https://tenex.studio";
 export const DIGITAL_CARD_VCF: Bilingual = {
   fr: "/contact/mathieu-thiry-fr.vcf",
   en: "/contact/mathieu-thiry-en.vcf",

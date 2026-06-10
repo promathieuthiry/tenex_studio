@@ -19,7 +19,7 @@ const COPY = {
     title: 'This page does not exist.',
     body: 'The link is broken or the page moved. Head back home or get in touch — we’ll point you the right way.',
     primary: 'Back to home',
-    primaryHref: '/en',
+    primaryHref: '/en/',
     secondary: 'Get in touch',
     secondaryHref: BOOK_URL,
   },

@@ -1,5 +1,6 @@
 import type { Locale } from '@/lib/i18n'
-import { OG_LOCALE, SITE_ORIGIN, pathFor } from '@/lib/i18n'
+import { OG_LOCALE, pathFor } from '@/lib/i18n'
+import { SITE_ORIGIN } from '@/lib/site'
 import { digitalCardSeo, homeSeo } from '@/data/seo'
 import { FOOTER } from '@/data/footer'
 import { FAQ } from '@/data/faq'
@@ -22,11 +23,11 @@ export type SeoProps = {
   jsonLd?: string
 }
 
-const HREFLANG = { fr: '/', en: '/en', 'x-default': '/' } as const
+const HREFLANG = { fr: '/', en: '/en/', 'x-default': '/' } as const
 const DIGITAL_CARD_HREFLANG = {
-  fr: '/mathieu',
-  en: '/en/mathieu',
-  'x-default': '/mathieu',
+  fr: '/mathieu/',
+  en: '/en/mathieu/',
+  'x-default': '/mathieu/',
 } as const
 
 export function buildHomeSeo(locale: Locale): SeoProps {
@@ -118,10 +119,10 @@ export function buildDigitalCardSeo(locale: Locale): SeoProps {
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': `${SITE_ORIGIN}/mathieu#person`,
+    '@id': `${SITE_ORIGIN}/mathieu/#person`,
     name: 'Mathieu Thiry',
     jobTitle: locale === 'fr' ? 'Fondateur' : 'Founder',
-    url: `${SITE_ORIGIN}/mathieu`,
+    url: `${SITE_ORIGIN}/mathieu/`,
     image: `${SITE_ORIGIN}${DIGITAL_CARD_PHOTO}`,
     email: DIGITAL_CARD_EMAIL,
     worksFor: {
