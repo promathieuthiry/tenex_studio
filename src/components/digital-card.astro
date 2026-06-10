@@ -17,7 +17,7 @@ type Props = {
 
 const { locale } = Astro.props;
 const content = DIGITAL_CARD[locale];
-const websiteLabel = DIGITAL_CARD_WEBSITE.replace("https://", "www.");
+const websiteLabel = new URL(DIGITAL_CARD_WEBSITE).hostname;
 const [firstName = content.name, ...lastNameParts] = content.name.split(" ");
 const lastName = lastNameParts.join(" ");
 ---
