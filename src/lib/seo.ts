@@ -4,7 +4,11 @@ import { digitalCardSeo, homeSeo } from '@/data/seo'
 import { FOOTER } from '@/data/footer'
 import { FAQ } from '@/data/faq'
 import { SERVICES } from '@/data/services'
-import { DIGITAL_CARD_EMAIL, DIGITAL_CARD_WEBSITE } from '@/data/digital-card'
+import {
+  DIGITAL_CARD_EMAIL,
+  DIGITAL_CARD_PHOTO,
+  DIGITAL_CARD_WEBSITE,
+} from '@/data/digital-card'
 
 export type SeoProps = {
   title: string
@@ -118,7 +122,7 @@ export function buildDigitalCardSeo(locale: Locale): SeoProps {
     name: 'Mathieu Thiry',
     jobTitle: locale === 'fr' ? 'Fondateur' : 'Founder',
     url: `${SITE_ORIGIN}/mathieu`,
-    image: `${SITE_ORIGIN}/portrait/mathieu_thiry_founder_tenex_studio.webp`,
+    image: `${SITE_ORIGIN}${DIGITAL_CARD_PHOTO}`,
     email: DIGITAL_CARD_EMAIL,
     worksFor: {
       '@type': 'ProfessionalService',
