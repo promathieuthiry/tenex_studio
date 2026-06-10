@@ -10,7 +10,6 @@ TEL;TYPE=CELL:+33759953031
 URL;TYPE=WORK:https://www.tenex.studio
 CATEGORIES;CHARSET=UTF-8:Premium websites,Custom web apps
 NOTE;CHARSET=UTF-8:Tenex Studio is a web agency specialized in building custom websites and web apps. Based in Nantes\, we support entrepreneurs and modern businesses through their digital transformation.
-ADR;TYPE=WORK:;;40 Rue la Tour d'Auvergne;Nantes;;44200;France
 PHOTO;ENCODING=b;TYPE=JPEG:/9j/2wBDAAUFBQUFBQYGBgYICQgJCAwLCgoLDBINDg0ODRI
  bERQRERQRGxgdGBYYHRgrIh4eIisyKigqMjw2NjxMSExkZIb/2wBDAQUFBQUFBQYGBgYICQgJC
  AwLCgoLDBINDg0ODRIbERQRERQRGxgdGBYYHRgrIh4eIisyKigqMjw2NjxMSExkZIb/wgARCAG
@@ -321,5 +320,5 @@ PHOTO;ENCODING=b;TYPE=JPEG:/9j/2wBDAAUFBQUFBQYGBgYICQgJCAwLCgoLDBINDg0ODRI
  KfUIOQGgMO5h53B2DByG08RxTekStL5J7Y28O3PbsmAfbPMA05ZRpfpEUWphmP2f1G3h7A9HmA
  aQD7odBNzHFr6BBMOpIhFEwEfT5X6ByPIQ86g2gH3RtokaNuefmCYv8gmTc/wAQ/wCMfxBzE88
  ztDBPHoG0Puje2LDMnu5f/9k=
-REV:20260610T000000Z
+ADR;TYPE=WORK;CHARSET=UTF-8:;;40 Rue la Tour d'Auvergne;Nantes;;44200;France
 END:VCARD
