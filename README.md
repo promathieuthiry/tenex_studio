@@ -19,6 +19,7 @@ Nantes-based:
 - [theTribe](https://thetribe.io/)
 - [Polara Studio](https://www.polarastudio.fr/)
 - [Operation Nation](https://operationnation.co/)
+- [Ginger Minds](https://www.gingerminds.fr/agence/equipe/)
 
 ### Awwwards
 
