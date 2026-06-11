@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   motion,
   useReducedMotion,
@@ -39,6 +39,26 @@ const CARD_BASE =
 
 const TRACK_BASE =
   "flex shrink-0 gap-6 px-6 md:gap-8 md:pr-10 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))]";
+
+const TESTIMONIAL_COUNT = TESTIMONIALS.length;
+
+type PinWrapStyle = CSSProperties & {
+  "--testimonials-mobile-scroll": string;
+  "--testimonials-sm-scroll": string;
+  "--testimonials-md-scroll": string;
+};
+
+const PIN_WRAP_STYLE: PinWrapStyle = {
+  "--testimonials-mobile-scroll": `max(0px, ${
+    TESTIMONIAL_COUNT * 80
+  }vw + ${(TESTIMONIAL_COUNT - 1) * 1.5 + 3}rem - 100vw)`,
+  "--testimonials-sm-scroll": `max(0px, ${
+    TESTIMONIAL_COUNT * 22 + (TESTIMONIAL_COUNT - 1) * 1.5 + 3
+  }rem - 100vw)`,
+  "--testimonials-md-scroll": `max(0px, ${
+    TESTIMONIAL_COUNT * 28 + (TESTIMONIAL_COUNT - 1) * 2 + 2.5
+  }rem + max(2.5rem, calc((100vw - 80rem) / 2 + 2.5rem)) - 100vw)`,
+};
 
 function Card({
   t,
@@ -217,9 +237,14 @@ export function Testimonials({ locale }: { locale: Locale }) {
 
       <div
         ref={pinWrapRef}
-        className="relative mt-16 overflow-clip md:mt-20"
+        className="testimonials-pin-wrap relative mt-16 overflow-clip md:mt-20"
         style={
-          pinned ? { height: `calc(100svh + ${scrollDistance}px)` } : undefined
+          pinned
+            ? {
+                ...PIN_WRAP_STYLE,
+                height: `calc(100svh + ${scrollDistance}px)`,
+              }
+            : PIN_WRAP_STYLE
         }
       >
         <div

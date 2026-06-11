@@ -141,6 +141,28 @@ body {
   }
 }
 
+.testimonials-pin-wrap {
+  height: calc(100svh + var(--testimonials-mobile-scroll));
+}
+
+@media (min-width: 640px) {
+  .testimonials-pin-wrap {
+    height: calc(100svh + var(--testimonials-sm-scroll));
+  }
+}
+
+@media (min-width: 768px) {
+  .testimonials-pin-wrap {
+    height: calc(100svh + var(--testimonials-md-scroll));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-pin-wrap {
+    height: auto;
+  }
+}
+
 .hero-pane {
   min-height: 100svh;
 }
