@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { BOOK_LINK_ATTRS, BOOK_URL } from "@/lib/book";
 import type { Locale } from "@/lib/i18n";
@@ -38,10 +38,32 @@ const COPY = {
   },
 } as const;
 
-const ENTER = {
+const PREMIUM_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const HERO_GROUP: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.18,
+    },
+  },
+};
+
+const HERO_ITEM: Variants = {
+  hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
+  show: { opacity: 1, y: 0, filter: "blur(0px)" },
+};
+
+const REVEAL: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0 },
+};
+
+const CARD_REVEAL: Variants = {
   hidden: { opacity: 0, y: 18 },
   show: { opacity: 1, y: 0 },
-} as const;
+};
 
 function sectionId(index: number): string {
   return `landing-section-${index + 1}`;
@@ -130,10 +152,13 @@ export function SeoLandingExperience({
   return (
     <article className="bg-paper text-ink">
       <header className="relative flex min-h-screen min-h-[100dvh] overflow-hidden border-b border-ink/15 bg-ink px-6 pb-12 pt-28 text-paper md:px-12 md:pb-14 md:pt-32 lg:px-16">
-        <img
+        <motion.img
           src={page.heroImage}
           alt=""
           aria-hidden="true"
+          initial={reduceMotion ? false : { scale: 1.06, opacity: 0.72 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.35, ease: PREMIUM_EASE }}
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div
@@ -144,30 +169,49 @@ export function SeoLandingExperience({
           aria-hidden="true"
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,18,0.20)_0%,rgba(15,15,18,0.12)_48%,rgba(15,15,18,0.72)_100%)]"
         />
-        <div
+        <motion.div
           aria-hidden="true"
+          initial={reduceMotion ? false : { scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.85, ease: PREMIUM_EASE, delay: 0.12 }}
           className="absolute inset-x-0 top-0 h-px bg-accent"
+          style={{ transformOrigin: "0% 50%" }}
         />
         <div className="relative z-10 mx-auto flex w-full max-w-screen-xl items-end">
           <motion.div
-            variants={ENTER}
+            variants={HERO_GROUP}
             initial={reduceMotion ? false : "hidden"}
             animate="show"
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-5xl"
           >
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-paper/60">
+            <motion.p
+              variants={HERO_ITEM}
+              transition={{ duration: 0.7, ease: PREMIUM_EASE }}
+              className="font-mono text-xs uppercase tracking-[0.12em] text-paper/60"
+            >
               {page.eyebrow[locale]}
-            </p>
-            <h1 className="mt-7 max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-normal text-paper md:text-6xl lg:text-7xl">
+            </motion.p>
+            <motion.h1
+              variants={HERO_ITEM}
+              transition={{ duration: 0.78, ease: PREMIUM_EASE }}
+              className="mt-7 max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-normal text-paper md:text-6xl lg:text-7xl"
+            >
               {page.title[locale]}
-            </h1>
+            </motion.h1>
 
-            <div className="mt-8 flex max-w-2xl flex-col gap-6">
+            <motion.div
+              variants={HERO_ITEM}
+              transition={{ duration: 0.74, ease: PREMIUM_EASE }}
+              className="mt-8 flex max-w-2xl flex-col gap-6"
+            >
               <p className="max-w-2xl font-sans text-lg leading-8 text-paper/78">
                 {page.intro[locale]}
               </p>
-              <div className="flex flex-wrap items-center gap-3">
+              <motion.div
+                variants={HERO_ITEM}
+                transition={{ duration: 0.62, ease: PREMIUM_EASE }}
+                className="flex flex-wrap items-center gap-3"
+              >
                 <Button
                   href={BOOK_URL}
                   {...BOOK_LINK_ATTRS}
@@ -185,15 +229,22 @@ export function SeoLandingExperience({
                 >
                   {copy.methodLabel}
                 </button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </header>
 
       <section className="px-6 py-16 md:px-12 md:py-24 lg:px-16">
         <div className="mx-auto grid max-w-screen-xl gap-12 lg:grid-cols-[0.34fr_0.66fr]">
-          <aside className="lg:sticky lg:top-28 lg:self-start">
+          <motion.aside
+            variants={REVEAL}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.65, ease: PREMIUM_EASE }}
+            className="lg:sticky lg:top-28 lg:self-start"
+          >
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/50">
               {copy.chaptersLabel}
             </p>
@@ -237,7 +288,7 @@ export function SeoLandingExperience({
                 </button>
               ))}
             </div>
-          </aside>
+          </motion.aside>
 
           <div className="grid gap-4">
             {page.sections.map((section, index) => (
@@ -245,8 +296,16 @@ export function SeoLandingExperience({
                 key={section.title[locale]}
                 id={sectionId(index)}
                 data-section-index={index}
+                variants={REVEAL}
+                initial={reduceMotion ? false : "hidden"}
+                whileInView="show"
+                viewport={{ once: true, margin: "-80px" }}
                 whileHover={reduceMotion ? undefined : { y: -2 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 0.58,
+                  ease: PREMIUM_EASE,
+                  delay: reduceMotion ? 0 : index * 0.035,
+                }}
                 className={cx(
                   "group scroll-mt-28 rounded-[8px] border bg-paper p-5 transition duration-300 md:p-0",
                   activeSection === index
@@ -258,8 +317,13 @@ export function SeoLandingExperience({
                   <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink/35">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span
+                  <motion.span
                     aria-hidden="true"
+                    animate={{
+                      scale: activeSection === index ? 1 : 0.72,
+                      opacity: activeSection === index ? 1 : 0.55,
+                    }}
+                    transition={{ duration: 0.28, ease: PREMIUM_EASE }}
                     className={cx(
                       "h-2 w-2 rounded-full",
                       activeSection === index ? "bg-accent" : "bg-ink/15",
@@ -285,21 +349,44 @@ export function SeoLandingExperience({
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(226,35,26,0.34),transparent_28%),linear-gradient(135deg,rgba(226,35,26,0.18)_0%,rgba(15,15,18,0.98)_42%,rgba(15,15,18,1)_100%)]"
         />
-        <div
+        <motion.div
           aria-hidden="true"
+          initial={reduceMotion ? false : { scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: PREMIUM_EASE }}
           className="absolute inset-x-0 top-0 h-px bg-accent"
+          style={{ transformOrigin: "0% 50%" }}
         />
-        <div className="relative mx-auto max-w-screen-xl px-6 py-20 md:px-12 md:py-28 lg:px-16 lg:py-32">
+        <motion.div
+          variants={HERO_GROUP}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="show"
+          viewport={{ once: true, margin: "-120px" }}
+          className="relative mx-auto max-w-screen-xl px-6 py-20 md:px-12 md:py-28 lg:px-16 lg:py-32"
+        >
           <div className="max-w-5xl">
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-paper/45">
+            <motion.p
+              variants={HERO_ITEM}
+              transition={{ duration: 0.62, ease: PREMIUM_EASE }}
+              className="font-mono text-xs uppercase tracking-[0.12em] text-paper/45"
+            >
               {copy.finalEyebrow}
-            </p>
-            <h2 className="mt-5 font-display text-5xl font-black leading-[1.05] tracking-normal md:text-7xl">
+            </motion.p>
+            <motion.h2
+              variants={HERO_ITEM}
+              transition={{ duration: 0.72, ease: PREMIUM_EASE }}
+              className="mt-5 font-display text-5xl font-black leading-[1.05] tracking-normal md:text-7xl"
+            >
               {copy.finalTitle}
-            </h2>
+            </motion.h2>
           </div>
 
-          <div className="mt-10 border-t border-paper/15 pt-8 md:mt-12 md:flex md:items-end md:justify-between md:gap-12">
+          <motion.div
+            variants={HERO_ITEM}
+            transition={{ duration: 0.7, ease: PREMIUM_EASE }}
+            className="mt-10 border-t border-paper/15 pt-8 md:mt-12 md:flex md:items-end md:justify-between md:gap-12"
+          >
             <p className="max-w-3xl font-sans text-lg leading-8 text-paper/70">
               {copy.finalBody}
             </p>
@@ -315,24 +402,34 @@ export function SeoLandingExperience({
                 {page.cta[locale]}
               </Button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       <aside className="border-b border-ink/10 bg-paper-warm">
         <div className="mx-auto grid max-w-screen-xl gap-10 px-6 py-16 md:px-12 md:py-20 lg:grid-cols-[0.35fr_0.65fr] lg:px-16">
-          <div className="max-w-md">
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/50">
-              {copy.relatedLabel}
-            </p>
-            <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-normal md:text-5xl">
+          <motion.div
+            variants={REVEAL}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, margin: "-90px" }}
+            transition={{ duration: 0.62, ease: PREMIUM_EASE }}
+            className="max-w-md"
+          >
+            <h2 className="font-display text-3xl font-black leading-tight tracking-normal md:text-5xl">
               {copy.relatedTitle}
             </h2>
             <p className="mt-5 font-sans text-base leading-7 text-ink/60">
               {copy.relatedBody}
             </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          </motion.div>
+          <motion.div
+            variants={HERO_GROUP}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, margin: "-90px" }}
+            className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3"
+          >
             {icpCards.map((icp, index) => {
               const cardClass =
                 "group relative min-h-40 overflow-hidden rounded-[8px] border border-ink/10 bg-paper p-4 font-sans text-sm leading-6 text-ink/58 transition hover:border-ink/35 hover:text-ink/70";
@@ -384,7 +481,9 @@ export function SeoLandingExperience({
                   <motion.a
                     key={icp.label[locale]}
                     href={seoLandingPath(icp.page, locale)}
-                    whileHover={reduceMotion ? undefined : { y: -5 }}
+                    variants={CARD_REVEAL}
+                    transition={{ duration: 0.48, ease: PREMIUM_EASE }}
+                    whileHover={reduceMotion ? undefined : { y: -6, scale: 1.01 }}
                     className={cardClass}
                   >
                     {content}
@@ -395,14 +494,16 @@ export function SeoLandingExperience({
               return (
                 <motion.article
                   key={icp.label[locale]}
-                  whileHover={reduceMotion ? undefined : { y: -3 }}
+                  variants={CARD_REVEAL}
+                  transition={{ duration: 0.48, ease: PREMIUM_EASE }}
+                  whileHover={reduceMotion ? undefined : { y: -4, scale: 1.01 }}
                   className={cardClass}
                 >
                   {content}
                 </motion.article>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </aside>
     </article>

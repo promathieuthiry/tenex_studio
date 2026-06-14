@@ -242,6 +242,109 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     relatedIds: ["custom-websites", "consultant-websites", "private-clinic-websites"],
   },
   {
+    id: "accounting-firm-websites",
+    slug: {
+      fr: "sites-web-experts-comptables",
+      en: "accounting-firm-websites",
+    },
+    eyebrow: {
+      fr: "Experts-comptables",
+      en: "Accounting firms",
+    },
+    title: {
+      fr: "Un site de cabinet comptable qui rend le conseil visible.",
+      en: "An accounting firm website that makes advisory work visible.",
+    },
+    heroImage: "/landing/experts-comptables-hover.webp",
+    intro: {
+      fr: "Un cabinet comptable ne se résume pas à la tenue, aux bilans ou aux échéances fiscales. Le site doit montrer la qualité du conseil, les secteurs accompagnés, la méthode de travail et le niveau de relation proposé aux dirigeants.",
+      en: "An accounting firm is not defined only by bookkeeping, accounts or tax deadlines. The site must show advisory quality, sectors served, working method and the level of relationship offered to business owners.",
+    },
+    meta: {
+      fr: {
+        title: "Site web expert-comptable sur mesure - Tenex Studio",
+        description:
+          "Sites web premium pour experts-comptables et cabinets comptables. Conseil, fiscalité, CFO-as-a-service, crédibilité et demandes qualifiées.",
+      },
+      en: {
+        title: "Custom Accounting Firm Websites - Tenex Studio",
+        description:
+          "Premium websites for accounting firms. Advisory, tax, CFO-as-a-service, credibility and better-qualified inquiries.",
+      },
+    },
+    proof: [
+      {
+        fr: "Des offres qui distinguent la conformité, le conseil et l’accompagnement dirigeant.",
+        en: "Offers that separate compliance, advisory work and business-owner support.",
+      },
+      {
+        fr: "Des pages de secteurs, missions et expertises qui expliquent le bon niveau d’intervention.",
+        en: "Sector, mission and expertise pages that explain the right level of engagement.",
+      },
+      {
+        fr: "Un parcours de contact pensé pour qualifier les entreprises avant le premier échange.",
+        en: "A contact path designed to qualify companies before the first conversation.",
+      },
+    ],
+    sections: [
+      {
+        title: {
+          fr: "Sortir de l’image du cabinet généraliste",
+          en: "Move beyond the generalist firm image",
+        },
+        body: {
+          fr: "Beaucoup de cabinets se ressemblent en ligne: comptabilité, paie, fiscalité, conseil. Un site premium doit montrer les situations traitées, les clients servis, les sujets maîtrisés et les raisons de vous choisir.",
+          en: "Many firms look the same online: accounting, payroll, tax, advisory. A premium site must show the situations handled, clients served, subjects mastered and reasons to choose you.",
+        },
+      },
+      {
+        title: {
+          fr: "Mettre le conseil au même niveau que la conformité",
+          en: "Put advisory work on the same level as compliance",
+        },
+        body: {
+          fr: "Fiscalité internationale, structuration, pilotage, transmission, levée de fonds ou CFO-as-a-service: chaque expertise mérite une page claire qui explique les enjeux, les livrables et le bon moment pour solliciter le cabinet.",
+          en: "International tax, structuring, management reporting, succession, fundraising or CFO-as-a-service: each expertise deserves a clear page that explains stakes, deliverables and the right moment to contact the firm.",
+        },
+      },
+      {
+        title: {
+          fr: "Rassurer les dirigeants avant le rendez-vous",
+          en: "Reassure business owners before the meeting",
+        },
+        body: {
+          fr: "Un dirigeant veut comprendre si le cabinet connaît son contexte, son rythme et ses enjeux. Le site doit présenter la méthode, l’équipe, les outils, les références et le type de relation attendu.",
+          en: "A business owner wants to know whether the firm understands their context, pace and stakes. The site must present the method, team, tools, references and expected working relationship.",
+        },
+      },
+      {
+        title: {
+          fr: "Attirer des dossiers mieux alignés",
+          en: "Attract better-aligned engagements",
+        },
+        body: {
+          fr: "Le site peut filtrer les demandes trop basiques, nommer les tailles d’entreprise pertinentes et mettre en avant les missions à plus forte valeur. Les prospects arrivent avec une meilleure compréhension du niveau du cabinet.",
+          en: "The site can filter basic requests, name relevant company sizes and highlight higher-value missions. Prospects arrive with a better understanding of the firm’s level.",
+        },
+      },
+      {
+        title: {
+          fr: "Préparer la croissance du cabinet",
+          en: "Prepare the firm’s growth",
+        },
+        body: {
+          fr: "Nouveaux associés, recrutements, pages sectorielles, publications, offres internationales ou contenus pédagogiques peuvent être ajoutés sans refaire le site. La base reste rapide, propriétaire et évolutive.",
+          en: "New partners, hiring pages, sector pages, publications, international offers or educational content can be added without rebuilding the site. The base stays fast, owned and ready to evolve.",
+        },
+      },
+    ],
+    cta: {
+      fr: "Cadrer le site du cabinet comptable",
+      en: "Scope the accounting firm website",
+    },
+    relatedIds: ["custom-websites", "law-firm-websites", "consultant-websites"],
+  },
+  {
     id: "private-clinic-websites",
     slug: {
       fr: "sites-web-cliniques-privees",
@@ -345,6 +448,109 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     relatedIds: ["custom-websites", "law-firm-websites", "architecture-studio-websites"],
   },
   {
+    id: "wealth-management-websites",
+    slug: {
+      fr: "sites-web-gestion-patrimoine",
+      en: "wealth-management-websites",
+    },
+    eyebrow: {
+      fr: "Gestion de patrimoine",
+      en: "Wealth management",
+    },
+    title: {
+      fr: "Un site de gestion de patrimoine qui inspire confiance avec retenue.",
+      en: "A wealth management website that builds trust with restraint.",
+    },
+    heroImage: "/landing/wealth-management-hover.webp",
+    intro: {
+      fr: "Un conseiller patrimonial, un family office ou une boutique d’investissement vend d’abord une relation de confiance. Le site doit expliquer le niveau d’accompagnement, la méthode, les expertises et les critères d’adéquation sans surpromettre.",
+      en: "A wealth advisor, family office or investment boutique first sells a relationship of trust. The site must explain the level of support, method, expertise and fit criteria without overpromising.",
+    },
+    meta: {
+      fr: {
+        title: "Site web gestion de patrimoine sur mesure - Tenex Studio",
+        description:
+          "Sites web premium pour conseillers en gestion de patrimoine, family offices et boutiques d’investissement. Confiance, pédagogie, discrétion et demandes qualifiées.",
+      },
+      en: {
+        title: "Custom Wealth Management Websites - Tenex Studio",
+        description:
+          "Premium websites for wealth advisors, family offices and investment boutiques. Trust, education, discretion and qualified inquiries.",
+      },
+    },
+    proof: [
+      {
+        fr: "Une présentation claire des profils accompagnés, des seuils et des situations traitées.",
+        en: "Clear presentation of client profiles, thresholds and situations handled.",
+      },
+      {
+        fr: "Des pages pédagogiques qui expliquent sans banaliser les sujets patrimoniaux.",
+        en: "Educational pages that explain wealth topics without trivializing them.",
+      },
+      {
+        fr: "Un parcours de contact discret, rassurant et adapté aux demandes sensibles.",
+        en: "A discreet, reassuring contact path suited to sensitive inquiries.",
+      },
+    ],
+    sections: [
+      {
+        title: {
+          fr: "Rendre le niveau d’accompagnement lisible",
+          en: "Make the level of support readable",
+        },
+        body: {
+          fr: "Dirigeants, familles, expatriés, professions libérales ou investisseurs n’ont pas les mêmes questions. Le site doit préciser les situations accompagnées, les seuils pertinents et la manière de travailler.",
+          en: "Business owners, families, expatriates, independent professionals and investors do not have the same questions. The site should clarify situations served, relevant thresholds and the way of working.",
+        },
+      },
+      {
+        title: {
+          fr: "Installer la confiance sans effet de manche",
+          en: "Build trust without theatrical claims",
+        },
+        body: {
+          fr: "Indépendance, agréments, partenaires, méthode de suivi, allocation, fiscalité ou transmission sont présentés avec précision. Le ton reste sobre, parce que la confiance se gagne mieux avec des preuves qu’avec des promesses.",
+          en: "Independence, credentials, partners, monitoring method, allocation, tax or succession topics are presented with precision. The tone stays restrained, because trust is built better with proof than promises.",
+        },
+      },
+      {
+        title: {
+          fr: "Expliquer les expertises sensibles",
+          en: "Explain sensitive expertise",
+        },
+        body: {
+          fr: "Bilan patrimonial, stratégie d’investissement, optimisation fiscale, transmission ou structuration internationale demandent de la clarté. Chaque page doit aider le prospect à comprendre l’enjeu et le bon moment pour solliciter le cabinet.",
+          en: "Wealth audit, investment strategy, tax planning, succession or international structuring require clarity. Each page should help prospects understand the stake and the right moment to contact the firm.",
+        },
+      },
+      {
+        title: {
+          fr: "Qualifier sans exposer",
+          en: "Qualify without exposing",
+        },
+        body: {
+          fr: "Le site peut guider vers un rendez-vous sans demander trop d’informations publiques. Il donne assez de contexte pour filtrer les demandes, tout en respectant la confidentialité attendue par les clients patrimoniaux.",
+          en: "The site can guide people toward a meeting without asking for too much public information. It gives enough context to filter inquiries while respecting the confidentiality expected by wealth clients.",
+        },
+      },
+      {
+        title: {
+          fr: "Construire une base éditoriale durable",
+          en: "Build a durable editorial base",
+        },
+        body: {
+          fr: "Guides, pages de situations, actualités fiscales, vues de marché et contenus pédagogiques peuvent renforcer la visibilité sans transformer le site en média bruyant. La structure anticipe cette progression.",
+          en: "Guides, situation pages, tax updates, market views and educational content can strengthen visibility without turning the site into a noisy media property. The structure anticipates that growth.",
+        },
+      },
+    ],
+    cta: {
+      fr: "Cadrer le site patrimonial",
+      en: "Scope the wealth website",
+    },
+    relatedIds: ["custom-websites", "accounting-firm-websites", "law-firm-websites"],
+  },
+  {
     id: "consultant-websites",
     slug: {
       fr: "sites-web-consultants",
@@ -446,6 +652,418 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
       en: "Scope the advisory website",
     },
     relatedIds: ["custom-websites", "law-firm-websites", "architecture-studio-websites"],
+  },
+  {
+    id: "premium-real-estate-websites",
+    slug: {
+      fr: "sites-web-immobilier-premium",
+      en: "premium-real-estate-websites",
+    },
+    eyebrow: {
+      fr: "Immobilier premium",
+      en: "Premium real estate",
+    },
+    title: {
+      fr: "Un site immobilier premium qui qualifie avant la visite.",
+      en: "A premium real estate website that qualifies before the viewing.",
+    },
+    heroImage: "/landing/real-estate-hover.webp",
+    intro: {
+      fr: "Dans l’immobilier haut de gamme, le site doit vendre plus qu’un bien. Il doit montrer un territoire, une exigence, un niveau de mandat et une capacité à filtrer les demandes avant le premier échange.",
+      en: "In premium real estate, the website must sell more than a property. It must show a territory, a standard, a mandate level and the ability to filter inquiries before the first conversation.",
+    },
+    meta: {
+      fr: {
+        title: "Site web immobilier premium sur mesure - Tenex Studio",
+        description:
+          "Sites web premium pour agences immobilières haut de gamme, chasseurs, promoteurs et conseil immobilier. Biens, territoires, preuves et demandes qualifiées.",
+      },
+      en: {
+        title: "Custom Premium Real Estate Websites - Tenex Studio",
+        description:
+          "Premium websites for high-end agencies, buyer agents, developers and real estate advisors. Properties, territories, proof and qualified inquiries.",
+      },
+    },
+    proof: [
+      {
+        fr: "Des pages de biens qui donnent du contexte, pas seulement des photos.",
+        en: "Property pages that give context, not only photos.",
+      },
+      {
+        fr: "Une présentation claire du territoire, des mandats et du niveau de service.",
+        en: "Clear presentation of territory, mandates and service level.",
+      },
+      {
+        fr: "Un parcours de contact qui filtre les demandes curieuses ou mal qualifiées.",
+        en: "A contact path that filters curious or poor-fit inquiries.",
+      },
+    ],
+    sections: [
+      {
+        title: {
+          fr: "Faire porter la valeur par le contexte",
+          en: "Let context carry value",
+        },
+        body: {
+          fr: "Adresse, architecture, rareté, usage, lumière, quartier, potentiel et contraintes donnent de la valeur au bien. Le site doit organiser ces éléments pour aider l’acheteur ou le vendeur à comprendre le niveau proposé.",
+          en: "Address, architecture, rarity, use, light, neighborhood, potential and constraints give value to a property. The site must organize these elements so buyers or sellers understand the level offered.",
+        },
+      },
+      {
+        title: {
+          fr: "Montrer le niveau de mandat",
+          en: "Show the mandate level",
+        },
+        body: {
+          fr: "Agence premium, conseil en immobilier d’entreprise, promoteur ou chasseur immobilier: chaque modèle doit expliquer son périmètre, ses critères de sélection, son accompagnement et ses preuves.",
+          en: "Premium agency, commercial real estate advisor, developer or buyer agent: each model should explain scope, selection criteria, support and proof.",
+        },
+      },
+      {
+        title: {
+          fr: "Qualifier les demandes sans friction inutile",
+          en: "Qualify inquiries without needless friction",
+        },
+        body: {
+          fr: "Le site peut aider à distinguer acheteurs sérieux, vendeurs alignés, investisseurs et demandes exploratoires. Les appels à l’action restent clairs, mais le parcours protège le temps de l’équipe.",
+          en: "The site can help distinguish serious buyers, aligned sellers, investors and exploratory requests. Calls to action stay clear, but the path protects the team’s time.",
+        },
+      },
+      {
+        title: {
+          fr: "Installer une présence locale forte",
+          en: "Build a strong local presence",
+        },
+        body: {
+          fr: "Pages de quartiers, typologies, biens vendus, références et contenus de marché peuvent soutenir le SEO local. Le ton reste éditorial, précis et compatible avec une image haut de gamme.",
+          en: "Neighborhood pages, property types, sold properties, references and market content can support local SEO. The tone stays editorial, precise and compatible with a high-end image.",
+        },
+      },
+      {
+        title: {
+          fr: "Préparer le portefeuille de demain",
+          en: "Prepare tomorrow’s portfolio",
+        },
+        body: {
+          fr: "Nouveaux biens, campagnes, contenus, pages internationales ou espaces de préqualification peuvent être ajoutés progressivement. La base reste rapide, propriétaire et simple à faire évoluer.",
+          en: "New properties, campaigns, content, international pages or prequalification paths can be added progressively. The base stays fast, owned and easy to evolve.",
+        },
+      },
+    ],
+    cta: {
+      fr: "Cadrer le site immobilier",
+      en: "Scope the real estate website",
+    },
+    relatedIds: ["custom-websites", "wealth-management-websites", "architecture-studio-websites"],
+  },
+  {
+    id: "expert-recruitment-websites",
+    slug: {
+      fr: "sites-web-recrutement-expert",
+      en: "expert-recruitment-websites",
+    },
+    eyebrow: {
+      fr: "Recrutement expert",
+      en: "Expert recruitment",
+    },
+    title: {
+      fr: "Un site de recrutement expert qui crédibilise les missions sensibles.",
+      en: "An expert recruitment website that gives sensitive mandates credibility.",
+    },
+    heroImage: "/landing/expert-recruitment-hover.webp",
+    intro: {
+      fr: "Executive search, recrutement tech, juridique ou finance: le site doit rassurer les clients et les candidats. Il montre la spécialisation, la méthode, la confidentialité et le niveau de mandat sans transformer le cabinet en plateforme générique.",
+      en: "Executive search, tech, legal or finance recruitment: the site must reassure clients and candidates. It shows specialization, method, confidentiality and mandate level without turning the firm into a generic platform.",
+    },
+    meta: {
+      fr: {
+        title: "Site web recrutement expert sur mesure - Tenex Studio",
+        description:
+          "Sites web premium pour cabinets de recrutement et executive search. Spécialisation, confidentialité, méthode, crédibilité candidat et demandes qualifiées.",
+      },
+      en: {
+        title: "Custom Expert Recruitment Websites - Tenex Studio",
+        description:
+          "Premium websites for recruitment and executive search firms. Specialization, confidentiality, method, candidate credibility and qualified inquiries.",
+      },
+    },
+    proof: [
+      {
+        fr: "Des pages qui parlent aux clients et aux candidats sans mélanger les parcours.",
+        en: "Pages that speak to clients and candidates without mixing paths.",
+      },
+      {
+        fr: "Une méthode de recherche claire, compatible avec les mandats confidentiels.",
+        en: "A clear search method suited to confidential mandates.",
+      },
+      {
+        fr: "Des preuves de spécialisation par secteur, fonction et niveau de poste.",
+        en: "Proof of specialization by sector, function and role level.",
+      },
+    ],
+    sections: [
+      {
+        title: {
+          fr: "Prouver la spécialisation",
+          en: "Prove specialization",
+        },
+        body: {
+          fr: "Un cabinet de recrutement expert doit montrer les métiers compris, les fonctions traitées, les secteurs couverts et le niveau de séniorité visé. Le site aide à distinguer expertise réelle et discours généraliste.",
+          en: "An expert recruitment firm must show the roles understood, functions handled, sectors covered and seniority level targeted. The site helps separate real expertise from generalist claims.",
+        },
+      },
+      {
+        title: {
+          fr: "Séparer les parcours clients et candidats",
+          en: "Separate client and candidate paths",
+        },
+        body: {
+          fr: "Un dirigeant cherche une méthode, des garanties et une capacité d’approche. Un candidat cherche de la confidentialité, du sérieux et une compréhension de son marché. Chaque parcours doit répondre à ses propres objections.",
+          en: "A business leader looks for method, safeguards and search capability. A candidate looks for confidentiality, seriousness and market understanding. Each path must answer its own objections.",
+        },
+      },
+      {
+        title: {
+          fr: "Rendre la méthode concrète",
+          en: "Make the method concrete",
+        },
+        body: {
+          fr: "Cadrage, cartographie, approche directe, évaluation, shortlist, suivi d’intégration: les étapes montrent le niveau de travail sans exposer les éléments confidentiels du cabinet.",
+          en: "Scoping, mapping, direct approach, evaluation, shortlist and onboarding follow-up show the level of work without exposing confidential firm material.",
+        },
+      },
+      {
+        title: {
+          fr: "Attirer les bons mandats",
+          en: "Attract the right mandates",
+        },
+        body: {
+          fr: "Le site peut clarifier les types de postes, les secteurs, les zones géographiques et les niveaux d’urgence acceptés. Les demandes entrantes deviennent plus précises dès le premier contact.",
+          en: "The site can clarify role types, sectors, geographies and accepted urgency levels. Inbound inquiries become more precise from the first contact.",
+        },
+      },
+      {
+        title: {
+          fr: "Construire une autorité de marché",
+          en: "Build market authority",
+        },
+        body: {
+          fr: "Analyses de marché, notes sectorielles, pages métiers et contenus candidats peuvent renforcer la crédibilité du cabinet. Le site devient un repère pour le marché ciblé.",
+          en: "Market analysis, sector notes, role pages and candidate content can strengthen firm credibility. The site becomes a reference point for the target market.",
+        },
+      },
+    ],
+    cta: {
+      fr: "Cadrer le site recrutement",
+      en: "Scope the recruitment website",
+    },
+    relatedIds: ["custom-websites", "consultant-websites", "expert-b2b-agency-websites"],
+  },
+  {
+    id: "engineering-technical-consulting-websites",
+    slug: {
+      fr: "sites-web-ingenierie-conseil-technique",
+      en: "engineering-technical-consulting-websites",
+    },
+    eyebrow: {
+      fr: "Ingénierie et conseil technique",
+      en: "Engineering and technical consulting",
+    },
+    title: {
+      fr: "Un site technique qui rend l’expertise complexe compréhensible.",
+      en: "A technical website that makes complex expertise understandable.",
+    },
+    heroImage: "/landing/engineering-technical-consulting-hover.webp",
+    intro: {
+      fr: "Cybersécurité, data, conformité, énergie, infrastructure ou ingénierie industrielle: le site doit expliquer des sujets exigeants sans les simplifier à l’excès. Il doit montrer la méthode, les preuves et le niveau d’intervention.",
+      en: "Cybersecurity, data, compliance, energy, infrastructure or industrial engineering: the site must explain demanding subjects without oversimplifying them. It must show method, proof and level of engagement.",
+    },
+    meta: {
+      fr: {
+        title: "Site web ingénierie et conseil technique - Tenex Studio",
+        description:
+          "Sites web premium pour cabinets d’ingénierie, cybersécurité, data, conformité, énergie et infrastructure. Expertise complexe, preuve et demandes qualifiées.",
+      },
+      en: {
+        title: "Custom Engineering Consulting Websites - Tenex Studio",
+        description:
+          "Premium websites for engineering, cybersecurity, data, compliance, energy and infrastructure consultancies. Complex expertise, proof and qualified inquiries.",
+      },
+    },
+    proof: [
+      {
+        fr: "Des pages d’expertises qui clarifient les problèmes, contextes et livrables.",
+        en: "Expertise pages that clarify problems, contexts and deliverables.",
+      },
+      {
+        fr: "Des preuves adaptées aux sujets techniques: cas, normes, méthodes, résultats.",
+        en: "Proof suited to technical subjects: cases, standards, methods and results.",
+      },
+      {
+        fr: "Un discours lisible pour décideurs, acheteurs et équipes métier.",
+        en: "Readable messaging for decision-makers, buyers and business teams.",
+      },
+    ],
+    sections: [
+      {
+        title: {
+          fr: "Traduire sans appauvrir",
+          en: "Translate without flattening",
+        },
+        body: {
+          fr: "Un sujet technique doit être compris par plusieurs niveaux de lecture. Le site peut donner une entrée claire aux décideurs, puis garder la précision nécessaire pour les profils experts.",
+          en: "A technical subject must be understood at several reading levels. The site can give decision-makers a clear entry point while keeping the precision expert profiles need.",
+        },
+      },
+      {
+        title: {
+          fr: "Structurer les expertises par problèmes",
+          en: "Structure expertise by problems",
+        },
+        body: {
+          fr: "Audit, conformité, architecture, migration, supervision, performance ou sécurité: chaque page doit partir du problème client, montrer le contexte d’intervention et préciser les livrables.",
+          en: "Audit, compliance, architecture, migration, monitoring, performance or security: each page should start from the client problem, show the engagement context and specify deliverables.",
+        },
+      },
+      {
+        title: {
+          fr: "Prouver avec rigueur",
+          en: "Prove with rigor",
+        },
+        body: {
+          fr: "Références, certifications, normes, schémas, chiffres, environnements et cas d’usage doivent être hiérarchisés. La preuve rassure sans noyer le visiteur dans la documentation.",
+          en: "References, certifications, standards, diagrams, numbers, environments and use cases must be ordered. Proof reassures without burying visitors in documentation.",
+        },
+      },
+      {
+        title: {
+          fr: "Qualifier les demandes techniques",
+          en: "Qualify technical inquiries",
+        },
+        body: {
+          fr: "Le site peut clarifier les contextes acceptés, les prérequis, les niveaux d’urgence et les informations utiles avant un premier échange. Les demandes arrivent mieux cadrées.",
+          en: "The site can clarify accepted contexts, prerequisites, urgency levels and useful information before a first conversation. Inquiries arrive better framed.",
+        },
+      },
+      {
+        title: {
+          fr: "Préparer contenus longs et cas",
+          en: "Prepare long-form content and cases",
+        },
+        body: {
+          fr: "Articles, livres blancs, cas techniques, pages normes ou glossaires peuvent être ajoutés progressivement. La base devient un système de crédibilité, pas une simple plaquette.",
+          en: "Articles, white papers, technical cases, standards pages or glossaries can be added progressively. The base becomes a credibility system, not a simple brochure.",
+        },
+      },
+    ],
+    cta: {
+      fr: "Cadrer le site technique",
+      en: "Scope the technical website",
+    },
+    relatedIds: ["custom-websites", "consultant-websites", "expert-b2b-agency-websites"],
+  },
+  {
+    id: "expert-b2b-agency-websites",
+    slug: {
+      fr: "sites-web-agences-b2b-expertes",
+      en: "expert-b2b-agency-websites",
+    },
+    eyebrow: {
+      fr: "Agences B2B expertes",
+      en: "Expert B2B agencies",
+    },
+    title: {
+      fr: "Un site d’agence B2B qui prouve la spécialisation avant le brief.",
+      en: "A B2B agency website that proves specialization before the brief.",
+    },
+    heroImage: "/landing/b2b-agency-hover.webp",
+    intro: {
+      fr: "Branding, production vidéo, relations presse, études de marché, revenue operations ou stratégie: une agence experte doit montrer son point de vue, ses preuves, ses secteurs et sa méthode avant même de recevoir un brief.",
+      en: "Branding, video production, public relations, market research, revenue operations or strategy: an expert agency must show its point of view, proof, sectors and method before receiving a brief.",
+    },
+    meta: {
+      fr: {
+        title: "Site web agence B2B experte sur mesure - Tenex Studio",
+        description:
+          "Sites web premium pour agences B2B expertes. Positionnement, offres, cas clients, méthode, spécialisation et demandes qualifiées.",
+      },
+      en: {
+        title: "Custom Expert B2B Agency Websites - Tenex Studio",
+        description:
+          "Premium websites for expert B2B agencies. Positioning, offers, client cases, method, specialization and qualified inquiries.",
+      },
+    },
+    proof: [
+      {
+        fr: "Des offres qui rendent la spécialisation lisible dès la première page.",
+        en: "Offers that make specialization readable from the first page.",
+      },
+      {
+        fr: "Des cas clients structurés par problème, décision et résultat.",
+        en: "Client cases structured by problem, decision and outcome.",
+      },
+      {
+        fr: "Un parcours de contact qui attire les bons briefs et écarte les demandes faibles.",
+        en: "A contact path that attracts the right briefs and filters weak inquiries.",
+      },
+    ],
+    sections: [
+      {
+        title: {
+          fr: "Sortir du discours d’agence interchangeable",
+          en: "Move beyond interchangeable agency claims",
+        },
+        body: {
+          fr: "Beaucoup d’agences promettent créativité, performance ou accompagnement. Un site premium doit montrer un angle, des secteurs, des choix, des cas et une manière de penser.",
+          en: "Many agencies promise creativity, performance or support. A premium site must show an angle, sectors, choices, cases and a way of thinking.",
+        },
+      },
+      {
+        title: {
+          fr: "Clarifier les offres et les formats",
+          en: "Clarify offers and formats",
+        },
+        body: {
+          fr: "Audit, sprint, production, retainer, campagne ou programme: chaque format doit expliquer ce qui est inclus, quand il est pertinent et quel type de client peut en tirer parti.",
+          en: "Audit, sprint, production, retainer, campaign or program: each format should explain what is included, when it is relevant and what type of client can benefit from it.",
+        },
+      },
+      {
+        title: {
+          fr: "Faire travailler les cas clients",
+          en: "Make client cases work harder",
+        },
+        body: {
+          fr: "Un bon cas ne se limite pas à une galerie. Il explique le contexte, la contrainte, les arbitrages, le résultat et le rôle exact de l’agence dans la progression du client.",
+          en: "A good case is not only a gallery. It explains context, constraint, decisions, outcome and the agency’s exact role in the client’s progress.",
+        },
+      },
+      {
+        title: {
+          fr: "Qualifier les briefs entrants",
+          en: "Qualify inbound briefs",
+        },
+        body: {
+          fr: "Le site peut nommer les budgets pertinents, les délais, les profils de clients, les secteurs et les demandes refusées. Les échanges commencent avec plus de clarté.",
+          en: "The site can name relevant budgets, timelines, client profiles, sectors and rejected requests. Conversations start with more clarity.",
+        },
+      },
+      {
+        title: {
+          fr: "Porter le point de vue de l’agence",
+          en: "Carry the agency’s point of view",
+        },
+        body: {
+          fr: "Articles, manifestes, notes de méthode, études ou pages sectorielles peuvent soutenir l’autorité. La structure du site prépare cette couche éditoriale sans alourdir l’expérience.",
+          en: "Articles, manifestos, method notes, studies or sector pages can support authority. The site structure prepares that editorial layer without making the experience heavy.",
+        },
+      },
+    ],
+    cta: {
+      fr: "Cadrer le site de l’agence",
+      en: "Scope the agency website",
+    },
+    relatedIds: ["custom-websites", "consultant-websites", "engineering-technical-consulting-websites"],
   },
   {
     id: "architecture-studio-websites",
@@ -568,16 +1186,19 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
       fr: "Cabinets d’avocats",
       en: "Law firms",
     },
+    hoverImage: "/landing/law-firm-hero.webp",
     body: {
       fr: "Expertises, associés, références et demandes mieux cadrées.",
       en: "Practice areas, partners, references and better-framed inquiries.",
     },
   },
   {
+    pageId: "accounting-firm-websites",
     label: {
       fr: "Experts-comptables",
       en: "Accounting firms",
     },
+    hoverImage: "/landing/experts-comptables-hover.webp",
     body: {
       fr: "Conseil, fiscalité, CFO-as-a-service et montée en gamme.",
       en: "Advisory, tax, CFO-as-a-service and upmarket positioning.",
@@ -589,6 +1210,7 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
       fr: "Consultants",
       en: "Consultants",
     },
+    hoverImage: "/landing/consultants-hover.webp",
     body: {
       fr: "Offres, méthode, cas clients et autorité lisible.",
       en: "Offers, method, client cases and readable authority.",
@@ -600,6 +1222,7 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
       fr: "Architectes",
       en: "Architects",
     },
+    hoverImage: "/landing/architectes-hover.webp",
     body: {
       fr: "Portfolio, goût, niveau de mission et projets mieux qualifiés.",
       en: "Portfolio, taste, scope level and better-qualified projects.",
@@ -611,12 +1234,14 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
       fr: "Cliniques privées",
       en: "Private clinics",
     },
+    hoverImage: "/landing/clinic-hero.webp",
     body: {
       fr: "Parcours patient, praticiens, soins et rendez-vous rassurants.",
       en: "Patient journey, practitioners, treatments and reassuring bookings.",
     },
   },
   {
+    pageId: "wealth-management-websites",
     hoverImage: "/landing/wealth-management-hover.webp",
     label: {
       fr: "Gestion de patrimoine",
@@ -628,36 +1253,43 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
     },
   },
   {
+    pageId: "premium-real-estate-websites",
     label: {
       fr: "Immobilier premium",
       en: "Premium real estate",
     },
+    hoverImage: "/landing/real-estate-hover.webp",
     body: {
       fr: "Biens, territoires, preuves et demandes mieux filtrées.",
       en: "Properties, territories, proof and better-filtered inquiries.",
     },
   },
   {
+    pageId: "expert-recruitment-websites",
     label: {
       fr: "Recrutement expert",
       en: "Expert recruitment",
     },
+    hoverImage: "/landing/expert-recruitment-hover.webp",
     body: {
       fr: "Executive search, spécialisation, crédibilité candidat et client.",
       en: "Executive search, specialization, candidate and client credibility.",
     },
   },
   {
+    pageId: "engineering-technical-consulting-websites",
     label: {
       fr: "Ingénierie et conseil technique",
       en: "Engineering and technical consulting",
     },
+    hoverImage: "/landing/engineering-technical-consulting-hover.webp",
     body: {
       fr: "Expertises complexes, conformité, data, énergie ou cybersécurité.",
       en: "Complex expertise, compliance, data, energy or cybersecurity.",
     },
   },
   {
+    pageId: "expert-b2b-agency-websites",
     hoverImage: "/landing/b2b-agency-hover.webp",
     label: {
       fr: "Agences B2B expertes",
