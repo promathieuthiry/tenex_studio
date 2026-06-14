@@ -2,7 +2,7 @@
 
 ## What this is
 
-**FR.** Tenex Studio est une agence web spécialisée dans la création de sites et applications web sur mesures. Basée à Nantes, nous accompagnons les entrepreneurs et entreprises modernes dans leur transformation digitale. Notre expertise couvre :
+**FR.** Tenex Studio est une agence web spécialisée dans la création de sites et applications web sur mesures. Basée à Nantes, nous accompagnons les cabinets, studios, cliniques et sociétés de conseil dont l'expertise doit inspirer confiance avant le premier échange. Notre expertise couvre :
 
 - ✅ Sites web premium
 - ✅ Applications web sur mesure
@@ -10,7 +10,7 @@
 
 Notre approche centrée sur le client garantit des solutions 10× plus personnalisées qui répondent à vos besoins spécifiques.
 
-**EN.** Tenex Studio is a web agency specialized in building custom websites and web apps. Based in Nantes, we support entrepreneurs and modern businesses through their digital transformation. Our expertise covers:
+**EN.** Tenex Studio is a web agency specialized in building custom websites and web apps. Based in Nantes, we support firms, studios, clinics and consultancies whose expertise needs to build trust before the first conversation. Our expertise covers:
 
 - ✅ Premium websites
 - ✅ Custom web apps
@@ -24,20 +24,33 @@ This repo is the **public marketing site + content engine** (blog, case studies)
 
 ## Cible client (ICP)
 
-Cible définie par le **moment**, pas par l'industrie. Garde le positionnement premium sans enfermer dans une verticale.
+Cible définie par les **services experts**, pas par les fondateurs ou les startups. Garde le positionnement premium en ciblant des métiers où la confiance, la preuve, le goût, les références et la clarté décident avant le premier appel.
 
-**En une ligne :** des fondateurs à un moment décisif (levée, lancement, salon) où le site est *load-bearing* — il gagne ou perd des deals, de l'argent ou de la crédibilité dans les 90 jours.
+**En une ligne :** cabinets, studios, cliniques et sociétés de conseil dont le site doit rendre l'expertise immédiatement crédible, lisible et premium.
+
+**Segments prioritaires :**
+
+- **Cabinets d'avocats / avocats :** droit des affaires, fiscalité, PI, social, immobilier, immigration, M&A, contentieux boutiques.
+- **Experts-comptables / cabinets comptables :** cabinets qui montent en gamme, conseil, fiscalité internationale, CFO-as-a-service.
+- **Consultants :** stratégie, opérations, transformation, pricing, management, durabilité, consultants IA / workflows.
+- **Architectes / architectes d'intérieur :** studios où la confiance, le portfolio et le goût comptent avant l'appel.
+- **Cliniques privées / médecins spécialistes :** médecine esthétique, dentaire, fertilité, dermatologie, médecine du sport, ophtalmologie.
+- **Gestionnaires de patrimoine / conseillers financiers :** indépendants, family office, boutiques d'investissement.
+- **Professionnels de l'immobilier :** agences premium, conseil en immobilier d'entreprise, promoteurs, chasseurs immobiliers.
+- **Recrutement / chasse de têtes :** executive search, recrutement tech, juridique, finance.
+- **Conseil technique / ingénierie :** ingénierie industrielle, cybersécurité, data, conformité, énergie, infrastructure.
+- **Agences B2B expertes :** branding, production vidéo, relations presse, études de marché, revenue operations.
 
 - **Offre cœur :** site complet sur mesure, 3 500 €+. Ne jamais ancrer ces acheteurs sur le tier 1 500 €.
 - **Portée :** France + international, FR/EN actif.
 - **Croissance :** viser des clients plus gros (ticket), pas le volume.
 
-**Moments déclencheurs** (le vrai ciblage) : levée de fonds, lancement / go-to-market avec deadline, ouverture à l'international, gros événement (salon, demo day, presse), site qui ne convertit pas. Pas de déclencheur = pas la cible.
+**Déclencheurs principaux :** montée en gamme, nouveau positionnement, site daté, site qui attire les mauvais prospects, besoin de montrer des expertises complexes, besoin de portfolio premium, ouverture à l'international, recrutement de meilleurs clients, cabinet ou clinique qui ne convertit pas assez.
 
-**Qualify IN :** deadline réelle, résultat lié au site, veut une identité forte, veut craft + ownership.
-**Qualify OUT :** "juste un truc basique", shopping sans deadline, compare au prix des template shops.
+**Qualify IN :** expertise forte, enjeu de confiance avant l'appel, veut une identité forte, veut clarifier son offre, veut attirer de meilleurs clients, veut craft + ownership.
+**Qualify OUT :** "juste un truc basique", brochure low-cost, ne valorise pas la différenciation, compare au prix des template shops, veut copier un concurrent.
 
-**Pourquoi ils paient premium (colonne vertébrale du pitch) :** 1. vitesse sous pression ("en ligne en 2 semaines", preuve #1 de tous les témoignages) · 2. identité sur mesure, 0 slop · 3. le site convertit / crédibilise.
+**Pourquoi ils paient premium (colonne vertébrale du pitch) :** 1. le site rend l'expertise crédible avant l'appel · 2. identité sur mesure, 0 slop · 3. le site qualifie mieux les prospects et soutient des honoraires plus élevés.
 
 **Message marché (modèle 🎯 cible / 🚀 service / 💎 valeur) :**
 

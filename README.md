@@ -1,6 +1,6 @@
 # Tenex Studio
 
-AI-native studio in Nantes for entrepreneurs and modern businesses. Bilingual FR/EN.
+AI-native studio in Nantes for expert-service firms. Bilingual FR/EN.
 
 Public marketing site + content engine built with Astro 6, React 19 islands, Tailwind v4.
 
