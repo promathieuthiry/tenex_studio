@@ -14,16 +14,16 @@ type DigitalCardSeoContent = {
 
 export const homeSeo: Bilingual<HomeSeoContent> = {
   fr: {
-    title: "Tenex Studio - Agence web et IA à Nantes",
+    title: "Sites web sur mesure pour experts - Tenex Studio",
     description:
-      "Agence web et IA à Nantes : sites, applications et automatisations sur mesure pour produire 10× plus.",
-    ogImageAlt: "Tenex Studio, agence web et IA à Nantes",
+      "Sites web sur mesure pour cabinets, studios et sociétés de conseil. Clairs, rapides, sécurisés.",
+    ogImageAlt: "Tenex Studio, sites web sur mesure pour services experts",
   },
   en: {
-    title: "Tenex Studio - Web and AI Studio in Nantes",
+    title: "Custom Websites for Expert Firms - Tenex Studio",
     description:
-      "Web and AI studio in Nantes: custom sites, apps and automations to produce 10× more.",
-    ogImageAlt: "Tenex Studio, web and AI studio in Nantes",
+      "Custom websites for firms, studios and consultancies that need to build trust before the first call.",
+    ogImageAlt: "Tenex Studio, custom websites for expert-service firms",
   },
 };
 

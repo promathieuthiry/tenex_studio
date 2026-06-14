@@ -45,8 +45,8 @@ export const FOOTER: FooterCopy = {
     en: "All rights reserved.",
   },
   closingTagline: {
-    fr: "Agence web et IA à Nantes",
-    en: "Web & AI agency in Nantes",
+    fr: "Sites web sur mesure à Nantes",
+    en: "Custom websites in Nantes",
   },
   yearmark: "(©26)",
 } as const;

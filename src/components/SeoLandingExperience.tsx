@@ -196,14 +196,6 @@ export function SeoLandingExperience({
           aria-hidden="true"
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,18,0.20)_0%,rgba(15,15,18,0.12)_48%,rgba(15,15,18,0.72)_100%)]"
         />
-        <motion.div
-          aria-hidden="true"
-          initial={reduceMotion ? false : { scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.85, ease: PREMIUM_EASE, delay: 0.12 }}
-          className="absolute inset-x-0 top-0 h-px bg-accent"
-          style={{ transformOrigin: "0% 50%" }}
-        />
         <div className="relative z-10 mx-auto flex w-full max-w-screen-xl items-end">
           <motion.div
             variants={HERO_GROUP}

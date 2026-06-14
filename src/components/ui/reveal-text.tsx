@@ -101,7 +101,6 @@ export function RevealText({
         ref.current = node;
       }}
       className={className}
-      aria-label={text}
       variants={container}
       initial="hidden"
       animate={shown ? "show" : "hidden"}
@@ -109,7 +108,6 @@ export function RevealText({
       {words.map((word, wi) => (
         <Fragment key={`${word}-${wi}`}>
           <span
-            aria-hidden="true"
             className="inline-block overflow-hidden align-top"
           >
             {splitBy === "char" ? (

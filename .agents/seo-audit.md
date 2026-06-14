@@ -4,208 +4,196 @@
 
 ## Executive Summary
 
-Overall SEO health: **good technical base, weak strategic targeting**.
+Overall SEO health: **much stronger than the previous audit, with a few important cleanup items left**.
 
-The site is crawlable, static, fast to build, indexed on Google, and has the main technical foundations in place: robots.txt, sitemap, canonical tags, reciprocal hreflang, Open Graph tags, image alt text, and JSON-LD on the main pages.
+The site now builds 29 static pages, including the core custom website page and bilingual vertical pages for law firms, accountants, clinics, wealth management, consultants, real estate, recruitment, engineering, B2B agencies and architects. The new pages are server-rendered, indexable, internally linked, included in the sitemap, and have page-specific titles, descriptions, canonicals, hreflang links and JSON-LD.
 
-The highest-impact work is not a crawlability fix. It is aligning the page metadata, hero copy, schema descriptions, and content architecture with the current product-marketing positioning: premium custom websites and lightweight web apps for expert-service firms.
+The highest-impact remaining issue is the homepage. Its metadata, schema description and footer label still use the old "web and AI agency" positioning instead of the current expert-service website positioning.
 
 ## Top Priorities
 
-1. **Reposition home metadata around the target market**
+1. **Update homepage SEO metadata and schema description**
    - Impact: High
-   - Evidence: `src/data/seo.ts` still targets "Agence web et IA a Nantes" / "Web and AI Studio in Nantes". The product-marketing context now targets expert-service firms, premium websites, custom web apps, trust before the call, France and international.
-   - Fix: Rewrite FR and EN title/meta descriptions around "site web sur mesure", "custom websites", "cabinets, cliniques, studios, consultants", "Nantes", and "premium expert services".
+   - Evidence: Rendered `/` title is `Tenex Studio - Agence web et IA à Nantes`; rendered `/en/` title is `Tenex Studio - Web and AI Studio in Nantes`. The homepage `ProfessionalService` schema description also repeats the old "Agence web et IA" positioning.
+   - Fix: Update `src/data/seo.ts` so the homepage targets custom websites for expert-service firms. Keep FR and EN paired.
 
-2. **Create indexable service/vertical pages**
-   - Impact: High
-   - Evidence: The site currently has only the home page, legal pages, 404, and Mathieu digital card pages. Search demand for "site web cabinet avocat", "site web clinique privee", "site web architecte", "site web consultant", and "site web sur mesure Nantes" cannot be targeted cleanly from one page.
-   - Fix: Add dedicated bilingual pages for the core offer and priority verticals before blog/case-study scale. Start with `/sites-web-sur-mesure/`, `/en/custom-websites/`, then 3 to 5 vertical pages.
-
-3. **Reduce duplicated static text from reveal animations**
+2. **Replace old footer positioning**
    - Impact: Medium
-   - Evidence: Static HTML extraction shows repeated phrases such as "Ce que tu obtiens en choisissant", "Trois facons", "Web & AI agency in Nantes". Google snippets also show duplicated visible text from the live page. Browser accessibility snapshots are cleaner, but crawlers can still extract both the `sr-only` text and animated spans.
-   - Fix: Adjust `RevealText` and `SectionHeader` so search-visible HTML does not duplicate section titles. Keep the accessible label, but avoid rendering a second searchable copy where possible.
+   - Evidence: `src/data/footer.ts` still contains `Agence web et IA à Nantes`, and this renders in the footer across pages.
+   - Fix: Replace with restrained expert-service positioning, for example `Sites web sur mesure à Nantes` / `Custom websites in Nantes`.
 
-4. **Fix locale metadata inconsistencies**
+3. **Make hreflang codes consistent between HTML and sitemap**
    - Impact: Medium
-   - Evidence: `OG_LOCALE.fr` is `fr_CA` in `src/lib/i18n.ts`, while the site targets France/Nantes and sitemap hreflang uses `fr-FR`.
-   - Fix: Change Open Graph locale to `fr_FR`. Keep hreflang as `fr-FR` and `en-US`, or decide whether the English market should be generic `en`.
+   - Evidence: Rendered HTML uses `hreflang="fr"` and `hreflang="en"`, while `dist/sitemap-0.xml` uses `fr-FR` and `en-US`.
+   - Fix: Pick one convention. For this market, `fr-FR` and `en` is likely cleaner than `en-US` if English is international.
 
-5. **Noindex the 404 page**
+4. **Decide whether to keep flat SEO URLs before deployment**
+   - Impact: Medium
+   - Evidence: The new URLs are flat, for example `/sites-web-cabinets-avocats/`, while the strategy document recommended hierarchical URLs such as `/sites-web/cabinets-avocats/`.
+   - Fix: If these pages are not yet indexed, consider moving vertical pages under `/sites-web/` and service pages under `/services/`. If they are already deployed and linked, keep them and avoid churn unless redirects are planned.
+
+5. **Reduce crawl-visible duplication from reveal animations**
    - Impact: Low to Medium
-   - Evidence: `dist/404.html` renders `meta name="robots" content="index, follow..."` and canonical `https://tenex.studio/404/`.
-   - Fix: Give 404 its own SEO props with `noindex, follow`, or extend the SEO component with a robots override.
+   - Evidence: `RevealText` still renders an `aria-label` plus hidden animated spans. Browser accessibility snapshots are clean, but generated HTML still contains repeated text patterns.
+   - Fix: Consider a reveal implementation that preserves accessible names without repeating the same phrase in crawler-visible markup.
 
 ## Technical SEO Findings
 
-### Crawlability and indexation
+### Build and type checks
 
 Status: **Healthy**
 
-- `public/robots.txt` allows all crawlers and references `https://tenex.studio/sitemap-index.xml`.
-- `npm run build` generated `dist/sitemap-index.xml` and `dist/sitemap-0.xml`.
-- Sitemap contains the canonical public pages and excludes `404`.
-- Google `site:tenex.studio` check found the FR and EN home pages indexed on 2026-06-14.
+- `npm run check` completed with 0 errors.
+- `npm run build` completed successfully.
+- Build output contains 29 pages.
+- The only check note is an existing hint: `src/components/HomeView.astro` imports `ToolsMarquee` but does not use it.
 
-Recommendation: Submit or confirm the sitemap index in Google Search Console and Bing Webmaster Tools. Add subdirectory properties for `/en/` if English search visibility matters.
+### Crawlability and sitemap
+
+Status: **Healthy**
+
+- `public/robots.txt` references `https://tenex.studio/sitemap-index.xml`.
+- The sitemap includes the homepage, legal pages, Mathieu card pages and all new FR/EN landing pages.
+- Internal link scan of generated HTML found no broken internal links.
+- The 404 page is not included in the sitemap.
+
+Recommendation: Submit the regenerated sitemap in Google Search Console after deployment.
 
 ### Canonicals
 
 Status: **Healthy**
 
-- FR home canonical: `https://tenex.studio/`
-- EN home canonical: `https://tenex.studio/en/`
-- Mathieu pages self-canonical by locale.
-- Legal pages self-canonical by locale.
-
-Recommendation: Keep this pattern for future service and vertical pages. Do not cross-canonical FR and EN variants.
+- Every generated page checked has a self-referencing canonical.
+- FR and EN pages do not cross-canonical to each other.
+- Examples:
+  - `/sites-web-sur-mesure/` canonical: `https://tenex.studio/sites-web-sur-mesure/`
+  - `/en/custom-websites/` canonical: `https://tenex.studio/en/custom-websites/`
+  - `/404.html` canonical: `https://tenex.studio/404/` with `noindex, follow`
 
 ### Hreflang
 
-Status: **Mostly healthy**
+Status: **Mostly healthy, inconsistent codes**
 
-- HTML head includes `fr`, `en`, and `x-default`.
-- Sitemap includes reciprocal `fr-FR`, `en-US`, and `x-default` alternates.
-- Each locale points back to the other variant.
+- Rendered pages include reciprocal `fr`, `en` and `x-default` alternates.
+- Sitemap includes reciprocal `fr-FR`, `en-US` and `x-default` alternates.
+- Targets are canonical URLs and return generated pages.
 
-Issue: HTML uses generic `fr` / `en`, while sitemap uses `fr-FR` / `en-US`. This is valid, but less consistent than it could be.
+Issue: HTML and sitemap annotations use different language code conventions.
 
-Recommendation: Pick one convention and keep it consistent across HTML and sitemap. For this site, `fr-FR` and `en` may be the cleanest split if English is international rather than US-specific.
+Recommendation: Align them. Use `fr-FR` for French. Use `en` if English is international, or `en-US` only if the English content is specifically US-targeted.
 
-### Schema
+### Structured data
 
 Status: **Good base**
 
-Rendered browser checks found JSON-LD on home pages:
+- Homepage renders `ProfessionalService`, `WebSite` and `FAQPage`.
+- Landing pages render `Service`, `BreadcrumbList` and `FAQPage` where FAQ content exists.
+- Digital card pages render `Person`.
+- Browser-rendered checks confirmed JSON-LD on `/` and `/sites-web-sur-mesure/`.
 
-- `ProfessionalService`
-- `WebSite`
-- `FAQPage`
+Issue: Homepage schema description still uses the old broad web and AI positioning.
 
-Digital card pages include `Person` schema.
-
-Issues:
-
-- Business schema descriptions repeat the old "web and AI studio" positioning.
-- Offer schema maps feature blocks like "Speed", "Structure", "Copywriting" rather than core commercial services.
-- English `Person` schema for `/en/mathieu/` uses `url: https://tenex.studio/mathieu/`, not the English canonical URL.
-
-Recommendations:
-
-- Update schema descriptions with the current ICP positioning.
-- Model commercial services as `Service` or `OfferCatalog`: premium websites, custom web apps, AI workflow integration.
-- Use locale-canonical URLs in `Person` schema.
+Recommendation: Update the homepage schema by updating `src/data/seo.ts`, since `buildHomeSeo()` uses the same description for metadata and `ProfessionalService`.
 
 ### 404
 
-Status: **Needs a small fix**
+Status: **Fixed**
 
-The 404 page has no H1 in generated HTML and uses indexable robots metadata.
-
-Recommendation: Add an H1 to the not-found component and set 404 robots to `noindex, follow`.
-
-## On-Page SEO Findings
-
-### Home page title and description
-
-Status: **Needs repositioning**
-
-Current FR:
-
-- Title: `Tenex Studio - Agence web et IA a Nantes`
-- Description length: 101 characters
-
-Current EN:
-
-- Title: `Tenex Studio - Web and AI Studio in Nantes`
-- Description length: 84 characters
-
-Issue: These are concise, but underuse the updated positioning and the primary buyer language.
-
-Recommended direction:
-
-- FR title: `Sites web sur mesure pour cabinets et cliniques - Tenex Studio`
-- FR description: `Tenex Studio cree des sites web premium pour cabinets, cliniques, studios et societes de conseil. Sur mesure, rapide, bilingue.`
-- EN title: `Custom Websites for Expert-Service Firms - Tenex Studio`
-- EN description: `Tenex Studio builds premium custom websites for firms, clinics, studios and consultancies that need trust before the first call.`
-
-### H1 and visible copy
-
-Status: **Clear but too broad**
-
-- FR H1: `Sites web sur mesure.`
-- EN H1: `Custom websites.`
-
-Issue: Strong and simple, but it does not name the target market or trust-before-call value. The subheadline still says "entrepreneurs", which is broader and less premium than the ICP.
-
-Recommendation: Keep the restrained style, but add ICP language near the top. The first 100 words should mention expert-service firms, trust, premium websites, and custom delivery.
-
-### Heading structure
-
-Status: **Mostly healthy**
-
-Rendered browser snapshots show one H1 on FR and EN home pages, followed by H2 and H3 sections.
-
-Issue: Static extraction can see duplicated section headings because animated reveal text renders both an `sr-only` copy and animated visible spans.
-
-Recommendation: Reduce duplicate searchable text in reveal components.
+- The 404 page now has one H1.
+- Robots metadata is `noindex, follow`.
 
 ### Images
 
-Status: **Good alt coverage, one asset concern**
+Status: **Mostly healthy**
 
-- Generated pages had image `alt` attributes present.
-- Most large images are WebP.
-- Largest built image found: `dist/services/ui-ux-design.webp` at roughly 896 KB.
+- Generated HTML image scan found no missing `alt` attributes.
+- New landing images are mostly reasonable sizes.
+- Largest current public image: `public/services/ui-ux-design.webp` at 596 KB.
+- Largest new landing image: `public/landing/experts-comptables-hover.webp` at 399 KB.
 
-Recommendation: Review whether the 896 KB service image can be resized or recompressed without visible quality loss.
+Recommendation: Recompress the 596 KB service image when convenient. It is no longer the biggest SEO concern.
+
+## On-Page SEO Findings
+
+### Homepage title and description
+
+Status: **Still needs repositioning**
+
+Rendered FR:
+
+- Title: `Tenex Studio - Agence web et IA à Nantes`
+- Description: `Agence web et IA à Nantes : sites, applications et automatisations sur mesure pour produire 10× plus.`
+
+Rendered EN:
+
+- Title: `Tenex Studio - Web and AI Studio in Nantes`
+- Description: `Web and AI studio in Nantes: custom sites, apps and automations to produce 10× more.`
+
+Issue: This no longer matches the product-marketing context. The homepage should reinforce expert-service websites, not generic web and AI services.
+
+### New commercial and vertical pages
+
+Status: **Strong improvement**
+
+- Each new page has a unique title and one H1.
+- The core page `/sites-web-sur-mesure/` targets `Création site web sur mesure à Nantes`.
+- Vertical pages target clear intents, for example:
+  - `Site web cabinet avocat sur mesure`
+  - `Site web clinique privée sur mesure`
+  - `Site web consultant sur mesure`
+  - `Site web expert-comptable sur mesure`
+  - `Site web architecte sur mesure`
+
+Issue: Several meta descriptions are under the ideal 150 to 160 character range, though they are specific and not harmful.
+
+Recommendation: Do not pad them mechanically. Improve descriptions only where a stronger search-result pitch is natural.
+
+### Heading structure
+
+Status: **Healthy**
+
+- Generated page scan found exactly one H1 on every page.
+- New landing pages use meaningful H2 sections.
+- Browser snapshots confirmed the core and law-firm pages render the expected H1 and section headings.
 
 ### Internal linking
 
-Status: **Thin architecture**
+Status: **Much improved**
 
-The home page links to sections, legal pages, booking, external work, email, and LinkedIn. The Mathieu digital card pages are in the sitemap but appear unlinked from main navigation/footer.
+- Homepage navigation links to `/sites-web-sur-mesure/`.
+- The core custom website page links to all vertical pages.
+- Vertical pages link back to the core page and selected related vertical pages.
+- Footer links to the core custom website hub.
 
-Recommendation: If the Mathieu pages are meant for search, link them from a relevant footer or founder/about area. If they are only a digital-card utility, consider excluding them from the sitemap.
+Issue: Mathieu card pages remain in the sitemap but are not linked from the main navigation or footer.
+
+Recommendation: If those pages are meant to rank or support trust, add a subtle founder/about link. If they are only utility pages, consider excluding them from the sitemap.
 
 ## Content Findings
 
 ### Content-market fit
 
-Status: **Behind the current positioning**
+Status: **Strong improvement**
 
-The product-marketing file has a clear ICP: law firms, accountants, consultants, architects, clinics, wealth managers, real estate, recruiters, technical consultancies, and expert B2B agencies.
+The new landing pages now match the product-marketing context: expert-service firms, trust before the first call, premium custom websites, clarity, proof and qualified inquiries.
 
-The live page still speaks to "entrepreneurs" and general custom websites/apps. That makes the page less likely to rank for high-intent professional-service queries and less likely to qualify premium buyers.
+This is the biggest improvement since the previous audit.
 
-Recommendation: Update home copy first, then add specific pages for the highest-value verticals.
+### Content depth
 
-### Topical coverage
+Status: **Good for V1 commercial pages**
 
-Status: **Too narrow**
+The core page has enough depth for a commercial service page. Vertical pages are substantial enough to avoid thin-page risk, with tailored copy, proof bullets, sections, FAQs and related links.
 
-Current indexable content is mostly a single-page commercial site. There is no blog, no case-study route, and no dedicated service page yet.
-
-Recommendation: Before moving to Astro Content Collections, add a small service/vertical page architecture:
-
-1. `Sites web sur mesure` / `Custom websites`
-2. `Sites web pour cabinets d'avocats` / `Law firm websites`
-3. `Sites web pour cliniques privees` / `Private clinic websites`
-4. `Sites web pour consultants` / `Consultant websites`
-5. `Sites web pour architectes` / `Architecture studio websites`
+Recommendation: Next content depth should come from real case-study pages, not more generic landing pages.
 
 ### E-E-A-T and trust
 
-Status: **Promising**
+Status: **Good base, next step is proof depth**
 
-The site includes real testimonials, named clients, legal notice, location, email, LinkedIn, and specific work examples.
+The site already includes named clients, testimonials, legal pages, address, email and LinkedIn. The new pages add better topical relevance, but still rely on high-level proof.
 
-Recommendations:
-
-- Add deeper case-study pages for Renardo Tech and Studio Lumen.
-- Add an about/founder page if Mathieu should be part of the trust story. There is already a digital card route that could evolve into this.
-- Add proof around process, ownership, handover, and bilingual delivery.
+Recommendation: Build case studies for Studio Lumen, Renardo Tech and OuiClient. Link each case study to the relevant commercial page.
 
 ## Prioritized Action Plan
 
@@ -215,32 +203,39 @@ No critical crawl or indexation blockers found.
 
 ### High Impact
 
-1. Rewrite home SEO metadata and schema descriptions around the new ICP.
-2. Replace broad "entrepreneurs" language with expert-service firm language near the top of the page.
-3. Add dedicated bilingual pages for the core website offer and priority verticals.
+1. Update homepage metadata and schema description in `src/data/seo.ts`.
+2. Replace old footer positioning in `src/data/footer.ts`.
+3. Align HTML and sitemap hreflang conventions.
 
 ### Quick Wins
 
-1. Change `fr_CA` to `fr_FR` in Open Graph locale.
-2. Set 404 robots to `noindex, follow`.
-3. Make 404 render an H1.
-4. Fix `Person.url` on `/en/mathieu/` to use the English canonical URL.
-5. Recompress or resize `services/ui-ux-design.webp`.
+1. Remove the unused `ToolsMarquee` import from `src/components/HomeView.astro`.
+2. Recompress `public/services/ui-ux-design.webp`.
+3. Decide whether Mathieu pages should be linked or excluded from sitemap.
 
-### Longer-Term
+### Longer Term
 
-1. Wire Astro Content Collections for case studies and blog when ready.
-2. Build a keyword map by page, in FR and EN.
-3. Connect Search Console data to track query impressions, indexed pages, CTR, and organic bookings.
-4. Add structured data for service pages once those pages exist.
+1. Add case-study routes once Content Collections are wired.
+2. Add a local page for `agence web Nantes` only if it can stay premium and not dilute the expert-service positioning.
+3. Consider a less duplicative reveal-text implementation after the current SEO-critical fixes.
 
-## Verification Performed
+## Verification Run
 
-- Ran `npm run build`: passed.
-- Inspected generated `dist/*.html` pages.
-- Inspected `dist/sitemap-index.xml` and `dist/sitemap-0.xml`.
-- Inspected `public/robots.txt`.
-- Used `agent-browser` against local preview at `http://127.0.0.1:4321/` and `/en/`.
-- Checked rendered JSON-LD with browser execution.
-- Checked Google `site:tenex.studio` results on 2026-06-14.
-
+- `npm run check`: passed, 0 errors.
+- `npm run build`: passed, 29 pages generated.
+- Browser-rendered pages checked:
+  - `/`
+  - `/en/`
+  - `/sites-web-sur-mesure/`
+  - `/sites-web-cabinets-avocats/`
+- Generated HTML audit checked:
+  - titles
+  - descriptions
+  - robots
+  - canonicals
+  - H1 counts
+  - H2 counts
+  - JSON-LD presence
+  - image alt attributes
+  - internal links
+  - sitemap alternates
