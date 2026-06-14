@@ -16,6 +16,10 @@ const COPY = {
     chaptersLabel: "Lecture",
     methodLabel: "Méthode",
     relatedLabel: "ICP prioritaires",
+    proofLabel: "Preuves",
+    proofTitle: "Ce que le site doit prouver vite.",
+    faqLabel: "Questions",
+    faqTitle: "Les points à clarifier avant de lancer.",
     relatedTitle: "Les services experts que nous savons rendre lisibles.",
     relatedBody:
       "Chaque segment demande un site qui prouve vite le niveau, clarifie l’offre et filtre les mauvais prospects.",
@@ -28,6 +32,10 @@ const COPY = {
     chaptersLabel: "Reading",
     methodLabel: "Method",
     relatedLabel: "Priority ICPs",
+    proofLabel: "Proof",
+    proofTitle: "What the site must prove fast.",
+    faqLabel: "Questions",
+    faqTitle: "The points to clarify before launch.",
     relatedTitle: "The expert services we know how to make readable.",
     relatedBody:
       "Each segment needs a site that proves level fast, clarifies the offer and filters poor-fit prospects.",
@@ -84,13 +92,32 @@ export function SeoLandingExperience({
   const [activeSection, setActiveSection] = useState(0);
   const copy = COPY[locale];
 
-  const icpCards = useMemo(
-    () =>
-      EXPERT_SERVICE_ICPS.map((icp) => ({
-        ...icp,
-        page: icp.pageId ? SEO_LANDING_PAGE_BY_ID.get(icp.pageId) : undefined,
-      })),
-    [],
+  const relatedCards = useMemo(
+    () => {
+      if (page.id === "custom-websites") {
+        return EXPERT_SERVICE_ICPS.map((icp) => ({
+          ...icp,
+          page: icp.pageId ? SEO_LANDING_PAGE_BY_ID.get(icp.pageId) : undefined,
+        }));
+      }
+
+      return page.relatedIds
+        .map((id) => {
+          const relatedPage = SEO_LANDING_PAGE_BY_ID.get(id);
+          if (!relatedPage) return null;
+
+          const icp = EXPERT_SERVICE_ICPS.find((item) => item.pageId === id);
+          return {
+            pageId: id,
+            label: icp?.label ?? relatedPage.eyebrow,
+            body: icp?.body ?? relatedPage.proof[0] ?? relatedPage.intro,
+            hoverImage: icp?.hoverImage ?? relatedPage.heroImage,
+            page: relatedPage,
+          };
+        })
+        .filter((card): card is NonNullable<typeof card> => Boolean(card));
+    },
+    [page.id, page.relatedIds],
   );
 
   useEffect(() => {
@@ -235,6 +262,43 @@ export function SeoLandingExperience({
         </div>
       </header>
 
+      <section className="border-b border-ink/10 px-6 py-14 md:px-12 md:py-18 lg:px-16">
+        <div className="mx-auto grid max-w-screen-xl gap-8 lg:grid-cols-[0.34fr_0.66fr]">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/45">
+              {copy.proofLabel}
+            </p>
+            <h2 className="mt-4 max-w-md font-display text-3xl font-black leading-tight tracking-normal text-ink md:text-5xl">
+              {copy.proofTitle}
+            </h2>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {page.proof.map((item, index) => (
+              <motion.article
+                key={item[locale]}
+                variants={CARD_REVEAL}
+                initial={reduceMotion ? false : "hidden"}
+                whileInView="show"
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{
+                  duration: 0.48,
+                  ease: PREMIUM_EASE,
+                  delay: reduceMotion ? 0 : index * 0.04,
+                }}
+                className="rounded-[8px] border border-ink/10 bg-paper p-5"
+              >
+                <span className="font-mono text-xs uppercase tracking-[0.12em] text-accent">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="mt-5 font-sans text-base leading-7 text-ink/68">
+                  {item[locale]}
+                </p>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="px-6 py-16 md:px-12 md:py-24 lg:px-16">
         <div className="mx-auto grid max-w-screen-xl gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <motion.aside
@@ -344,6 +408,39 @@ export function SeoLandingExperience({
         </div>
       </section>
 
+      {page.faq?.length ? (
+        <section className="border-t border-ink/10 px-6 py-16 md:px-12 md:py-24 lg:px-16">
+          <div className="mx-auto grid max-w-screen-xl gap-10 lg:grid-cols-[0.34fr_0.66fr]">
+            <div className="max-w-md">
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/45">
+                {copy.faqLabel}
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-black leading-tight tracking-normal text-ink md:text-5xl">
+                {copy.faqTitle}
+              </h2>
+            </div>
+            <div className="divide-y divide-ink/10 border-y border-ink/10">
+              {page.faq.map((item) => (
+                <details key={item.question[locale]} className="group py-6">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-2xl font-bold leading-tight tracking-normal text-ink marker:hidden">
+                    <span>{item.question[locale]}</span>
+                    <span
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 font-mono text-lg text-accent transition-transform group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl font-sans text-base leading-8 text-ink/66 md:text-lg">
+                    {item.answer[locale]}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="relative overflow-hidden border-y border-ink/10 bg-ink text-paper">
         <div
           aria-hidden="true"
@@ -430,7 +527,7 @@ export function SeoLandingExperience({
             viewport={{ once: true, margin: "-90px" }}
             className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3"
           >
-            {icpCards.map((icp, index) => {
+            {relatedCards.map((icp, index) => {
               const cardClass =
                 "group relative min-h-40 overflow-hidden rounded-[8px] border border-ink/10 bg-paper p-4 font-sans text-sm leading-6 text-ink/58 transition hover:border-ink/35 hover:text-ink/70";
               const content = (

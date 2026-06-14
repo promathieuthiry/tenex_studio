@@ -231,6 +231,23 @@ export function buildSeoLandingPageSeo(
           },
         ],
       },
+      ...(page.faq
+        ? [
+            {
+              '@type': 'FAQPage',
+              '@id': `${canonicalUrl}#faq`,
+              inLanguage: langTag,
+              mainEntity: page.faq.map((item) => ({
+                '@type': 'Question',
+                name: item.question[locale],
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: item.answer[locale],
+                },
+              })),
+            },
+          ]
+        : []),
     ],
   })
 

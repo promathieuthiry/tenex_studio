@@ -16,6 +16,10 @@ export type SeoLandingPage = Readonly<{
     title: Bilingual;
     body: Bilingual;
   }>;
+  faq?: ReadonlyArray<{
+    question: Bilingual;
+    answer: Bilingual;
+  }>;
   cta: Bilingual;
   relatedIds: ReadonlyArray<string>;
 }>;
@@ -32,19 +36,19 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
       en: "Premium website",
     },
     title: {
-      fr: "Un site vitrine sur mesure qui rend votre expertise évidente.",
+      fr: "Un site web sur mesure qui rend votre expertise évidente.",
       en: "A custom website that makes your expertise obvious.",
     },
     heroImage: "/landing/site-vitrine-hero.webp",
     intro: {
-      fr: "Un site vitrine n’est pas une carte de visite en ligne. Pour un cabinet, une clinique, un studio ou une société de conseil, c’est souvent le premier lieu où un prospect vérifie votre niveau, votre sérieux et votre différence.",
+      fr: "Un site web sur mesure n’est pas une carte de visite en ligne. Pour un cabinet, une clinique, un studio ou une société de conseil, c’est souvent le premier lieu où un prospect vérifie votre niveau, votre sérieux et votre différence.",
       en: "A website is not an online business card. For a firm, clinic, studio or consultancy, it is often the first place where a prospect checks your level, seriousness and difference.",
     },
     meta: {
       fr: {
-        title: "Création site vitrine sur mesure à Nantes - Tenex Studio",
+        title: "Création site web sur mesure à Nantes - Tenex Studio",
         description:
-          "Création de sites vitrines premium pour cabinets, cliniques, studios et sociétés de conseil. Positionnement, UX, SEO, code et mise en ligne.",
+          "Création de sites web sur mesure pour cabinets, cliniques, studios et sociétés de conseil. Positionnement, UX, SEO, code et mise en ligne.",
       },
       en: {
         title: "Custom Websites for Expert-Service Firms - Tenex Studio",
@@ -79,12 +83,42 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
       },
       {
         title: {
-          fr: "Un parcours clair vers l’action",
+          fr: "Un parcours clair vers la demande qualifiée",
           en: "A clear path to action",
         },
         body: {
           fr: "Un bon site vitrine informe, rassure et guide. Chaque page doit donner un prochain pas net: réserver un appel, demander une consultation, consulter une expertise, lire un cas ou vérifier une référence.",
           en: "A good website informs, reassures and guides. Every page needs a clear next step: book a call, request a consultation, read an expertise page, study a case or check a reference.",
+        },
+      },
+      {
+        title: {
+          fr: "Ce que comprend une création de site web sur mesure",
+          en: "What a custom website project includes",
+        },
+        body: {
+          fr: "Le projet couvre le cadrage, l’arborescence, les textes clés, la direction visuelle, le développement Astro, les bases SEO, l’optimisation responsive, la mise en ligne et la passation. L’objectif est de livrer un site utilisable, pas une maquette isolée.",
+          en: "The project covers scoping, site structure, key copy, visual direction, Astro development, SEO foundations, responsive optimization, launch and handover. The goal is to ship a usable website, not an isolated mockup.",
+        },
+      },
+      {
+        title: {
+          fr: "Quand le sur mesure devient rentable",
+          en: "When custom work becomes worth it",
+        },
+        body: {
+          fr: "Le sur mesure devient pertinent quand le site doit soutenir des honoraires plus élevés, expliquer une expertise complexe, présenter des preuves, filtrer les mauvais prospects ou préparer une ouverture à l’international. Dans ces cas, un template économise rarement le bon coût.",
+          en: "Custom work becomes relevant when the site must support higher fees, explain complex expertise, present proof, filter poor-fit prospects or prepare for international growth. In those cases, a template rarely saves the right cost.",
+        },
+      },
+      {
+        title: {
+          fr: "Une base prête pour les pages SEO de demain",
+          en: "A base ready for tomorrow’s SEO pages",
+        },
+        body: {
+          fr: "Le site peut ensuite accueillir des pages d’expertises, des cas clients, des pages locales, des contenus longs ou des versions anglaises. La structure évite de repartir de zéro quand l’offre, l’équipe ou les marchés évoluent.",
+          en: "The site can later receive expertise pages, client cases, local pages, long-form content or English versions. The structure avoids starting from scratch when the offer, team or markets evolve.",
         },
       },
       {
@@ -128,8 +162,60 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
         },
       },
     ],
+    faq: [
+      {
+        question: {
+          fr: "Combien coûte un site web sur mesure avec Tenex Studio ?",
+          en: "How much does a custom website cost with Tenex Studio?",
+        },
+        answer: {
+          fr: "L’offre cœur commence à 3 500 € pour un site complet sur mesure. Le prix dépend du nombre de pages, du niveau de contenu, des langues, du CMS et des besoins techniques.",
+          en: "The core offer starts at EUR 3,500 for a full custom website. Pricing depends on page count, content depth, languages, CMS needs and technical requirements.",
+        },
+      },
+      {
+        question: {
+          fr: "Quel délai prévoir pour une création de site web sur mesure ?",
+          en: "How long does a custom website project take?",
+        },
+        answer: {
+          fr: "Un site complet peut être livré en deux à trois semaines quand le périmètre est clair. Les projets plus éditoriaux, bilingues ou intégrés à un CMS demandent un cadrage plus large.",
+          en: "A full website can be delivered in two to three weeks when scope is clear. More editorial, bilingual or CMS-based projects need broader scoping.",
+        },
+      },
+      {
+        question: {
+          fr: "Est-ce adapté à une refonte de site existant ?",
+          en: "Is this suitable for a website redesign?",
+        },
+        answer: {
+          fr: "Oui. La refonte part du site actuel, des prospects à attirer, des pages qui fonctionnent déjà et des points qui nuisent à la crédibilité ou à la conversion.",
+          en: "Yes. A redesign starts from the current site, the prospects to attract, pages that already work and the points that weaken credibility or conversion.",
+        },
+      },
+      {
+        question: {
+          fr: "Le site est-il optimisé pour le SEO dès la mise en ligne ?",
+          en: "Is the website SEO-ready at launch?",
+        },
+        answer: {
+          fr: "Oui. Les bases SEO sont intégrées: structure des titres, métadonnées, performance, responsive, maillage interne, sitemap, données structurées et pages pensées pour répondre à une intention de recherche.",
+          en: "Yes. SEO foundations are built in: heading structure, metadata, performance, responsive behavior, internal links, sitemap, structured data and pages planned around search intent.",
+        },
+      },
+      {
+        question: {
+          fr: "Est-ce que le code et le contenu m’appartiennent ?",
+          en: "Do I own the code and content?",
+        },
+        answer: {
+          fr: "Oui. Le code appartient au client. Le contenu peut être administrable via un CMS si le projet le demande, avec une passation claire après la mise en ligne.",
+          en: "Yes. The code belongs to the client. Content can be editable through a CMS when the project needs it, with a clear handover after launch.",
+        },
+      },
+    ],
     cta: {
-      fr: "Cadrer mon site vitrine",
+      fr: "Cadrer mon site web",
       en: "Scope my website",
     },
     relatedIds: [
@@ -232,6 +318,38 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
         body: {
           fr: "Le cabinet garde un site stable, rapide et administrable. Les évolutions futures, nouvelles expertises, recrutements, publications ou pages internationales, peuvent être ajoutées sans repartir de zéro.",
           en: "The firm keeps a stable, fast and manageable site. Future changes, new practice areas, hires, publications or international pages, can be added without starting over.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: {
+          fr: "Pourquoi un cabinet d’avocats a-t-il besoin d’un site sur mesure ?",
+          en: "Why does a law firm need a custom website?",
+        },
+        answer: {
+          fr: "Parce que la crédibilité dépend de la précision des expertises, des profils, des références et du ton. Un template rend souvent les cabinets interchangeables.",
+          en: "Because credibility depends on precise practice areas, profiles, references and tone. Templates often make firms look interchangeable.",
+        },
+      },
+      {
+        question: {
+          fr: "Peut-on travailler le SEO sans dégrader le sérieux juridique ?",
+          en: "Can SEO be improved without weakening legal tone?",
+        },
+        answer: {
+          fr: "Oui. Les pages peuvent cibler les recherches utiles avec des titres clairs, des contenus précis et un maillage sobre, sans empiler les mots-clés.",
+          en: "Yes. Pages can target useful searches with clear titles, precise content and restrained internal linking, without keyword stuffing.",
+        },
+      },
+      {
+        question: {
+          fr: "Le site peut-il filtrer les demandes hors sujet ?",
+          en: "Can the website filter poor-fit inquiries?",
+        },
+        answer: {
+          fr: "Oui. La structure peut préciser les domaines traités, les situations acceptées, les informations attendues et le bon chemin de contact.",
+          en: "Yes. The structure can clarify handled practices, accepted situations, expected information and the right contact path.",
         },
       },
     ],
@@ -441,6 +559,38 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
         },
       },
     ],
+    faq: [
+      {
+        question: {
+          fr: "Quels contenus sont prioritaires pour un site de clinique privée ?",
+          en: "What content matters most for a private clinic website?",
+        },
+        answer: {
+          fr: "Les pages de soins, les praticiens, les informations pratiques, les preuves de sérieux et le parcours de rendez-vous doivent être lisibles très tôt.",
+          en: "Treatment pages, practitioners, practical information, trust proof and the booking path should be easy to read very early.",
+        },
+      },
+      {
+        question: {
+          fr: "Le ton peut-il rester médical tout en convertissant ?",
+          en: "Can the tone stay medical while still converting?",
+        },
+        answer: {
+          fr: "Oui. La conversion vient surtout de la clarté, de la réassurance et du bon prochain pas. Le site n’a pas besoin de pression commerciale.",
+          en: "Yes. Conversion comes mainly from clarity, reassurance and the right next step. The site does not need commercial pressure.",
+        },
+      },
+      {
+        question: {
+          fr: "Le SEO local est-il prévu pour les cliniques ?",
+          en: "Is local SEO planned for clinics?",
+        },
+        answer: {
+          fr: "Oui. Les pages de spécialités, les informations locales, les données structurées et le maillage aident la clinique à être comprise et trouvée.",
+          en: "Yes. Specialty pages, local information, structured data and internal linking help the clinic be understood and found.",
+        },
+      },
+    ],
     cta: {
       fr: "Cadrer le site de la clinique",
       en: "Scope the clinic website",
@@ -644,6 +794,38 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
         body: {
           fr: "Pages d’offres, cas, points de vue et contenus longs peuvent créer un socle SEO sérieux. Le site devient une preuve d’expertise, pas seulement une page de contact.",
           en: "Offer pages, cases, viewpoints and long-form content can create a serious SEO base. The site becomes proof of expertise, not only a contact page.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: {
+          fr: "Comment rendre une offre de conseil moins abstraite ?",
+          en: "How do you make a consulting offer less abstract?",
+        },
+        answer: {
+          fr: "En partant des problèmes clients, des contextes d’intervention, des livrables, de la méthode et des preuves. Le visiteur doit comprendre quand vous appeler.",
+          en: "By starting from client problems, engagement contexts, deliverables, method and proof. Visitors should understand when to contact you.",
+        },
+      },
+      {
+        question: {
+          fr: "Un consultant indépendant peut-il avoir une page SEO efficace ?",
+          en: "Can an independent consultant have an effective SEO page?",
+        },
+        answer: {
+          fr: "Oui, si la page cible une expertise ou une situation claire. Le site doit éviter les listes de prestations vagues et montrer un point de vue.",
+          en: "Yes, if the page targets a clear expertise or situation. The site should avoid vague service lists and show a point of view.",
+        },
+      },
+      {
+        question: {
+          fr: "Le site peut-il aider à qualifier les prospects avant le rendez-vous ?",
+          en: "Can the website qualify prospects before the meeting?",
+        },
+        answer: {
+          fr: "Oui. Les formats, budgets, conditions de collaboration, secteurs et projets refusés peuvent être rendus visibles avec retenue.",
+          en: "Yes. Formats, budgets, collaboration conditions, sectors and rejected projects can be made visible with restraint.",
         },
       },
     ],
@@ -1193,15 +1375,15 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
     },
   },
   {
-    pageId: "accounting-firm-websites",
+    pageId: "wealth-management-websites",
+    hoverImage: "/landing/wealth-management-hover.webp",
     label: {
-      fr: "Experts-comptables",
-      en: "Accounting firms",
+      fr: "Gestion de patrimoine",
+      en: "Wealth management",
     },
-    hoverImage: "/landing/experts-comptables-hover.webp",
     body: {
-      fr: "Conseil, fiscalité, CFO-as-a-service et montée en gamme.",
-      en: "Advisory, tax, CFO-as-a-service and upmarket positioning.",
+      fr: "Confiance, pédagogie, discrétion et clients patrimoniaux.",
+      en: "Trust, education, discretion and wealth clients.",
     },
   },
   {
@@ -1217,42 +1399,6 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
     },
   },
   {
-    pageId: "architecture-studio-websites",
-    label: {
-      fr: "Architectes",
-      en: "Architects",
-    },
-    hoverImage: "/landing/architectes-hover.webp",
-    body: {
-      fr: "Portfolio, goût, niveau de mission et projets mieux qualifiés.",
-      en: "Portfolio, taste, scope level and better-qualified projects.",
-    },
-  },
-  {
-    pageId: "private-clinic-websites",
-    label: {
-      fr: "Cliniques privées",
-      en: "Private clinics",
-    },
-    hoverImage: "/landing/clinic-hero.webp",
-    body: {
-      fr: "Parcours patient, praticiens, soins et rendez-vous rassurants.",
-      en: "Patient journey, practitioners, treatments and reassuring bookings.",
-    },
-  },
-  {
-    pageId: "wealth-management-websites",
-    hoverImage: "/landing/wealth-management-hover.webp",
-    label: {
-      fr: "Gestion de patrimoine",
-      en: "Wealth management",
-    },
-    body: {
-      fr: "Confiance, pédagogie, discrétion et clients patrimoniaux.",
-      en: "Trust, education, discretion and wealth clients.",
-    },
-  },
-  {
     pageId: "premium-real-estate-websites",
     label: {
       fr: "Immobilier premium",
@@ -1265,15 +1411,15 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
     },
   },
   {
-    pageId: "expert-recruitment-websites",
+    pageId: "expert-b2b-agency-websites",
+    hoverImage: "/landing/b2b-agency-hover.webp",
     label: {
-      fr: "Recrutement expert",
-      en: "Expert recruitment",
+      fr: "Agences B2B expertes",
+      en: "Expert B2B agencies",
     },
-    hoverImage: "/landing/expert-recruitment-hover.webp",
     body: {
-      fr: "Executive search, spécialisation, crédibilité candidat et client.",
-      en: "Executive search, specialization, candidate and client credibility.",
+      fr: "Branding, vidéo, RP, études, revenue operations ou stratégie.",
+      en: "Branding, video, PR, research, revenue operations or strategy.",
     },
   },
   {
@@ -1289,15 +1435,51 @@ export const EXPERT_SERVICE_ICPS: ReadonlyArray<{
     },
   },
   {
-    pageId: "expert-b2b-agency-websites",
-    hoverImage: "/landing/b2b-agency-hover.webp",
+    pageId: "architecture-studio-websites",
     label: {
-      fr: "Agences B2B expertes",
-      en: "Expert B2B agencies",
+      fr: "Architectes",
+      en: "Architects",
     },
+    hoverImage: "/landing/architectes-hover.webp",
     body: {
-      fr: "Branding, vidéo, RP, études, revenue operations ou stratégie.",
-      en: "Branding, video, PR, research, revenue operations or strategy.",
+      fr: "Portfolio, goût, niveau de mission et projets mieux qualifiés.",
+      en: "Portfolio, taste, scope level and better-qualified projects.",
+    },
+  },
+  {
+    pageId: "accounting-firm-websites",
+    label: {
+      fr: "Experts-comptables",
+      en: "Accounting firms",
+    },
+    hoverImage: "/landing/experts-comptables-hover.webp",
+    body: {
+      fr: "Conseil, fiscalité, CFO-as-a-service et montée en gamme.",
+      en: "Advisory, tax, CFO-as-a-service and upmarket positioning.",
+    },
+  },
+  {
+    pageId: "expert-recruitment-websites",
+    label: {
+      fr: "Recrutement expert",
+      en: "Expert recruitment",
+    },
+    hoverImage: "/landing/expert-recruitment-hover.webp",
+    body: {
+      fr: "Executive search, spécialisation, crédibilité candidat et client.",
+      en: "Executive search, specialization, candidate and client credibility.",
+    },
+  },
+  {
+    pageId: "private-clinic-websites",
+    label: {
+      fr: "Cliniques privées",
+      en: "Private clinics",
+    },
+    hoverImage: "/landing/clinic-hero.webp",
+    body: {
+      fr: "Parcours patient, praticiens, soins et rendez-vous rassurants.",
+      en: "Patient journey, practitioners, treatments and reassuring bookings.",
     },
   },
 ];
