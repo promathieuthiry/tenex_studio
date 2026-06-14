@@ -8,7 +8,7 @@ const COPY = {
   fr: {
     eyebrow: '(404) PAGE INTROUVABLE',
     title: 'Cette page n’existe pas.',
-    body: 'Le lien est cassé ou la page a été déplacée. Revenez à l’accueil ou écrivez-nous — on vous oriente.',
+    body: 'Le lien est cassé ou la page a été déplacée. Revenez à l’accueil ou écrivez-nous, on vous oriente.',
     primary: 'Retour à l’accueil',
     primaryHref: '/',
     secondary: 'Parlons-en',
@@ -17,7 +17,7 @@ const COPY = {
   en: {
     eyebrow: '(404) NOT FOUND',
     title: 'This page does not exist.',
-    body: 'The link is broken or the page moved. Head back home or get in touch — we’ll point you the right way.',
+    body: 'The link is broken or the page moved. Head back home or get in touch, we will point you the right way.',
     primary: 'Back to home',
     primaryHref: '/en/',
     secondary: 'Get in touch',

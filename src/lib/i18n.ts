@@ -12,7 +12,7 @@ export function isLocale(value: unknown): value is Locale {
 }
 
 export const OG_LOCALE: Readonly<Record<Locale, string>> = {
-  fr: 'fr_CA',
+  fr: 'fr_FR',
   en: 'en_US',
 } as const
 

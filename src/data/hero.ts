@@ -32,16 +32,16 @@ export const HERO: HeroCopy = {
     en: "With Tenex Studio.",
   },
   monogramTagline: {
-    fr: "Dix fois le levier.",
-    en: "Ten times the leverage.",
+    fr: "Dix fois l’impact.",
+    en: "Ten times the output.",
   },
   headline: {
     fr: "Sites web sur mesure.",
     en: "Custom websites.",
   },
   subheadline: {
-    fr: "Nous accompagnons les entrepreneurs pour créer un site web unique, avec une identité forte qui vous démarque: 10× plus personnalisé, 0 slop IA.",
-    en: "We work alongside entrepreneurs to craft a one-of-a-kind website with a strong identity that sets you apart: 10× more personalized, 0 AI slop.",
+    fr: "Nous créons des sites web premium pour cabinets, studios et sociétés de conseil dont l’expertise doit inspirer confiance avant le premier échange.",
+    en: "We build premium custom websites for firms, studios and consultancies whose expertise needs to build trust before the first call.",
   },
   status: {
     fr: "Studio ouvert · 2026",

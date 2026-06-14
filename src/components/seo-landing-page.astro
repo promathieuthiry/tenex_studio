@@ -1,0 +1,12 @@
+---
+import type { Locale } from "@/lib/i18n";
+import { type SeoLandingPage } from "@/data/seo-landing-pages";
+import { SeoLandingExperience } from "@/components/SeoLandingExperience";
+
+const { page, locale } = Astro.props as {
+  page: SeoLandingPage;
+  locale: Locale;
+};
+---
+
+<SeoLandingExperience client:load page={page} locale={locale} />

@@ -20,6 +20,7 @@ Nantes-based:
 - [Polara Studio](https://www.polarastudio.fr/)
 - [Operation Nation](https://operationnation.co/)
 - [Ginger Minds](https://www.gingerminds.fr/agence/equipe/)
+- [L'atelier conception web](https://www.latelier-conceptionweb.com/)
 
 ### Awwwards
 

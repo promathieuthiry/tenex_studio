@@ -1,0 +1,25 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SeoLandingPageView from "@/components/seo-landing-page.astro";
+import {
+  SEO_LANDING_PAGES,
+  type SeoLandingPage,
+} from "@/data/seo-landing-pages";
+import { buildSeoLandingPageSeo } from "@/lib/seo";
+
+export function getStaticPaths() {
+  return SEO_LANDING_PAGES.map((page) => ({
+    params: { slug: page.slug.fr },
+    props: { page },
+  }));
+}
+
+const locale = "fr" as const;
+const { page } = Astro.props as { page: SeoLandingPage };
+const seo = buildSeoLandingPageSeo(page, locale);
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <SeoLandingPageView page={page} locale={locale} />
+</BaseLayout>
+

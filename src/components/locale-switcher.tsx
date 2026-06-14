@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 
 import type { Locale } from "@/lib/i18n";
 import { SWITCHER_LABEL } from "@/data/nav";
+import {
+  SEO_LANDING_PAGES,
+  seoLandingPath,
+} from "@/data/seo-landing-pages";
+
+const LANDING_PATHS = new Map(
+  SEO_LANDING_PAGES.flatMap((page) => [
+    [seoLandingPath(page, "fr"), seoLandingPath(page, "en")],
+    [seoLandingPath(page, "en"), seoLandingPath(page, "fr")],
+  ]),
+);
 
 function useCurrentPathname(fallback: string): string {
   const [pathname, setPathname] = useState(fallback);
@@ -20,6 +31,8 @@ function canonicalPath(pathname: string): string {
 }
 
 function equivalentPath(pathname: string, target: Locale): string {
+  const mappedPath = LANDING_PATHS.get(pathname);
+  if (mappedPath) return mappedPath;
   const canonical = canonicalPath(pathname);
   if (target === "fr") return canonical;
   return canonical === "/" ? "/en/" : `/en${canonical}`;

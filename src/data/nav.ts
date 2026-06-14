@@ -8,6 +8,11 @@ export type NavLink = Readonly<{
 
 export const NAV_LINKS: ReadonlyArray<NavLink> = [
   {
+    id: "custom-websites",
+    label: { fr: "Sites web sur mesure", en: "Custom websites" },
+    href: { fr: "/sites-web-sur-mesure/", en: "/en/custom-websites/" },
+  },
+  {
     id: "services",
     label: { fr: "Services", en: "Services" },
     href: { fr: "/#services", en: "/en/#services" },

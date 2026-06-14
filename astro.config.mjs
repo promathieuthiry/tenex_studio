@@ -6,12 +6,17 @@ import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
 import { SITE_ORIGIN } from './src/lib/site.ts';
+import { SEO_LANDING_PAGES, seoLandingPath } from './src/data/seo-landing-pages.ts';
 
 const sitemapAlternates = new Map(
   [
     ['/', '/en/'],
     ['/mathieu/', '/en/mathieu/'],
     ['/mentions-legales/', '/en/legal-notice/'],
+    ...SEO_LANDING_PAGES.map((page) => [
+      seoLandingPath(page, 'fr'),
+      seoLandingPath(page, 'en'),
+    ]),
   ].flatMap(([fr, en]) => {
     const links = [
       { lang: 'fr-FR', url: `${SITE_ORIGIN}${fr}` },

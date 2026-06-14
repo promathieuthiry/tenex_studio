@@ -101,11 +101,11 @@ export function RevealText({
         ref.current = node;
       }}
       className={className}
+      aria-label={text}
       variants={container}
       initial="hidden"
       animate={shown ? "show" : "hidden"}
     >
-      <span className="sr-only">{text}</span>
       {words.map((word, wi) => (
         <Fragment key={`${word}-${wi}`}>
           <span

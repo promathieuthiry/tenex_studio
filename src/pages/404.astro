@@ -11,9 +11,10 @@ const seo = {
   canonical: '/404/',
   ogLocale: OG_LOCALE[locale],
   hreflang: { fr: '/', en: '/en/', 'x-default': '/' },
+  robots: 'noindex, follow',
 };
 ---
 
 <BaseLayout locale={locale} seo={seo}>
-  <NotFound client:only="react" />
+  <NotFound client:load />
 </BaseLayout>
