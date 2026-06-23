@@ -10,6 +10,7 @@ Design references saved as inspiration sources:
 
 - [Monod (Framer)](https://monod.framer.website/)
 - [Omnerat (Webflow)](https://omnerat-template.webflow.io/)
+- [Bluestartagency](https://blue-star-agency.fr/#services)
 
 ## Competitors
 
