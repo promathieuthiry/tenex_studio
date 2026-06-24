@@ -13,6 +13,8 @@ const {
   hreflang,
   robots,
   jsonLd,
+  ogType,
+  article,
 } = Astro.props as SeoProps;
 
 const canonicalUrl = `${SITE_ORIGIN}${canonical}`;
@@ -38,7 +40,17 @@ const imageAlt = ogImageAlt ?? title;
   href={`${SITE_ORIGIN}${hreflang['x-default']}`}
 />
 
-<meta property="og:type" content="website" />
+<meta property="og:type" content={ogType ?? "website"} />
+{article && (
+  <>
+    <meta property="article:published_time" content={article.publishedTime} />
+    <meta property="article:modified_time" content={article.modifiedTime} />
+    <meta property="article:author" content={article.author} />
+    {article.section && (
+      <meta property="article:section" content={article.section} />
+    )}
+  </>
+)}
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalUrl} />

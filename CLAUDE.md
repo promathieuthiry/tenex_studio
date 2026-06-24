@@ -133,9 +133,10 @@ Key tokens (all in `src/styles/global.css` `@theme`):
 **Adding a blog post:**
 
 1. Create `src/content/blog/fr/<slug>.mdx` and `src/content/blog/en/<slug>.mdx` (same filename).
-2. Fill frontmatter per the schema in `src/content.config.ts` (title, date, excerpt, cover, category, author, authorRole) — localized per file.
-3. Write the body in Markdown. No em dashes, no banned words (voice rules apply to both languages).
-4. Verify the article renders at `/blog/<slug>` and `/en/blog/<slug>`.
+2. Fill frontmatter per the schema in `src/content.config.ts` (title, date, excerpt, cover, category, author, authorRole, faq) — localized per file. `author` is always `Mathieu Thiry` / role `Fondateur` (FR) · `Founder` (EN); the article schema links it to the `/mathieu` Person entity. Set `updated` only when re-editing a published post (drives `dateModified`).
+3. Every post MUST ship a `faq` array (min 1, localized) — it renders a visible Q&A block and emits FAQPage JSON-LD for SEO/GEO. No em dashes, no banned words (voice rules apply to questions and answers too).
+4. Write the body in Markdown.
+5. Verify the article renders at `/blog/<slug>` and `/en/blog/<slug>`, including the FAQ section.
 
 **Editing copy:**
 

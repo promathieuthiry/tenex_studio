@@ -33,7 +33,7 @@ export function Footer({ locale }: { locale: Locale }) {
               className={`inline-flex shrink-0 self-start ${LINK}`}
             >
               <img
-                src="/brand/tenex-mark-inverse.svg"
+                src="/brand/tenex-mark-light.svg"
                 alt="Tenex Studio"
                 className="h-7 w-auto md:h-8"
               />

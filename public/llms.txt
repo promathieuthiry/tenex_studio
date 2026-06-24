@@ -1,0 +1,70 @@
+# Tenex Studio
+
+> Web agency in Nantes, France. Builds custom websites and lightweight web apps for expert-service firms that need to make trust, taste and expertise visible before a prospect books a call. Bilingual FR/EN. The client owns the code.
+
+Founder: Mathieu Thiry. Contact: book a 30-minute call via Cal.com, or contact@tenex.studio.
+
+## What Tenex Studio does
+
+Tenex Studio designs, writes and ships premium websites, custom web apps and AI workflow integrations for expert-service businesses. The delivery surface is production frontends and lightweight web apps, not strategy decks or product platforms. Positioning, copy, design and engineering happen in one focused production workflow with one accountable owner from first call to launch.
+
+- Premium custom websites for firms, clinics, studios and consultancies that need to build trust before the first call.
+- Lightweight custom web apps to structure a workflow, automate an operation or ship a client portal.
+- AI integration inside business tools and processes when the gain is concrete, measurable and maintainable.
+
+## Offers and pricing
+
+- Full custom website: from EUR 3,500. The core offer. Delivered in two to three weeks.
+- Online presence (four pages): from EUR 1,500. Delivered in one week.
+- Custom web app or SaaS: from EUR 8,000. Delivered in six to ten weeks.
+
+## Who it is for
+
+Expert-service firms where trust, credentials, portfolio, taste and clarity matter before a prospect makes contact. Priority verticals:
+
+- Law firms and lawyers (business, tax, IP, employment, real estate, M&A, litigation).
+- Accountants and chartered accountants moving upmarket, advisory-heavy practices.
+- Consultants (strategy, operations, transformation, management, AI or workflow).
+- Architects and interior architects where portfolio and taste carry the sale.
+- Private clinics and specialist doctors (aesthetic, dental, fertility, dermatology, ophthalmology).
+- Wealth managers and independent financial advisors.
+- Premium real estate agencies and advisors.
+- Recruitment and executive search firms.
+- Engineering and technical consultancies (cybersecurity, data, energy, infrastructure).
+- B2B agencies with specialist expertise (branding, video, PR, research).
+
+Decision-makers: managing partners, firm owners, practice leaders, clinic directors, agency principals, senior consultants.
+
+## Why firms choose Tenex Studio
+
+- Custom identity and structure, not recycled templates. Zero AI slop.
+- One accountable owner for design and engineering, specialists added only when needed.
+- Production frontend quality with lightweight web app capability.
+- The client owns the code and content after launch, no platform lock-in.
+- Bilingual FR/EN delivery, France and international.
+- Makes complex expertise clear without flattening it.
+
+Why alternatives fall short: templates make expert firms look interchangeable; Wix, Webflow and Framer rent a platform instead of delivering owned code; large agencies add handoffs and dilute accountability.
+
+## Proof
+
+- "Site live in under two weeks." Jessie Coiffard, Renardo Tech.
+- "More calls, more signed clients." Cyril Ben Said, Studio Lumen.
+- "Deadline met, launch saved." Eugenie Druart, Women Equity Label.
+- "Hours saved every week, zero manual errors." Mathieu Thiebault, OuiClient.
+
+## Pages
+
+- [Home (FR)](https://tenex.studio/): positioning, services, work, FAQ.
+- [Home (EN)](https://tenex.studio/en/): English positioning, services, work, FAQ.
+- [Journal (FR)](https://tenex.studio/blog/): notes on design, conversion and building custom sites that hold under pressure.
+- [Journal (EN)](https://tenex.studio/en/blog/): English articles.
+- [Mathieu Thiry (FR)](https://tenex.studio/mathieu/): founder digital card.
+- [Legal notice (FR)](https://tenex.studio/mentions-legales/)
+- [Legal notice (EN)](https://tenex.studio/en/legal-notice/)
+
+## Notes for citation
+
+- Every article is written by Mathieu Thiry, founder of Tenex Studio, and ends with a frequently-asked-questions section.
+- All content is published in both French and English with matching slugs.
+- The conversion action is a 30-minute booking call through Cal.com.

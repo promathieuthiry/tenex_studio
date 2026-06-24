@@ -26,6 +26,23 @@ export type SeoProps = {
   hreflang: { fr: string; en: string; 'x-default': string }
   robots?: string
   jsonLd?: string
+  ogType?: 'website' | 'article'
+  article?: {
+    publishedTime: string
+    modifiedTime: string
+    author: string
+    section?: string
+  }
+}
+
+const PERSON_ID = `${SITE_ORIGIN}/mathieu/#person`
+
+const authorPerson = {
+  '@type': 'Person',
+  '@id': PERSON_ID,
+  name: 'Mathieu Thiry',
+  url: `${SITE_ORIGIN}/mathieu/`,
+  sameAs: [FOOTER.linkedin],
 }
 
 const HREFLANG = { fr: '/', en: '/en/', 'x-default': '/' } as const
@@ -213,19 +230,67 @@ export function buildArticleSeo(
   const businessId = `${SITE_ORIGIN}/#business`
   const canonicalUrl = `${SITE_ORIGIN}${canonical}`
 
-  const jsonLd = JSON.stringify({
-    '@context': 'https://schema.org',
+  const publishedTime = entry.data.date.toISOString().slice(0, 10)
+  const modifiedTime = (entry.data.updated ?? entry.data.date)
+    .toISOString()
+    .slice(0, 10)
+  const blogLabel = locale === 'fr' ? 'Journal' : 'Journal'
+
+  const article = {
     '@type': 'BlogPosting',
     '@id': `${canonicalUrl}#article`,
     headline: entry.data.title,
     description: entry.data.excerpt,
-    datePublished: entry.data.date.toISOString().slice(0, 10),
+    datePublished: publishedTime,
+    dateModified: modifiedTime,
     image: `${SITE_ORIGIN}${entry.data.cover}`,
     inLanguage: langTag,
     url: canonicalUrl,
-    author: { '@type': 'Person', name: entry.data.author },
+    author: { '@id': PERSON_ID },
     publisher: { '@id': businessId },
     mainEntityOfPage: canonicalUrl,
+    articleSection: entry.data.category,
+  }
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Tenex Studio',
+        item: `${SITE_ORIGIN}${pathFor(locale)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: blogLabel,
+        item: `${SITE_ORIGIN}${pathFor(locale, '/blog')}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: entry.data.title,
+        item: canonicalUrl,
+      },
+    ],
+  }
+
+  const faqPage = {
+    '@type': 'FAQPage',
+    '@id': `${canonicalUrl}#faq`,
+    inLanguage: langTag,
+    mainEntity: entry.data.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [article, authorPerson, breadcrumb, faqPage],
   })
 
   return {
@@ -242,6 +307,13 @@ export function buildArticleSeo(
       'x-default': `/blog/${slug}/`,
     },
     jsonLd,
+    ogType: 'article',
+    article: {
+      publishedTime,
+      modifiedTime,
+      author: 'Mathieu Thiry',
+      section: entry.data.category,
+    },
   }
 }
 
