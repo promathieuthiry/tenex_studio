@@ -1,0 +1,9 @@
+---
+const props = Astro.props;
+---
+<li
+  {...props}
+  class="relative pl-5 font-sans text-base leading-7 text-ink/75 before:absolute before:left-0 before:top-3 before:h-px before:w-3 before:bg-ink/30"
+>
+  <slot />
+</li>

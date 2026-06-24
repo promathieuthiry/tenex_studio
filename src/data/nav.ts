@@ -27,6 +27,11 @@ export const NAV_LINKS: ReadonlyArray<NavLink> = [
     label: { fr: "Tarifs", en: "Pricing" },
     href: { fr: "/#pricing", en: "/en/#pricing" },
   },
+  {
+    id: "blog",
+    label: { fr: "Blog", en: "Blog" },
+    href: { fr: "/blog/", en: "/en/blog/" },
+  },
 ] as const;
 
 export const TALK_PILL: Readonly<{

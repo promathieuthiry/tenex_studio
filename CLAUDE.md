@@ -59,14 +59,16 @@ Cible définie par le **moment**, pas par l'industrie. Garde le positionnement p
 ```text
 src/
 ├── components/     # .astro + .tsx components, one component per file
+├── content/        # blog/ — MDX content collection, locale subfolders (fr/, en/)
+├── content.config.ts  # collection schemas (blog)
 ├── data/           # bilingual content as TS modules (services, faq, work, etc.)
 ├── layouts/        # BaseLayout.astro
-├── lib/            # i18n helpers, pure utilities
-├── pages/          # / (FR), /en/ (EN), /mentions-legales, /en/legal-notice, /404
+├── lib/            # i18n helpers, pure utilities (blog.ts query helpers)
+├── pages/          # / (FR), /en/ (EN), /blog, /mentions-legales, /en/legal-notice, /404
 └── styles/         # global.css — Tailwind v4 @theme tokens
 ```
 
-**Content lives in `src/data/*.ts`** as typed bilingual records. Astro Content Collections (MDX) is the **planned** path for blog/case studies — not yet wired. When adding long-form content, propose the migration first; don't quietly introduce a new pattern.
+**Short structured content lives in `src/data/*.ts`** as typed bilingual records (services, faq, work, etc.). **Long-form blog content lives in MDX content collections** under `src/content/blog/{fr,en}/<slug>.mdx` — one file per locale, shared filename = shared slug. Query via `src/lib/blog.ts` (`postsForLocale`, `relatedPosts`, `postSlug`); render with `render(entry)` + the `proseComponents` map (`src/components/article-prose.ts`). Frontmatter validated by the zod schema in `src/content.config.ts`. New post = drop matching `fr/` + `en/` files; no code change. Case studies are still TS-data; if migrated to a collection, follow the same pattern.
 
 ## i18n (locked)
 
@@ -115,7 +117,7 @@ Key tokens (all in `src/styles/global.css` `@theme`):
 
 - Modifying `DESIGN.md`, `astro.config.mjs` (i18n, fonts, adapter), or `tsconfig.json`
 - Adding npm dependencies
-- Migrating content from `src/data/*.ts` to Content Collections
+- Migrating remaining content (case studies, etc.) from `src/data/*.ts` to Content Collections (blog already migrated)
 - Restructuring routes or locale strategy
 - Anything that touches `.vercel/` or production env
 
@@ -128,9 +130,17 @@ Key tokens (all in `src/styles/global.css` `@theme`):
 3. Wire into `src/components/HomeView.astro` (or relevant view)
 4. Verify FR and EN both render
 
+**Adding a blog post:**
+
+1. Create `src/content/blog/fr/<slug>.mdx` and `src/content/blog/en/<slug>.mdx` (same filename).
+2. Fill frontmatter per the schema in `src/content.config.ts` (title, date, excerpt, cover, category, author, authorRole) — localized per file.
+3. Write the body in Markdown. No em dashes, no banned words (voice rules apply to both languages).
+4. Verify the article renders at `/blog/<slug>` and `/en/blog/<slug>`.
+
 **Editing copy:**
 
-- Edit the matching `src/data/*.ts` module. Update both `fr` and `en` in the same change.
+- Data-driven sections: edit the matching `src/data/*.ts` module. Update both `fr` and `en` in the same change.
+- Blog posts: edit the matching `src/content/blog/{fr,en}/<slug>.mdx` files. Keep both locales in sync.
 
 **Before commit:**
 

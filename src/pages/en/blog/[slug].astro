@@ -1,0 +1,22 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ArticleView from "@/components/article-view.astro";
+import { postsForLocale, postSlug, type BlogEntry } from "@/lib/blog";
+import { buildArticleSeo } from "@/lib/seo";
+
+export async function getStaticPaths() {
+  const posts = await postsForLocale("en");
+  return posts.map((entry) => ({
+    params: { slug: postSlug(entry) },
+    props: { entry },
+  }));
+}
+
+const locale = "en" as const;
+const { entry } = Astro.props as { entry: BlogEntry };
+const seo = buildArticleSeo(entry, locale);
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <ArticleView entry={entry} locale={locale} />
+</BaseLayout>

@@ -151,6 +151,100 @@ export function buildHomeSeo(locale: Locale): SeoProps {
   }
 }
 
+const BLOG_HREFLANG = {
+  fr: '/blog/',
+  en: '/en/blog/',
+  'x-default': '/blog/',
+} as const
+
+const blogSeo: Bilingual<{ title: string; description: string }> = {
+  fr: {
+    title: 'Journal — Tenex Studio',
+    description:
+      'Notes sur le design, la conversion et la construction de sites web sur mesure qui tiennent sous pression.',
+  },
+  en: {
+    title: 'Journal — Tenex Studio',
+    description:
+      'Notes on design, conversion, and building custom websites that hold under pressure.',
+  },
+}
+
+export function buildBlogSeo(locale: Locale): SeoProps {
+  const { title, description } = blogSeo[locale]
+  const canonical = pathFor(locale, '/blog')
+  const alternate: Locale = locale === 'fr' ? 'en' : 'fr'
+  const langTag = locale === 'fr' ? 'fr-FR' : 'en'
+  const businessId = `${SITE_ORIGIN}/#business`
+  const canonicalUrl = `${SITE_ORIGIN}${canonical}`
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${canonicalUrl}#blog`,
+    name: title,
+    description,
+    url: canonicalUrl,
+    inLanguage: langTag,
+    publisher: { '@id': businessId },
+  })
+
+  return {
+    title,
+    description,
+    canonical,
+    ogLocale: OG_LOCALE[locale],
+    ogLocaleAlternate: OG_LOCALE[alternate],
+    ogImage: `/og/og-${locale}.jpg`,
+    ogImageAlt: title,
+    hreflang: BLOG_HREFLANG,
+    jsonLd,
+  }
+}
+
+export function buildArticleSeo(
+  entry: import('@/lib/blog').BlogEntry,
+  locale: Locale,
+): SeoProps {
+  const slug = entry.id.split('/').slice(1).join('/')
+  const canonical = pathFor(locale, `/blog/${slug}`)
+  const alternate: Locale = locale === 'fr' ? 'en' : 'fr'
+  const langTag = locale === 'fr' ? 'fr-FR' : 'en'
+  const businessId = `${SITE_ORIGIN}/#business`
+  const canonicalUrl = `${SITE_ORIGIN}${canonical}`
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${canonicalUrl}#article`,
+    headline: entry.data.title,
+    description: entry.data.excerpt,
+    datePublished: entry.data.date.toISOString().slice(0, 10),
+    image: `${SITE_ORIGIN}${entry.data.cover}`,
+    inLanguage: langTag,
+    url: canonicalUrl,
+    author: { '@type': 'Person', name: entry.data.author },
+    publisher: { '@id': businessId },
+    mainEntityOfPage: canonicalUrl,
+  })
+
+  return {
+    title: `${entry.data.title} — Tenex Studio`,
+    description: entry.data.excerpt,
+    canonical,
+    ogLocale: OG_LOCALE[locale],
+    ogLocaleAlternate: OG_LOCALE[alternate],
+    ogImage: entry.data.cover,
+    ogImageAlt: entry.data.title,
+    hreflang: {
+      fr: `/blog/${slug}/`,
+      en: `/en/blog/${slug}/`,
+      'x-default': `/blog/${slug}/`,
+    },
+    jsonLd,
+  }
+}
+
 export function buildDigitalCardSeo(locale: Locale): SeoProps {
   const { title, description, ogImageAlt } = digitalCardSeo[locale]
   const canonical = pathFor(locale, '/mathieu')

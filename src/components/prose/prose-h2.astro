@@ -1,0 +1,9 @@
+---
+const props = Astro.props;
+---
+<h2
+  {...props}
+  class="mt-12 font-display text-2xl leading-[1.1] tracking-[-0.02em] text-ink first:mt-0 md:text-3xl"
+>
+  <slot />
+</h2>
