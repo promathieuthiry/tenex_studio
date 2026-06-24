@@ -1,17 +1,24 @@
 import type { Bilingual } from "@/data/_types";
 
-export type NavLink = Readonly<{
+export type NavLeaf = Readonly<{
   id: string;
   label: Bilingual;
   href: Bilingual | null;
+  description?: Bilingual;
 }>;
 
-export const NAV_LINKS: ReadonlyArray<NavLink> = [
-  {
-    id: "custom-websites",
-    label: { fr: "Sites web sur mesure", en: "Custom websites" },
-    href: { fr: "/sites-web-sur-mesure/", en: "/en/custom-websites/" },
-  },
+export type NavGroup = Readonly<{
+  id: string;
+  label: Bilingual;
+  children: ReadonlyArray<NavLeaf>;
+}>;
+
+export type NavItem = NavLeaf | NavGroup;
+
+export const isNavGroup = (item: NavItem): item is NavGroup =>
+  "children" in item;
+
+export const NAV_LINKS: ReadonlyArray<NavItem> = [
   {
     id: "services",
     label: { fr: "Services", en: "Services" },
@@ -28,9 +35,28 @@ export const NAV_LINKS: ReadonlyArray<NavLink> = [
     href: { fr: "/#pricing", en: "/en/#pricing" },
   },
   {
-    id: "blog",
-    label: { fr: "Blog", en: "Blog" },
-    href: { fr: "/blog/", en: "/en/blog/" },
+    id: "ressources",
+    label: { fr: "Ressources", en: "Resources" },
+    children: [
+      {
+        id: "custom-websites",
+        label: { fr: "Sites web sur mesure", en: "Custom websites" },
+        href: { fr: "/sites-web-sur-mesure/", en: "/en/custom-websites/" },
+        description: {
+          fr: "Notre approche du site complet sur mesure.",
+          en: "Our approach to the full custom website.",
+        },
+      },
+      {
+        id: "blog",
+        label: { fr: "Blog", en: "Blog" },
+        href: { fr: "/blog/", en: "/en/blog/" },
+        description: {
+          fr: "Réflexions sur le métier et la conversion.",
+          en: "Thoughts on the craft and conversion.",
+        },
+      },
+    ],
   },
 ] as const;
 

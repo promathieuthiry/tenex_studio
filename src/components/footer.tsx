@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { Locale } from "@/lib/i18n";
 import { RevealText } from "@/components/ui/reveal-text";
 import { FOOTER } from "@/data/footer";
-import { NAV_LINKS } from "@/data/nav";
+import { NAV_LINKS, isNavGroup, type NavLeaf } from "@/data/nav";
 
 const LINK = "transition-opacity duration-200 ease-out hover:opacity-60";
 const HEADING = "font-mono text-xs uppercase tracking-[0.12em] text-paper/40";
@@ -75,7 +75,9 @@ export function Footer({ locale }: { locale: Locale }) {
             className="flex flex-col gap-3"
           >
             <p className={HEADING}>{FOOTER.navHeading[locale]}</p>
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.flatMap<NavLeaf>((link) =>
+              isNavGroup(link) ? [...link.children] : [link],
+            ).map((link) => (
               <a
                 key={link.id}
                 href={link.href?.[locale] ?? homeHref}

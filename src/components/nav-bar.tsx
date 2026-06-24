@@ -17,16 +17,26 @@ import {
   NAV_LINKS,
   TALK_PILL,
   WORDMARK,
+  isNavGroup,
+  type NavLeaf,
 } from "@/data/nav";
 import { LocaleSwitcher } from "./locale-switcher";
 import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
 
 const REVEAL_THRESHOLD = 80;
 const DELTA = 6;
 
 const GLASS_PILL =
-  "relative overflow-hidden rounded-lg bg-paper/40 backdrop-blur-2xl backdrop-saturate-150 before:pointer-events-none before:absolute before:inset-0 before:rounded-lg before:bg-[linear-gradient(135deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0)_55%,rgba(255,255,255,0.2)_100%)] before:opacity-80 before:mix-blend-overlay";
+  "relative rounded-lg bg-paper/40 backdrop-blur-2xl backdrop-saturate-150 before:pointer-events-none before:absolute before:inset-0 before:rounded-lg before:bg-[linear-gradient(135deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.1)_45%,rgba(255,255,255,0)_55%,rgba(255,255,255,0.2)_100%)] before:opacity-80 before:mix-blend-overlay";
 
 export function NavBar({ locale }: { locale: Locale }) {
   const homeHref = locale === "fr" ? "/" : "/en/";
@@ -147,6 +157,45 @@ export function NavBar({ locale }: { locale: Locale }) {
     ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
     : { hidden: { y: "110%" }, visible: { y: 0 } };
 
+  const renderOverlayLeaf = (leaf: NavLeaf) => {
+    const href = leaf.href?.[locale];
+    const reveal = (
+      <span className="block overflow-hidden">
+        <motion.span
+          variants={revealItem}
+          transition={{
+            duration: reduceMotion ? 0 : 0.4,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="block"
+        >
+          {leaf.label[locale]}
+        </motion.span>
+      </span>
+    );
+    if (!href) {
+      return (
+        <span
+          key={leaf.id}
+          aria-disabled="true"
+          className="block border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink/30 text-4xl"
+        >
+          {reveal}
+        </span>
+      );
+    }
+    return (
+      <a
+        key={leaf.id}
+        href={href}
+        onClick={(event) => handleOverlayLink(event, href)}
+        className="block border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink text-4xl transition hover:text-accent"
+      >
+        {reveal}
+      </a>
+    );
+  };
+
   return (
     <>
       <motion.header
@@ -176,35 +225,82 @@ export function NavBar({ locale }: { locale: Locale }) {
             </span>
           </a>
 
-          <nav
+          <NavigationMenu
             aria-label={NAV_LANDMARK[locale]}
-            className="relative z-10 hidden items-center gap-7 md:flex"
+            className="relative z-10 hidden md:block"
+            delayDuration={80}
           >
-            {NAV_LINKS.map((link) => {
-              const href = link.href?.[locale];
-              if (!href) {
+            <NavigationMenuList className="flex items-center gap-7">
+              {NAV_LINKS.map((link) => {
+                if (isNavGroup(link)) {
+                  return (
+                    <NavigationMenuItem key={link.id} className="relative">
+                      <NavigationMenuTrigger>
+                        {link.label[locale]}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="flex flex-col gap-1">
+                          {link.children.map((child) => {
+                            const childHref = child.href?.[locale];
+                            if (!childHref) return null;
+                            return (
+                              <li key={child.id}>
+                                <NavigationMenuLink asChild>
+                                  <a
+                                    href={childHref}
+                                    onClick={(event) =>
+                                      handleHashClick(event, childHref)
+                                    }
+                                    className="block rounded-md px-3 py-2.5 transition hover:bg-ink/5"
+                                  >
+                                    <span className="block font-sans font-semibold text-sm text-ink">
+                                      {child.label[locale]}
+                                    </span>
+                                    {child.description ? (
+                                      <span className="mt-0.5 block font-sans text-xs leading-snug text-ink/55">
+                                        {child.description[locale]}
+                                      </span>
+                                    ) : null}
+                                  </a>
+                                </NavigationMenuLink>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  );
+                }
+
+                const href = link.href?.[locale];
+                if (!href) {
+                  return (
+                    <NavigationMenuItem key={link.id}>
+                      <span
+                        aria-disabled="true"
+                        className="font-sans font-semibold text-sm text-ink/40"
+                      >
+                        {link.label[locale]}
+                      </span>
+                    </NavigationMenuItem>
+                  );
+                }
                 return (
-                  <span
-                    key={link.id}
-                    aria-disabled="true"
-                    className="relative z-10 font-sans font-semibold text-sm text-ink/40"
-                  >
-                    {link.label[locale]}
-                  </span>
+                  <NavigationMenuItem key={link.id}>
+                    <NavigationMenuLink asChild>
+                      <a
+                        href={href}
+                        onClick={(event) => handleHashClick(event, href)}
+                        className="font-sans font-semibold text-sm text-ink transition hover:opacity-70"
+                      >
+                        {link.label[locale]}
+                      </a>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
                 );
-              }
-              return (
-                <a
-                  key={link.id}
-                  href={href}
-                  onClick={(event) => handleHashClick(event, href)}
-                  className="relative z-10 font-sans font-semibold text-sm text-ink transition hover:opacity-70"
-                >
-                  {link.label[locale]}
-                </a>
-              );
-            })}
-          </nav>
+              })}
+            </NavigationMenuList>
+          </NavigationMenu>
 
           <div className="relative z-10 hidden items-center gap-3 md:flex">
             <LocaleSwitcher locale={locale} />
@@ -314,50 +410,17 @@ export function NavBar({ locale }: { locale: Locale }) {
               className="flex flex-1 flex-col justify-center border-t border-ink/10 px-6"
             >
               {NAV_LINKS.map((link) => {
-                const href = link.href?.[locale];
-                if (!href) {
+                if (isNavGroup(link)) {
                   return (
-                    <span
-                      key={link.id}
-                      aria-disabled="true"
-                      className="block border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink/30 text-4xl"
-                    >
-                      <span className="block overflow-hidden">
-                        <motion.span
-                          variants={revealItem}
-                          transition={{
-                            duration: reduceMotion ? 0 : 0.4,
-                            ease: [0.22, 1, 0.36, 1],
-                          }}
-                          className="block"
-                        >
-                          {link.label[locale]}
-                        </motion.span>
-                      </span>
-                    </span>
+                    <div key={link.id}>
+                      <p className="pt-6 font-mono text-xs uppercase tracking-[0.12em] text-ink/40">
+                        {link.label[locale]}
+                      </p>
+                      {link.children.map((child) => renderOverlayLeaf(child))}
+                    </div>
                   );
                 }
-                return (
-                  <a
-                    key={link.id}
-                    href={href}
-                    onClick={(event) => handleOverlayLink(event, href)}
-                    className="block border-b border-ink/10 py-6 font-display font-bold tracking-[-0.03em] text-ink text-4xl transition hover:text-accent"
-                  >
-                    <span className="block overflow-hidden">
-                      <motion.span
-                        variants={revealItem}
-                        transition={{
-                          duration: reduceMotion ? 0 : 0.4,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                        className="block"
-                      >
-                        {link.label[locale]}
-                      </motion.span>
-                    </span>
-                  </a>
-                );
+                return renderOverlayLeaf(link);
               })}
             </motion.nav>
 
