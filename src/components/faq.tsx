@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { Locale } from "@/lib/i18n";
 import { FAQ, FAQ_HEADER, type FAQItem, type FAQLink } from "@/data/faq";
+import type { Bilingual } from "@/data/_types";
 import { SectionHeader } from "@/components/section-header";
 import { BOOK_URL } from "@/lib/book";
 
@@ -120,7 +121,15 @@ function FaqRow({
   );
 }
 
-export function Faq({ locale }: { locale: Locale }) {
+export function Faq({
+  locale,
+  items = FAQ,
+  header = FAQ_HEADER,
+}: {
+  locale: Locale;
+  items?: ReadonlyArray<FAQItem>;
+  header?: Readonly<{ eyebrow: Bilingual; title: Bilingual }>;
+}) {
   const reduced = useReducedMotion() ?? false;
   const [open, setOpen] = useState<ReadonlySet<string>>(new Set());
 
@@ -139,13 +148,13 @@ export function Faq({ locale }: { locale: Locale }) {
     >
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow={FAQ_HEADER.eyebrow[locale]}
-          title={FAQ_HEADER.title[locale]}
+          eyebrow={header.eyebrow[locale]}
+          title={header.title[locale]}
           headingId="faq-heading"
         />
 
         <ul className="mt-16 divide-y divide-ink/10 border-y border-ink/10">
-          {FAQ.map((item, index) => (
+          {items.map((item, index) => (
             <FaqRow
               key={item.number}
               item={item}
