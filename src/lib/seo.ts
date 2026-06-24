@@ -312,7 +312,7 @@ export function buildArticleSeo(
       publishedTime,
       modifiedTime,
       author: 'Mathieu Thiry',
-      section: entry.data.category,
+      section: entry.data.category.join(', '),
     },
   }
 }

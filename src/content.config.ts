@@ -10,7 +10,7 @@ const blog = defineCollection({
     updated: z.coerce.date().optional(),
     excerpt: z.string(),
     cover: z.string(),
-    category: z.string(),
+    category: z.array(z.string()).min(1),
     author: z.string(),
     authorRole: z.string(),
     faq: z

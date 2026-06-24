@@ -99,7 +99,7 @@ const faqItems = entry.data.faq.map((item, index) => ({
             <div class="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/70">
               <time datetime={entry.data.date.toISOString()}>{dateLabel}</time>
               <span class="text-paper/35" aria-hidden="true">/</span>
-              <span>{entry.data.category}</span>
+              <span>{entry.data.category.join(" · ")}</span>
             </div>
           </div>
         </figcaption>

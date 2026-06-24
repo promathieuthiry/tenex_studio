@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n";
 type BlogCardProps = {
   href: string;
   title: string;
-  category: string;
+  category: string[];
   cover: string;
   date: string;
   locale: Locale;
@@ -48,7 +48,7 @@ export function BlogCard({
           <span className="text-ink/25" aria-hidden>
             /
           </span>
-          <span>{category}</span>
+          <span>{category.join(" · ")}</span>
         </div>
 
         <h3 className="font-display text-xl leading-[1.1] tracking-[-0.01em] text-ink transition-opacity duration-300 group-hover:opacity-70 md:text-2xl">
