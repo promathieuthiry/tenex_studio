@@ -4,17 +4,17 @@
 
 **FR.** Tenex Studio est une agence web spécialisée dans la création de sites et applications web sur mesures. Basée à Nantes, nous accompagnons les cabinets, studios, cliniques et sociétés de conseil dont l'expertise doit inspirer confiance avant le premier échange. Notre expertise couvre :
 
-- ✅ Sites web premium
-- ✅ Applications web sur mesure
-- ✅ Intégration d'IA dans les workflows
+- 🎨 Design : démarquez-vous au premier regard
+- 💶 Conversion : transformez vos visiteurs en clients
+- 🔍 Visibilité : soyez trouvé par Google, recommandé par les IA
 
 Notre approche centrée sur le client garantit des solutions 10× plus personnalisées qui répondent à vos besoins spécifiques.
 
 **EN.** Tenex Studio is a web agency specialized in building custom websites and web apps. Based in Nantes, we support firms, studios, clinics and consultancies whose expertise needs to build trust before the first conversation. Our expertise covers:
 
-- ✅ Premium websites
-- ✅ Custom web apps
-- ✅ AI integration into workflows
+- 🎨 Design: stand out at first glance
+- 💶 Conversion: turn visitors into clients
+- 🔍 Visibility: get found on Google, recommended by AI
 
 Our client-centered approach delivers solutions 10× more personalized that meet your specific needs.
 

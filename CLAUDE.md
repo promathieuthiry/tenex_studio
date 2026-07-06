@@ -4,17 +4,17 @@
 
 **FR.** Tenex Studio est une agence web spécialisée dans la création de sites et applications web sur mesures. Basée à Nantes, nous accompagnons les entrepreneurs et entreprises modernes dans leur transformation digitale. Notre expertise couvre :
 
-- ✅ Sites web premium
-- ✅ Applications web sur mesure
-- ✅ Intégration d'IA dans les workflows
+- 🎨 Design : démarquez-vous au premier regard
+- 💶 Conversion : transformez vos visiteurs en clients
+- 🔍 Visibilité : soyez trouvé par Google, recommandé par les IA
 
 Notre approche centrée sur le client garantit des solutions 10× plus personnalisées qui répondent à vos besoins spécifiques.
 
 **EN.** Tenex Studio is a web agency specialized in building custom websites and web apps. Based in Nantes, we support entrepreneurs and modern businesses through their digital transformation. Our expertise covers:
 
-- ✅ Premium websites
-- ✅ Custom web apps
-- ✅ AI integration into workflows
+- 🎨 Design: stand out at first glance
+- 💶 Conversion: turn visitors into clients
+- 🔍 Visibility: get found on Google, recommended by AI
 
 Our client-centered approach delivers solutions 10× more personalized that meet your specific needs.
 
@@ -26,7 +26,7 @@ This repo is the **public marketing site + content engine** (blog, case studies)
 
 Cible définie par le **moment**, pas par l'industrie. Garde le positionnement premium sans enfermer dans une verticale.
 
-**En une ligne :** des fondateurs à un moment décisif (levée, lancement, salon) où le site est *load-bearing* — il gagne ou perd des deals, de l'argent ou de la crédibilité dans les 90 jours.
+**En une ligne :** des fondateurs à un moment décisif (levée, lancement, salon) où le site est _load-bearing_ — il gagne ou perd des deals, de l'argent ou de la crédibilité dans les 90 jours.
 
 - **Offre cœur :** site complet sur mesure, 3 500 €+. Ne jamais ancrer ces acheteurs sur le tier 1 500 €.
 - **Portée :** France + international, FR/EN actif.

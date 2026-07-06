@@ -58,32 +58,32 @@ const CORE_OFFERS: ReadonlyArray<{
 }> = [
   {
     name: {
-      fr: 'Sites web premium sur mesure',
-      en: 'Premium custom websites',
+      fr: 'Design de site web sur mesure',
+      en: 'Custom website design',
     },
     description: {
-      fr: 'Sites web sur mesure pour cabinets, cliniques, studios et sociétés de conseil qui doivent inspirer confiance avant le premier appel.',
-      en: 'Custom websites for firms, clinics, studios and consultancies that need to build trust before the first call.',
+      fr: 'Une interface sur mesure qui vous démarque au premier regard et inspire confiance dès la première seconde.',
+      en: 'A custom interface that stands out at first glance and builds trust from the first second.',
     },
   },
   {
     name: {
-      fr: 'Applications web sur mesure',
-      en: 'Custom web apps',
+      fr: 'Conversion et copywriting',
+      en: 'Conversion and copywriting',
     },
     description: {
-      fr: 'Applications web légères pour structurer un processus, automatiser une opération ou livrer un portail client.',
-      en: 'Lightweight web apps to structure a workflow, automate an operation or ship a client portal.',
+      fr: 'Structure de page et textes pensés pour transformer vos visiteurs en clients.',
+      en: 'Page structure and copy built to turn visitors into clients.',
     },
   },
   {
     name: {
-      fr: 'Intégration IA dans les workflows',
-      en: 'AI workflow integration',
+      fr: 'Référencement et visibilité (SEO, AEO, GEO)',
+      en: 'Search visibility (SEO, AEO, GEO)',
     },
     description: {
-      fr: 'Intégration d’IA dans les outils et processus métier quand le gain est concret, mesurable et maintenable.',
-      en: 'AI integration inside business tools and processes when the gain is concrete, measurable and maintainable.',
+      fr: 'Un site trouvé en haut de Google et recommandé dans les réponses des IA comme ChatGPT.',
+      en: 'A site found at the top of Google and recommended in AI answers like ChatGPT.',
     },
   },
 ] as const
