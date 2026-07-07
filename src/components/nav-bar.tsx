@@ -31,6 +31,13 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
+import { AppWindow, NotebookPen, Wrench, type LucideIcon } from "lucide-react";
+
+const NAV_ICONS: Readonly<Record<string, LucideIcon>> = {
+  "custom-websites": AppWindow,
+  blog: NotebookPen,
+  tools: Wrench,
+};
 
 const REVEAL_THRESHOLD = 80;
 const DELTA = 6;
@@ -243,6 +250,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                           {link.children.map((child) => {
                             const childHref = child.href?.[locale];
                             if (!childHref) return null;
+                            const Icon = NAV_ICONS[child.id];
                             return (
                               <li key={child.id}>
                                 <NavigationMenuLink asChild>
@@ -253,11 +261,19 @@ export function NavBar({ locale }: { locale: Locale }) {
                                     }
                                     className="block rounded-md px-3 py-2.5 transition hover:bg-ink/5"
                                   >
-                                    <span className="block font-sans font-semibold text-sm text-ink">
-                                      {child.label[locale]}
+                                    <span className="flex items-center gap-2">
+                                      {Icon ? (
+                                        <Icon
+                                          aria-hidden="true"
+                                          className="size-4 shrink-0 text-ink/40"
+                                        />
+                                      ) : null}
+                                      <span className="font-sans font-semibold text-sm text-ink">
+                                        {child.label[locale]}
+                                      </span>
                                     </span>
                                     {child.description ? (
-                                      <span className="mt-0.5 block font-sans text-xs leading-snug text-ink/55">
+                                      <span className="mt-0.5 block pl-6 font-sans text-xs leading-snug text-ink/55">
                                         {child.description[locale]}
                                       </span>
                                     ) : null}
