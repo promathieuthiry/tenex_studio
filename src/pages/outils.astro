@@ -1,0 +1,12 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ResourcesIndex from '@/components/resources-index.astro';
+import { buildResourcesSeo } from '@/lib/seo';
+
+const locale = 'fr' as const;
+const seo = buildResourcesSeo(locale);
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <ResourcesIndex locale={locale} />
+</BaseLayout>

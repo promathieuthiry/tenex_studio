@@ -1,0 +1,239 @@
+[
+  {
+    "id": "inspiration",
+    "label": { "fr": "Inspiration", "en": "Inspiration" },
+    "tools": [
+      { "id": "60fps", "name": "60fps", "url": "https://60fps.design/" },
+      {
+        "id": "awwwards",
+        "name": "Awwwards",
+        "url": "https://www.awwwards.com/"
+      },
+      { "id": "cosmos", "name": "Cosmos", "url": "https://www.cosmos.so/" },
+      {
+        "id": "curated-design",
+        "name": "Curated Design",
+        "url": "https://www.curated.design/"
+      },
+      {
+        "id": "design-spells",
+        "name": "Design Spells",
+        "url": "https://www.designspells.com/"
+      },
+      { "id": "godly", "name": "Godly", "url": "https://godly.website/" },
+      {
+        "id": "minimal-gallery",
+        "name": "Minimal Gallery",
+        "url": "https://minimal.gallery/"
+      },
+      { "id": "mobbin", "name": "Mobbin", "url": "https://mobbin.com/" },
+      {
+        "id": "rebrand",
+        "name": "Rebrand",
+        "url": "https://www.rebrand.gallery/"
+      },
+      { "id": "saaspo", "name": "Saaspo", "url": "https://saaspo.com/" },
+      {
+        "id": "searchsystem",
+        "name": "SearchSystem",
+        "url": "https://searchsystem.co/"
+      },
+      {
+        "id": "seesaw",
+        "name": "SEESAW",
+        "url": "https://www.seesaw.website/"
+      },
+      {
+        "id": "supahero",
+        "name": "Supahero",
+        "url": "https://www.supahero.io/"
+      }
+    ]
+  },
+  {
+    "id": "ai-code",
+    "label": { "fr": "Code IA", "en": "AI Code" },
+    "tools": [
+      {
+        "id": "claude-code",
+        "name": "Claude Code",
+        "url": "https://claude.com/product/claude-code"
+      },
+      { "id": "cursor", "name": "Cursor", "url": "https://www.cursor.com/" },
+      {
+        "id": "google-antigravity",
+        "name": "Google Antigravity",
+        "url": "https://antigravity.google/"
+      },
+      {
+        "id": "openai-codex",
+        "name": "OpenAI Codex",
+        "url": "https://openai.com/codex/",
+        "icon": "openai-codex.svg"
+      },
+      {
+        "id": "stagewise",
+        "name": "Stagewise",
+        "url": "https://stagewise.io/"
+      },
+      { "id": "zed", "name": "Zed", "url": "https://zed.dev/agentic" }
+    ]
+  },
+  {
+    "id": "components",
+    "label": { "fr": "Composants", "en": "Components" },
+    "tools": [
+      { "id": "21st-dev", "name": "21st.dev", "url": "https://21st.dev/" },
+      {
+        "id": "component-gallery",
+        "name": "Component Gallery",
+        "url": "https://component.gallery/"
+      },
+      {
+        "id": "fancy-components",
+        "name": "Fancy Components",
+        "url": "https://www.fancycomponents.dev/"
+      },
+      {
+        "id": "motion-primitives",
+        "name": "Motion Primitives",
+        "url": "https://motion-primitives.com/"
+      },
+      {
+        "id": "react-bits",
+        "name": "React Bits",
+        "url": "https://www.reactbits.dev/"
+      },
+      {
+        "id": "shadcn-ui",
+        "name": "shadcn/ui",
+        "url": "https://ui.shadcn.com/"
+      }
+    ]
+  },
+  {
+    "id": "web-utility",
+    "label": { "fr": "Utilitaires web", "en": "Web Utility" },
+    "tools": [
+      {
+        "id": "color-review",
+        "name": "Color.review",
+        "url": "https://color.review/"
+      },
+      {
+        "id": "easing-editor",
+        "name": "Easing Editor",
+        "url": "https://animejs.com/easing-editor"
+      },
+      {
+        "id": "easing-functions",
+        "name": "Easing Functions",
+        "url": "https://easings.net/"
+      },
+      {
+        "id": "easing-gradients",
+        "name": "Easing Gradients",
+        "url": "https://larsenwork.com/easing-gradients/"
+      },
+      {
+        "id": "oklch",
+        "name": "OKLCH Color Picker",
+        "url": "https://oklch.com/"
+      },
+      { "id": "ray-so", "name": "Ray.so", "url": "https://ray.so/" },
+      { "id": "regexr", "name": "RegExr", "url": "https://regexr.com/" },
+      {
+        "id": "svgomg",
+        "name": "SVGOMG",
+        "url": "https://jakearchibald.github.io/svgomg/"
+      }
+    ]
+  },
+  {
+    "id": "whiteboard",
+    "label": { "fr": "Tableau blanc", "en": "Whiteboard" },
+    "tools": [
+      {
+        "id": "excalidraw",
+        "name": "Excalidraw",
+        "url": "https://excalidraw.com/"
+      },
+      {
+        "id": "figjam",
+        "name": "FigJam",
+        "url": "https://www.figma.com/figjam/"
+      },
+      { "id": "miro", "name": "Miro", "url": "https://miro.com/" },
+      { "id": "tldraw", "name": "tldraw", "url": "https://www.tldraw.com/" }
+    ]
+  },
+  {
+    "id": "organization",
+    "label": { "fr": "Organisation", "en": "Organization" },
+    "tools": [
+      { "id": "linear", "name": "Linear", "url": "https://linear.app/" },
+      { "id": "obsidian", "name": "Obsidian", "url": "https://obsidian.md/" },
+      { "id": "trello", "name": "Trello", "url": "https://trello.com/" }
+    ]
+  },
+  {
+    "id": "fonts",
+    "label": { "fr": "Polices", "en": "Fonts" },
+    "tools": [
+      {
+        "id": "best-free-fonts",
+        "name": "Best Free Fonts",
+        "url": "https://bestfreefonts.com/"
+      },
+      {
+        "id": "fonts-in-use",
+        "name": "Fonts In Use",
+        "url": "https://fontsinuse.com/"
+      },
+      {
+        "id": "fontshare",
+        "name": "Fontshare",
+        "url": "https://www.fontshare.com/"
+      },
+      {
+        "id": "free-faces",
+        "name": "Free Faces",
+        "url": "https://www.freefaces.gallery/"
+      },
+      { "id": "uncut", "name": "UNCUT", "url": "https://uncut.wtf/" }
+    ]
+  },
+  {
+    "id": "interface",
+    "label": { "fr": "Interfaces", "en": "Interface" },
+    "tools": [
+      { "id": "figma", "name": "Figma", "url": "https://figma.com/" },
+      { "id": "framer", "name": "Framer", "url": "https://www.framer.com/" },
+      { "id": "paper", "name": "Paper", "url": "https://paper.design/" },
+      { "id": "pencil", "name": "Pencil", "url": "https://www.pencil.dev/" },
+      { "id": "penpot", "name": "Penpot", "url": "https://penpot.app/" }
+    ]
+  },
+  {
+    "id": "motion",
+    "label": { "fr": "Animation", "en": "Motion" },
+    "tools": [
+      {
+        "id": "cavalry",
+        "name": "Cavalry",
+        "url": "https://cavalry.scenegroup.co/"
+      },
+      { "id": "jitter", "name": "Jitter", "url": "https://jitter.video/" },
+      {
+        "id": "lottie-creator",
+        "name": "Lottie Creator",
+        "url": "https://lottiefiles.com/lottie-creator"
+      },
+      {
+        "id": "lottielab",
+        "name": "Lottielab",
+        "url": "https://www.lottielab.com/"
+      }
+    ]
+  }
+]

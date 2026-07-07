@@ -1,0 +1,91 @@
+---
+import type { Locale } from '@/lib/i18n';
+import { visitAriaLabel } from '@/lib/i18n';
+import type { ResourceTool } from '@/data/resources';
+import {
+  RESOURCE_CATEGORIES,
+  RESOURCES_HEADER,
+  RESOURCE_TOOL_COUNT,
+} from '@/data/resources';
+import manifest from '@/data/tool-icons-manifest.json';
+
+const { locale } = Astro.props as { locale: Locale };
+
+const header = RESOURCES_HEADER[locale];
+const iconFiles = new Map<string, string>(Object.entries(manifest.icons));
+
+const iconSrc = (tool: ResourceTool): string | null => {
+  const file = tool.icon ?? iconFiles.get(tool.id);
+  return file ? `/tool-icons/${file}` : null;
+};
+---
+
+<section
+  id="main"
+  class="px-6 pb-24 pt-32 md:px-10 md:pb-40 md:pt-48"
+  aria-labelledby="resources-heading"
+>
+  <div class="mx-auto max-w-7xl">
+    <header class="max-w-3xl">
+      <h1
+        id="resources-heading"
+        class="mt-6 font-display font-bold text-5xl leading-[1] tracking-[-0.03em] text-ink md:text-8xl"
+      >
+        {header.title}
+      </h1>
+      <p class="mt-6 font-sans text-base text-ink/60 md:text-lg">
+        {header.subtitle}
+      </p>
+    </header>
+
+    <ul
+      class="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-20 md:gap-5 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      {
+        RESOURCE_CATEGORIES.map((category) => (
+          <li
+            class="rounded-card-sm p-6 md:p-8"
+            style="background: var(--gradient-card-light)"
+          >
+            <h2 class="flex items-baseline gap-2 font-display font-bold text-2xl tracking-[-0.01em] text-ink">
+              {category.label[locale]}
+            </h2>
+            <ul class="mt-5 flex flex-col gap-2.5">
+              {category.tools.map((tool) => (
+                <li>
+                  <a
+                    href={tool.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={visitAriaLabel(locale, tool.name)}
+                    class="group flex items-center gap-2.5 text-ink/75 transition-colors duration-200 hover:text-ink"
+                  >
+                    {iconSrc(tool) ? (
+                      <img
+                        src={iconSrc(tool)}
+                        alt=""
+                        width="16"
+                        height="16"
+                        loading="lazy"
+                        decoding="async"
+                        class="size-4 shrink-0"
+                      />
+                    ) : (
+                      <span
+                        aria-hidden="true"
+                        class="flex size-4 shrink-0 items-center justify-center border border-ink/20 font-mono text-[9px] uppercase text-ink/50"
+                      >
+                        {tool.name.charAt(0)}
+                      </span>
+                    )}
+                    <span class="font-sans text-sm">{tool.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -7,12 +7,19 @@ import {
   seoLandingPath,
 } from "@/data/seo-landing-pages";
 
-const LANDING_PATHS = new Map(
-  SEO_LANDING_PAGES.flatMap((page) => [
+// Pages whose FR and EN path segments differ (canonicalPath can't derive them).
+const IRREGULAR_PATHS: ReadonlyArray<readonly [string, string]> = [
+  ["/outils/", "/en/tools/"],
+];
+
+const LANDING_PATHS = new Map<string, string>([
+  ...IRREGULAR_PATHS,
+  ...IRREGULAR_PATHS.map(([fr, en]) => [en, fr] as const),
+  ...SEO_LANDING_PAGES.flatMap<readonly [string, string]>((page) => [
     [seoLandingPath(page, "fr"), seoLandingPath(page, "en")],
     [seoLandingPath(page, "en"), seoLandingPath(page, "fr")],
   ]),
-);
+]);
 
 function useCurrentPathname(fallback: string): string {
   const [pathname, setPathname] = useState(fallback);

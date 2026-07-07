@@ -14,6 +14,7 @@ import {
   seoLandingPath,
   type SeoLandingPage,
 } from '@/data/seo-landing-pages'
+import { RESOURCE_CATEGORIES, RESOURCES_HEADER } from '@/data/resources'
 
 export type SeoProps = {
   title: string
@@ -215,6 +216,92 @@ export function buildBlogSeo(locale: Locale): SeoProps {
     ogImage: `/og/og-${locale}.jpg`,
     ogImageAlt: title,
     hreflang: BLOG_HREFLANG,
+    jsonLd,
+  }
+}
+
+const RESOURCES_HREFLANG = {
+  fr: '/outils/',
+  en: '/en/tools/',
+  'x-default': '/outils/',
+} as const
+
+const resourcesSeo: Bilingual<{ title: string; description: string }> = {
+  fr: {
+    title: 'Outils — Tenex Studio',
+    description:
+      "Une sélection d'outils pour concevoir, construire et lancer un site web : inspiration, design, composants, animation et IA.",
+  },
+  en: {
+    title: 'Tools — Tenex Studio',
+    description:
+      'A curated set of tools to design, build and ship a website: inspiration, design, components, motion and AI.',
+  },
+}
+
+export function buildResourcesSeo(locale: Locale): SeoProps {
+  const { title, description } = resourcesSeo[locale]
+  // FR and EN segments differ, so pass the locale-specific one to pathFor.
+  const canonical = pathFor(locale, locale === 'fr' ? '/outils' : '/tools')
+  const alternate: Locale = locale === 'fr' ? 'en' : 'fr'
+  const langTag = locale === 'fr' ? 'fr-FR' : 'en'
+  const canonicalUrl = `${SITE_ORIGIN}${canonical}`
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${canonicalUrl}#collectionpage`,
+        name: title,
+        description,
+        url: canonicalUrl,
+        inLanguage: langTag,
+        isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+        mainEntity: { '@id': `${canonicalUrl}#itemlist` },
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${canonicalUrl}#itemlist`,
+        itemListElement: RESOURCE_CATEGORIES.flatMap(
+          (category) => category.tools,
+        ).map((tool, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: tool.name,
+          url: tool.url,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Tenex Studio',
+            item: `${SITE_ORIGIN}${pathFor(locale)}`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: RESOURCES_HEADER[locale].title,
+            item: canonicalUrl,
+          },
+        ],
+      },
+    ],
+  })
+
+  return {
+    title,
+    description,
+    canonical,
+    ogLocale: OG_LOCALE[locale],
+    ogLocaleAlternate: OG_LOCALE[alternate],
+    ogImage: `/og/og-${locale}.jpg`,
+    ogImageAlt: title,
+    hreflang: RESOURCES_HREFLANG,
     jsonLd,
   }
 }

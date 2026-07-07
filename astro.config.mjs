@@ -14,6 +14,7 @@ const sitemapAlternates = new Map(
     ['/', '/en/'],
     ['/mathieu/', '/en/mathieu/'],
     ['/mentions-legales/', '/en/legal-notice/'],
+    ['/outils/', '/en/tools/'],
     ...SEO_LANDING_PAGES.map((page) => [
       seoLandingPath(page, 'fr'),
       seoLandingPath(page, 'en'),

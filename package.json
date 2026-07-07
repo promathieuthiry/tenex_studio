@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "tools:icons": "node scripts/fetch-tool-icons.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",

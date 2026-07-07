@@ -56,6 +56,15 @@ export const NAV_LINKS: ReadonlyArray<NavItem> = [
           en: "Thoughts on the craft and conversion.",
         },
       },
+      {
+        id: "tools",
+        label: { fr: "Outils", en: "Tools" },
+        href: { fr: "/outils/", en: "/en/tools/" },
+        description: {
+          fr: "Notre sélection d'outils pour créer et lancer un site.",
+          en: "Our picks for building and shipping a site.",
+        },
+      },
     ],
   },
 ] as const;
