@@ -65,6 +65,15 @@ export const NAV_LINKS: ReadonlyArray<NavItem> = [
           en: "Our picks for building and shipping a site.",
         },
       },
+      {
+        id: "glossary",
+        label: { fr: "Glossaire", en: "Glossary" },
+        href: { fr: "/glossaire/", en: "/en/glossary/" },
+        description: {
+          fr: "Les termes de l'IA, du SEO et du web, définis simplement.",
+          en: "AI, SEO and web terms, defined simply.",
+        },
+      },
     ],
   },
 ] as const;

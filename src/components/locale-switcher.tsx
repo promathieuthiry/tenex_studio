@@ -6,10 +6,16 @@ import {
   SEO_LANDING_PAGES,
   seoLandingPath,
 } from "@/data/seo-landing-pages";
+import {
+  GLOSSARY_TERMS,
+  glossaryIndexPath,
+  glossaryPath,
+} from "@/data/glossary";
 
 // Pages whose FR and EN path segments differ (canonicalPath can't derive them).
 const IRREGULAR_PATHS: ReadonlyArray<readonly [string, string]> = [
   ["/outils/", "/en/tools/"],
+  [glossaryIndexPath("fr"), glossaryIndexPath("en")],
 ];
 
 const LANDING_PATHS = new Map<string, string>([
@@ -18,6 +24,10 @@ const LANDING_PATHS = new Map<string, string>([
   ...SEO_LANDING_PAGES.flatMap<readonly [string, string]>((page) => [
     [seoLandingPath(page, "fr"), seoLandingPath(page, "en")],
     [seoLandingPath(page, "en"), seoLandingPath(page, "fr")],
+  ]),
+  ...GLOSSARY_TERMS.flatMap<readonly [string, string]>((term) => [
+    [glossaryPath(term, "fr"), glossaryPath(term, "en")],
+    [glossaryPath(term, "en"), glossaryPath(term, "fr")],
   ]),
 ]);
 

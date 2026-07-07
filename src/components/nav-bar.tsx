@@ -31,12 +31,19 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
-import { AppWindow, NotebookPen, Wrench, type LucideIcon } from "lucide-react";
+import {
+  AppWindow,
+  BookA,
+  NotebookPen,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
 
 const NAV_ICONS: Readonly<Record<string, LucideIcon>> = {
   "custom-websites": AppWindow,
   blog: NotebookPen,
   tools: Wrench,
+  glossary: BookA,
 };
 
 const REVEAL_THRESHOLD = 80;
