@@ -66,6 +66,11 @@
         "url": "https://antigravity.google/"
       },
       {
+        "id": "goose-docs",
+        "name": "Goose Docs",
+        "url": "https://goose-docs.ai/"
+      },
+      {
         "id": "openai-codex",
         "name": "OpenAI Codex",
         "url": "https://openai.com/codex/",
@@ -93,6 +98,11 @@
         "id": "fancy-components",
         "name": "Fancy Components",
         "url": "https://www.fancycomponents.dev/"
+      },
+      {
+        "id": "framer-marketplace",
+        "name": "Framer Marketplace",
+        "url": "https://www.framer.com/community/marketplace/components/"
       },
       {
         "id": "motion-primitives",

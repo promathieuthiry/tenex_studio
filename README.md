@@ -24,6 +24,10 @@ Nantes-based:
 - [Ginger Minds](https://www.gingerminds.fr/agence/equipe/)
 - [L'atelier conception web](https://www.latelier-conceptionweb.com/)
 
+SEO competitors:
+
+- [Mama SEO](https://mama-seo.fr/)
+
 ### Awwwards
 
 - [MDX](https://mdx.so/)
