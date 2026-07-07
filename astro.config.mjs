@@ -8,6 +8,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 import { SITE_ORIGIN } from './src/lib/site.ts';
 import { SEO_LANDING_PAGES, seoLandingPath } from './src/data/seo-landing-pages.ts';
+import {
+  GLOSSARY_TERMS,
+  glossaryIndexPath,
+  glossaryPath,
+} from './src/data/glossary.ts';
 
 const sitemapAlternates = new Map(
   [
@@ -15,6 +20,11 @@ const sitemapAlternates = new Map(
     ['/mathieu/', '/en/mathieu/'],
     ['/mentions-legales/', '/en/legal-notice/'],
     ['/outils/', '/en/tools/'],
+    [glossaryIndexPath('fr'), glossaryIndexPath('en')],
+    ...GLOSSARY_TERMS.map((term) => [
+      glossaryPath(term, 'fr'),
+      glossaryPath(term, 'en'),
+    ]),
     ...SEO_LANDING_PAGES.map((page) => [
       seoLandingPath(page, 'fr'),
       seoLandingPath(page, 'en'),

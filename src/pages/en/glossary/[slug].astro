@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import GlossaryTermView from "@/components/glossary-term.astro";
+import { GLOSSARY_TERMS, type GlossaryTerm } from "@/data/glossary";
+import { buildGlossaryTermSeo } from "@/lib/seo";
+
+export function getStaticPaths() {
+  return GLOSSARY_TERMS.map((term) => ({
+    params: { slug: term.slug },
+    props: { term },
+  }));
+}
+
+const locale = "en" as const;
+const { term } = Astro.props as { term: GlossaryTerm };
+const seo = buildGlossaryTermSeo(term, locale);
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <GlossaryTermView term={term} locale={locale} />
+</BaseLayout>

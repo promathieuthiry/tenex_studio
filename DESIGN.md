@@ -342,6 +342,7 @@ Depth is structural: a dark card next to a light card is the elevation; a two-st
 - Don't use `text-decoration: underline` — use a decorative ink hairline instead
 - Don't reach for italic, condensed, or alt cuts of Arimo — 400 and 700 only (those are the only weights loaded)
 - Don't add a `tailwind.config.js` — all theme config lives in `src/styles/global.css` `@theme`
+- Don't stamp live quantity counts on list pages — total-term counts and per-category tallies (`(101)`, `(02)`) are auto-derived list lengths, not curated index marks. The parenthetical-count vocabulary (`(©26)` yearmarks, `(01) Studio` chapter markers, the fixed `Work (4)` caption) is reserved for hand-authored structure. Never render `terms.length` / `items.length` as a Geist Mono stamp on the glossary or any dynamic listing.
 
 ## 8. Responsive Behavior
 

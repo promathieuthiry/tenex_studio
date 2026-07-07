@@ -1,0 +1,120 @@
+---
+import type { Locale } from "@/lib/i18n";
+import { pathFor } from "@/lib/i18n";
+import {
+  GLOSSARY_BY_SLUG,
+  GLOSSARY_CATEGORIES,
+  glossaryIndexPath,
+  glossaryPath,
+  type GlossaryTerm,
+} from "@/data/glossary";
+import { GLOSSARY_HEADER } from "@/data/glossary";
+
+const { term, locale } = Astro.props as { term: GlossaryTerm; locale: Locale };
+
+const LABELS: Readonly<
+  Record<Locale, { home: string; related: string; back: string; in: string }>
+> = {
+  fr: {
+    home: "Accueil",
+    related: "Termes liés",
+    back: "Retour au glossaire",
+    in: "dans",
+  },
+  en: { home: "Home", related: "Related terms", back: "Back to the glossary", in: "in" },
+};
+const labels = LABELS[locale];
+
+const category = GLOSSARY_CATEGORIES.find((c) => c.id === term.category);
+const glossaryTitle = GLOSSARY_HEADER[locale].title;
+const indexPath = glossaryIndexPath(locale);
+
+const related = term.related
+  .map((s) => GLOSSARY_BY_SLUG.get(s))
+  .filter((t): t is GlossaryTerm => Boolean(t));
+---
+
+<article class="px-6 pb-24 pt-32 md:px-10 md:pb-40 md:pt-48">
+  <div class="mx-auto max-w-3xl">
+    <nav
+      aria-label="Breadcrumb"
+      class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs uppercase tracking-[0.12em] text-ink/40"
+    >
+      <a href={pathFor(locale)} class="transition-colors hover:text-ink">
+        {labels.home}
+      </a>
+      <span aria-hidden="true">/</span>
+      <a href={indexPath} class="transition-colors hover:text-ink">
+        {glossaryTitle}
+      </a>
+      <span aria-hidden="true">/</span>
+      <span class="text-ink/70">{term.term[locale]}</span>
+    </nav>
+
+    <header class="mt-10">
+      {
+        category && (
+          <span class="inline-flex rounded-full border border-ink/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/60">
+            {category.label[locale]}
+          </span>
+        )
+      }
+      <h1
+        class="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-6xl"
+      >
+        <dfn id={term.slug} class="not-italic">{term.term[locale]}</dfn>
+      </h1>
+      {
+        term.abbr && term.abbr[locale] !== term.term[locale] && (
+          <p class="mt-4 font-sans text-base text-ink/50">{term.abbr[locale]}</p>
+        )
+      }
+    </header>
+
+    <div class="mt-10 border-t border-ink/10 pt-10">
+      <p class="font-display text-xl font-normal leading-[1.5] tracking-[-0.005em] text-ink md:text-2xl">
+        {term.short[locale]}
+      </p>
+      <div class="mt-8 flex flex-col gap-5">
+        {
+          term.body[locale].map((paragraph) => (
+            <p class="max-w-prose font-sans text-base leading-7 text-ink/75">
+              {paragraph}
+            </p>
+          ))
+        }
+      </div>
+    </div>
+
+    {
+      related.length > 0 && (
+        <div class="mt-14 border-t border-ink/10 pt-8">
+          <h2 class="font-mono text-xs uppercase tracking-[0.18em] text-ink/40">
+            {labels.related}
+          </h2>
+          <ul class="mt-5 flex flex-wrap gap-2.5">
+            {related.map((item) => (
+              <li>
+                <a
+                  href={glossaryPath(item, locale)}
+                  class="inline-flex rounded-full border border-ink/15 px-3.5 py-1.5 font-sans text-sm text-ink/80 transition-colors hover:border-ink hover:text-ink"
+                >
+                  {item.term[locale]}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    <div class="mt-14">
+      <a
+        href={indexPath}
+        class="font-mono text-xs uppercase tracking-[0.12em] text-ink/60 transition-colors hover:text-ink"
+      >
+        ← {labels.back}
+      </a>
+    </div>
+  </div>
+</article>

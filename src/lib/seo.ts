@@ -15,6 +15,14 @@ import {
   type SeoLandingPage,
 } from '@/data/seo-landing-pages'
 import { RESOURCE_CATEGORIES, RESOURCES_HEADER } from '@/data/resources'
+import {
+  GLOSSARY_TERMS,
+  GLOSSARY_HEADER,
+  glossaryIndexPath,
+  glossaryPath,
+  glossarySeo,
+  type GlossaryTerm,
+} from '@/data/glossary'
 
 export type SeoProps = {
   title: string
@@ -513,6 +521,154 @@ export function buildSeoLandingPageSeo(
     ogImage: `/og/og-${locale}.jpg`,
     ogImageAlt: page.title[locale],
     hreflang: { fr: frPath, en: enPath, 'x-default': frPath },
+    jsonLd,
+  }
+}
+
+export function buildGlossaryIndexSeo(locale: Locale): SeoProps {
+  const { title, description } = glossarySeo[locale]
+  const canonical = glossaryIndexPath(locale)
+  const alternate: Locale = locale === 'fr' ? 'en' : 'fr'
+  const langTag = locale === 'fr' ? 'fr-FR' : 'en'
+  const canonicalUrl = `${SITE_ORIGIN}${canonical}`
+  const setId = `${canonicalUrl}#definedtermset`
+
+  const definedTermSet = {
+    '@type': 'DefinedTermSet',
+    '@id': setId,
+    name: GLOSSARY_HEADER[locale].title,
+    description,
+    url: canonicalUrl,
+    inLanguage: langTag,
+    hasDefinedTerm: GLOSSARY_TERMS.map((term) => {
+      const termUrl = `${SITE_ORIGIN}${glossaryPath(term, locale)}`
+      return {
+        '@type': 'DefinedTerm',
+        '@id': `${termUrl}#definedterm`,
+        name: term.term[locale],
+        url: termUrl,
+      }
+    }),
+  }
+
+  const collectionPage = {
+    '@type': 'CollectionPage',
+    '@id': `${canonicalUrl}#collectionpage`,
+    name: title,
+    description,
+    url: canonicalUrl,
+    inLanguage: langTag,
+    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+    mainEntity: { '@id': setId },
+  }
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Tenex Studio',
+        item: `${SITE_ORIGIN}${pathFor(locale)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: GLOSSARY_HEADER[locale].title,
+        item: canonicalUrl,
+      },
+    ],
+  }
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [collectionPage, definedTermSet, breadcrumb],
+  })
+
+  return {
+    title,
+    description,
+    canonical,
+    ogLocale: OG_LOCALE[locale],
+    ogLocaleAlternate: OG_LOCALE[alternate],
+    ogImage: `/og/og-${locale}.jpg`,
+    ogImageAlt: title,
+    hreflang: {
+      fr: glossaryIndexPath('fr'),
+      en: glossaryIndexPath('en'),
+      'x-default': glossaryIndexPath('fr'),
+    },
+    jsonLd,
+  }
+}
+
+export function buildGlossaryTermSeo(
+  term: GlossaryTerm,
+  locale: Locale,
+): SeoProps {
+  const canonical = glossaryPath(term, locale)
+  const alternate: Locale = locale === 'fr' ? 'en' : 'fr'
+  const langTag = locale === 'fr' ? 'fr-FR' : 'en'
+  const canonicalUrl = `${SITE_ORIGIN}${canonical}`
+  const setId = `${SITE_ORIGIN}${glossaryIndexPath(locale)}#definedtermset`
+  const suffix =
+    locale === 'fr' ? 'Glossaire Tenex Studio' : 'Tenex Studio Glossary'
+
+  const definedTerm = {
+    '@type': 'DefinedTerm',
+    '@id': `${canonicalUrl}#definedterm`,
+    name: term.term[locale],
+    description: term.short[locale],
+    termCode: term.slug,
+    inDefinedTermSet: { '@id': setId },
+    url: canonicalUrl,
+    inLanguage: langTag,
+  }
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Tenex Studio',
+        item: `${SITE_ORIGIN}${pathFor(locale)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: GLOSSARY_HEADER[locale].title,
+        item: `${SITE_ORIGIN}${glossaryIndexPath(locale)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: term.term[locale],
+        item: canonicalUrl,
+      },
+    ],
+  }
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [definedTerm, breadcrumb],
+  })
+
+  return {
+    title: `${term.term[locale]} — ${suffix}`,
+    description: term.short[locale],
+    canonical,
+    ogLocale: OG_LOCALE[locale],
+    ogLocaleAlternate: OG_LOCALE[alternate],
+    ogImage: `/og/og-${locale}.jpg`,
+    ogImageAlt: term.term[locale],
+    hreflang: {
+      fr: glossaryPath(term, 'fr'),
+      en: glossaryPath(term, 'en'),
+      'x-default': glossaryPath(term, 'fr'),
+    },
     jsonLd,
   }
 }

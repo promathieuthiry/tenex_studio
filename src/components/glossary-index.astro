@@ -1,0 +1,62 @@
+---
+import type { Locale } from "@/lib/i18n";
+import {
+  GLOSSARY_CATEGORIES,
+  GLOSSARY_HEADER,
+  GLOSSARY_TERMS,
+  glossaryPath,
+} from "@/data/glossary";
+import {
+  GlossaryFilter,
+  type GlossaryFilterTerm,
+} from "@/components/GlossaryFilter";
+
+const { locale } = Astro.props as { locale: Locale };
+
+const header = GLOSSARY_HEADER[locale];
+
+// NFD decomposition puts the base letter first, so an accented initial
+// (Éclatement, Économie) buckets under its unaccented letter.
+const firstLetter = (value: string): string =>
+  value.normalize("NFD").charAt(0).toUpperCase();
+
+const terms: GlossaryFilterTerm[] = GLOSSARY_TERMS.map((term) => ({
+  slug: term.slug,
+  term: term.term[locale],
+  short: term.short[locale],
+  category: term.category,
+  letter: firstLetter(term.term[locale]),
+  href: glossaryPath(term, locale),
+})).sort((a, b) => a.term.localeCompare(b.term, locale));
+
+const categories = GLOSSARY_CATEGORIES.map((category) => ({
+  id: category.id,
+  label: category.label[locale],
+}));
+---
+
+<section
+  class="px-6 pb-24 pt-32 md:px-10 md:pb-40 md:pt-48"
+  aria-labelledby="glossary-heading"
+>
+  <div class="mx-auto max-w-7xl">
+    <header class="max-w-3xl">
+      <h1
+        id="glossary-heading"
+        class="font-display font-bold text-5xl leading-[1] tracking-[-0.03em] text-ink md:text-8xl"
+      >
+        {header.title}
+      </h1>
+      <p class="mt-6 font-sans text-base text-ink/60 md:text-lg">
+        {header.subtitle}
+      </p>
+    </header>
+
+    <GlossaryFilter
+      client:load
+      locale={locale}
+      terms={terms}
+      categories={categories}
+    />
+  </div>
+</section>

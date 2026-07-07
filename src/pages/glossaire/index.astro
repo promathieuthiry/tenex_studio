@@ -1,0 +1,12 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import GlossaryIndex from "@/components/glossary-index.astro";
+import { buildGlossaryIndexSeo } from "@/lib/seo";
+
+const locale = "fr" as const;
+const seo = buildGlossaryIndexSeo(locale);
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <GlossaryIndex locale={locale} />
+</BaseLayout>
