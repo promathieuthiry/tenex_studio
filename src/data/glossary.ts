@@ -46,6 +46,23 @@ export const GLOSSARY_TERMS: ReadonlyArray<GlossaryTerm> = [
     related: ["llm", "mcp", "agentic-search", "agent-economy"],
   },
   {
+    slug: slug("harness"),
+    term: { fr: "Harness", en: "Harness" },
+    category: "ai",
+    short: { fr: "Le harness est la couche logicielle qui entoure un modèle d'IA. Il gère le contexte, les outils et les étapes, et transforme un modèle brut en assistant capable d'agir.", en: "A harness is the software layer wrapping an AI model. It manages context, tools, and steps, turning a raw model into an assistant that can act." },
+    body: {
+      fr: [
+        "Un modèle seul se contente de prédire du texte. Le harness décide ce qu'il voit, quels outils il peut appeler et dans quel ordre il agit. Concrètement, il rassemble les instructions, les hooks, les skills, les sous-agents et les serveurs MCP autour du modèle. À modèle identique, deux harness différents produisent des résultats très différents sur la même tâche.",
+        "Les assistants de code comme Claude Code, ou les agents qui lisent un site pour répondre, reposent tous sur un harness. Cette couche compte souvent plus que le modèle: c'est elle qui détermine si l'IA tombe sur la bonne information ou se perd dans du bruit.",
+      ],
+      en: [
+        "A model on its own only predicts text. The harness decides what it sees, which tools it can call, and in what order it acts. In practice, it assembles the instructions, hooks, skills, sub-agents, and MCP servers around the model. With the same model, two different harnesses produce very different results on the same task.",
+        "Coding assistants like Claude Code, or agents that read a site to answer, all rely on a harness. This layer often matters more than the model itself: it decides whether the AI lands on the right information or gets lost in noise.",
+      ],
+    },
+    related: ["ai-agent", "llm", "context-window", "mcp"],
+  },
+  {
     slug: slug("llm"),
     term: { fr: "LLM", en: "LLM" },
     abbr: { fr: "Grand modèle de langage", en: "Large Language Model" },
