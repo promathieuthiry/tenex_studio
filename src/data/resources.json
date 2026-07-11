@@ -59,6 +59,11 @@
         "name": "Claude Code",
         "url": "https://claude.com/product/claude-code"
       },
+      {
+        "id": "conductor",
+        "name": "Conductor",
+        "url": "https://www.conductor.build/"
+      },
       { "id": "cursor", "name": "Cursor", "url": "https://www.cursor.com/" },
       {
         "id": "google-antigravity",
@@ -67,7 +72,7 @@
       },
       {
         "id": "goose-docs",
-        "name": "Goose Docs",
+        "name": "Goose",
         "url": "https://goose-docs.ai/"
       },
       {

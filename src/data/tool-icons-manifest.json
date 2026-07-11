@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T14:34:37.588Z",
+  "generatedAt": "2026-07-11T10:23:48.713Z",
   "icons": {
     "21st-dev": "21st-dev.png",
     "60fps": "60fps.png",
@@ -9,6 +9,7 @@
     "claude-code": "claude-code.png",
     "color-review": "color-review.png",
     "component-gallery": "component-gallery.svg",
+    "conductor": "conductor.png",
     "cosmos": "cosmos.png",
     "curated-design": "curated-design.png",
     "cursor": "cursor.svg",
