@@ -8,8 +8,6 @@ import { assertArrayParity } from "@/data/__guards";
 
 export type ServiceIcon = typeof LayoutIcon;
 
-export type ImageTone = "dark" | "light";
-
 export type Service = Readonly<{
   number: string;
   slug: string;
@@ -17,7 +15,7 @@ export type Service = Readonly<{
   description: Bilingual;
   scope: Bilingual<ReadonlyArray<string>>;
   pills: Bilingual<ReadonlyArray<string>>;
-  image: Readonly<{ src: string; alt: Bilingual; tone?: ImageTone }>;
+  video: Readonly<{ src: string; poster: string; alt: Bilingual }>;
   icon: ServiceIcon;
 }>;
 
@@ -51,11 +49,12 @@ export const SERVICES: ReadonlyArray<Service> = [
       fr: ["UI", "Identité", "Maquettes", "Responsive", "Accessibilité"],
       en: ["UI", "Identity", "Mockups", "Responsive", "Accessibility"],
     },
-    image: {
-      src: "/services/design-isometric-endorsement-balanced.webp",
+    video: {
+      src: "/services/service-design.mp4",
+      poster: "/services/service-design-poster.webp",
       alt: {
-        fr: "Icône d’approbation incrustée dans un bloc isométrique",
-        en: "Endorsement icon inlaid into an isometric block",
+        fr: "Bloc isométrique gravé d’un pinceau, animé par une lumière rouge",
+        en: "Isometric block engraved with a paintbrush, lit by a red glow",
       },
     },
   },
@@ -88,12 +87,12 @@ export const SERVICES: ReadonlyArray<Service> = [
       fr: ["Parcours", "Copywriting", "CTA", "Hiérarchie", "Vitesse"],
       en: ["Journeys", "Copywriting", "CTAs", "Hierarchy", "Speed"],
     },
-    image: {
-      src: "/services/website-creation.webp",
-      tone: "light",
+    video: {
+      src: "/services/service-conversion.mp4",
+      poster: "/services/service-conversion-poster.webp",
       alt: {
-        fr: "Parcours de conversion sur ordinateur et mobile",
-        en: "Conversion path on desktop and mobile",
+        fr: "Bloc isométrique gravé d’un pouce levé et d’un badge de validation",
+        en: "Isometric block engraved with a thumbs up and a validation badge",
       },
     },
   },
@@ -126,11 +125,12 @@ export const SERVICES: ReadonlyArray<Service> = [
       fr: ["SEO", "AEO", "GEO", "LLM", "Mots-clés", "Core Web Vitals"],
       en: ["SEO", "AEO", "GEO", "LLMs", "Keywords", "Core Web Vitals"],
     },
-    image: {
-      src: "/services/visibility-isometric-found.webp",
+    video: {
+      src: "/services/service-visibility.mp4",
+      poster: "/services/service-visibility-poster.webp",
       alt: {
-        fr: "Icône de recherche validée incrustée dans un bloc isométrique",
-        en: "Validated search icon inlaid into an isometric block",
+        fr: "Bloc isométrique gravé d’une loupe SEO, animé par une lumière rouge",
+        en: "Isometric block engraved with an SEO magnifier, lit by a red glow",
       },
     },
   },

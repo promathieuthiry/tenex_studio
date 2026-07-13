@@ -66,24 +66,24 @@ function StackedCard({
       className="sticky overflow-hidden rounded-card-lg border border-paper/10 bg-[#141417] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)]"
     >
       <div
-        className={`grid min-h-140 md:min-h-160 ${
+        className={`grid min-h-112 md:min-h-116 ${
           imageOnLeft
-            ? "md:grid-cols-[1.22fr_0.78fr] md:[&>*:first-child]:order-2"
-            : "md:grid-cols-[0.78fr_1.22fr]"
+            ? "md:grid-cols-[0.8fr_1.2fr] md:[&>*:first-child]:order-2"
+            : "md:grid-cols-[1.2fr_0.8fr]"
         }`}
       >
-        <div className="flex flex-col p-8 md:p-12 lg:p-14">
-          <h3 className="font-display text-3xl leading-[1.05] tracking-[-0.02em] text-paper md:text-5xl lg:text-6xl">
+        <div className="flex flex-col p-7 md:p-10 lg:p-12">
+          <h3 className="font-display text-3xl leading-[1.05] tracking-[-0.02em] text-paper md:text-4xl lg:text-5xl">
             {service.name[locale]}
           </h3>
 
-          <span aria-hidden className="mt-8 block h-px w-full bg-paper/10" />
+          <span aria-hidden className="mt-6 block h-px w-full bg-paper/10" />
 
-          <p className="mt-8 max-w-md font-sans text-base leading-7 text-paper/60 md:text-lg md:leading-8">
+          <p className="mt-6 max-w-md font-sans text-base leading-7 text-paper/60 md:text-[17px] md:leading-7">
             {service.description[locale]}
           </p>
 
-          <ul className="mt-auto flex flex-wrap gap-2 pt-10">
+          <ul className="mt-auto flex flex-wrap gap-2 pt-8">
             {service.pills[locale].map((pill) => (
               <li
                 key={pill}
@@ -96,19 +96,34 @@ function StackedCard({
         </div>
 
         <div
-          className={`relative flex aspect-4/3 items-center justify-center overflow-hidden bg-paper md:aspect-auto md:h-full ${
+          className={`relative flex aspect-5/4 items-center justify-center overflow-hidden bg-[#141417] md:aspect-auto md:h-full ${
             imageOnLeft
               ? "md:border-r md:border-paper/10"
               : "md:border-l md:border-paper/10"
           }`}
         >
-          <img
-            src={service.image.src}
-            alt={service.image.alt[locale]}
-            loading="lazy"
-            decoding="async"
-            className="relative z-10 h-full w-full object-contain"
-          />
+          {reduced ? (
+            <img
+              src={service.video.poster}
+              alt={service.video.alt[locale]}
+              loading="lazy"
+              decoding="async"
+              className="relative z-10 h-full w-full object-cover"
+            />
+          ) : (
+            <video
+              src={service.video.src}
+              poster={service.video.poster}
+              role="img"
+              aria-label={service.video.alt[locale]}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="relative z-10 h-full w-full object-cover"
+            />
+          )}
           <div
             aria-hidden
             className={`pointer-events-none absolute inset-y-0 z-20 hidden w-24 md:block ${
@@ -138,7 +153,7 @@ export function Services({ locale }: { locale: Locale }) {
       aria-labelledby="services-heading"
       className="relative bg-ink px-6 pb-32 pt-24 md:px-10 md:pb-48 md:pt-40"
     >
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-6xl">
         <SectionHeader
           eyebrow={copy.eyebrow}
           title={copy.titleStart}
@@ -149,7 +164,7 @@ export function Services({ locale }: { locale: Locale }) {
 
         <div
           ref={stackRef}
-          className="mt-20 flex flex-col gap-6 md:mt-32 md:gap-8"
+          className="mt-20 flex flex-col gap-[12vh] md:mt-32 md:gap-[18vh]"
         >
           {SERVICES.map((service, i) => (
             <StackedCard
@@ -162,6 +177,10 @@ export function Services({ locale }: { locale: Locale }) {
               stackProgress={scrollYProgress}
             />
           ))}
+
+          {/* Flex items stick within the container's content box, so the last
+              card only rests at the sticky offset if real space follows it. */}
+          <div aria-hidden className="h-[12vh] shrink-0 md:h-[24vh]" />
         </div>
       </div>
     </section>
