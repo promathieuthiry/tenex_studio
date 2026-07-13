@@ -1,9 +1,6 @@
 import {
-  BackpackIcon,
-  CodeIcon,
   DesktopIcon,
   LayoutIcon,
-  MagicWandIcon,
   MagnifyingGlassIcon,
 } from "@radix-ui/react-icons";
 import type { Bilingual } from "@/data/_types";
@@ -27,196 +24,12 @@ export type Service = Readonly<{
 export const SERVICES: ReadonlyArray<Service> = [
   {
     number: "1",
-    slug: "speed",
-    icon: MagicWandIcon,
-    name: { fr: "La rapidité", en: "Speed" },
-    description: {
-      fr: "Un site ultra-rapide qui charge en moins de 1 seconde. Vos visiteurs restent, Google le récompense.",
-      en: "An ultra-fast website that loads in under 1 second. Visitors stay, Google rewards it.",
-    },
-    scope: {
-      fr: [
-        "Audit de performance et Core Web Vitals",
-        "Optimisation des images et du chargement",
-        "Architecture front-end légère",
-        "Cache et rendu statique",
-        "Suivi des temps de chargement",
-      ],
-      en: [
-        "Performance audit and Core Web Vitals",
-        "Image and loading optimization",
-        "Lightweight front-end architecture",
-        "Caching and static rendering",
-        "Load-time monitoring",
-      ],
-    },
-    pills: {
-      fr: [
-        "Chargement rapide",
-        "Core Web Vitals",
-        "Performance",
-        "Optimisation",
-        "Cache",
-      ],
-      en: [
-        "Fast loading",
-        "Core Web Vitals",
-        "Performance",
-        "Optimization",
-        "Caching",
-      ],
-    },
-    image: {
-      src: "/services/ui-ux-design.webp",
-      alt: {
-        fr: "Indicateur de performance web",
-        en: "Web performance indicator",
-      },
-    },
-  },
-  {
-    number: "2",
-    slug: "structure",
-    icon: LayoutIcon,
-    name: { fr: "La structure", en: "Structure" },
-    description: {
-      fr: "Une architecture de pages pensée pour guider vers l’action. Chaque clic a un objectif.",
-      en: "A page architecture built to guide people toward action. Every click has a purpose.",
-    },
-    scope: {
-      fr: [
-        "Architecture d’information",
-        "Parcours client",
-        "Parcours de conversion",
-        "Priorisation des pages clés",
-        "Hiérarchie des contenus",
-      ],
-      en: [
-        "Information architecture",
-        "Customer journey",
-        "Conversion paths",
-        "Key page prioritization",
-        "Content hierarchy",
-      ],
-    },
-    pills: {
-      fr: [
-        "Architecture",
-        "Parcours client",
-        "Parcours",
-        "Hiérarchie",
-        "Conversion",
-      ],
-      en: [
-        "Architecture",
-        "Customer journey",
-        "Flows",
-        "Hierarchy",
-        "Conversion",
-      ],
-    },
-    image: {
-      src: "/services/website-creation.webp",
-      tone: "light",
-      alt: {
-        fr: "Structure de page et données de conversion",
-        en: "Page structure and conversion data",
-      },
-    },
-  },
-  {
-    number: "3",
-    slug: "copywriting",
-    icon: CodeIcon,
-    name: {
-      fr: "Le copywriting",
-      en: "Copywriting",
-    },
-    description: {
-      fr: "Des textes écrits pour convertir. Promesses, arguments, titres et appels à l’action, chaque mot compte.",
-      en: "Copy written to convert. Promises, arguments, headlines and calls to action, every word matters.",
-    },
-    scope: {
-      fr: [
-        "Promesse principale",
-        "Titres et intertitres",
-        "Arguments de conversion",
-        "Appels à l’action",
-        "Microcopy et messages d’interface",
-      ],
-      en: [
-        "Core promise",
-        "Headlines and subheads",
-        "Conversion arguments",
-        "Calls to action",
-        "Microcopy and interface messages",
-      ],
-    },
-    pills: {
-      fr: ["Titres", "Promesse", "Arguments", "CTA", "Microcopy"],
-      en: ["Headlines", "Promise", "Arguments", "CTAs", "Microcopy"],
-    },
-    image: {
-      src: "/services/saas-application.webp",
-      alt: {
-        fr: "Cartes de messages et de titres",
-        en: "Message and headline cards",
-      },
-    },
-  },
-  {
-    number: "4",
-    slug: "seo-aeo-geo",
-    icon: MagnifyingGlassIcon,
-    name: { fr: "Le référencement naturel", en: "SEO, AEO & GEO" },
-    description: {
-      fr: "Optimisation technique pour vous positionner top 5 sur Google et apparaitre dans les réponses des LLM comme ChatGPT.",
-      en: "Technical optimization to secure a top 5 Google ranking and surface in LLM responses like ChatGPT.",
-    },
-    scope: {
-      fr: [
-        "Google",
-        "Audit SEO technique",
-        "Recherche de mots-clés",
-        "Optimisation AEO pour les moteurs de réponse",
-        "Optimisation GEO pour les LLM",
-        "Optimisation des balises",
-        "Structure des contenus",
-      ],
-      en: [
-        "Google",
-        "Technical SEO audit",
-        "Keyword research",
-        "AEO optimization for answer engines",
-        "GEO optimization for LLMs",
-        "Metadata optimization",
-        "Content structure",
-      ],
-    },
-    pills: {
-      fr: ["SEO", "AEO", "GEO", "LLM", "Mots-clés", "Contenu"],
-      en: ["SEO", "AEO", "GEO", "LLMs", "Keywords", "Content"],
-    },
-    image: {
-      src: "/services/seo-geo.webp",
-      tone: "light",
-      alt: {
-        fr: "Globe et visibilité internationale",
-        en: "Globe and international visibility",
-      },
-    },
-  },
-  {
-    number: "5",
     slug: "design",
     icon: DesktopIcon,
-    name: {
-      fr: "Le design",
-      en: "Design",
-    },
+    name: { fr: "Design", en: "Design" },
     description: {
-      fr: "Une interface moderne et professionnelle qui inspire confiance dès la première seconde.",
-      en: "A modern, professional interface that builds trust from the first second.",
+      fr: "Démarquez-vous au premier regard. Une interface sur mesure, zéro template, qui inspire confiance dès la première seconde.",
+      en: "Stand out at first glance. A custom interface, zero templates, that builds trust from the first second.",
     },
     scope: {
       fr: [
@@ -239,63 +52,85 @@ export const SERVICES: ReadonlyArray<Service> = [
       en: ["UI", "Identity", "Mockups", "Responsive", "Accessibility"],
     },
     image: {
-      src: "/services/ai-automations.webp?v=20260603-design-centered",
+      src: "/services/design-isometric-endorsement-balanced.webp",
       alt: {
-        fr: "Interface web moderne",
-        en: "Modern web interface",
+        fr: "Icône d’approbation incrustée dans un bloc isométrique",
+        en: "Endorsement icon inlaid into an isometric block",
       },
     },
   },
   {
-    number: "6",
-    slug: "training-support",
-    icon: BackpackIcon,
-    name: { fr: "Formation et support", en: "Training & Support" },
+    number: "2",
+    slug: "conversion",
+    icon: LayoutIcon,
+    name: { fr: "Conversion", en: "Conversion" },
     description: {
-      fr: "On forme vos équipes à vos nouveaux outils. Un accompagnement qui dure bien après la mise en ligne.",
-      en: "We train your team on the new tools. Support that lasts well beyond launch.",
+      fr: "Transformez vos visiteurs en clients. Structure des pages, textes et appels à l’action, chaque clic a un objectif.",
+      en: "Turn visitors into clients. Page structure, copy and calls to action, every click has a purpose.",
     },
     scope: {
       fr: [
-        "Formation aux outils et plateformes",
-        "Documentation et guides sur mesure",
-        "Onboarding des équipes",
-        "Accompagnement projet et conseil",
-        "Support technique continu",
-        "Maintenance et évolutions",
+        "Architecture d’information et parcours client",
+        "Copywriting et promesse principale",
+        "Appels à l’action et microcopy",
+        "Hiérarchie des contenus",
+        "Chargement en moins de 1 seconde",
       ],
       en: [
-        "Training on tools and platforms",
-        "Custom documentation and guides",
-        "Team onboarding",
-        "Project guidance and advisory",
-        "Ongoing technical support",
-        "Maintenance and improvements",
+        "Information architecture and customer journey",
+        "Copywriting and core promise",
+        "Calls to action and microcopy",
+        "Content hierarchy",
+        "Loading in under 1 second",
       ],
     },
     pills: {
-      fr: [
-        "Formation",
-        "Documentation",
-        "Onboarding",
-        "Conseil",
-        "Support",
-        "Maintenance",
-      ],
-      en: [
-        "Training",
-        "Documentation",
-        "Onboarding",
-        "Advisory",
-        "Support",
-        "Maintenance",
-      ],
+      fr: ["Parcours", "Copywriting", "CTA", "Hiérarchie", "Vitesse"],
+      en: ["Journeys", "Copywriting", "CTAs", "Hierarchy", "Speed"],
     },
     image: {
-      src: "/services/training-support.webp?v=20260603-support-mark",
+      src: "/services/website-creation.webp",
+      tone: "light",
       alt: {
-        fr: "Casque de support avec coche de validation",
-        en: "Support headset with validation checkmark",
+        fr: "Parcours de conversion sur ordinateur et mobile",
+        en: "Conversion path on desktop and mobile",
+      },
+    },
+  },
+  {
+    number: "3",
+    slug: "visibilite",
+    icon: MagnifyingGlassIcon,
+    name: { fr: "Visibilité", en: "Visibility" },
+    description: {
+      fr: "Soyez trouvé par Google, recommandé par les IA. Optimisation technique pour viser le top 5 et apparaitre dans les réponses de ChatGPT.",
+      en: "Get found on Google, recommended by AI. Technical optimization to target the top 5 and surface in ChatGPT answers.",
+    },
+    scope: {
+      fr: [
+        "Audit SEO technique et mots-clés",
+        "Optimisation AEO pour les moteurs de réponse",
+        "Optimisation GEO pour les LLM",
+        "Balises et données structurées",
+        "Core Web Vitals",
+      ],
+      en: [
+        "Technical SEO audit and keywords",
+        "AEO optimization for answer engines",
+        "GEO optimization for LLMs",
+        "Metadata and structured data",
+        "Core Web Vitals",
+      ],
+    },
+    pills: {
+      fr: ["SEO", "AEO", "GEO", "LLM", "Mots-clés", "Core Web Vitals"],
+      en: ["SEO", "AEO", "GEO", "LLMs", "Keywords", "Core Web Vitals"],
+    },
+    image: {
+      src: "/services/visibility-isometric-found.webp",
+      alt: {
+        fr: "Icône de recherche validée incrustée dans un bloc isométrique",
+        en: "Validated search icon inlaid into an isometric block",
       },
     },
   },
