@@ -40,8 +40,8 @@ export const HERO: HeroCopy = {
     en: "Custom websites.",
   },
   subheadline: {
-    fr: "Nous créons des sites web premium pour cabinets, studios et sociétés de conseil dont l’expertise doit inspirer confiance avant le premier échange.",
-    en: "We build premium custom websites for firms, studios and consultancies whose expertise needs to build trust before the first call.",
+    fr: "Site, SEO et contenu. Un seul système, mesuré, qui fait décoller votre taux de conversion.",
+    en: "Website, SEO and content. One system, measured, that lifts your conversion rate.",
   },
   status: {
     fr: "Studio ouvert · 2026",

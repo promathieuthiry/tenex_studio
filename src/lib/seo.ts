@@ -95,6 +95,16 @@ const CORE_OFFERS: ReadonlyArray<{
       en: 'A site found at the top of Google and recommended in AI answers like ChatGPT.',
     },
   },
+  {
+    name: {
+      fr: 'Contenu éditorial',
+      en: 'Editorial content',
+    },
+    description: {
+      fr: 'Des pages et des articles qui répondent aux questions de vos clients et alimentent votre acquisition.',
+      en: 'Pages and articles that answer your clients questions and feed your acquisition.',
+    },
+  },
 ] as const
 
 export function buildHomeSeo(locale: Locale): SeoProps {

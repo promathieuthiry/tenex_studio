@@ -14,16 +14,16 @@ type DigitalCardSeoContent = {
 
 export const homeSeo: Bilingual<HomeSeoContent> = {
   fr: {
-    title: "Sites web sur mesure pour experts - Tenex Studio",
+    title: "Sites web sur mesure, SEO et contenu - Tenex Studio",
     description:
-      "Sites web sur mesure pour cabinets, studios et sociétés de conseil. Clairs, rapides, sécurisés.",
-    ogImageAlt: "Tenex Studio, sites web sur mesure pour services experts",
+      "Site, SEO et contenu réunis en un seul système, mesuré, qui fait décoller votre taux de conversion. Studio web à Nantes.",
+    ogImageAlt: "Tenex Studio, sites web sur mesure, SEO et contenu",
   },
   en: {
-    title: "Custom Websites for Expert Firms - Tenex Studio",
+    title: "Custom Websites, SEO and Content - Tenex Studio",
     description:
-      "Custom websites for firms, studios and consultancies that need to build trust before the first call.",
-    ogImageAlt: "Tenex Studio, custom websites for expert-service firms",
+      "Website, SEO and content in one measured system that lifts your conversion rate. Web studio based in Nantes, France.",
+    ogImageAlt: "Tenex Studio, custom websites, SEO and content",
   },
 };
 
