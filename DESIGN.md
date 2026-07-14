@@ -47,6 +47,7 @@ Surfaces are flat with subtle two-stop gradients (`--gradient-card-dark` on dark
 - Depth is contrast first; soft elevation shadows are reserved for **floating UI only** (nav pill, testimonial cards)
 - One section rhythm, no drift: every section pulls its padding, gutter, and container from `src/lib/layout.ts` — magazine-spread vertical pacing
 - No eyebrows. A headline opens a section on its own; the uppercase mono line above an H1/H2 is banned
+- No numbered sections. `01`, `(02)`, `04 — 08`, `Step 3`, `Chapter 2` — index stamps on sections, cards, steps or chapters are banned. The design carries the structure: order, surface, rule, slab, position
 - Character-by-character, scroll-driven text animation as the kinetic signature
 - `font-feature-settings: 'ss01', 'ss02'` enabled globally for Inter's stylistic sets
 
@@ -295,7 +296,8 @@ Anything else uses `SECTION` + `CONTAINER`. If a new section "needs" different p
 
 - Sections breathe at `SECTION_Y` (96px mobile → 160px desktop) — uniform, so the surface change does the work
 - Background change (`bg-paper` ↔ ink gradient, or `bg-paper` ↔ `bg-paper-warm`) is the primary section boundary, not whitespace alone
-- **A section opens on its headline.** No eyebrow, no label, no uppercase run-up — the H2 carries the weight alone (see `section-header.tsx`)
+- **A section opens on its headline.** No eyebrow, no label, no uppercase run-up, no index stamp — the H2 carries the weight alone (see `section-header.tsx`)
+- **Sequence is carried by the design, never by a counter.** No `01` / `02` stamp, no `04 — 08` progress mark, no gutter column holding a digit. Active state is the slab or the accent rule; membership in a set is the card boundary or the hairline; order is DOM order
 - Scroll-pinned moments (e.g. the testimonials horizontal track, the `name-mark` scroll-fill) act as cinematic beats
 
 ### Whitespace Philosophy
@@ -359,6 +361,7 @@ Depth is structural: a dark card next to a light card is the elevation; a two-st
 - Don't apply rounded corners to media or work cards — use `rounded-plate` (0px), print-plate sharp
 - Don't flatten card surfaces — gradients carry the dimensional weight
 - **Don't add an eyebrow** — a short uppercase line above the H1/H2 is banned. It is the single most templated move in web design, and it is what every AI-assembled page reaches for. If the label carries real information, it belongs in the headline or not at all
+- **Don't number a section, card, step, or chapter** — `01`, `(02)`, `04 — 08`, `1.`, `Step 3`, `Chapter 2`, `Part I` are all the same banned element wearing different costumes. A numbered page reads as a slide deck, not a website. It stays banned when the number is derived (`index + 1`, `padStart(2, '0')`) rather than authored, when it sits in its own gutter column or a `::before`, when it is `aria-hidden` (that only proves it carries no information), and when it looks genuinely sharp in mono + accent — it did, and it was cut anyway. **The test: would the number change if you reordered the list? If yes it is an index — delete it. If no it is data — keep it** (`(©26)` yearmarks, prices, stats, dates, the `10×` mark, the hand-authored `Work (4)` caption). Whatever the index was signalling, give the job to the design: the ink slab or accent rule marks the active item, the card boundary or hairline marks membership in a set, and DOM order marks order
 - Don't hand-write section padding, gutters, or container widths — import `SECTION` / `SECTION_X` / `SECTION_Y` / `CONTAINER` / `HEADER_GAP` from `src/lib/layout.ts`. A section with a bespoke `py-*` is drift, and drift reads as sloppiness before anyone can name why
 - Don't use `text-decoration: underline` — use a decorative ink hairline instead
 - Don't reach for italic, condensed, or alt cuts of Arimo — 400 and 700 only (those are the only weights loaded)
@@ -477,7 +480,7 @@ runtime:      # :root (use via inline style or bg-[var(--…)])
 7. Cards carry two-stop gradients (`--gradient-card-*`) — flat fills break the system.
 8. `rounded-pill` for CTAs, `rounded-card-sm/-card/-lg` for cards, `rounded-plate` for media.
 9. No shadows except the two sanctioned floating-UI values.
-10. Section padding, gutter, container: `SECTION` / `CONTAINER` / `HEADER_GAP` — never hand-rolled. Headline opens the section; no eyebrow.
+10. Section padding, gutter, container: `SECTION` / `CONTAINER` / `HEADER_GAP` — never hand-rolled. Headline opens the section; no eyebrow above it, no index stamp on it.
 11. Pair project names with `(©26)` Geist Mono yearmark stamps.
 12. Preserve the Arimo wordmark everywhere, no trademark glyph.
 13. Gate every animation behind `useReducedMotion` / `prefers-reduced-motion`.
