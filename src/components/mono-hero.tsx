@@ -79,7 +79,11 @@ export function MonoHero({ locale }: { locale: Locale }) {
   return (
     <div className="hero-track relative bg-ink">
       <div className="hero-pane flex items-center justify-center overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 grid grid-cols-2 gap-6 px-6 md:grid-cols-4 md:px-10">
+        {/* Clips its own overflow: the columns are taller than the pane, and
+            without a scroll-driven-animation timeline (Firefox) the pane is
+            static, so it is no longer this grid's containing block and can't
+            clip it. */}
+        <div className="pointer-events-none absolute inset-0 grid grid-cols-2 gap-6 overflow-hidden px-6 md:grid-cols-4 md:px-10">
           <MarqueeColumn direction="up" duration={40} offset={0} />
           <MarqueeColumn direction="down" duration={50} offset={5} />
           <div className="hidden md:block">
