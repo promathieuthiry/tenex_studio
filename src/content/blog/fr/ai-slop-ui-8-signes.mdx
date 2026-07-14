@@ -1,0 +1,119 @@
+---
+title: "AI slop : 8 signes qui trahissent un site généré par IA."
+date: 2026-07-14
+excerpt: "Les sites produits par IA se ressemblent tous. Voici les huit motifs qui reviennent à chaque fois, illustrés sur un vrai site, et ce qu'ils coûtent."
+cover: /blog/slop-cover.webp
+category: ["Design", "IA"]
+author: Mathieu Thiry
+authorRole: Fondateur
+faq:
+  - question: "C'est quoi le AI slop en design web ?"
+    answer: "Le slop, ce sont les motifs que les modèles d'IA reproduisent par défaut, quel que soit le projet. Le résultat n'est pas laid. Il est correct, propre, et identique à celui de tous les autres. Le slop n'est pas un problème de goût, c'est une absence de choix."
+  - question: "Un site généré par IA, est-ce vraiment un problème pour mon entreprise ?"
+    answer: "Oui, dès que le site doit vous différencier. Si votre page ressemble à celle de vos concurrents, le visiteur n'a aucune raison de vous retenir. Vous payez pour être visible et vous obtenez l'invisibilité."
+  - question: "Comment savoir si mon site a l'air d'un site IA ?"
+    answer: "Comptez trois choses. Le nombre de tirets cadratins dans vos textes, le nombre de vraies photos sur la page, et le nombre de sections qui utilisent la même grille de cartes identiques. Si les tirets sont nombreux, les photos absentes et les cartes partout, vous avez la réponse."
+  - question: "Faut-il arrêter d'utiliser l'IA pour son site ?"
+    answer: "Non. L'IA accélère le code, les variantes et les tests. Le problème n'est pas l'outil, c'est de lui laisser les décisions de structure. La typographie, la couleur, la hiérarchie et les images restent des choix humains."
+  - question: "Existe-t-il des outils pour empêcher l'IA de produire du slop ?"
+    answer: "Deux, et ils agissent aux deux bouts. Taste Skill charge des règles de design dans votre agent de code avant qu'il ne génère quoi que ce soit. Impeccable recense 46 motifs de slop et les détecte sur une page existante, en ligne de commande ou via une extension de navigateur. Les deux sont gratuits et open source."
+  - question: "Le tiret cadratin est-il vraiment un signe fiable ?"
+    answer: "C'est le plus fiable de tous. Sur le site que nous avons audité, il apparaît trente et une fois, jusque dans le libellé d'un bouton. Un humain qui écrit remarque la répétition bien avant la sixième occurrence."
+  - question: "Combien de temps pour corriger un site qui ressemble à ça ?"
+    answer: "Les corrections de texte et de typographie se font en quelques jours. Une refonte complète du site, avec une direction artistique propre et de vraies images, se livre en deux à trois semaines une fois le périmètre défini."
+---
+
+import { BOOK_URL } from '@/lib/book';
+import ProseA from '@/components/prose/prose-a.astro';
+
+Un site généré par IA se reconnaît en quelques secondes. Pas parce qu'il est laid. Parce qu'il est exactement comme les autres. C'est ça, le **slop**. Une page correcte, propre, techniquement irréprochable, et interchangeable avec des milliers d'autres. Pour illustrer, nous avons audité un vrai site : [dnaexplore.ai](https://dnaexplore.ai).
+
+Bonne nouvelle : Deux projets open source prennent le problème par les deux bouts. [Taste Skill](https://www.tasteskill.dev/) donne des règles de design à votre agent avant qu'il ne génère quoi que ce soit. [Impeccable](https://impeccable.style/slop/) recense 46 motifs de slop et les détecte sur une page existante.
+
+Voici les huit signes, du plus fréquent au plus discret.
+
+## 1. Le tiret cadratin, partout.
+
+**Ce que fait l'IA :** elle sème le tiret cadratin, le `—`. Dans les titres, dans les boutons, dans les témoignages. C'est la signature numéro un. Sur la page auditée, il apparaît **trente et une fois**.
+
+![Un tiret cadratin à l'intérieur du libellé d'un bouton.](/blog/slop-emdash-button.webp)
+
+Plus bas, le même signe sépare deux montants, là où un simple trait d'union suffisait :
+
+![Un tiret cadratin utilisé pour séparer deux prix.](/blog/slop-emdash-price.webp)
+
+**Ce que vous devriez faire :** un point, une virgule, deux points, ou un trait d'union. Jamais le cadratin.
+
+## 2. Eyebrow, le petit label au-dessus de chaque titre.
+
+**Ce que fait l'IA :** une étiquette minuscule, en majuscules espacées, posée juste au-dessus d'un titre surdimensionné. Ou la même forme glissée dans une pastille colorée. On l'appelle l'_eyebrow_.
+
+![Un eyebrow en majuscules espacées, dans une pastille, au-dessus du titre de la page.](/blog/slop-eyebrow-pill.webp)
+
+**Ce que vous devriez faire :** supprimez l'eyebrow. Si le mot compte vraiment, intégrez-le au titre.
+
+## 3. Le dégradé sur le titre.
+
+**Ce que fait l'IA :** un dégradé sur le titre principal, souvent animé en boucle. Violet, bleu, turquoise : la teinte change, le geste reste le même.
+
+![Le titre du site avec un dégradé turquoise animé.](/blog/slop-hero-gradient.webp)
+
+**Ce que vous devriez faire :** choisissez une couleur d'accent et tenez-la sur toute la page. Le titre en une seule teinte, à plat. Gardez le contraste pour ce qui doit être cliqué.
+
+## 4. Le grand titre en serif italique.
+
+**Ce que fait l'IA :** une serif italique, en très gros, comme titre principal du hero. Isolé, c'est un choix qui a du goût. Répété partout, c'est devenu le hero universel des landing pages de startups IA.
+
+![Le titre de fin de page en Playfair Display.](/blog/slop-serif.webp)
+
+**Ce que vous devriez faire :** N'utilisez qu'une ou deux polices. Optez pour une sans-serif.
+
+## 5. Aucune vraie image.
+
+**Ce que fait l'IA :** du texte à la place des images.
+
+![La section fondateur, avec un carré coloré aux initiales au lieu d'une photo.](/blog/slop-founder.webp)
+
+Trouver une image demande un choix, une décision. C'est exactement pour ça qu'elle manque.
+
+**Ce que vous devriez faire :** au moins une vraie image sur chaque page qui compte. Une photo du produit, une capture de l'interface, un visage. Si vous n'avez rien à montrer, la page n'est pas finie.
+
+## 6. La numérotation décorative.
+
+**Ce que fait l'IA :** elle numérote tout. `01`, `02`, `03` au-dessus de trois étapes déjà rangées dans l'ordre de lecture, dans une section déjà titrée « Trois étapes ».
+
+![Trois étapes numérotées 01, 02, 03 sous un titre qui annonce déjà trois étapes.](/blog/slop-steps.webp)
+
+**Ce que vous devriez faire :** laissez le contenu porter l'ordre. Le verbe suffit : « Déposez », « Prévisualisez », « Débloquez ». Un lecteur sait compter jusqu'à trois sans qu'on l'aide.
+
+## 7. Les cartes identiques.
+
+**Ce que fait l'IA :** Six cartes identiques. Même taille, même fond blanc, même pastille d'icône, même titre en gras, même paragraphe gris.
+
+![Six cartes blanches identiques dans une grille de trois par deux.](/blog/slop-cards.webp)
+
+**Ce que vous devriez faire :** changez de mise en page d'une section à l'autre.
+
+## 8. Les chiffres et les noms qui sonnent faux.
+
+**Ce que fait l'IA :** des chiffres sans source et des gens sans visage.
+
+![Un bandeau de quatre chiffres sans source.](/blog/slop-stats.webp)
+
+Le bandeau existe parce qu'une page d'accueil a un bandeau de chiffres, pas parce que ces quatre données servaient à quelque chose.
+
+![Trois témoignages avec noms tronqués et avatars aux initiales.](/blog/slop-testimonials.webp)
+
+Même logique du côté des témoignages : des prénoms suivis d'une initiale.
+
+**Ce que vous devriez faire :** Un témoignage avec un vrai nom, un vrai rôle et un vrai visage.
+
+## Deux outils pour ne plus produire de slop.
+
+L'œil suffit pour repérer les huit signes. Pour ne plus les produire, il faut agir sur la machine, en amont et en aval.
+
+**En amont : [Taste Skill](https://www.tasteskill.dev/).** Des fichiers de compétence open source que l'agent charge avant d'écrire la moindre ligne. Ils l'obligent à lire le brief, à choisir une direction, puis à passer une check-list avant de livrer. Une commande suffit : `npx skills add Leonxlnx/taste-skill`.
+
+**En aval : [Impeccable](https://impeccable.style/slop/).** Un catalogue de 46 motifs qui trahissent une interface générée par l'IA, et un détecteur qui les surligne directement sur la page. La commande : `npx impeccable detect`.
+
+Reste la partie qu'aucun outil ne fera à votre place : décider à quoi votre marque doit ressembler. Si vous avez besoin d'aide pour ça, nous pouvons vous accompagner. <ProseA href={BOOK_URL}>Réservez un appel</ProseA>, trente minutes pour cadrer votre projet.

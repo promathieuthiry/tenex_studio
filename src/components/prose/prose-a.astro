@@ -1,0 +1,12 @@
+---
+const { href, ...props } = Astro.props as { href?: string };
+const isExternal = !!href && /^https?:\/\//.test(href);
+---
+<a
+  {...props}
+  href={href}
+  {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+  class="text-ink underline decoration-ink/25 underline-offset-4 transition-colors hover:decoration-accent hover:text-accent"
+>
+  <slot />
+</a>

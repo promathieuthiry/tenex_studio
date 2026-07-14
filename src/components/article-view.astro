@@ -8,7 +8,7 @@ import { proseComponents } from "@/components/article-prose";
 import { BlogCard } from "@/components/blog-card";
 import { Faq } from "@/components/faq";
 import ArticleCta from "@/components/article-cta.astro";
-import { BODY_SM, LEAD, META, TITLE_LG, TITLE_XL } from "@/lib/type";
+import { BODY_SM, META, TITLE_LG } from "@/lib/type";
 
 const { entry, locale } = Astro.props as { entry: BlogEntry; locale: Locale };
 
@@ -42,66 +42,59 @@ const faqItems = entry.data.faq.map((item, index) => ({
 
 <article id="main">
   <header class="px-6 pt-32 md:px-10 md:pt-40">
-    <div class="mx-auto max-w-7xl">
-      <a
-        href={pathFor(locale, "/blog")}
-        class={`${META} text-ink/60 transition-opacity duration-300 hover:opacity-60`}
-        >← {t.back[locale]}</a
-      >
+    <div
+      class="mx-auto max-w-7xl lg:grid lg:grid-cols-[minmax(0,42rem)_16rem] lg:justify-center lg:gap-16 xl:gap-24"
+    >
+      <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+        <a
+          href={pathFor(locale, "/blog")}
+          class={`${META} text-ink/60 transition-opacity duration-300 hover:opacity-60`}
+          >← {t.back[locale]}</a
+        >
 
-      <figure
-        class="relative mt-8 flex min-h-[30rem] flex-col justify-end overflow-hidden bg-paper-deep px-6 py-8 md:mt-10 md:min-h-[38rem] md:px-10 md:py-12"
-      >
-        <img
-          src={entry.data.cover}
-          alt=""
-          loading="eager"
-          decoding="async"
-          class="absolute inset-0 h-full w-full object-cover"
-        />
-        <span
-          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/10"
-          aria-hidden="true"></span>
-        <figcaption class="relative max-w-4xl">
-          <h1 class={`${TITLE_XL} text-paper`}>
-            {entry.data.title}
-          </h1>
+        <figure class="mt-6 overflow-hidden rounded-sm bg-paper-deep md:mt-8">
+          <img
+            src={entry.data.cover}
+            alt=""
+            loading="eager"
+            decoding="async"
+            class="block aspect-2/1 w-full object-cover"
+          />
 
-          <p class={`mt-5 max-w-2xl ${LEAD} text-paper/80`}>
-            {entry.data.excerpt}
-          </p>
+          <figcaption class="bg-ink p-6 md:p-8">
+            <h1 class={`${TITLE_LG} text-paper`}>
+              {entry.data.title}
+            </h1>
 
-          <div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
-            <div class="flex items-center gap-3">
+            <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
               <img
                 src="/portrait/mathieu-thiry-linkedin.webp"
                 alt={entry.data.author}
-                width="40"
-                height="40"
+                width="32"
+                height="32"
                 loading="eager"
                 decoding="async"
-                class="size-10 shrink-0 rounded-full object-cover ring-1 ring-paper/25"
+                class="size-8 shrink-0 rounded-full object-cover ring-1 ring-paper/25"
               />
-              <span>
-                <span class={`block ${BODY_SM} font-medium text-paper`}
-                  >{entry.data.author}</span
-                >
-                <span class={`block ${META} text-paper/60`}
-                  >{entry.data.authorRole}</span
-                >
-              </span>
-            </div>
-
-            <span class="hidden h-8 w-px bg-paper/20 sm:block" aria-hidden="true"></span>
-
-            <div class={`flex flex-wrap items-center gap-3 ${META} text-paper/70`}>
-              <time datetime={entry.data.date.toISOString()}>{dateLabel}</time>
+              <span class={`${BODY_SM} font-medium text-paper`}>{entry.data.author}</span>
               <span class="text-paper/35" aria-hidden="true">/</span>
-              <span>{entry.data.category.join(" · ")}</span>
+              <time class={`${META} text-paper/70`} datetime={entry.data.date.toISOString()}
+                >{dateLabel}</time
+              >
+
+              {
+                entry.data.category.map((label) => (
+                  <span
+                    class={`rounded-full border border-paper/20 px-3 py-1 ${META} text-paper/70`}
+                  >
+                    {label}
+                  </span>
+                ))
+              }
             </div>
-          </div>
-        </figcaption>
-      </figure>
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </header>
 
