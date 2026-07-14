@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import { META, TITLE_SM } from "@/lib/type";
 
 type BlogCardProps = {
   href: string;
@@ -43,7 +44,7 @@ export function BlogCard({
           />
         </figure>
 
-        <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/60">
+        <div className={`flex items-center gap-3 ${META} text-ink/60`}>
           <time dateTime={date}>{formatDate(date, locale)}</time>
           <span className="text-ink/25" aria-hidden>
             /
@@ -51,7 +52,9 @@ export function BlogCard({
           <span>{category.join(" · ")}</span>
         </div>
 
-        <h3 className="font-display text-xl leading-[1.1] tracking-[-0.01em] text-ink transition-opacity duration-300 group-hover:opacity-70 md:text-2xl">
+        <h3
+          className={`${TITLE_SM} text-ink transition-opacity duration-300 group-hover:opacity-70`}
+        >
           {title}
         </h3>
       </article>
