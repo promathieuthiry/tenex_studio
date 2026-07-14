@@ -10,6 +10,7 @@ import {
   DIGITAL_CARD_VCF,
   DIGITAL_CARD_WEBSITE,
 } from "@/data/digital-card";
+import { BODY_SM, META } from "@/lib/type";
 
 type Props = {
   locale: Locale;
@@ -46,14 +47,14 @@ const lastName = lastNameParts.join(" ");
 
       <div class="mt-6 grid gap-6 sm:grid-cols-2">
         <div>
-          <p class="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink/40">
+          <p class={`${META} text-ink/40`}>
             {content.role}
           </p>
           <p class="mt-2 font-sans text-lg font-semibold leading-[1.1] text-ink">
             {content.studio}
           </p>
           <div class="mt-4">
-            <p class="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink/40">
+            <p class={`${META} text-ink/40`}>
               {content.websiteLabel}
             </p>
             <p class="mt-2 font-sans text-base font-medium leading-[1.1] text-ink">
@@ -66,7 +67,7 @@ const lastName = lastNameParts.join(" ");
 
         <dl class="grid gap-4">
           <div>
-            <dt class="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink/40">
+            <dt class={`${META} text-ink/40`}>
               {content.emailLabel}
             </dt>
             <dd class="mt-2 font-sans text-base font-medium leading-[1.1] text-ink">
@@ -76,7 +77,7 @@ const lastName = lastNameParts.join(" ");
             </dd>
           </div>
           <div>
-            <dt class="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink/40">
+            <dt class={`${META} text-ink/40`}>
               {content.phoneLabel}
             </dt>
             <dd class="mt-2 font-sans text-base font-medium leading-[1.1] text-ink">
@@ -93,14 +94,14 @@ const lastName = lastNameParts.join(" ");
           href={BOOK_URL}
           target={BOOK_LINK_ATTRS.target}
           rel={BOOK_LINK_ATTRS.rel}
-          class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 font-sans text-sm font-medium text-paper transition hover:opacity-80"
+          class={`inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 ${BODY_SM} font-medium text-paper transition hover:opacity-80`}
         >
           {content.bookCta}
         </a>
         <a
           href={DIGITAL_CARD_VCF[locale]}
           download
-          class="inline-flex items-center justify-center rounded-full border border-ink/20 px-6 py-3 font-sans text-sm font-medium text-ink transition hover:border-ink"
+          class={`inline-flex items-center justify-center rounded-full border border-ink/20 px-6 py-3 ${BODY_SM} font-medium text-ink transition hover:border-ink`}
         >
           {content.contactCta}
         </a>

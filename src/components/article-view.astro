@@ -5,10 +5,10 @@ import { pathFor } from "@/lib/i18n";
 import type { BlogEntry } from "@/lib/blog";
 import { relatedPosts, postSlug } from "@/lib/blog";
 import { proseComponents } from "@/components/article-prose";
-import { BODY_SM, LEAD, META, TITLE_LG, TITLE_XL } from "@/lib/type";
 import { BlogCard } from "@/components/blog-card";
 import { Faq } from "@/components/faq";
 import ArticleCta from "@/components/article-cta.astro";
+import { BODY_SM, LEAD, META, TITLE_LG, TITLE_XL } from "@/lib/type";
 
 const { entry, locale } = Astro.props as { entry: BlogEntry; locale: Locale };
 

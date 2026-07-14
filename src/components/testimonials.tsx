@@ -23,6 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { BODY_SM, META, QUOTE } from "@/lib/type";
 
 const COPY = {
   fr: {
@@ -105,7 +106,7 @@ function Card({
             </a>
           </div>
 
-          <blockquote className="mb-6 mt-10 line-clamp-8 font-display text-lg leading-[1.4] tracking-[-0.005em] text-ink md:mb-8 md:text-[20px] md:line-clamp-9">
+          <blockquote className={`mb-6 mt-10 line-clamp-8 ${QUOTE} text-ink md:mb-8 md:line-clamp-9`}>
             {t.quote[locale]}
           </blockquote>
 
@@ -120,10 +121,10 @@ function Card({
               className="size-14 shrink-0 rounded-full bg-ink/5 object-cover"
             />
             <div className="min-w-0">
-              <p className="truncate font-sans text-sm font-medium text-ink">
+              <p className={`truncate ${BODY_SM} font-medium text-ink`}>
                 {t.name[locale]}
               </p>
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70">
+              <p className={`${META} text-ink/70`}>
                 {t.role[locale]}
               </p>
             </div>
@@ -146,7 +147,7 @@ function Card({
           </span>
         </div>
 
-        <blockquote className="max-h-[60svh] overflow-y-auto pb-4 pr-2 font-display text-base leading-normal tracking-[-0.005em] text-ink md:pb-6 md:text-lg">
+        <blockquote className={`max-h-[60svh] overflow-y-auto pb-4 pr-2 ${QUOTE} text-ink md:pb-6`}>
           {t.quote[locale]}
         </blockquote>
 
@@ -167,10 +168,10 @@ function Card({
             className="size-16 shrink-0 rounded-full bg-ink/5 object-cover"
           />
           <div className="min-w-0 flex-1">
-            <p className="font-sans text-sm font-medium text-ink">
+            <p className={`${BODY_SM} font-medium text-ink`}>
               {t.name[locale]}
             </p>
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            <p className={`${META} text-ink/70`}>
               {t.role[locale]}
             </p>
           </div>

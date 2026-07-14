@@ -9,6 +9,7 @@ import {
   type GlossaryTerm,
 } from "@/data/glossary";
 import { GLOSSARY_HEADER } from "@/data/glossary";
+import { BODY, BODY_SM, LEAD, META, TITLE_LG } from "@/lib/type";
 
 const { term, locale } = Astro.props as { term: GlossaryTerm; locale: Locale };
 
@@ -38,7 +39,7 @@ const related = term.related
   <div class="mx-auto max-w-3xl">
     <nav
       aria-label="Breadcrumb"
-      class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs uppercase tracking-[0.12em] text-ink/40"
+      class={`flex flex-wrap items-center gap-x-2 gap-y-1 ${META} text-ink/40`}
     >
       <a href={pathFor(locale)} class="transition-colors hover:text-ink">
         {labels.home}
@@ -54,33 +55,31 @@ const related = term.related
     <header class="mt-10">
       {
         category && (
-          <span class="inline-flex rounded-full border border-ink/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/60">
+          <span
+            class={`inline-flex rounded-full border border-ink/15 px-3 py-1 ${META} text-ink/60`}
+          >
             {category.label[locale]}
           </span>
         )
       }
-      <h1
-        class="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-6xl"
-      >
+      <h1 class={`mt-4 ${TITLE_LG} text-ink`}>
         <dfn id={term.slug} class="not-italic">{term.term[locale]}</dfn>
       </h1>
       {
         term.abbr && term.abbr[locale] !== term.term[locale] && (
-          <p class="mt-4 font-sans text-base text-ink/50">{term.abbr[locale]}</p>
+          <p class={`mt-4 ${BODY} text-ink/50`}>{term.abbr[locale]}</p>
         )
       }
     </header>
 
     <div class="mt-10 border-t border-ink/10 pt-10">
-      <p class="font-display text-xl font-normal leading-[1.5] tracking-[-0.005em] text-ink md:text-2xl">
+      <p class={`${LEAD} text-ink`}>
         {term.short[locale]}
       </p>
       <div class="mt-8 flex flex-col gap-5">
         {
           term.body[locale].map((paragraph) => (
-            <p class="max-w-prose font-sans text-base leading-7 text-ink/75">
-              {paragraph}
-            </p>
+            <p class={`max-w-prose ${BODY} text-ink/70`}>{paragraph}</p>
           ))
         }
       </div>
@@ -89,7 +88,7 @@ const related = term.related
     {
       related.length > 0 && (
         <div class="mt-14 border-t border-ink/10 pt-8">
-          <h2 class="font-mono text-xs uppercase tracking-[0.18em] text-ink/40">
+          <h2 class={`${META} text-ink/40`}>
             {labels.related}
           </h2>
           <ul class="mt-5 flex flex-wrap gap-2.5">
@@ -97,7 +96,7 @@ const related = term.related
               <li>
                 <a
                   href={glossaryPath(item, locale)}
-                  class="inline-flex rounded-full border border-ink/15 px-3.5 py-1.5 font-sans text-sm text-ink/80 transition-colors hover:border-ink hover:text-ink"
+                  class={`inline-flex rounded-full border border-ink/15 px-3.5 py-1.5 ${BODY_SM} text-ink/80 transition-colors hover:border-ink hover:text-ink`}
                 >
                   {item.term[locale]}
                 </a>
@@ -111,7 +110,7 @@ const related = term.related
     <div class="mt-14">
       <a
         href={indexPath}
-        class="font-mono text-xs uppercase tracking-[0.12em] text-ink/60 transition-colors hover:text-ink"
+        class={`${META} text-ink/60 transition-colors hover:text-ink`}
       >
         ← {labels.back}
       </a>

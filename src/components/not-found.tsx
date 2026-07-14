@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/ui/button'
 import { BOOK_URL, BOOK_LINK_ATTRS } from '@/lib/book'
+import { BODY, TITLE_XL } from "@/lib/type";
 
 const COPY = {
   fr: {
@@ -32,10 +33,10 @@ export default function NotFound() {
 
   return (
     <section className="flex min-h-[70vh] flex-col items-center justify-center gap-6 px-6 text-center">
-      <h1 className="font-display text-5xl leading-[1.1] tracking-[-0.045em] text-ink md:text-7xl">
+      <h1 className={`${TITLE_XL} text-ink`}>
         {copy.title}
       </h1>
-      <p className="max-w-prose font-sans text-base text-ink/70">
+      <p className={`max-w-prose ${BODY} text-ink/70`}>
         {copy.body}
       </p>
       <div className="flex gap-3">

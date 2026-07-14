@@ -114,9 +114,11 @@ Fonts are declared in `astro.config.mjs` and exposed as CSS variables; `@theme i
 | Role            | Font  | Size            | Weight | Line Height   | Letter Spacing | Notes                          |
 | --------------- | ----- | --------------- | ------ | ------------- | -------------- | ------------------------------ |
 | Hero Wordmark   | Arimo | ~176px (≤11rem) | 700    | 0.85          | ~ -8px         | Compressed sub-1 leading       |
-| Section Heading | Arimo | ~64px           | 700    | 1.10          | ~ -2px         | Statement headline             |
-| Display Number  | Arimo | ~48px           | 700    | 1.10          | ~ -3px         | Pricing, large stats           |
+| Page Title      | Arimo | ~96px           | 400    | 1.0           | ~ -0.03em      | H1 on `/blog`, `/glossaire`, `/outils`, legal, articles, landings |
+| Section Heading | Arimo | ~64px           | 400    | 1.10          | ~ -2px         | Statement headline — large and light, the scale carries it, not the weight |
+| Display Number  | Arimo | ~36–48px        | 700    | 1.10          | ~ -3px         | Pricing, large stats — a figure reads as a mark, so it keeps the weight |
 | Sub-heading     | Arimo | ~27px           | 700    | 1.10          | ~ -1px         | Card titles, H4                |
+| FAQ Question    | Arimo | ~24px           | 400    | 1.12          | -0.02em        | Reads as a spoken question, not a label |
 | Quote / Lead    | Arimo | 18–20px         | 400    | 1.4           | -0.005em       | Testimonial blockquotes        |
 | Nav / Body      | Inter | 14–16px         | 400–500 | 1.10         | ~ -0.04em (display sizes) | Navigation, primary body |
 | Caption / Meta  | Mono  | 10–12px         | 400–500 | normal       | +0.14–0.18em uppercase | Counts, chips, field labels, yearmarks — **never above a heading** |
@@ -127,16 +129,21 @@ Fonts are declared in `astro.config.mjs` and exposed as CSS variables; `@theme i
 
 The "title section" is everything that introduces, names, or punctuates the page. Arimo owns it entirely:
 
-- **Hero wordmark** (~176px) — the studio's signature, rendered as a typographic logo
-- **Section headings** (~64px) — magazine-spread chapter openers (`SectionHeader` component)
-- **Display numbers** (~48px) — prices, stats, counters, dates
-- **Sub-headings** (~27px) — card titles, feature names, FAQ questions
+- **Hero wordmark** (~176px, 700) — the studio's signature, rendered as a typographic logo
+- **Page titles** (~96px, 400) — the H1 that names a page
+- **Section headings** (~64px, 400) — magazine-spread chapter openers (`SectionHeader` component)
+- **Display numbers** (~36–48px, 700) — prices, stats, counters, dates
+- **Sub-headings** (~24–27px, 700) — card titles, feature names
+- **FAQ questions** (~24px, 400) — asked, not announced
+
+The scale itself lives in **`src/lib/type.ts`** — `TITLE_PAGE` / `TITLE_XL` / `TITLE_LG` / `TITLE_MD` / `TITLE_SM` / `TITLE_SM_REGULAR` / `NUMBER` / `QUOTE` / `LEAD` / `BODY` / `BODY_SM` / `META`. Import from it the way sections import spacing from `layout.ts`. Hand-written `font-display text-…` on a heading is drift.
 
 Below 24px Arimo is replaced by Inter. This guarantees Arimo always reads as a _display_ face — the moment it would lose authority is the moment we hand off.
 
 ### Principles
 
 - **Arimo is for titles only**: 24px and up. Never below. The contrast between Arimo headlines and Inter body is the system's primary rhythm.
+- **Weight is not how a heading gets its authority — scale is.** Page titles and section headings run Arimo **400** at 48px and up: they open a page or a section by being large, not by being heavy. Weight **700** is reserved for the marks that must punch at small or mid size — the wordmark, card titles, prices. A bolded section heading reads as shouting; a large light one reads as printed.
 - **Letter-spacing scales with size, always negative on display**: tight at hero scale (~`-8px`), easing toward `-0.04em` at wordmark size. The bigger the text, the tighter it gets.
 - **Sub-1.0 hero leading**: the hero's `0.85` line-height is the typographic signature — letters compress vertically, behaving as a logo rather than a sentence.
 - **Tight universal leading**: body and headings use `1.10`; testimonial quotes relax to `1.4`. Tight enough to feel intentional, loose enough to read.
@@ -408,14 +415,16 @@ shadows:
 ```yaml
 title:
   font: Arimo (font-display)   # weights 400, 700 only
-  weight: 700
   min_size: 24
+  rule: "48px and up -> 400. Below that -> 700."
   scale:
-    hero:    { line_height: 0.85, letter_spacing: "~ -8px" }
-    section: { line_height: 1.10, letter_spacing: "~ -2px" }
-    number:  { line_height: 1.10, letter_spacing: "~ -3px" }
-    sub:     { line_height: 1.10, letter_spacing: "~ -1px" }
-    wordmark:{ tracking: "-0.04em" }
+    hero:    { weight: 700, line_height: 0.85, letter_spacing: "~ -8px" }
+    page:    { weight: 400, line_height: 1.00, letter_spacing: "-0.03em" }  # H1, TITLE_PAGE
+    section: { weight: 400, line_height: 1.10, letter_spacing: "~ -2px" }   # large + light
+    number:  { weight: 700, line_height: 1.10, letter_spacing: "~ -3px" }   # prices, stats
+    sub:     { weight: 700, line_height: 1.10, letter_spacing: "~ -1px" }   # card titles
+    faq:     { weight: 400, line_height: 1.12, letter_spacing: "-0.02em" }
+    wordmark:{ weight: 700, tracking: "-0.04em" }
 body:
   font: Inter (font-sans)      # weights 400, 500, 600
   max_size: 22
@@ -460,17 +469,18 @@ runtime:      # :root (use via inline style or bg-[var(--…)])
 ### Iteration Guide
 
 1. Start on `bg-paper` — light is the default ground.
-2. Per text element decide: **title (Arimo, ≥24px) or body (Inter, ≤22px) or meta (Geist Mono)** — never mix.
-3. Letter-spacing is negative and scales with size on display.
-4. Hero line-height `0.85` is the signature.
-5. Insert ink-gradient dark slabs (or `bg-paper-warm`) for section contrast — alternate like spreads.
-6. Cards carry two-stop gradients (`--gradient-card-*`) — flat fills break the system.
-7. `rounded-pill` for CTAs, `rounded-card-sm/-card/-lg` for cards, `rounded-plate` for media.
-8. No shadows except the two sanctioned floating-UI values.
-9. Section padding, gutter, container: `SECTION` / `CONTAINER` / `HEADER_GAP` — never hand-rolled. Headline opens the section; no eyebrow.
-10. Pair project names with `(©26)` Geist Mono yearmark stamps.
-11. Preserve the Arimo wordmark everywhere, no trademark glyph.
-12. Gate every animation behind `useReducedMotion` / `prefers-reduced-motion`.
+2. Per text element decide: **title (Arimo, ≥24px) or body (Inter, ≤22px) or meta (Geist Mono)** — never mix. Pull the class from `src/lib/type.ts`; don't hand-roll it.
+3. Weight follows scale: display at **48px and up is 400**, below that is 700. Never bold a section heading.
+4. Letter-spacing is negative and scales with size on display.
+5. Hero line-height `0.85` is the signature.
+6. Insert ink-gradient dark slabs (or `bg-paper-warm`) for section contrast — alternate like spreads.
+7. Cards carry two-stop gradients (`--gradient-card-*`) — flat fills break the system.
+8. `rounded-pill` for CTAs, `rounded-card-sm/-card/-lg` for cards, `rounded-plate` for media.
+9. No shadows except the two sanctioned floating-UI values.
+10. Section padding, gutter, container: `SECTION` / `CONTAINER` / `HEADER_GAP` — never hand-rolled. Headline opens the section; no eyebrow.
+11. Pair project names with `(©26)` Geist Mono yearmark stamps.
+12. Preserve the Arimo wordmark everywhere, no trademark glyph.
+13. Gate every animation behind `useReducedMotion` / `prefers-reduced-motion`.
 
 ## 10. Fonts — Install & Wiring (Astro)
 

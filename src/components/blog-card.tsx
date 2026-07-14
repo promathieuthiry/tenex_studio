@@ -44,6 +44,12 @@ export function BlogCard({
           />
         </figure>
 
+        <h3
+          className={`${TITLE_SM} text-ink transition-opacity duration-300 group-hover:opacity-70`}
+        >
+          {title}
+        </h3>
+
         <div className={`flex items-center gap-3 ${META} text-ink/60`}>
           <time dateTime={date}>{formatDate(date, locale)}</time>
           <span className="text-ink/25" aria-hidden>
@@ -51,12 +57,6 @@ export function BlogCard({
           </span>
           <span>{category.join(" · ")}</span>
         </div>
-
-        <h3
-          className={`${TITLE_SM} text-ink transition-opacity duration-300 group-hover:opacity-70`}
-        >
-          {title}
-        </h3>
       </article>
     </a>
   );

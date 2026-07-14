@@ -2,6 +2,7 @@
 import type { Locale } from '@/lib/i18n';
 import { LEGAL } from '@/data/legal';
 import { SECTION_LEAD } from '@/lib/layout';
+import { BODY, LEAD, META, TITLE_LG, TITLE_SM } from "@/lib/type";
 
 const { locale } = Astro.props as { locale: Locale };
 const doc = LEGAL.doc[locale];
@@ -10,11 +11,11 @@ const doc = LEGAL.doc[locale];
 <section class="w-full bg-paper text-ink">
   <div class={`mx-auto max-w-3xl ${SECTION_LEAD}`}>
     <h1
-      class="font-display text-4xl leading-[1.05] tracking-[-0.03em] text-ink md:text-6xl"
+      class={`${TITLE_LG} text-ink`}
     >
       {doc.title}
     </h1>
-    <p class="mt-8 max-w-prose font-sans text-base leading-7 text-ink/70 md:text-lg">
+    <p class={`mt-8 max-w-prose ${LEAD} text-ink/70`}>
       {doc.intro}
     </p>
 
@@ -22,12 +23,12 @@ const doc = LEGAL.doc[locale];
       {
         doc.sections.map((section) => (
           <div class="border-t border-ink/8 pt-8">
-            <h2 class="font-display text-xl tracking-[-0.02em] text-ink md:text-2xl">
+            <h2 class={`${TITLE_SM} text-ink`}>
               {section.heading}
             </h2>
             <div class="mt-4 flex flex-col gap-2">
               {section.body.map((line) => (
-                <p class="max-w-prose font-sans text-sm leading-7 text-ink/70 md:text-base">
+                <p class={`max-w-prose ${BODY} text-ink/70`}>
                   {line}
                 </p>
               ))}
@@ -37,7 +38,7 @@ const doc = LEGAL.doc[locale];
       }
     </div>
 
-    <p class="mt-16 font-mono text-xs uppercase tracking-[0.12em] text-ink/40">
+    <p class={`mt-16 ${META} text-ink/40`}>
       {doc.updated}
     </p>
   </div>

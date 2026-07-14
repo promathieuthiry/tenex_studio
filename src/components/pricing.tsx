@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/section-header";
 import { SECTION, CONTAINER, HEADER_GAP } from "@/lib/layout";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
+import { BODY_SM, META, NUMBER, TITLE_SM } from "@/lib/type";
 
 const COPY = {
   fr: {
@@ -86,11 +87,9 @@ export function Pricing({ locale }: { locale: Locale }) {
                   }
                 >
                   <header className="flex items-baseline justify-between gap-6 md:min-h-18">
-                    <h3 className="font-display text-2xl tracking-[-0.02em] md:text-3xl">
-                      {tier.name[locale]}
-                    </h3>
+                    <h3 className={TITLE_SM}>{tier.name[locale]}</h3>
                     <span
-                      className={`shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] ${
+                      className={`shrink-0 ${META} ${
                         isDark ? "text-paper/55" : "text-ink/70"
                       }`}
                     >
@@ -99,7 +98,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                   </header>
 
                   <p
-                    className={`max-w-md font-sans text-sm leading-6 md:min-h-38 md:text-[15px] md:leading-7 ${
+                    className={`max-w-md ${BODY_SM} md:min-h-38 ${
                       isDark ? "text-paper/65" : "text-ink/65"
                     }`}
                   >
@@ -117,7 +116,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                   <div>
                     {previousTier ? (
                       <p
-                        className={`flex min-h-9 items-start font-mono text-[10px] uppercase leading-4 tracking-[0.18em] ${
+                        className={`flex min-h-9 items-start ${META} ${
                           isDark ? "text-paper/45" : "text-ink/70"
                         }`}
                       >
@@ -127,14 +126,14 @@ export function Pricing({ locale }: { locale: Locale }) {
                       </p>
                     ) : (
                       <p
-                        className={`flex min-h-9 items-start font-sans text-sm font-medium ${
+                        className={`flex min-h-9 items-start ${BODY_SM} font-medium ${
                           isDark ? "text-paper" : "text-ink"
                         }`}
                       >
                         {copy.featuresLabel}
                       </p>
                     )}
-                    <ul className="mt-5 space-y-3 font-sans text-[15px] leading-6">
+                    <ul className={`mt-5 space-y-3 ${BODY_SM}`}>
                       {tier.scope[locale].map((item) => (
                         <li
                           key={item}
@@ -155,23 +154,23 @@ export function Pricing({ locale }: { locale: Locale }) {
 
                   <div className="mt-auto pt-4">
                     <p
-                      className={`font-display text-3xl leading-tight tracking-[-0.02em] md:text-4xl ${
+                      className={`${NUMBER} ${
                         isDark ? "text-paper" : "text-ink"
                       }`}
                     >
                       {!isFixedPrice && (
                         <span
-                          className={`mr-2 align-middle font-sans text-sm font-normal ${
+                          className={`mr-2 align-middle ${BODY_SM} font-normal ${
                             isDark ? "text-paper/55" : "text-ink/70"
                           }`}
                         >
                           {copy.priceFromPrefix}
                         </span>
                       )}
-                      <span>{tier.price[locale]}</span>
+                      <span className="font-normal">{tier.price[locale]}</span>
                       {isFixedPrice && (
                         <span
-                          className={`ml-2 align-middle font-sans text-sm font-normal ${
+                          className={`ml-2 align-middle ${BODY_SM} font-normal ${
                             isDark ? "text-paper/55" : "text-ink/70"
                           }`}
                         >

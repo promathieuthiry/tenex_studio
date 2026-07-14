@@ -4,6 +4,7 @@ import { pathFor } from '@/lib/i18n';
 import { postsForLocale, postSlug, BLOG_INDEX } from '@/lib/blog';
 import { BlogCard } from '@/components/blog-card';
 import { SECTION_LEAD, CONTAINER, HEADER_GAP } from '@/lib/layout';
+import { TITLE_PAGE } from "@/lib/type";
 
 const { locale } = Astro.props as { locale: Locale };
 
@@ -15,7 +16,7 @@ const posts = await postsForLocale(locale);
     <header class="max-w-3xl">
       <h1
         id="blog-index-heading"
-        class="font-display text-5xl leading-[1] tracking-[-0.03em] text-ink md:text-8xl"
+        class={`${TITLE_PAGE} text-ink`}
       >
         {BLOG_INDEX.title[locale]}
       </h1>

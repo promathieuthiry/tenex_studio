@@ -11,12 +11,11 @@ import {
   type SeoLandingPage,
 } from "@/data/seo-landing-pages";
 import { SECTION, SECTION_X, CONTAINER } from "@/lib/layout";
-import { BODY, BODY_SM, LEAD, TITLE_LG, TITLE_SM, TITLE_XL } from "@/lib/type";
+import { BODY, BODY_SM, LEAD, TITLE_LG, TITLE_SM, TITLE_SM_REGULAR, TITLE_XL } from "@/lib/type";
 
 const COPY = {
   fr: {
     methodLabel: "Méthode",
-    proofTitle: "Ce que le site doit prouver vite.",
     faqTitle: "Les points à clarifier avant de lancer.",
     relatedTitle: "Les services experts que nous savons rendre lisibles.",
     relatedBody:
@@ -27,7 +26,6 @@ const COPY = {
   },
   en: {
     methodLabel: "Method",
-    proofTitle: "What the site must prove fast.",
     faqTitle: "The points to clarify before launch.",
     relatedTitle: "The expert services we know how to make readable.",
     relatedBody:
@@ -241,34 +239,6 @@ export function SeoLandingExperience({
         </div>
       </header>
 
-      <section className={`border-b border-ink/10 ${SECTION}`}>
-        <div className={`${CONTAINER} grid gap-8 lg:grid-cols-[0.34fr_0.66fr]`}>
-          <div>
-            <h2 className={`max-w-md ${TITLE_LG} text-ink`}>{copy.proofTitle}</h2>
-          </div>
-          <div className="grid gap-3 md:grid-cols-3">
-            {page.proof.map((item, index) => (
-              <motion.article
-                key={item[locale]}
-                variants={CARD_REVEAL}
-                initial={reduceMotion ? false : "hidden"}
-                whileInView="show"
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  duration: 0.48,
-                  ease: PREMIUM_EASE,
-                  delay: reduceMotion ? 0 : index * 0.04,
-                }}
-                className="rounded-[8px] border border-ink/10 bg-paper p-5"
-              >
-                <span aria-hidden className="block h-px w-10 bg-ink/20" />
-                <p className={`mt-5 ${BODY} text-ink/70`}>{item[locale]}</p>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className={SECTION}>
         <div className={`${CONTAINER} grid gap-12 lg:grid-cols-[0.34fr_0.66fr]`}>
           <motion.aside
@@ -369,7 +339,7 @@ export function SeoLandingExperience({
               {page.faq.map((item) => (
                 <details key={item.question[locale]} className="group py-6">
                   <summary
-                    className={`flex cursor-pointer list-none items-start justify-between gap-6 ${TITLE_SM} text-ink marker:hidden`}
+                    className={`flex cursor-pointer list-none items-start justify-between gap-6 ${TITLE_SM_REGULAR} text-ink marker:hidden`}
                   >
                     <span>{item.question[locale]}</span>
                     <span

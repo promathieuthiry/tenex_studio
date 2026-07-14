@@ -2,6 +2,7 @@ import { visitAriaLabel } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
 import type { WorkProject } from "@/data/work";
 import { ArrowGlyph } from "@/components/arrow-glyph";
+import { BODY, META, TITLE_SM } from "@/lib/type";
 
 type WorkCardProps = {
   project: WorkProject;
@@ -30,7 +31,7 @@ export function WorkCard({ project, locale, priority = false }: WorkCardProps) {
         aria-hidden
       />
 
-      <figcaption className="absolute inset-x-5 bottom-5 whitespace-pre-line font-display text-[1.6rem] font-medium uppercase leading-[1.02] tracking-[-0.01em] text-paper md:inset-x-6 md:bottom-6 md:text-[2rem]">
+      <figcaption className="absolute inset-x-5 bottom-5 whitespace-pre-line font-display text-[1.6rem]  uppercase leading-[1.02] tracking-[-0.02em] text-paper md:inset-x-6 md:bottom-6 md:text-[2rem]">
         {headline}
       </figcaption>
     </figure>
@@ -49,9 +50,7 @@ export function WorkCard({ project, locale, priority = false }: WorkCardProps) {
             className="size-7 shrink-0 rounded-xs"
             aria-hidden
           />
-          <h3 className="font-display text-lg leading-none tracking-[-0.01em] text-ink">
-            {project.name[locale]}
-          </h3>
+          <h3 className={`${TITLE_SM} text-ink`}>{project.name[locale]}</h3>
         </div>
 
         {liveUrl ? (
@@ -67,7 +66,7 @@ export function WorkCard({ project, locale, priority = false }: WorkCardProps) {
         ) : null}
       </header>
 
-      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/70">
+      <p className={`${META} text-ink/70`}>
         {tags.map((tag, i) => (
           <span key={tag}>
             {tag}
@@ -80,7 +79,7 @@ export function WorkCard({ project, locale, priority = false }: WorkCardProps) {
         ))}
       </p>
 
-      <p className="max-w-prose font-sans text-[15px] leading-7 text-ink/75">
+      <p className={`max-w-prose ${BODY} text-ink/70`}>
         {project.description[locale]}
       </p>
 

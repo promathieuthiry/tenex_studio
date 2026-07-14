@@ -5,8 +5,8 @@ import { FAQ, FAQ_HEADER, type FAQItem, type FAQLink } from "@/data/faq";
 import type { Bilingual } from "@/data/_types";
 import { SectionHeader } from "@/components/section-header";
 import { SECTION, CONTAINER, HEADER_GAP } from "@/lib/layout";
-import { BODY, META, TITLE_SM } from "@/lib/type";
 import { BOOK_URL } from "@/lib/book";
+import { BODY, META, TITLE_SM_REGULAR } from "@/lib/type";
 
 function resolveLink(link: FAQLink) {
   if (link.kind === "email") {
@@ -54,7 +54,7 @@ function FaqRow({
           aria-controls={panelId}
           className="flex w-full cursor-pointer items-baseline gap-6 px-4 py-6 text-left transition-colors hover:bg-paper/60 md:px-6"
         >
-          <span className={`flex-1 ${TITLE_SM} text-ink`}>
+          <span className={`flex-1 ${TITLE_SM_REGULAR} text-ink`}>
             {item.question[locale]}
           </span>
           <motion.span
