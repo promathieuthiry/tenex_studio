@@ -10,6 +10,7 @@ import {
   GlossaryFilter,
   type GlossaryFilterTerm,
 } from "@/components/GlossaryFilter";
+import { SECTION_LEAD, CONTAINER } from "@/lib/layout";
 
 const { locale } = Astro.props as { locale: Locale };
 
@@ -35,11 +36,8 @@ const categories = GLOSSARY_CATEGORIES.map((category) => ({
 }));
 ---
 
-<section
-  class="px-6 pb-24 pt-32 md:px-10 md:pb-40 md:pt-48"
-  aria-labelledby="glossary-heading"
->
-  <div class="mx-auto max-w-7xl">
+<section class={SECTION_LEAD} aria-labelledby="glossary-heading">
+  <div class={CONTAINER}>
     <header class="max-w-3xl">
       <h1
         id="glossary-heading"

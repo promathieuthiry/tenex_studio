@@ -26,13 +26,11 @@ export async function relatedPosts(
   return same.filter((entry) => entry.id !== current.id).slice(0, limit);
 }
 
-export const BLOG_HEADER: Readonly<{ eyebrow: Bilingual; title: Bilingual }> = {
-  eyebrow: { fr: "Journal", en: "Journal" },
+export const BLOG_HEADER: Readonly<{ title: Bilingual }> = {
   title: { fr: "Derniers articles.", en: "Latest articles." },
 };
 
-export const BLOG_INDEX: Readonly<{ eyebrow: Bilingual; title: Bilingual }> = {
-  eyebrow: { fr: "Dernières actualités", en: "Latest news" },
+export const BLOG_INDEX: Readonly<{ title: Bilingual }> = {
   title: {
     fr: "Blog Tenex Studio.",
     en: "Tenex Studio Blog.",

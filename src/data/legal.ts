@@ -13,12 +13,10 @@ export type LegalDoc = Readonly<{
 }>;
 
 export type LegalCopy = Readonly<{
-  eyebrow: Bilingual;
   doc: Bilingual<LegalDoc>;
 }>;
 
 export const LEGAL: LegalCopy = {
-  eyebrow: { fr: "Légal", en: "Legal" },
   doc: {
     fr: {
       title: "Mentions légales",

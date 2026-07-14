@@ -12,11 +12,10 @@ export type FAQItem = Readonly<{
   links?: ReadonlyArray<FAQLink>;
 }>;
 
-export const FAQ_HEADER: Readonly<{ eyebrow: Bilingual; title: Bilingual }> = {
-  eyebrow: { fr: "Questions", en: "Questions" },
+export const FAQ_HEADER: Readonly<{ title: Bilingual }> = {
   title: {
-    fr: "Ce qu’on demande souvent.",
-    en: "What people often ask.",
+    fr: "Questions fréquentes",
+    en: "Frequently asked questions",
   },
 } as const;
 

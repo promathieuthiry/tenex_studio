@@ -6,7 +6,6 @@ import { BOOK_URL, BOOK_LINK_ATTRS } from '@/lib/book'
 
 const COPY = {
   fr: {
-    eyebrow: '(404) PAGE INTROUVABLE',
     title: 'Cette page n’existe pas.',
     body: 'Le lien est cassé ou la page a été déplacée. Revenez à l’accueil ou écrivez-nous, on vous oriente.',
     primary: 'Retour à l’accueil',
@@ -15,7 +14,6 @@ const COPY = {
     secondaryHref: BOOK_URL,
   },
   en: {
-    eyebrow: '(404) NOT FOUND',
     title: 'This page does not exist.',
     body: 'The link is broken or the page moved. Head back home or get in touch, we will point you the right way.',
     primary: 'Back to home',
@@ -34,9 +32,6 @@ export default function NotFound() {
 
   return (
     <section className="flex min-h-[70vh] flex-col items-center justify-center gap-6 px-6 text-center">
-      <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/60">
-        {copy.eyebrow}
-      </p>
       <h1 className="font-display text-5xl leading-[1.1] tracking-[-0.045em] text-ink md:text-7xl">
         {copy.title}
       </h1>

@@ -1,7 +1,6 @@
 import type { Bilingual } from "@/data/_types";
 
 type DigitalCardContent = {
-  eyebrow: string;
   name: string;
   role: string;
   studio: string;
@@ -15,7 +14,6 @@ type DigitalCardContent = {
 
 export const DIGITAL_CARD: Bilingual<DigitalCardContent> = {
   fr: {
-    eyebrow: "Carte digitale",
     name: "Mathieu Thiry",
     role: "Fondateur",
     studio: "Tenex Studio",
@@ -27,7 +25,6 @@ export const DIGITAL_CARD: Bilingual<DigitalCardContent> = {
     photoAlt: "Portrait de Mathieu Thiry",
   },
   en: {
-    eyebrow: "Digital card",
     name: "Mathieu Thiry",
     role: "Founder",
     studio: "Tenex Studio",

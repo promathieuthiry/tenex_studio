@@ -14,6 +14,7 @@ import {
   type Testimonial,
 } from "@/data/testimonials";
 import { SectionHeader } from "@/components/section-header";
+import { SECTION_X, SECTION_Y, CONTAINER, HEADER_GAP } from "@/lib/layout";
 import { ArrowGlyph } from "@/components/arrow-glyph";
 import {
   Dialog,
@@ -223,11 +224,10 @@ export function Testimonials({ locale }: { locale: Locale }) {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="border-y border-ink/8 bg-paper-warm py-24 md:py-40"
+      className={`border-y border-ink/8 bg-paper-warm ${SECTION_Y}`}
     >
-      <div className="mx-auto max-w-screen-xl px-6 md:px-10">
+      <div className={`${CONTAINER} ${SECTION_X}`}>
         <SectionHeader
-          eyebrow={TESTIMONIALS_HEADER.eyebrow[locale]}
           title={TESTIMONIALS_HEADER.titleLead[locale]}
           titleTail={TESTIMONIALS_HEADER.titleTail[locale]}
           headingId="testimonials-heading"
@@ -237,7 +237,7 @@ export function Testimonials({ locale }: { locale: Locale }) {
 
       <div
         ref={pinWrapRef}
-        className="testimonials-pin-wrap relative mt-16 overflow-clip md:mt-20"
+        className={`testimonials-pin-wrap relative ${HEADER_GAP} overflow-clip`}
         style={
           pinned
             ? {

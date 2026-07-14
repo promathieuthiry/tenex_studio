@@ -45,7 +45,8 @@ Surfaces are flat with subtle two-stop gradients (`--gradient-card-dark` on dark
 - Subtle two-stop gradients on cards (`--gradient-card-dark` / `--gradient-card-light`) — never flat fills
 - Pill-shaped CTAs (`rounded-pill`), 10–20px radius cards, `0px` sharp edges for media plates
 - Depth is contrast first; soft elevation shadows are reserved for **floating UI only** (nav pill, testimonial cards)
-- Massive section padding (`--space-section` 200px / `--space-section-sm` 150px) creates magazine-spread vertical pacing
+- One section rhythm, no drift: every section pulls its padding, gutter, and container from `src/lib/layout.ts` — magazine-spread vertical pacing
+- No eyebrows. A headline opens a section on its own; the uppercase mono line above an H1/H2 is banned
 - Character-by-character, scroll-driven text animation as the kinetic signature
 - `font-feature-settings: 'ss01', 'ss02'` enabled globally for Inter's stylistic sets
 
@@ -98,7 +99,7 @@ Do not invent new shadow values. If an element is not the floating nav or a test
 
 ## 3. Typography Rules
 
-Tenex Studio runs on a **two-and-a-half-font system**: **Arimo** for everything that _signs_ (titles, headlines, display, wordmark), **Inter** for everything that _runs_ (body, nav, captions, UI), and **Geist Mono** for technical punctuation (counts, eyebrow meta, yearmarks). Arimo never appears below 24px; the body face never appears above 22px. The split is hard.
+Tenex Studio runs on a **two-and-a-half-font system**: **Arimo** for everything that _signs_ (titles, headlines, display, wordmark), **Inter** for everything that _runs_ (body, nav, captions, UI), and **Geist Mono** for technical punctuation (counts, chips, field labels, yearmarks). Arimo never appears below 24px; the body face never appears above 22px. The split is hard.
 
 ### Font Families
 
@@ -118,7 +119,7 @@ Fonts are declared in `astro.config.mjs` and exposed as CSS variables; `@theme i
 | Sub-heading     | Arimo | ~27px           | 700    | 1.10          | ~ -1px         | Card titles, H4                |
 | Quote / Lead    | Arimo | 18–20px         | 400    | 1.4           | -0.005em       | Testimonial blockquotes        |
 | Nav / Body      | Inter | 14–16px         | 400–500 | 1.10         | ~ -0.04em (display sizes) | Navigation, primary body |
-| Caption / Meta  | Mono  | 10–12px         | 400–500 | normal       | +0.14–0.18em uppercase | Counts, eyebrow meta, yearmarks |
+| Caption / Meta  | Mono  | 10–12px         | 400–500 | normal       | +0.14–0.18em uppercase | Counts, chips, field labels, yearmarks — **never above a heading** |
 
 > The Arimo wordmark in `nav-bar.tsx` uses `font-display font-bold tracking-[-0.04em]` at `text-base`/`md:text-lg` — a literal miniature of the hero.
 
@@ -238,7 +239,7 @@ Components live in `src/components/` — `.astro` for static shells/composers, `
 ### Forms
 
 - Inputs: minimal — single 1–2px bottom border (`border-ink/…`), transparent background, Inter 16px, `text-ink`
-- Labels: Geist Mono, 10–12px, uppercase, wide tracking — eyebrow style
+- Labels: Geist Mono, 10–12px, uppercase, wide tracking
 - Form Card (over dark): `bg-paper/15`, `rounded-card-sm`, 24px internal padding
 - Form handling: **Astro Actions** (`src/actions/`), email via `resend`
 
@@ -253,20 +254,30 @@ Components live in `src/components/` — `.astro` for static shells/composers, `
 
 ### Spacing System
 
-Section rhythm is tokenized in `@theme`:
+**`src/lib/layout.ts` is the source of truth.** Every section imports from it. Spacing drift between sections is the loudest tell that a page was assembled rather than designed, so there is exactly one rhythm and no section opts out casually.
 
-| Token                   | Value   | Use                                  |
-| ----------------------- | ------- | ------------------------------------ |
-| `--space-section`           | `200px` | Standard major-section vertical pad  |
-| `--space-section-sm`        | `150px` | Tighter section pad                  |
-| `--space-section-mobile`    | `100px` | Mobile section pad — never go below  |
-| `--nav-h`                   | `56px` / `69px` (`≥768px`) | Fixed-nav offset |
+| Export         | Value                                          | Use                                          |
+| -------------- | ---------------------------------------------- | -------------------------------------------- |
+| `SECTION_X`    | `px-6 md:px-10`                                | Gutter. Every section, every page.           |
+| `SECTION_Y`    | `py-24 md:py-40`                               | Vertical pad (96px → 160px)                  |
+| `SECTION`      | `SECTION_X` + `SECTION_Y`                      | The default. Reach for this first.           |
+| `SECTION_LEAD` | `SECTION_X` + `pb-24 pt-32 md:pb-40 md:pt-48`  | Page-opening section — extra top clears the fixed nav |
+| `CONTAINER`    | `mx-auto max-w-7xl`                            | Centered content column (1280px)             |
+| `HEADER_GAP`   | `mt-16 md:mt-24`                               | Gap between a `SectionHeader` and section body |
 
-In practice sections also use Tailwind scale directly (e.g. testimonials: `py-24 md:py-40`). Deliberate negative margins let dark/light slabs interlock.
+`--nav-h` (`56px` / `69px` at `≥768px`) remains the fixed-nav offset token, used for `calc()` clearance.
+
+**Sanctioned exceptions** — only these, and each has a structural reason:
+
+- **Edge-bleed sections** (testimonials carousel) put `SECTION_Y` on the `<section>` and `SECTION_X` on the inner container, so the track can run to the viewport edge.
+- **The hero** (`mono-hero`, SEO landing header) sets its own vertical rhythm — it is a full-viewport slab, not a section.
+- **Decorative slabs** (`monogram-reveal`) carry no padding at all.
+
+Anything else uses `SECTION` + `CONTAINER`. If a new section "needs" different padding, that is a signal to reconsider the section, not to fork the scale.
 
 ### Grid & Container
 
-- Centered content, `max-w-screen-xl`, `px-6 md:px-10`
+- Centered content, `CONTAINER` (`max-w-7xl`), `SECTION_X` gutter
 - Full-bleed dark sections punctuate constrained light content — magazine spreads
 - Work grid: 1- or 2-column with `rounded-plate` (0px) media plates
 - Pricing: 2-column with gradient cards
@@ -275,8 +286,9 @@ In practice sections also use Tailwind scale directly (e.g. testimonials: `py-24
 
 ### Section Pacing — the Cinematic Cadence
 
-- Sections breathe at `--space-section` (200px) / `--space-section-sm` (150px); deliberate overlaps let the next slab "rise into" the previous one
+- Sections breathe at `SECTION_Y` (96px mobile → 160px desktop) — uniform, so the surface change does the work
 - Background change (`bg-paper` ↔ ink gradient, or `bg-paper` ↔ `bg-paper-warm`) is the primary section boundary, not whitespace alone
+- **A section opens on its headline.** No eyebrow, no label, no uppercase run-up — the H2 carries the weight alone (see `section-header.tsx`)
 - Scroll-pinned moments (e.g. the testimonials horizontal track, the `name-mark` scroll-fill) act as cinematic beats
 
 ### Whitespace Philosophy
@@ -317,14 +329,15 @@ Depth is structural: a dark card next to a light card is the elevation; a two-st
 ### Do
 
 - Use **Arimo for every title, headline, sub-heading, and wordmark** (24px and up)
-- Use **Inter for every body, nav, and UI element** (≤22px); **Geist Mono** for counts, eyebrow meta, and yearmarks
+- Use **Inter for every body, nav, and UI element** (≤22px); **Geist Mono** for counts, chips, field labels, and yearmarks
 - Apply negative letter-spacing scaling with size on display — always tight, always negative (wordmark `tracking-[-0.04em]`)
 - Set hero line-height `0.85` — the compressed leading is the typographic signature
 - Use the ink/paper token system: `text-ink` / `bg-ink` / `bg-paper` — ink is the brand
 - Insert dark ink-gradient slabs between paper sections for cinematic contrast
 - Apply two-stop gradients to cards (`--gradient-card-dark` / `--gradient-card-light`) — never flat fills
 - Use `rounded-pill` for CTAs, `rounded-card-sm`/`-card`/`-lg` for cards, `rounded-plate` for media
-- Pace sections with `--space-section` / `--space-section-sm` — magazine-spread cadence
+- Pace sections with `SECTION` / `CONTAINER` / `HEADER_GAP` from `src/lib/layout.ts` — one rhythm, magazine-spread cadence
+- Open a section with its headline alone — `SectionHeader` renders an H2 and nothing above it
 - Pair project names with `(©26)` Geist Mono yearmark stamps
 - Reserve the Arimo-bold wordmark as the recurring identity — never substituted, no trademark glyph
 - Animate Arimo text per-letter via `motion/react` — and always gate motion behind `useReducedMotion`
@@ -338,7 +351,8 @@ Depth is structural: a dark card next to a light card is the elevation; a two-st
 - Don't invent box-shadows — only the **two sanctioned values** (nav pill, testimonial card) exist; everything else on paper has no shadow
 - Don't apply rounded corners to media or work cards — use `rounded-plate` (0px), print-plate sharp
 - Don't flatten card surfaces — gradients carry the dimensional weight
-- Don't tighten section padding below `--space-section-mobile` (100px)
+- **Don't add an eyebrow** — a short uppercase line above the H1/H2 is banned. It is the single most templated move in web design, and it is what every AI-assembled page reaches for. If the label carries real information, it belongs in the headline or not at all
+- Don't hand-write section padding, gutters, or container widths — import `SECTION` / `SECTION_X` / `SECTION_Y` / `CONTAINER` / `HEADER_GAP` from `src/lib/layout.ts`. A section with a bespoke `py-*` is drift, and drift reads as sloppiness before anyone can name why
 - Don't use `text-decoration: underline` — use a decorative ink hairline instead
 - Don't reach for italic, condensed, or alt cuts of Arimo — 400 and 700 only (those are the only weights loaded)
 - Don't add a `tailwind.config.js` — all theme config lives in `src/styles/global.css` `@theme`
@@ -354,14 +368,14 @@ Tailwind v4 defaults; key custom join at `768px` (`md:`), where `--nav-h` shifts
 | ------- | ---------- | ---------------------------------------------------------------------- |
 | Mobile  | <768px     | Arimo hero scales down, single-column stacks, condensed nav pill       |
 | Tablet+ | ≥768px     | `md:` — fuller nav (links + talk pill), wider padding, taller nav      |
-| Desktop | ≥1280px    | `max-w-screen-xl` container, full multi-column grids                   |
+| Desktop | ≥1280px    | `CONTAINER` (`max-w-7xl`), full multi-column grids                     |
 
 ### Collapsing Strategy
 
 - **Hero (Arimo)**: scales down proportionally; line-height stays `0.85`
 - **Section heading (Arimo)**: scales down; tracking stays negative
 - **Letter-spacing**: scales with size — never collapses to `normal`
-- **Section padding**: `--space-section` → `--space-section-mobile` floor
+- **Section padding**: `SECTION_Y` handles it — `py-40` (160px) desktop → `py-24` (96px) mobile floor
 - **Work grid**: 2-col → 1-col stacked plates
 - **Nav**: link row + talk pill hidden below `md:` → condensed pill (wordmark + locale switcher only)
 - **Testimonials**: scroll-pinned horizontal track on desktop → native snap-scroll carousel on reduced-motion / small screens
@@ -441,7 +455,7 @@ runtime:      # :root (use via inline style or bg-[var(--…)])
 - "Build the nav: fixed centered floating pill, `rounded-full border border-ink/5 bg-paper/90 backdrop-blur shadow-[0_10px_30px_-12px_rgba(0,0,0,0.18)]`, `px-4 py-2 md:px-6 md:py-3`, `max-w-screen-xl`. Wordmark `font-display font-bold tracking-[-0.04em] text-ink`. Links `font-sans text-sm text-ink hover:opacity-70`. Hide/reveal on scroll with `motion`, respect `useReducedMotion`."
 - "Create a stats card: `background: var(--gradient-card-dark)`, `rounded-card-sm`, `text-paper`. Number in `font-display font-bold` ~48px; caption Inter `text-sm text-paper/60`."
 - "Design a work card: `rounded-plate` (0px), full-width image ~1.55:1. Beneath: project name in `font-display font-bold` + `(©26)` in `font-mono` uppercase tracking. Hover: `radial-gradient` ink vignette overlay."
-- "Add a section eyebrow: `font-mono` 12px uppercase `tracking-[0.18em] text-ink/40` — `(01) Studio` chapter marker (see `section-header.tsx`)."
+- "Open a section: `<section className={SECTION}>` wrapping `<div className={CONTAINER}>`, then `SectionHeader` (H2, Arimo, `tracking-[-0.03em]`, optional muted `titleTail`) and the body at `HEADER_GAP`. No eyebrow above the heading — the headline opens the section alone (see `section-header.tsx`, `src/lib/layout.ts`)."
 
 ### Iteration Guide
 
@@ -453,7 +467,7 @@ runtime:      # :root (use via inline style or bg-[var(--…)])
 6. Cards carry two-stop gradients (`--gradient-card-*`) — flat fills break the system.
 7. `rounded-pill` for CTAs, `rounded-card-sm/-card/-lg` for cards, `rounded-plate` for media.
 8. No shadows except the two sanctioned floating-UI values.
-9. Section padding `--space-section` / `--space-section-sm` — pace like a film.
+9. Section padding, gutter, container: `SECTION` / `CONTAINER` / `HEADER_GAP` — never hand-rolled. Headline opens the section; no eyebrow.
 10. Pair project names with `(©26)` Geist Mono yearmark stamps.
 11. Preserve the Arimo wordmark everywhere, no trademark glyph.
 12. Gate every animation behind `useReducedMotion` / `prefers-reduced-motion`.
@@ -545,6 +559,8 @@ Tailwind v4: `@theme inline` maps the Astro font variables onto the `font-*` uti
   --radius-card-lg: 20px;
   --radius-plate: 0px;
 
+  /* DEPRECATED — declared but referenced nowhere. Section rhythm lives in
+     src/lib/layout.ts (SECTION / SECTION_Y). Safe to delete from global.css. */
   --space-section: 200px;
   --space-section-sm: 150px;
   --space-section-mobile: 100px;
@@ -570,4 +586,4 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 
 - Titles (≥24px): `font-display` — Arimo (400 / 700 only).
 - Body, nav, UI (≤22px): default `font-sans` — Inter (400 / 500 / 600).
-- Counts, eyebrows, yearmarks: `font-mono` — Geist Mono (400 / 500).
+- Counts, chips, field labels, yearmarks: `font-mono` — Geist Mono (400 / 500). Never as a line above a heading.

@@ -8,6 +8,7 @@ import {
   RESOURCE_TOOL_COUNT,
 } from '@/data/resources';
 import manifest from '@/data/tool-icons-manifest.json';
+import { SECTION_LEAD, CONTAINER, HEADER_GAP } from '@/lib/layout';
 
 const { locale } = Astro.props as { locale: Locale };
 
@@ -20,16 +21,12 @@ const iconSrc = (tool: ResourceTool): string | null => {
 };
 ---
 
-<section
-  id="main"
-  class="px-6 pb-24 pt-32 md:px-10 md:pb-40 md:pt-48"
-  aria-labelledby="resources-heading"
->
-  <div class="mx-auto max-w-7xl">
+<section id="main" class={SECTION_LEAD} aria-labelledby="resources-heading">
+  <div class={CONTAINER}>
     <header class="max-w-3xl">
       <h1
         id="resources-heading"
-        class="mt-6 font-display font-bold text-5xl leading-[1] tracking-[-0.03em] text-ink md:text-8xl"
+        class="font-display font-bold text-5xl leading-[1] tracking-[-0.03em] text-ink md:text-8xl"
       >
         {header.title}
       </h1>
@@ -39,7 +36,7 @@ const iconSrc = (tool: ResourceTool): string | null => {
     </header>
 
     <ul
-      class="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-20 md:gap-5 lg:grid-cols-3 xl:grid-cols-4"
+      class={`${HEADER_GAP} grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 xl:grid-cols-4`}
     >
       {
         RESOURCE_CATEGORIES.map((category) => (

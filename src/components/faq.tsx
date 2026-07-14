@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/i18n";
 import { FAQ, FAQ_HEADER, type FAQItem, type FAQLink } from "@/data/faq";
 import type { Bilingual } from "@/data/_types";
 import { SectionHeader } from "@/components/section-header";
+import { SECTION, CONTAINER, HEADER_GAP } from "@/lib/layout";
 import { BOOK_URL } from "@/lib/book";
 
 function resolveLink(link: FAQLink) {
@@ -50,19 +51,16 @@ function FaqRow({
           onClick={onToggle}
           aria-expanded={isOpen}
           aria-controls={panelId}
-          className="flex w-full cursor-pointer items-baseline gap-3 md:gap-6 px-4 py-6 text-left transition-colors hover:bg-paper/60 md:px-6"
+          className="flex w-full cursor-pointer items-baseline gap-6 px-4 py-6 text-left transition-colors hover:bg-paper/60 md:px-6"
         >
-          <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink/60">
-            ({item.number})
-          </span>
-          <span className="flex-1 font-display text-xl tracking-[-0.015em] text-ink md:text-2xl">
+          <span className={`flex-1 ${TITLE_SM} text-ink`}>
             {item.question[locale]}
           </span>
           <motion.span
             aria-hidden
             animate={{ rotate: isOpen ? 45 : 0 }}
             transition={{ duration: reduced ? 0 : 0.2, ease: "easeOut" }}
-            className="font-mono text-xs uppercase tracking-[0.12em] text-ink/40"
+            className="font-mono text-lg text-ink/40"
           >
             +
           </motion.span>
@@ -128,7 +126,7 @@ export function Faq({
 }: {
   locale: Locale;
   items?: ReadonlyArray<FAQItem>;
-  header?: Readonly<{ eyebrow: Bilingual; title: Bilingual }>;
+  header?: Readonly<{ title: Bilingual }>;
 }) {
   const reduced = useReducedMotion() ?? false;
   const [open, setOpen] = useState<ReadonlySet<string>>(new Set());
@@ -143,17 +141,18 @@ export function Faq({
   return (
     <section
       id="faq"
-      className="border-t border-ink/10 bg-paper-warm px-6 py-24 md:px-10 md:py-40"
+      className={`border-t border-ink/10 bg-paper-warm ${SECTION}`}
       aria-labelledby="faq-heading"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className={CONTAINER}>
         <SectionHeader
-          eyebrow={header.eyebrow[locale]}
           title={header.title[locale]}
           headingId="faq-heading"
         />
 
-        <ul className="mt-16 divide-y divide-ink/10 border-y border-ink/10">
+        <ul
+          className={`${HEADER_GAP} divide-y divide-ink/10 border-y border-ink/10`}
+        >
           {items.map((item, index) => (
             <FaqRow
               key={item.number}

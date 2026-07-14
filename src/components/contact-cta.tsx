@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { RevealText } from "@/components/ui/reveal-text";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
 import { CONTACT_CTA } from "@/data/contact-cta";
+import { SECTION, CONTAINER } from "@/lib/layout";
 
 export function ContactCta({ locale }: { locale: Locale }) {
   return (
@@ -11,7 +12,9 @@ export function ContactCta({ locale }: { locale: Locale }) {
       className="w-full text-paper"
       style={{ background: "var(--gradient-card-dark)" }}
     >
-      <div className="mx-auto flex max-w-7xl flex-col gap-12 px-6 py-28 md:flex-row md:items-end md:justify-between md:px-10 md:py-40">
+      <div
+        className={`${CONTAINER} ${SECTION} flex flex-col gap-12 md:flex-row md:items-end md:justify-between`}
+      >
         <div>
           <h2
             id="contact-cta-heading"

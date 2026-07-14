@@ -8,12 +8,11 @@ const TITLE_SIZES = {
 } as const
 
 const TONES = {
-  light: { eyebrow: 'text-ink/60', title: 'text-ink', tail: 'text-ink/35' },
-  dark: { eyebrow: 'text-paper/55', title: 'text-paper', tail: 'text-paper/35' },
+  light: { title: 'text-ink', tail: 'text-ink/35' },
+  dark: { title: 'text-paper', tail: 'text-paper/35' },
 } as const
 
 type SectionHeaderProps = {
-  eyebrow: string
   title: ReactNode
   titleTail?: string
   headingId: string
@@ -25,7 +24,6 @@ type SectionHeaderProps = {
 }
 
 export function SectionHeader({
-  eyebrow,
   title,
   titleTail,
   headingId,
@@ -36,42 +34,38 @@ export function SectionHeader({
   animation = 'mask',
 }: SectionHeaderProps) {
   const tones = TONES[tone]
-  const eyebrowClass = `font-mono text-xs uppercase tracking-[0.12em] ${tones.eyebrow}`
-  const titleClass = `mt-6 font-display ${TITLE_SIZES[size]} tracking-[-0.03em] ${tones.title}${
-    constrained ? ' max-w-3xl' : ''
-  }`
+  const titleClass = [
+    'font-display',
+    TITLE_SIZES[size],
+    'tracking-[-0.03em]',
+    tones.title,
+    constrained ? 'max-w-3xl' : '',
+    className ?? '',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   const titleWords = typeof title === 'string' ? title.split(' ').length : 0
 
   return (
-    <div className={className}>
-      <RevealText
-        as="p"
-        inView
-        variant={animation}
-        text={eyebrow}
-        duration={0.7}
-        className={eyebrowClass}
-      />
-      <h2 id={headingId} className={titleClass}>
-        {typeof title === 'string' ? (
-          <RevealText inView variant={animation} text={title} delay={0.1} />
-        ) : (
-          title
-        )}
-        {titleTail ? (
-          <>
-            {' '}
-            <RevealText
-              inView
-              variant={animation}
-              text={titleTail}
-              delay={0.1 + titleWords * 0.07}
-              className={tones.tail}
-            />
-          </>
-        ) : null}
-      </h2>
-    </div>
+    <h2 id={headingId} className={titleClass}>
+      {typeof title === 'string' ? (
+        <RevealText inView variant={animation} text={title} />
+      ) : (
+        title
+      )}
+      {titleTail ? (
+        <>
+          {' '}
+          <RevealText
+            inView
+            variant={animation}
+            text={titleTail}
+            delay={titleWords * 0.07}
+            className={tones.tail}
+          />
+        </>
+      ) : null}
+    </h2>
   )
 }
