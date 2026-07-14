@@ -11,7 +11,15 @@ import {
   type SeoLandingPage,
 } from "@/data/seo-landing-pages";
 import { SECTION, SECTION_X, CONTAINER } from "@/lib/layout";
-import { BODY, BODY_SM, LEAD, TITLE_LG, TITLE_SM, TITLE_SM_REGULAR, TITLE_XL } from "@/lib/type";
+import {
+  BODY,
+  BODY_SM,
+  LEAD,
+  TITLE_LG,
+  TITLE_SM,
+  TITLE_SM_REGULAR,
+  TITLE_XL,
+} from "@/lib/type";
 
 const COPY = {
   fr: {
@@ -82,33 +90,30 @@ export function SeoLandingExperience({
   const [activeSection, setActiveSection] = useState(0);
   const copy = COPY[locale];
 
-  const relatedCards = useMemo(
-    () => {
-      if (page.id === "custom-websites") {
-        return EXPERT_SERVICE_ICPS.map((icp) => ({
-          ...icp,
-          page: icp.pageId ? SEO_LANDING_PAGE_BY_ID.get(icp.pageId) : undefined,
-        }));
-      }
+  const relatedCards = useMemo(() => {
+    if (page.id === "custom-websites") {
+      return EXPERT_SERVICE_ICPS.map((icp) => ({
+        ...icp,
+        page: icp.pageId ? SEO_LANDING_PAGE_BY_ID.get(icp.pageId) : undefined,
+      }));
+    }
 
-      return page.relatedIds
-        .map((id) => {
-          const relatedPage = SEO_LANDING_PAGE_BY_ID.get(id);
-          if (!relatedPage) return null;
+    return page.relatedIds
+      .map((id) => {
+        const relatedPage = SEO_LANDING_PAGE_BY_ID.get(id);
+        if (!relatedPage) return null;
 
-          const icp = EXPERT_SERVICE_ICPS.find((item) => item.pageId === id);
-          return {
-            pageId: id,
-            label: icp?.label ?? relatedPage.eyebrow,
-            body: icp?.body ?? relatedPage.proof[0] ?? relatedPage.intro,
-            hoverImage: icp?.hoverImage ?? relatedPage.heroImage,
-            page: relatedPage,
-          };
-        })
-        .filter((card): card is NonNullable<typeof card> => Boolean(card));
-    },
-    [page.id, page.relatedIds],
-  );
+        const icp = EXPERT_SERVICE_ICPS.find((item) => item.pageId === id);
+        return {
+          pageId: id,
+          label: icp?.label ?? relatedPage.eyebrow,
+          body: icp?.body ?? relatedPage.proof[0] ?? relatedPage.intro,
+          hoverImage: icp?.hoverImage ?? relatedPage.heroImage,
+          page: relatedPage,
+        };
+      })
+      .filter((card): card is NonNullable<typeof card> => Boolean(card));
+  }, [page.id, page.relatedIds]);
 
   useEffect(() => {
     const nodes = page.sections
@@ -139,7 +144,9 @@ export function SeoLandingExperience({
         { distance: Number.POSITIVE_INFINITY, index: 0 },
       ).index;
 
-      setActiveSection((current) => (current === nextIndex ? current : nextIndex));
+      setActiveSection((current) =>
+        current === nextIndex ? current : nextIndex,
+      );
     };
 
     const requestUpdate = () => {
@@ -240,7 +247,9 @@ export function SeoLandingExperience({
       </header>
 
       <section className={SECTION}>
-        <div className={`${CONTAINER} grid gap-12 lg:grid-cols-[0.34fr_0.66fr]`}>
+        <div
+          className={`${CONTAINER} grid gap-12 lg:grid-cols-[0.34fr_0.66fr]`}
+        >
           <motion.aside
             variants={REVEAL}
             initial={reduceMotion ? false : "hidden"}
@@ -328,36 +337,6 @@ export function SeoLandingExperience({
           </div>
         </div>
       </section>
-
-      {page.faq?.length ? (
-        <section className={`border-t border-ink/10 ${SECTION}`}>
-          <div className={`${CONTAINER} grid gap-10 lg:grid-cols-[0.34fr_0.66fr]`}>
-            <div className="max-w-md">
-              <h2 className={`${TITLE_LG} text-ink`}>{copy.faqTitle}</h2>
-            </div>
-            <div className="divide-y divide-ink/10 border-y border-ink/10">
-              {page.faq.map((item) => (
-                <details key={item.question[locale]} className="group py-6">
-                  <summary
-                    className={`flex cursor-pointer list-none items-start justify-between gap-6 ${TITLE_SM_REGULAR} text-ink marker:hidden`}
-                  >
-                    <span>{item.question[locale]}</span>
-                    <span
-                      aria-hidden="true"
-                      className="mt-1 shrink-0 font-mono text-lg font-normal text-ink/40 transition-transform group-open:rotate-45"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p className={`mt-4 max-w-3xl ${BODY} text-ink/70`}>
-                    {item.answer[locale]}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
 
       <section className="relative overflow-hidden border-y border-ink/10 bg-ink text-paper">
         <div
@@ -485,7 +464,9 @@ export function SeoLandingExperience({
                     href={seoLandingPath(icp.page, locale)}
                     variants={CARD_REVEAL}
                     transition={{ duration: 0.48, ease: PREMIUM_EASE }}
-                    whileHover={reduceMotion ? undefined : { y: -6, scale: 1.01 }}
+                    whileHover={
+                      reduceMotion ? undefined : { y: -6, scale: 1.01 }
+                    }
                     className={cardClass}
                   >
                     {content}
@@ -508,6 +489,37 @@ export function SeoLandingExperience({
           </motion.div>
         </div>
       </aside>
+      {page.faq?.length ? (
+        <section className={`border-t border-ink/10 ${SECTION}`}>
+          <div
+            className={`${CONTAINER} grid gap-10 lg:grid-cols-[0.34fr_0.66fr]`}
+          >
+            <div className="max-w-md">
+              <h2 className={`${TITLE_LG} text-ink`}>{copy.faqTitle}</h2>
+            </div>
+            <div className="divide-y divide-ink/10 border-y border-ink/10">
+              {page.faq.map((item) => (
+                <details key={item.question[locale]} className="group py-6">
+                  <summary
+                    className={`flex cursor-pointer list-none items-start justify-between gap-6 ${TITLE_SM_REGULAR} text-ink marker:hidden`}
+                  >
+                    <span>{item.question[locale]}</span>
+                    <span
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 font-mono text-lg font-normal text-ink/40 transition-transform group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className={`mt-4 max-w-3xl ${BODY} text-ink/70`}>
+                    {item.answer[locale]}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </article>
   );
 }
