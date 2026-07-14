@@ -1,11 +1,11 @@
 ---
 import type { Locale } from "@/lib/i18n";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
+import { BODY_SM, QUOTE } from "@/lib/type";
 
 const { locale } = Astro.props as { locale: Locale };
 
 const t = {
-  eyebrow: { fr: "Votre projet", en: "Your project" },
   heading: {
     fr: "Un site qui convertit, en ligne en deux semaines.",
     en: "A site that converts, live in two weeks.",
@@ -19,20 +19,16 @@ const t = {
 ---
 
 <div class="relative bg-paper-cool/50 p-6 md:p-7">
-  <span class="block h-px w-8 bg-accent" aria-hidden="true"></span>
-  <p class="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/40">
-    {t.eyebrow[locale]}
-  </p>
-  <p class="mt-3 font-display text-xl leading-[1.15] tracking-[-0.02em] text-ink">
+  <p class={` ${QUOTE} text-ink`}>
     {t.heading[locale]}
   </p>
-  <p class="mt-4 font-sans text-[13px] leading-6 text-ink/60">
+  <p class={`mt-4 ${BODY_SM} text-ink/60`}>
     {t.body[locale]}
   </p>
   <a
     href={BOOK_URL}
     {...BOOK_LINK_ATTRS}
-    class="group mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-5 font-sans text-sm text-paper transition hover:opacity-80"
+    class={`group mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-5 ${BODY_SM} text-paper transition hover:opacity-80`}
   >
     {t.cta[locale]}
     <svg

@@ -10,36 +10,34 @@ import {
   seoLandingPath,
   type SeoLandingPage,
 } from "@/data/seo-landing-pages";
+import { SECTION, SECTION_X, CONTAINER } from "@/lib/layout";
+import {
+  BODY,
+  BODY_SM,
+  LEAD,
+  TITLE_LG,
+  TITLE_SM,
+  TITLE_SM_REGULAR,
+  TITLE_XL,
+} from "@/lib/type";
 
 const COPY = {
   fr: {
-    chaptersLabel: "Lecture",
     methodLabel: "Méthode",
-    relatedLabel: "ICP prioritaires",
-    proofLabel: "Preuves",
-    proofTitle: "Ce que le site doit prouver vite.",
-    faqLabel: "Questions",
     faqTitle: "Les points à clarifier avant de lancer.",
     relatedTitle: "Les services experts que nous savons rendre lisibles.",
     relatedBody:
       "Chaque segment demande un site qui prouve vite le niveau, clarifie l’offre et filtre les mauvais prospects.",
-    finalEyebrow: "Cadrage",
     finalTitle: "Clarifier avant de convaincre.",
     finalBody:
       "On part de vos preuves, de vos clients idéaux et de vos contraintes. Puis on transforme tout cela en pages, textes, design et code qui qualifient mieux.",
   },
   en: {
-    chaptersLabel: "Reading",
     methodLabel: "Method",
-    relatedLabel: "Priority ICPs",
-    proofLabel: "Proof",
-    proofTitle: "What the site must prove fast.",
-    faqLabel: "Questions",
     faqTitle: "The points to clarify before launch.",
     relatedTitle: "The expert services we know how to make readable.",
     relatedBody:
       "Each segment needs a site that proves level fast, clarifies the offer and filters poor-fit prospects.",
-    finalEyebrow: "Scoping",
     finalTitle: "Clarify before convincing.",
     finalBody:
       "We start from your proof, ideal clients and constraints. Then we turn that into pages, copy, design and code that qualify better.",
@@ -92,33 +90,30 @@ export function SeoLandingExperience({
   const [activeSection, setActiveSection] = useState(0);
   const copy = COPY[locale];
 
-  const relatedCards = useMemo(
-    () => {
-      if (page.id === "custom-websites") {
-        return EXPERT_SERVICE_ICPS.map((icp) => ({
-          ...icp,
-          page: icp.pageId ? SEO_LANDING_PAGE_BY_ID.get(icp.pageId) : undefined,
-        }));
-      }
+  const relatedCards = useMemo(() => {
+    if (page.id === "custom-websites") {
+      return EXPERT_SERVICE_ICPS.map((icp) => ({
+        ...icp,
+        page: icp.pageId ? SEO_LANDING_PAGE_BY_ID.get(icp.pageId) : undefined,
+      }));
+    }
 
-      return page.relatedIds
-        .map((id) => {
-          const relatedPage = SEO_LANDING_PAGE_BY_ID.get(id);
-          if (!relatedPage) return null;
+    return page.relatedIds
+      .map((id) => {
+        const relatedPage = SEO_LANDING_PAGE_BY_ID.get(id);
+        if (!relatedPage) return null;
 
-          const icp = EXPERT_SERVICE_ICPS.find((item) => item.pageId === id);
-          return {
-            pageId: id,
-            label: icp?.label ?? relatedPage.eyebrow,
-            body: icp?.body ?? relatedPage.proof[0] ?? relatedPage.intro,
-            hoverImage: icp?.hoverImage ?? relatedPage.heroImage,
-            page: relatedPage,
-          };
-        })
-        .filter((card): card is NonNullable<typeof card> => Boolean(card));
-    },
-    [page.id, page.relatedIds],
-  );
+        const icp = EXPERT_SERVICE_ICPS.find((item) => item.pageId === id);
+        return {
+          pageId: id,
+          label: icp?.label ?? relatedPage.eyebrow,
+          body: icp?.body ?? relatedPage.proof[0] ?? relatedPage.intro,
+          hoverImage: icp?.hoverImage ?? relatedPage.heroImage,
+          page: relatedPage,
+        };
+      })
+      .filter((card): card is NonNullable<typeof card> => Boolean(card));
+  }, [page.id, page.relatedIds]);
 
   useEffect(() => {
     const nodes = page.sections
@@ -149,7 +144,9 @@ export function SeoLandingExperience({
         { distance: Number.POSITIVE_INFINITY, index: 0 },
       ).index;
 
-      setActiveSection((current) => (current === nextIndex ? current : nextIndex));
+      setActiveSection((current) =>
+        current === nextIndex ? current : nextIndex,
+      );
     };
 
     const requestUpdate = () => {
@@ -178,7 +175,9 @@ export function SeoLandingExperience({
 
   return (
     <article className="bg-paper text-ink">
-      <header className="relative flex min-h-screen min-h-[100dvh] overflow-hidden border-b border-ink/15 bg-ink px-6 pb-12 pt-28 text-paper md:px-12 md:pb-14 md:pt-32 lg:px-16">
+      <header
+        className={`relative flex min-h-screen min-h-[100dvh] overflow-hidden border-b border-ink/15 bg-ink text-paper ${SECTION_X} pb-12 pt-28 md:pb-28 md:pt-32 lg:pb-36`}
+      >
         <motion.img
           src={page.heroImage}
           alt=""
@@ -196,24 +195,17 @@ export function SeoLandingExperience({
           aria-hidden="true"
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,18,0.20)_0%,rgba(15,15,18,0.12)_48%,rgba(15,15,18,0.72)_100%)]"
         />
-        <div className="relative z-10 mx-auto flex w-full max-w-screen-xl items-end">
+        <div className={`relative z-10 flex w-full items-end ${CONTAINER}`}>
           <motion.div
             variants={HERO_GROUP}
             initial={reduceMotion ? false : "hidden"}
             animate="show"
             className="max-w-5xl"
           >
-            <motion.p
-              variants={HERO_ITEM}
-              transition={{ duration: 0.7, ease: PREMIUM_EASE }}
-              className="font-mono text-xs uppercase tracking-[0.12em] text-paper/60"
-            >
-              {page.eyebrow[locale]}
-            </motion.p>
             <motion.h1
               variants={HERO_ITEM}
               transition={{ duration: 0.78, ease: PREMIUM_EASE }}
-              className="mt-7 max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-normal text-paper md:text-6xl lg:text-7xl"
+              className={`max-w-4xl ${TITLE_XL} text-paper`}
             >
               {page.title[locale]}
             </motion.h1>
@@ -223,7 +215,7 @@ export function SeoLandingExperience({
               transition={{ duration: 0.74, ease: PREMIUM_EASE }}
               className="mt-8 flex max-w-2xl flex-col gap-6"
             >
-              <p className="max-w-2xl font-sans text-lg leading-8 text-paper/78">
+              <p className={`max-w-2xl ${LEAD} text-paper/75`}>
                 {page.intro[locale]}
               </p>
               <motion.div
@@ -244,7 +236,7 @@ export function SeoLandingExperience({
                 <button
                   type="button"
                   onClick={() => scrollToSection(0)}
-                  className="inline-flex h-12 cursor-pointer items-center rounded-full border border-paper/25 px-5 font-sans text-sm text-paper transition hover:border-paper"
+                  className={`inline-flex h-12 cursor-pointer items-center rounded-full border border-paper/25 px-5 ${BODY_SM} text-paper transition hover:border-paper`}
                 >
                   {copy.methodLabel}
                 </button>
@@ -254,45 +246,10 @@ export function SeoLandingExperience({
         </div>
       </header>
 
-      <section className="border-b border-ink/10 px-6 py-14 md:px-12 md:py-18 lg:px-16">
-        <div className="mx-auto grid max-w-screen-xl gap-8 lg:grid-cols-[0.34fr_0.66fr]">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/45">
-              {copy.proofLabel}
-            </p>
-            <h2 className="mt-4 max-w-md font-display text-3xl font-black leading-tight tracking-normal text-ink md:text-5xl">
-              {copy.proofTitle}
-            </h2>
-          </div>
-          <div className="grid gap-3 md:grid-cols-3">
-            {page.proof.map((item, index) => (
-              <motion.article
-                key={item[locale]}
-                variants={CARD_REVEAL}
-                initial={reduceMotion ? false : "hidden"}
-                whileInView="show"
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  duration: 0.48,
-                  ease: PREMIUM_EASE,
-                  delay: reduceMotion ? 0 : index * 0.04,
-                }}
-                className="rounded-[8px] border border-ink/10 bg-paper p-5"
-              >
-                <span className="font-mono text-xs uppercase tracking-[0.12em] text-accent">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="mt-5 font-sans text-base leading-7 text-ink/68">
-                  {item[locale]}
-                </p>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-16 md:px-12 md:py-24 lg:px-16">
-        <div className="mx-auto grid max-w-screen-xl gap-12 lg:grid-cols-[0.34fr_0.66fr]">
+      <section className={SECTION}>
+        <div
+          className={`${CONTAINER} grid gap-12 lg:grid-cols-[0.34fr_0.66fr]`}
+        >
           <motion.aside
             variants={REVEAL}
             initial={reduceMotion ? false : "hidden"}
@@ -301,10 +258,7 @@ export function SeoLandingExperience({
             transition={{ duration: 0.65, ease: PREMIUM_EASE }}
             className="lg:sticky lg:top-28 lg:self-start"
           >
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/50">
-              {copy.chaptersLabel}
-            </p>
-            <div className="mt-6 overflow-hidden rounded-[8px] border border-ink/10">
+            <div className="overflow-hidden rounded-[8px] border border-ink/10">
               {page.sections.map((section, index) => (
                 <button
                   key={section.title[locale]}
@@ -312,7 +266,7 @@ export function SeoLandingExperience({
                   aria-current={activeSection === index ? "step" : undefined}
                   onClick={() => scrollToSection(index)}
                   className={cx(
-                    "relative grid min-h-14 w-full cursor-pointer grid-cols-[3rem_1fr] border-b border-ink/10 bg-paper text-left text-ink transition-colors duration-300 last:border-b-0 hover:bg-paper-warm",
+                    "relative flex min-h-14 w-full cursor-pointer items-center border-b border-ink/10 bg-paper px-5 py-4 text-left text-ink transition-colors duration-300 last:border-b-0 hover:bg-paper-warm",
                     activeSection === index && "text-paper hover:bg-paper",
                   )}
                 >
@@ -329,16 +283,8 @@ export function SeoLandingExperience({
                     />
                   ) : null}
                   <span
-                    className={cx(
-                      "relative z-10 border-r px-4 py-4 font-mono text-xs transition-colors duration-300",
-                      activeSection === index
-                        ? "border-paper/15 text-accent"
-                        : "border-ink/10 text-ink/40",
-                    )}
+                    className={`relative z-10 ${BODY_SM} transition-colors duration-300`}
                   >
-                    {index + 1}
-                  </span>
-                  <span className="relative z-10 px-4 py-4 font-sans text-sm leading-5 transition-colors duration-300">
                     {section.title[locale]}
                   </span>
                 </button>
@@ -363,75 +309,34 @@ export function SeoLandingExperience({
                   delay: reduceMotion ? 0 : index * 0.035,
                 }}
                 className={cx(
-                  "group scroll-mt-28 rounded-[8px] border bg-paper p-5 transition duration-300 md:p-0",
+                  "group relative scroll-mt-28 overflow-hidden rounded-[8px] border bg-paper p-5 transition duration-300 md:p-8",
                   activeSection === index
                     ? "border-ink/25 shadow-[0_18px_50px_rgba(15,15,18,0.08)]"
                     : "border-ink/10 hover:border-ink/35",
                 )}
               >
-                <div className="flex items-center justify-between border-ink/10 pb-5 md:border-b md:px-8 md:py-5">
-                  <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink/35">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <motion.span
-                    aria-hidden="true"
-                    animate={{
-                      scale: activeSection === index ? 1 : 0.72,
-                      opacity: activeSection === index ? 1 : 0.55,
-                    }}
-                    transition={{ duration: 0.28, ease: PREMIUM_EASE }}
-                    className={cx(
-                      "h-2 w-2 rounded-full",
-                      activeSection === index ? "bg-accent" : "bg-ink/15",
-                    )}
-                  />
-                </div>
-                <div className="pt-8 md:p-8 md:pt-7">
-                  <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight tracking-normal text-ink md:text-5xl">
-                    {section.title[locale]}
-                  </h2>
-                  <p className="mt-6 max-w-2xl font-sans text-base leading-8 text-ink/68 md:text-lg">
-                    {section.body[locale]}
-                  </p>
-                </div>
+                <motion.span
+                  aria-hidden="true"
+                  animate={{ scaleY: activeSection === index ? 1 : 0 }}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { duration: 0.32, ease: PREMIUM_EASE }
+                  }
+                  style={{ transformOrigin: "50% 0%" }}
+                  className="absolute inset-y-0 left-0 w-0.5 bg-accent"
+                />
+                <h2 className={`max-w-2xl ${TITLE_LG} text-ink`}>
+                  {section.title[locale]}
+                </h2>
+                <p className={`mt-6 max-w-2xl ${LEAD} text-ink/70`}>
+                  {section.body[locale]}
+                </p>
               </motion.section>
             ))}
           </div>
         </div>
       </section>
-
-      {page.faq?.length ? (
-        <section className="border-t border-ink/10 px-6 py-16 md:px-12 md:py-24 lg:px-16">
-          <div className="mx-auto grid max-w-screen-xl gap-10 lg:grid-cols-[0.34fr_0.66fr]">
-            <div className="max-w-md">
-              <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink/45">
-                {copy.faqLabel}
-              </p>
-              <h2 className="mt-4 font-display text-3xl font-black leading-tight tracking-normal text-ink md:text-5xl">
-                {copy.faqTitle}
-              </h2>
-            </div>
-            <div className="divide-y divide-ink/10 border-y border-ink/10">
-              {page.faq.map((item) => (
-                <details key={item.question[locale]} className="group py-6">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-2xl font-bold leading-tight tracking-normal text-ink marker:hidden">
-                    <span>{item.question[locale]}</span>
-                    <span
-                      aria-hidden="true"
-                      className="mt-1 shrink-0 font-mono text-lg text-accent transition-transform group-open:rotate-45"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-4 max-w-3xl font-sans text-base leading-8 text-ink/66 md:text-lg">
-                    {item.answer[locale]}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
 
       <section className="relative overflow-hidden border-y border-ink/10 bg-ink text-paper">
         <div
@@ -452,20 +357,13 @@ export function SeoLandingExperience({
           initial={reduceMotion ? false : "hidden"}
           whileInView="show"
           viewport={{ once: true, margin: "-120px" }}
-          className="relative mx-auto max-w-screen-xl px-6 py-20 md:px-12 md:py-28 lg:px-16 lg:py-32"
+          className={`relative ${CONTAINER} ${SECTION}`}
         >
           <div className="max-w-5xl">
-            <motion.p
-              variants={HERO_ITEM}
-              transition={{ duration: 0.62, ease: PREMIUM_EASE }}
-              className="font-mono text-xs uppercase tracking-[0.12em] text-paper/45"
-            >
-              {copy.finalEyebrow}
-            </motion.p>
             <motion.h2
               variants={HERO_ITEM}
               transition={{ duration: 0.72, ease: PREMIUM_EASE }}
-              className="mt-5 font-display text-5xl font-black leading-[1.05] tracking-normal md:text-7xl"
+              className={TITLE_XL}
             >
               {copy.finalTitle}
             </motion.h2>
@@ -476,7 +374,7 @@ export function SeoLandingExperience({
             transition={{ duration: 0.7, ease: PREMIUM_EASE }}
             className="mt-10 border-t border-paper/15 pt-8 md:mt-12 md:flex md:items-end md:justify-between md:gap-12"
           >
-            <p className="max-w-3xl font-sans text-lg leading-8 text-paper/70">
+            <p className={`max-w-3xl ${LEAD} text-paper/70`}>
               {copy.finalBody}
             </p>
             <div className="mt-8 shrink-0 md:mt-0">
@@ -496,7 +394,9 @@ export function SeoLandingExperience({
       </section>
 
       <aside className="border-b border-ink/10 bg-paper-warm">
-        <div className="mx-auto grid max-w-screen-xl gap-10 px-6 py-16 md:px-12 md:py-20 lg:grid-cols-[0.35fr_0.65fr] lg:px-16">
+        <div
+          className={`${CONTAINER} ${SECTION} grid gap-10 lg:grid-cols-[0.35fr_0.65fr]`}
+        >
           <motion.div
             variants={REVEAL}
             initial={reduceMotion ? false : "hidden"}
@@ -505,12 +405,8 @@ export function SeoLandingExperience({
             transition={{ duration: 0.62, ease: PREMIUM_EASE }}
             className="max-w-md"
           >
-            <h2 className="font-display text-3xl font-black leading-tight tracking-normal md:text-5xl">
-              {copy.relatedTitle}
-            </h2>
-            <p className="mt-5 font-sans text-base leading-7 text-ink/60">
-              {copy.relatedBody}
-            </p>
+            <h2 className={TITLE_LG}>{copy.relatedTitle}</h2>
+            <p className={`mt-5 ${BODY} text-ink/60`}>{copy.relatedBody}</p>
           </motion.div>
           <motion.div
             variants={HERO_GROUP}
@@ -519,9 +415,9 @@ export function SeoLandingExperience({
             viewport={{ once: true, margin: "-90px" }}
             className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3"
           >
-            {relatedCards.map((icp, index) => {
+            {relatedCards.map((icp) => {
               const cardClass =
-                "group relative min-h-40 overflow-hidden rounded-[8px] border border-ink/10 bg-paper p-4 font-sans text-sm leading-6 text-ink/58 transition hover:border-ink/35 hover:text-ink/70";
+                "group relative min-h-40 overflow-hidden rounded-[8px] border border-ink/10 bg-paper p-5 transition hover:border-ink/35";
               const content = (
                 <>
                   {icp.hoverImage ? (
@@ -540,15 +436,9 @@ export function SeoLandingExperience({
                   ) : null}
                   <span
                     className={cx(
-                      "relative z-10 block font-mono text-[11px] uppercase tracking-[0.12em] text-accent transition-colors",
-                      icp.hoverImage && "group-hover:text-paper/70",
-                    )}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={cx(
-                      "relative z-10 mt-4 block font-display text-2xl font-black leading-tight tracking-normal text-ink transition-colors",
+                      "relative z-10 block",
+                      TITLE_SM,
+                      "text-ink transition-colors",
                       icp.hoverImage && "group-hover:text-paper",
                     )}
                   >
@@ -556,8 +446,10 @@ export function SeoLandingExperience({
                   </span>
                   <span
                     className={cx(
-                      "relative z-10 mt-4 block font-sans text-sm font-normal leading-6 text-ink/58 transition-colors",
-                      icp.hoverImage && "group-hover:text-paper/72",
+                      "relative z-10 mt-4 block",
+                      BODY_SM,
+                      "text-ink/60 transition-colors",
+                      icp.hoverImage && "group-hover:text-paper/70",
                     )}
                   >
                     {icp.body[locale]}
@@ -572,7 +464,9 @@ export function SeoLandingExperience({
                     href={seoLandingPath(icp.page, locale)}
                     variants={CARD_REVEAL}
                     transition={{ duration: 0.48, ease: PREMIUM_EASE }}
-                    whileHover={reduceMotion ? undefined : { y: -6, scale: 1.01 }}
+                    whileHover={
+                      reduceMotion ? undefined : { y: -6, scale: 1.01 }
+                    }
                     className={cardClass}
                   >
                     {content}
@@ -595,6 +489,37 @@ export function SeoLandingExperience({
           </motion.div>
         </div>
       </aside>
+      {page.faq?.length ? (
+        <section className={`border-t border-ink/10 ${SECTION}`}>
+          <div
+            className={`${CONTAINER} grid gap-10 lg:grid-cols-[0.34fr_0.66fr]`}
+          >
+            <div className="max-w-md">
+              <h2 className={`${TITLE_LG} text-ink`}>{copy.faqTitle}</h2>
+            </div>
+            <div className="divide-y divide-ink/10 border-y border-ink/10">
+              {page.faq.map((item) => (
+                <details key={item.question[locale]} className="group py-6">
+                  <summary
+                    className={`flex cursor-pointer list-none items-start justify-between gap-6 ${TITLE_SM_REGULAR} text-ink marker:hidden`}
+                  >
+                    <span>{item.question[locale]}</span>
+                    <span
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 font-mono text-lg font-normal text-ink/40 transition-transform group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className={`mt-4 max-w-3xl ${BODY} text-ink/70`}>
+                    {item.answer[locale]}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </article>
   );
 }

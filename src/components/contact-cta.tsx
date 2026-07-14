@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { RevealText } from "@/components/ui/reveal-text";
 import { BOOK_URL, BOOK_LINK_ATTRS } from "@/lib/book";
 import { CONTACT_CTA } from "@/data/contact-cta";
+import { SECTION, CONTAINER } from "@/lib/layout";
+import { LEAD } from "@/lib/type";
 
 export function ContactCta({ locale }: { locale: Locale }) {
   return (
@@ -11,7 +13,9 @@ export function ContactCta({ locale }: { locale: Locale }) {
       className="w-full text-paper"
       style={{ background: "var(--gradient-card-dark)" }}
     >
-      <div className="mx-auto flex max-w-7xl flex-col gap-12 px-6 py-28 md:flex-row md:items-end md:justify-between md:px-10 md:py-40">
+      <div
+        className={`${CONTAINER} ${SECTION} flex flex-col gap-12 md:flex-row md:items-end md:justify-between`}
+      >
         <div>
           <h2
             id="contact-cta-heading"
@@ -26,7 +30,7 @@ export function ContactCta({ locale }: { locale: Locale }) {
             text={CONTACT_CTA.body[locale]}
             delay={0.3}
             duration={0.6}
-            className="mt-8 max-w-prose font-sans text-base leading-7 text-paper/80 md:text-lg"
+            className={`mt-8 max-w-prose ${LEAD} text-paper/80`}
           />
         </div>
         <div className="flex shrink-0 flex-wrap gap-3">

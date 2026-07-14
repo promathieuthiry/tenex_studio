@@ -9,22 +9,19 @@ import {
 import type { Locale } from "@/lib/i18n";
 import { SERVICES, type Service } from "@/data/services";
 import { SectionHeader } from "@/components/section-header";
+import { SECTION, CONTAINER, HEADER_GAP } from "@/lib/layout";
+import { BODY, META, TITLE_MD } from "@/lib/type";
 
 const COPY = {
   fr: {
-    eyebrow: "Services",
-    titleStart: "Ce que tu obtiens en choisissant",
-    titleEnd: "Tenex Studio.",
+    titleStart: "Services",
+    titleEnd: "",
   },
   en: {
-    eyebrow: "Services",
-    titleStart: "What you get when choosing",
-    titleEnd: "Tenex Studio.",
+    titleStart: "Services",
+    titleEnd: "",
   },
-} as const satisfies Record<
-  Locale,
-  { eyebrow: string; titleStart: string; titleEnd: string }
->;
+} as const satisfies Record<Locale, { titleStart: string; titleEnd: string }>;
 
 const STICKY_TOP_PX = 96;
 const SCALE_FLOOR = 0.92;
@@ -73,13 +70,13 @@ function StackedCard({
         }`}
       >
         <div className="flex flex-col p-7 md:p-10 lg:p-12">
-          <h3 className="font-display text-3xl leading-[1.05] tracking-[-0.02em] text-paper md:text-4xl lg:text-5xl">
+          <h3 className={`${TITLE_MD} text-paper lg:text-5xl font-bold`}>
             {service.name[locale]}
           </h3>
 
           <span aria-hidden className="mt-6 block h-px w-full bg-paper/10" />
 
-          <p className="mt-6 max-w-md font-sans text-base leading-7 text-paper/60 md:text-[17px] md:leading-7">
+          <p className={`mt-6 max-w-md ${BODY} text-paper/60`}>
             {service.description[locale]}
           </p>
 
@@ -87,7 +84,7 @@ function StackedCard({
             {service.pills[locale].map((pill) => (
               <li
                 key={pill}
-                className="rounded-full border border-paper/12 bg-paper/5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/70"
+                className={`rounded-full border border-paper/12 bg-paper/5 px-3 py-1.5 ${META} text-paper/70`}
               >
                 {pill}
               </li>
@@ -151,11 +148,10 @@ export function Services({ locale }: { locale: Locale }) {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="relative bg-ink px-6 pb-32 pt-24 md:px-10 md:pb-48 md:pt-40"
+      className={`relative bg-ink ${SECTION}`}
     >
-      <div className="relative mx-auto max-w-6xl">
+      <div className={`relative ${CONTAINER}`}>
         <SectionHeader
-          eyebrow={copy.eyebrow}
           title={copy.titleStart}
           titleTail={copy.titleEnd}
           headingId="services-heading"
@@ -164,7 +160,7 @@ export function Services({ locale }: { locale: Locale }) {
 
         <div
           ref={stackRef}
-          className="mt-20 flex flex-col gap-[12vh] md:mt-32 md:gap-[18vh]"
+          className={`${HEADER_GAP} flex flex-col gap-[12vh] md:gap-[18vh]`}
         >
           {SERVICES.map((service, i) => (
             <StackedCard

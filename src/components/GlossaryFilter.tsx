@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
+import { BODY, BODY_SM, META } from "@/lib/type";
 
 export type GlossaryFilterTerm = {
   slug: string;
@@ -116,7 +117,7 @@ export function GlossaryFilter({
                 type="button"
                 onClick={() => selectCategory(category.id)}
                 aria-pressed={isActive}
-                className={`cursor-pointer rounded-full px-4 py-1.5 font-sans text-sm transition-colors ${
+                className={`cursor-pointer rounded-full px-4 py-1.5 ${BODY_SM} transition-colors ${
                   isActive
                     ? "bg-ink text-paper"
                     : "border border-ink/15 text-ink/70 hover:border-ink hover:text-ink"
@@ -147,7 +148,7 @@ export function GlossaryFilter({
             onChange={(event) => setQuery(event.target.value)}
             placeholder={labels.search}
             aria-label={labels.search}
-            className="w-full rounded-full border border-ink/15 bg-transparent py-2 pl-10 pr-4 font-sans text-sm text-ink transition-colors placeholder:text-ink/40 focus:border-ink focus:outline-none"
+            className={`w-full rounded-full border border-ink/15 bg-transparent py-2 pl-10 pr-4 ${BODY_SM} text-ink transition-colors placeholder:text-ink/40 focus:border-ink focus:outline-none`}
           />
         </label>
       </div>
@@ -168,7 +169,7 @@ export function GlossaryFilter({
                 disabled={!enabled}
                 onClick={() => setActiveLetter(isActive ? null : letter)}
                 aria-pressed={isActive}
-                className={`min-w-8 rounded-full px-2.5 py-1 font-mono text-xs uppercase tracking-[0.08em] transition-colors ${
+                className={`min-w-8 rounded-full px-2.5 py-1 ${META} transition-colors ${
                   isActive
                     ? "cursor-pointer bg-ink text-paper"
                     : enabled
@@ -197,14 +198,14 @@ export function GlossaryFilter({
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-sans text-base font-medium text-ink transition-colors group-hover:text-accent">
+                    <span className={`${BODY} font-medium text-ink transition-colors group-hover:text-accent`}>
                       {item.term}
                     </span>
-                    <span className="inline-flex rounded-full border border-ink/15 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-ink/50">
+                    <span className={`inline-flex rounded-full border border-ink/15 px-2 py-0.5 ${META} text-ink/50`}>
                       {categoryLabel.get(item.category)}
                     </span>
                   </div>
-                  <p className="mt-1.5 max-w-2xl font-sans text-sm leading-6 text-ink/55">
+                  <p className={`mt-1.5 max-w-2xl ${BODY_SM} text-ink/55`}>
                     {item.short}
                   </p>
                 </div>
@@ -219,7 +220,7 @@ export function GlossaryFilter({
           ))}
         </ul>
       ) : (
-        <p className="mt-10 font-sans text-base text-ink/55">{labels.empty}</p>
+        <p className={`mt-10 ${BODY} text-ink/55`}>{labels.empty}</p>
       )}
     </div>
   );

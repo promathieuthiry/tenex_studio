@@ -4,7 +4,9 @@ import type { Locale } from "@/lib/i18n";
 import { FAQ, FAQ_HEADER, type FAQItem, type FAQLink } from "@/data/faq";
 import type { Bilingual } from "@/data/_types";
 import { SectionHeader } from "@/components/section-header";
+import { SECTION, CONTAINER, HEADER_GAP } from "@/lib/layout";
 import { BOOK_URL } from "@/lib/book";
+import { BODY, META, TITLE_SM_REGULAR } from "@/lib/type";
 
 function resolveLink(link: FAQLink) {
   if (link.kind === "email") {
@@ -28,8 +30,8 @@ function FaqRow({
   onToggle: () => void;
   reduced: boolean;
 }) {
-  const panelId = `faq-panel-${item.number}`;
-  const buttonId = `faq-button-${item.number}`;
+  const panelId = `faq-panel-${item.id}`;
+  const buttonId = `faq-button-${item.id}`;
 
   return (
     <motion.li
@@ -50,19 +52,16 @@ function FaqRow({
           onClick={onToggle}
           aria-expanded={isOpen}
           aria-controls={panelId}
-          className="flex w-full cursor-pointer items-baseline gap-3 md:gap-6 px-4 py-6 text-left transition-colors hover:bg-paper/60 md:px-6"
+          className="flex w-full cursor-pointer items-baseline gap-6 px-4 py-6 text-left transition-colors hover:bg-paper/60 md:px-6"
         >
-          <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink/60">
-            ({item.number})
-          </span>
-          <span className="flex-1 font-display text-xl tracking-[-0.015em] text-ink md:text-2xl">
+          <span className={`flex-1 ${TITLE_SM_REGULAR} text-ink`}>
             {item.question[locale]}
           </span>
           <motion.span
             aria-hidden
             animate={{ rotate: isOpen ? 45 : 0 }}
             transition={{ duration: reduced ? 0 : 0.2, ease: "easeOut" }}
-            className="font-mono text-xs uppercase tracking-[0.12em] text-ink/40"
+            className="font-mono text-lg text-ink/40"
           >
             +
           </motion.span>
@@ -90,8 +89,8 @@ function FaqRow({
             }}
             className="overflow-hidden"
           >
-            <div className="pb-8 pl-12 pr-4 md:pl-20 md:pr-6">
-              <p className="max-w-prose font-sans text-base leading-7 text-ink/80">
+            <div className="px-4 pb-8 md:px-6">
+              <p className={`max-w-prose ${BODY} text-ink/70`}>
                 {item.answer[locale]}
               </p>
               {item.links && item.links.length > 0 ? (
@@ -105,7 +104,7 @@ function FaqRow({
                         {...(external
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
-                        className="font-mono text-xs uppercase tracking-[0.12em] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-accent hover:text-accent"
+                        className={`${META} border-b border-ink/30 pb-0.5 text-ink transition-colors hover:border-accent hover:text-accent`}
                       >
                         {link.label[locale]}
                       </a>
@@ -128,40 +127,41 @@ export function Faq({
 }: {
   locale: Locale;
   items?: ReadonlyArray<FAQItem>;
-  header?: Readonly<{ eyebrow: Bilingual; title: Bilingual }>;
+  header?: Readonly<{ title: Bilingual }>;
 }) {
   const reduced = useReducedMotion() ?? false;
   const [open, setOpen] = useState<ReadonlySet<string>>(new Set());
 
-  const toggle = (number: string) =>
+  const toggle = (id: string) =>
     setOpen((prev) => {
       const next = new Set(prev);
-      next.has(number) ? next.delete(number) : next.add(number);
+      next.has(id) ? next.delete(id) : next.add(id);
       return next;
     });
 
   return (
     <section
       id="faq"
-      className="border-t border-ink/10 bg-paper-warm px-6 py-24 md:px-10 md:py-40"
+      className={`border-t border-ink/10 bg-paper-warm ${SECTION}`}
       aria-labelledby="faq-heading"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className={CONTAINER}>
         <SectionHeader
-          eyebrow={header.eyebrow[locale]}
           title={header.title[locale]}
           headingId="faq-heading"
         />
 
-        <ul className="mt-16 divide-y divide-ink/10 border-y border-ink/10">
+        <ul
+          className={`${HEADER_GAP} divide-y divide-ink/10 border-y border-ink/10`}
+        >
           {items.map((item, index) => (
             <FaqRow
-              key={item.number}
+              key={item.id}
               item={item}
               index={index}
               locale={locale}
-              isOpen={open.has(item.number)}
-              onToggle={() => toggle(item.number)}
+              isOpen={open.has(item.id)}
+              onToggle={() => toggle(item.id)}
               reduced={reduced}
             />
           ))}

@@ -4,9 +4,10 @@ import type { Locale } from "@/lib/i18n";
 import { RevealText } from "@/components/ui/reveal-text";
 import { FOOTER } from "@/data/footer";
 import { NAV_LINKS, isNavGroup, type NavLeaf } from "@/data/nav";
+import { BODY_SM, META, QUOTE } from "@/lib/type";
 
 const LINK = "transition-opacity duration-200 ease-out hover:opacity-60";
-const HEADING = "font-mono text-xs uppercase tracking-[0.12em] text-paper/40";
+const HEADING = `${META} text-paper/40`;
 
 export function Footer({ locale }: { locale: Locale }) {
   const homeHref = locale === "fr" ? "/" : "/en/";
@@ -46,7 +47,7 @@ export function Footer({ locale }: { locale: Locale }) {
                 text={FOOTER.tagline[locale]}
                 delay={0.1}
                 duration={0.7}
-                className="font-display max-w-md text-xl leading-[1.15] tracking-[-0.02em] text-paper md:text-2xl"
+                className={`max-w-md ${QUOTE} text-paper`}
               />
               <RevealText
                 as="p"
@@ -62,7 +63,7 @@ export function Footer({ locale }: { locale: Locale }) {
 
           <div className="flex flex-col gap-3">
             <p className={HEADING}>{FOOTER.addressHeading[locale]}</p>
-            <address className="font-sans text-sm not-italic leading-6 text-paper/70">
+            <address className={`${BODY_SM} not-italic text-paper/70`}>
               {FOOTER.address.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -81,7 +82,7 @@ export function Footer({ locale }: { locale: Locale }) {
               <a
                 key={link.id}
                 href={link.href?.[locale] ?? homeHref}
-                className={`font-sans text-sm text-paper/80 ${LINK}`}
+                className={`${BODY_SM} text-paper/80 ${LINK}`}
               >
                 {link.label[locale]}
               </a>
@@ -90,7 +91,7 @@ export function Footer({ locale }: { locale: Locale }) {
               <a
                 key={link.href[locale]}
                 href={link.href[locale]}
-                className={`font-sans text-sm text-paper/80 ${LINK}`}
+                className={`${BODY_SM} text-paper/80 ${LINK}`}
               >
                 {link.label[locale]}
               </a>
@@ -101,7 +102,7 @@ export function Footer({ locale }: { locale: Locale }) {
             <p className={HEADING}>{FOOTER.contactHeading[locale]}</p>
             <a
               href={`mailto:${FOOTER.email}`}
-              className={`font-sans text-sm text-paper ${LINK}`}
+              className={`${BODY_SM} text-paper ${LINK}`}
             >
               {FOOTER.email}
             </a>
@@ -109,7 +110,7 @@ export function Footer({ locale }: { locale: Locale }) {
               href={FOOTER.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-1 font-sans text-sm text-paper ${LINK}`}
+              className={`inline-flex items-center gap-1 ${BODY_SM} text-paper ${LINK}`}
             >
               LinkedIn
               <span aria-hidden="true" className="text-paper/50">
@@ -125,7 +126,7 @@ export function Footer({ locale }: { locale: Locale }) {
             alt="La Cantine x La French Tech Nantes"
             className="h-20 w-auto opacity-60 transition-opacity duration-200 ease-out hover:opacity-100 md:h-26"
           />
-          <p className="font-sans text-xs text-paper/50 text-center md:text-left">
+          <p className={`${BODY_SM} text-center text-paper/50 md:text-left`}>
             © {year} Tenex Studio. {FOOTER.rights[locale]}
           </p>
         </div>

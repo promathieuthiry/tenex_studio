@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '@/lib/i18n';
 import { TOOLS, TOOLS_EYEBROW } from '@/data/tools';
+import { META } from "@/lib/type";
 
 const { locale } = Astro.props as { locale: Locale };
 
@@ -10,7 +11,7 @@ const loop = [...TOOLS, ...TOOLS];
 ---
 
 <section aria-label={TOOLS_EYEBROW[locale]} class="bg-paper py-20 md:py-28">
-  <p class="px-6 text-center font-mono text-xs uppercase tracking-[0.12em] text-ink/55 md:px-10">
+  <p class={`px-6 text-center ${META} text-ink/55 md:px-10`}>
     {TOOLS_EYEBROW[locale]}
   </p>
   <div

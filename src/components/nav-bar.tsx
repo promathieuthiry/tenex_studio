@@ -38,6 +38,7 @@ import {
   Wrench,
   type LucideIcon,
 } from "lucide-react";
+import { BODY_SM, META } from "@/lib/type";
 
 const NAV_ICONS: Readonly<Record<string, LucideIcon>> = {
   "custom-websites": AppWindow,
@@ -280,7 +281,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                                       </span>
                                     </span>
                                     {child.description ? (
-                                      <span className="mt-0.5 block pl-6 font-sans text-xs leading-snug text-ink/55">
+                                      <span className={`mt-0.5 block pl-6 ${BODY_SM} text-ink/55`}>
                                         {child.description[locale]}
                                       </span>
                                     ) : null}
@@ -436,7 +437,7 @@ export function NavBar({ locale }: { locale: Locale }) {
                 if (isNavGroup(link)) {
                   return (
                     <div key={link.id}>
-                      <p className="pt-6 font-mono text-xs uppercase tracking-[0.12em] text-ink/40">
+                      <p className={`pt-6 ${META} text-ink/40`}>
                         {link.label[locale]}
                       </p>
                       {link.children.map((child) => renderOverlayLeaf(child))}

@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/i18n";
 import { HERO } from "@/data/hero";
 import { HeroPortrait } from "@/components/hero-portrait";
 import { RevealText, REVEAL_EASE } from "@/components/ui/reveal-text";
+import { LEAD } from "@/lib/type";
 
 const WORDMARK = "TeneX Studio";
 const DIM_CHAR_INDICES = new Set([0, 1, 2]); // "Ten" stays at reduced opacity
@@ -47,7 +48,7 @@ export function Hero({ locale }: { locale: Locale }) {
               delay={0.15}
               stagger={0.07}
               duration={0.9}
-              className="relative z-10 font-display text-xl font-bold uppercase leading-[1.15] tracking-tight text-ink md:text-3xl lg:text-4xl"
+              className="relative z-10 font-display text-2xl font-bold uppercase leading-[1.15] tracking-[-0.025em] text-ink md:text-3xl lg:text-4xl"
             />
           </span>
         </div>
@@ -57,7 +58,7 @@ export function Hero({ locale }: { locale: Locale }) {
 
       <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-4">
         <motion.p
-          className="max-w-md md:max-w-2xl lg:max-w-3xl font-sans text-base md:text-lg lg:text-xl leading-relaxed text-ink/65"
+          className={`max-w-md md:max-w-2xl lg:max-w-3xl ${LEAD} text-ink/65`}
           initial={reduced ? false : { opacity: 0, y: 16, filter: "blur(4px)" }}
           animate={reduced ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.9, delay: 0.55, ease: REVEAL_EASE }}

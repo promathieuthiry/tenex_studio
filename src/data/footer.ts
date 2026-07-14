@@ -21,8 +21,8 @@ export type FooterCopy = Readonly<{
 
 export const FOOTER: FooterCopy = {
   tagline: {
-    fr: "Sites web et applications sur mesure qui rendent votre expertise 10 fois plus crédible.",
-    en: "Custom websites and web apps that make your expertise ten times more credible.",
+    fr: "Site web 100% sur mesure qui convertit. En ligne en 2 semaines.",
+    en: "100% custom website that converts. Online in two weeks.",
   },
   navHeading: { fr: "Navigation", en: "Navigation" },
   contactHeading: { fr: "Contact", en: "Contact" },

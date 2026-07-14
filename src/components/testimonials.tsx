@@ -14,6 +14,7 @@ import {
   type Testimonial,
 } from "@/data/testimonials";
 import { SectionHeader } from "@/components/section-header";
+import { SECTION_X, SECTION_Y, CONTAINER, HEADER_GAP } from "@/lib/layout";
 import { ArrowGlyph } from "@/components/arrow-glyph";
 import {
   Dialog,
@@ -22,6 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { BODY_SM, META, QUOTE } from "@/lib/type";
 
 const COPY = {
   fr: {
@@ -104,7 +106,7 @@ function Card({
             </a>
           </div>
 
-          <blockquote className="mb-6 mt-10 line-clamp-8 font-display text-lg leading-[1.4] tracking-[-0.005em] text-ink md:mb-8 md:text-[20px] md:line-clamp-9">
+          <blockquote className={`mb-6 mt-10 line-clamp-8 ${QUOTE} text-ink md:mb-8 md:line-clamp-9`}>
             {t.quote[locale]}
           </blockquote>
 
@@ -119,10 +121,10 @@ function Card({
               className="size-14 shrink-0 rounded-full bg-ink/5 object-cover"
             />
             <div className="min-w-0">
-              <p className="truncate font-sans text-sm font-medium text-ink">
+              <p className={`truncate ${BODY_SM} font-medium text-ink`}>
                 {t.name[locale]}
               </p>
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70">
+              <p className={`${META} text-ink/70`}>
                 {t.role[locale]}
               </p>
             </div>
@@ -145,7 +147,7 @@ function Card({
           </span>
         </div>
 
-        <blockquote className="max-h-[60svh] overflow-y-auto pb-4 pr-2 font-display text-base leading-normal tracking-[-0.005em] text-ink md:pb-6 md:text-lg">
+        <blockquote className={`max-h-[60svh] overflow-y-auto pb-4 pr-2 ${QUOTE} text-ink md:pb-6`}>
           {t.quote[locale]}
         </blockquote>
 
@@ -166,10 +168,10 @@ function Card({
             className="size-16 shrink-0 rounded-full bg-ink/5 object-cover"
           />
           <div className="min-w-0 flex-1">
-            <p className="font-sans text-sm font-medium text-ink">
+            <p className={`${BODY_SM} font-medium text-ink`}>
               {t.name[locale]}
             </p>
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            <p className={`${META} text-ink/70`}>
               {t.role[locale]}
             </p>
           </div>
@@ -223,11 +225,10 @@ export function Testimonials({ locale }: { locale: Locale }) {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="border-y border-ink/8 bg-paper-warm py-24 md:py-40"
+      className={`border-y border-ink/8 bg-paper-warm ${SECTION_Y}`}
     >
-      <div className="mx-auto max-w-screen-xl px-6 md:px-10">
+      <div className={`${CONTAINER} ${SECTION_X}`}>
         <SectionHeader
-          eyebrow={TESTIMONIALS_HEADER.eyebrow[locale]}
           title={TESTIMONIALS_HEADER.titleLead[locale]}
           titleTail={TESTIMONIALS_HEADER.titleTail[locale]}
           headingId="testimonials-heading"
@@ -237,7 +238,7 @@ export function Testimonials({ locale }: { locale: Locale }) {
 
       <div
         ref={pinWrapRef}
-        className="testimonials-pin-wrap relative mt-16 overflow-clip md:mt-20"
+        className={`testimonials-pin-wrap relative ${HEADER_GAP} overflow-clip`}
         style={
           pinned
             ? {
