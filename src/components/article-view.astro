@@ -34,7 +34,7 @@ const faqHeader = {
 } as const;
 
 const faqItems = entry.data.faq.map((item, index) => ({
-  number: String(index + 1).padStart(2, "0"),
+  id: `faq-${index}`,
   question: { fr: item.question, en: item.question },
   answer: { fr: item.answer, en: item.answer },
 }));

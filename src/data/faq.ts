@@ -6,7 +6,7 @@ export type FAQLink = Readonly<{
 }>;
 
 export type FAQItem = Readonly<{
-  number: string;
+  id: string;
   question: Bilingual;
   answer: Bilingual;
   links?: ReadonlyArray<FAQLink>;
@@ -21,7 +21,7 @@ export const FAQ_HEADER: Readonly<{ title: Bilingual }> = {
 
 export const FAQ: ReadonlyArray<FAQItem> = [
   {
-    number: "01",
+    id: "faq-01",
     question: {
       fr: "Le studio, c’est une seule personne ?",
       en: "Is the studio one person?",
@@ -32,7 +32,7 @@ export const FAQ: ReadonlyArray<FAQItem> = [
     },
   },
   {
-    number: "02",
+    id: "faq-02",
     question: {
       fr: "Combien ça coûte, et le prix est-il vraiment fixe ?",
       en: "How much does it cost, and is the price really fixed?",
@@ -43,7 +43,7 @@ export const FAQ: ReadonlyArray<FAQItem> = [
     },
   },
   {
-    number: "03",
+    id: "faq-03",
     question: {
       fr: "Quels délais, et sont-ils tenables ?",
       en: "What are the timelines, and are they realistic?",
@@ -54,7 +54,7 @@ export const FAQ: ReadonlyArray<FAQItem> = [
     },
   },
   {
-    number: "04",
+    id: "faq-04",
     question: {
       fr: "Et si le résultat ne me convient pas ?",
       en: "What if I’m not happy with the result?",
@@ -65,7 +65,7 @@ export const FAQ: ReadonlyArray<FAQItem> = [
     },
   },
   {
-    number: "05",
+    id: "faq-05",
     question: {
       fr: "Une fois livré, suis-je dépendant du studio ?",
       en: "Once delivered, am I locked in to the studio?",
@@ -76,7 +76,7 @@ export const FAQ: ReadonlyArray<FAQItem> = [
     },
   },
   {
-    number: "06",
+    id: "faq-06",
     question: {
       fr: "Pourquoi le studio plutôt qu’un Wix, un Webflow ou un Framer ?",
       en: "Why the studio over Wix, Webflow or Framer?",
@@ -87,7 +87,7 @@ export const FAQ: ReadonlyArray<FAQItem> = [
     },
   },
   {
-    number: "07",
+    id: "faq-07",
     question: {
       fr: "Vous travaillez à distance, et dans quelles langues ?",
       en: "Do you work remotely, and in which languages?",
@@ -98,7 +98,7 @@ export const FAQ: ReadonlyArray<FAQItem> = [
     },
   },
   {
-    number: "08",
+    id: "faq-08",
     question: {
       fr: "Comment on démarre ?",
       en: "How do we get started?",

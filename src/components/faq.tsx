@@ -30,8 +30,8 @@ function FaqRow({
   onToggle: () => void;
   reduced: boolean;
 }) {
-  const panelId = `faq-panel-${item.number}`;
-  const buttonId = `faq-button-${item.number}`;
+  const panelId = `faq-panel-${item.id}`;
+  const buttonId = `faq-button-${item.id}`;
 
   return (
     <motion.li
@@ -132,10 +132,10 @@ export function Faq({
   const reduced = useReducedMotion() ?? false;
   const [open, setOpen] = useState<ReadonlySet<string>>(new Set());
 
-  const toggle = (number: string) =>
+  const toggle = (id: string) =>
     setOpen((prev) => {
       const next = new Set(prev);
-      next.has(number) ? next.delete(number) : next.add(number);
+      next.has(id) ? next.delete(id) : next.add(id);
       return next;
     });
 
@@ -156,12 +156,12 @@ export function Faq({
         >
           {items.map((item, index) => (
             <FaqRow
-              key={item.number}
+              key={item.id}
               item={item}
               index={index}
               locale={locale}
-              isOpen={open.has(item.number)}
-              onToggle={() => toggle(item.number)}
+              isOpen={open.has(item.id)}
+              onToggle={() => toggle(item.id)}
               reduced={reduced}
             />
           ))}
