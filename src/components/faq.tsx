@@ -5,6 +5,7 @@ import { FAQ, FAQ_HEADER, type FAQItem, type FAQLink } from "@/data/faq";
 import type { Bilingual } from "@/data/_types";
 import { SectionHeader } from "@/components/section-header";
 import { SECTION, CONTAINER, HEADER_GAP } from "@/lib/layout";
+import { BODY, META, TITLE_SM } from "@/lib/type";
 import { BOOK_URL } from "@/lib/book";
 
 function resolveLink(link: FAQLink) {
@@ -88,8 +89,8 @@ function FaqRow({
             }}
             className="overflow-hidden"
           >
-            <div className="pb-8 pl-12 pr-4 md:pl-20 md:pr-6">
-              <p className="max-w-prose font-sans text-base leading-7 text-ink/80">
+            <div className="px-4 pb-8 md:px-6">
+              <p className={`max-w-prose ${BODY} text-ink/70`}>
                 {item.answer[locale]}
               </p>
               {item.links && item.links.length > 0 ? (
@@ -103,7 +104,7 @@ function FaqRow({
                         {...(external
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
-                        className="font-mono text-xs uppercase tracking-[0.12em] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-accent hover:text-accent"
+                        className={`${META} border-b border-ink/30 pb-0.5 text-ink transition-colors hover:border-accent hover:text-accent`}
                       >
                         {link.label[locale]}
                       </a>
