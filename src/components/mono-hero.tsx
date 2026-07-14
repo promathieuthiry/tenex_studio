@@ -24,6 +24,12 @@ const MARQUEE_IMAGES = [
   '/work/vega-form-cover.webp',
 ]
 
+// Each column takes a disjoint slice of the images rather than the whole list.
+// The animated layer only has to be twice the pane height for the -50% loop to
+// stay seamless; carrying all 20 images made it 18000px tall, and WebKit
+// re-rasterizes that tile backing every frame.
+const COLUMN_SIZE = 5
+
 function MarqueeColumn({
   direction,
   duration,
@@ -33,11 +39,8 @@ function MarqueeColumn({
   duration: number
   offset: number
 }) {
-  const rotated = [
-    ...MARQUEE_IMAGES.slice(offset),
-    ...MARQUEE_IMAGES.slice(0, offset),
-  ]
-  const items = [...rotated, ...rotated]
+  const column = MARQUEE_IMAGES.slice(offset, offset + COLUMN_SIZE)
+  const items = [...column, ...column]
   return (
     <div className="pointer-events-none overflow-hidden">
       <ul
@@ -84,13 +87,13 @@ export function MonoHero({ locale }: { locale: Locale }) {
             static, so it is no longer this grid's containing block and can't
             clip it. */}
         <div className="pointer-events-none absolute inset-0 grid grid-cols-2 gap-6 overflow-hidden px-6 md:grid-cols-4 md:px-10">
-          <MarqueeColumn direction="up" duration={40} offset={0} />
-          <MarqueeColumn direction="down" duration={50} offset={5} />
+          <MarqueeColumn direction="up" duration={10} offset={0} />
+          <MarqueeColumn direction="down" duration={12} offset={5} />
           <div className="hidden md:block">
-            <MarqueeColumn direction="up" duration={46} offset={10} />
+            <MarqueeColumn direction="up" duration={11} offset={10} />
           </div>
           <div className="hidden md:block">
-            <MarqueeColumn direction="down" duration={54} offset={15} />
+            <MarqueeColumn direction="down" duration={13} offset={15} />
           </div>
         </div>
 
