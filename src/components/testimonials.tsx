@@ -106,7 +106,7 @@ function Card({
             </a>
           </div>
 
-          <blockquote className={`mb-6 mt-10 line-clamp-8 ${QUOTE} text-ink md:mb-8 md:line-clamp-9`}>
+          <blockquote className={`mb-6 mt-10 line-clamp-7 ${QUOTE} text-ink sm:line-clamp-8 md:mb-8`}>
             {t.quote[locale]}
           </blockquote>
 
