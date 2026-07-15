@@ -19,6 +19,20 @@ export const TESTIMONIALS_HEADER: Readonly<{
 
 export const TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
+    id: "osmosia.io",
+    quote: {
+      fr: "Ce qui m’a frappé chez Mathieu, c’est son professionnalisme et sa réactivité. Il nous a accompagnés à chaque étape et ajusté au fil de nos retours, avec beaucoup de souplesse. Plutôt qu’une démo générique, il a fait preuve d’une vraie créativité : une démo 100% sur mesure qui reflète notre façon de dialoguer avec les acheteurs. Et au lieu d’un CMS, il nous a donné accès au code. On met à jour le contenu nous-mêmes, directement depuis l’application Claude. Un vrai gain de temps, et je le remercie de nous avoir formés à cette méthode. Un site web clair, optimisé pour le référencement, et un contrôle total sur notre contenu. Le résultat surpasse mes attentes.",
+      en: "What struck me about Mathieu is his professionalism and his responsiveness. He supported us at every step and adjusted as our feedback came in, with real flexibility. Rather than a generic demo, he showed real creativity: a fully custom demo that mirrors how we talk with buyers. And instead of a CMS, he gave us access to the code. We update the content ourselves, straight from the Claude app. A real time-saver, and I’m grateful he trained us on the method. A clear website, optimized for search, and full control over our content. The result is beyond my expectations.",
+    },
+    name: { fr: "Pierre Osmont", en: "Pierre Osmont" },
+    role: {
+      fr: "Fondateur, Osmosia",
+      en: "Founder, Osmosia",
+    },
+    portrait: "/testimonials/pierre-osmont_osmosia.webp",
+    website: "https://www.osmosia.io",
+  },
+  {
     id: "renardo-tech.fr",
     quote: {
       fr: "Chez Renardo Tech, on conçoit des capteurs d’imagerie de champ électromagnétique pour le diagnostic des réseaux électriques et structures métalliques. Un sujet pointu, qu’il fallait rendre clair et engageant sans en trahir la rigueur, le tout avant nos prochains salons. Mathieu a commencé par notre identité, de fond en comble, puis a construit un site qui la porte vraiment : codes visuels taillés pour nous, zéro template recyclé, structure pensée pour notre métier. Ce qui m’a marquée, c’est la réactivité. Site opérationnel en moins de deux semaines. Résultat : on est arrivés aux salons avec un site qui sort du lot. Il nous crédibilise vraiment, rassure nos partenaires, et aujourd’hui on partage notre site avec fierté.",
