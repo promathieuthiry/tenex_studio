@@ -19,6 +19,26 @@ export const WORK_HEADER: Readonly<{ title: Bilingual }> = {
 
 export const WORK: ReadonlyArray<WorkProject> = [
   {
+    slug: slug("osmosia"),
+    name: { fr: "Osmosia", en: "Osmosia" },
+    icon: url("/work/icons/osmosia.svg"),
+    cover: url("/work/osmosia-cover.webp"),
+    tags: [
+      { fr: "Design Website", en: "Website Design" },
+      { fr: "Développement", en: "Development" },
+    ],
+    description: {
+      fr: "Assistant IA qui répond aux leads des vendeurs auto sur leboncoin et La Centrale en moins de 15 minutes. Site vitrine bilingue qui rend un produit technique immédiatement clair et invite à réserver une démo en un clic.",
+      en: "AI assistant that answers car dealers' leads on leboncoin and La Centrale in under 15 minutes. A bilingual marketing site that makes a technical product instantly clear and invites visitors to book a demo in one click.",
+    },
+    headline: {
+      fr: "AGENTS IA",
+      en: "AI AGENTS",
+    },
+    category: { fr: "Site web", en: "Website" },
+    liveUrl: url("https://www.osmosia.io"),
+  },
+  {
     slug: slug("renardo-tech"),
     name: { fr: "Renardo Tech", en: "Renardo Tech" },
     icon: url("/work/icons/renardo-tech.svg"),
