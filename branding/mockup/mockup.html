@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  /* theme vars — navy defaults; a per-run block injected at build time overrides them */
+  :root{
+    --c-hi:26,33,80;      /* top-center glow */
+    --c-mid:13,16,48;     /* mid            */
+    --c-lo:7,10,28;       /* lower          */
+    --c-edge:4,5,14;      /* corners        */
+    --bloom:124,58,237;   /* main bloom (accent) */
+    --bloom2:56,90,200;   /* secondary glow */
+    --accent:139,92,246;  /* rule + text glow */
+    --shadow:70,40,150;   /* browser shadow tint */
+  }
+  @font-face{
+    font-family:'Arimo';font-style:normal;font-weight:400;font-display:block;
+    src:url('arimo-400.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Arimo';font-style:normal;font-weight:700;font-display:block;
+    src:url('arimo-700.woff2') format('woff2');
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#05070f}
+  .stage{
+    position:relative;width:1600px;height:1600px;overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 50% -8%,
+        rgb(var(--c-hi)) 0%, rgb(var(--c-mid)) 38%,
+        rgb(var(--c-lo)) 72%, rgb(var(--c-edge)) 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .bloom{
+    position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);
+    width:1500px;height:1100px;border-radius:50%;
+    background:radial-gradient(closest-side,
+      rgba(var(--bloom),.42), rgba(var(--bloom),.14) 55%, transparent 78%);
+    filter:blur(30px);
+  }
+  .bloom2{
+    position:absolute;right:-6%;bottom:-2%;
+    width:900px;height:900px;border-radius:50%;
+    background:radial-gradient(closest-side, rgba(var(--bloom2),.30), transparent 72%);
+    filter:blur(20px);
+  }
+  .vignette{
+    position:absolute;inset:0;
+    background:radial-gradient(120% 120% at 50% 42%, transparent 46%, rgba(0,0,0,.35) 82%, rgba(0,0,0,.72) 100%);
+  }
+  .grain{
+    position:absolute;inset:0;mix-blend-mode:soft-light;opacity:.06;pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .browser{
+    position:relative;z-index:2;width:1210px;height:auto;margin-top:-58px;
+    filter:
+      drop-shadow(0 46px 90px rgba(0,0,0,.60))
+      drop-shadow(0 14px 40px rgba(var(--shadow),.34));
+  }
+  .logo-badge{
+    position:absolute;top:126px;left:50%;transform:translateX(-50%);z-index:3;
+    padding:30px 54px;border-radius:26px;
+    background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 24px 60px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.06);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  }
+  .logo-badge img{display:block;height:58px;width:auto}
+  .caption{
+    position:absolute;left:0;right:0;bottom:118px;z-index:3;
+    display:flex;flex-direction:column;align-items:center;
+    font-family:'Arimo',sans-serif;text-align:center;
+  }
+  .rule{
+    width:46px;height:2px;margin-bottom:34px;border-radius:2px;
+    background:linear-gradient(90deg, transparent, rgb(var(--accent)), transparent);
+  }
+  .by{
+    font-weight:400;font-size:27px;line-height:1;
+    letter-spacing:.42em;text-transform:uppercase;
+    color:rgba(255,255,255,.60);margin-bottom:20px;text-indent:.42em;
+  }
+  .brand{
+    font-weight:700;font-size:78px;line-height:1;
+    letter-spacing:.02em;color:#fff;
+    text-shadow:0 2px 34px rgba(var(--accent),.42);
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <!--LOGO-->
+    <div class="bloom"></div>
+    <div class="bloom2"></div>
+    <img class="browser" src="browser_trim.png" alt="">
+    <div class="vignette"></div>
+    <div class="grain"></div>
+    <div class="caption">
+      <div class="rule"></div>
+      <div class="by">by</div>
+      <div class="brand">TeneX Studio</div>
+    </div>
+  </div>
+</body>
+</html>
