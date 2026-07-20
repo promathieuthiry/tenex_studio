@@ -43,6 +43,8 @@ Cible définie par le **moment**, pas par l'industrie. Garde le positionnement p
 
 > Site web 100% sur-mesure qui convertit. En ligne en 2 semaines.
 
+**Slogan (motto) :** `10x your sales` (EN) · `Boostez par 10 vos ventes` (FR)
+
 ## Stack (locked)
 
 - **Astro 6** — `output: 'static'`, `@astrojs/vercel` adapter
