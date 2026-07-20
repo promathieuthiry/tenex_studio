@@ -69,10 +69,11 @@
 
   /* avatar reserved zone: left 0-320px stays empty */
   .wordmark { position: absolute; top: 28px; left: 392px; display: flex; align-items: center; gap: 16px; }
-  .wordmark .mark { height: 40px; display: block; }
-  .wordmark .l { display: none; }
-  body.light .wordmark .d { display: none; }
-  body.light .wordmark .l { display: block; }
+  .wordmark .mark {
+    font-family: 'Arimo', sans-serif; font-weight: 700;
+    font-size: 33px; letter-spacing: -1.5px; line-height: 1;
+    color: var(--fg); white-space: nowrap;
+  }
   .wordmark .div { width: 1px; height: 28px; background: var(--pill-bd); }
   .wordmark .tag {
     font-family: 'Geist Mono', monospace; font-size: 20px; font-weight: 500;
@@ -89,44 +90,28 @@
   }
   h1 .accent { color: var(--accent); }
 
-  .pills { display: flex; gap: 12px; margin-top: 22px; }
+  .pills { display: flex; gap: 12px; margin-top: 24px; }
   .pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 11px 19px; border-radius: 9999px;
-    border: 1px solid var(--pill-bd); color: var(--pill-fg);
-    font-size: 17px; font-weight: 600; letter-spacing: -0.1px;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 24px; border-radius: 9999px;
+    background: var(--ink); color: #fff;
+    font-size: 18px; font-weight: 700; letter-spacing: -0.3px; white-space: nowrap;
   }
-  .pill.solid { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-  .pill.solid .dot { background: #fff; }
+  .pill .ico { font-size: 19px; line-height: 1; }
 
   .trustbar {
     margin-top: 26px;
-    display: inline-flex; align-items: center; gap: 32px;
-    padding: 12px 24px; border-radius: 14px;
-    background: var(--panel); border: 1px solid var(--panel-bd);
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 12px 24px; border-radius: 9999px;
+    background: #ffffff; border: 1px solid rgba(15,15,18,0.08);
   }
-  .trustbar .cred { display: flex; flex-direction: column; gap: 7px; }
-  .trustbar .label {
-    font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 500;
-    letter-spacing: 1.5px; text-transform: uppercase; color: var(--panel-label);
+  .trustbar .glogo { width: 32px; height: 32px; display: block; flex: none; }
+  .trustbar .score {
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 26px;
+    letter-spacing: -0.6px; color: var(--ink); line-height: 1;
   }
-  .trustbar .stars { font-size: 15px; letter-spacing: 3px; color: #f5b301; line-height: 1; }
-  .trustbar .logos { display: inline-flex; align-items: center; gap: 18px; }
-  .trustbar .logos img { height: 32px; width: 32px; display: block; border-radius: 7px; }
-  .trustbar img.wel { height: 34px; width: auto; display: block; border-radius: 8px; }
-  .trustbar .sep { width: 1px; height: 22px; background: rgba(15,15,18,0.12); }
+  .trustbar .gstars { font-size: 26px; letter-spacing: 4px; color: #f5b301; line-height: 1; }
 
-  .note {
-    position: absolute; right: 190px; bottom: 56px; z-index: 2;
-    display: flex; align-items: center; gap: 10px;
-    color: var(--fg); transform: rotate(-4deg);
-  }
-  .note svg { width: 92px; height: 46px; flex: none; }
-  .note span {
-    font-family: 'Caveat', cursive; font-weight: 700; font-size: 38px;
-    line-height: 1; white-space: nowrap;
-  }
 </style>
 </head>
 <body class="light">
@@ -134,41 +119,32 @@
     <div class="bigmark">10x</div>
 
     <div class="wordmark">
-      <img class="mark d" src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/brand/tenex-mark-inverse.svg" alt="Tenex Studio" />
-      <img class="mark l" src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/brand/tenex-mark-dark.svg" alt="Tenex Studio" />
+      <span class="mark">TeneX Studio</span>
       <span class="div"></span>
       <span class="tag">Agence web et IA</span>
     </div>
 
     <div class="content">
-      <h1>Je fais de votre site web<br /><span class="accent">votre meilleur argument de vente.</span></h1>
+      <h1>Nous faisons de votre site web<br /><span class="accent">votre meilleur argument de vente.</span></h1>
 
       <div class="pills">
-        <span class="pill solid"><span class="dot"></span>En ligne en 2 semaines</span>
-        <span class="pill"><span class="dot"></span>100% sur mesure</span>
-        <span class="pill"><span class="dot"></span>Optimisé pour convertir</span>
+        <span class="pill"><span class="ico">🎨</span>Design</span>
+        <span class="pill"><span class="ico">💶</span>Conversion</span>
+        <span class="pill"><span class="ico">🔍</span>Visibilité</span>
       </div>
 
       <div class="trustbar">
-        <span class="cred">
-          <span class="label">Déjà livré pour</span>
-          <span class="stars">★★★★★</span>
-        </span>
-        <span class="logos">
-          <img src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/work/icons/renardo-tech.svg" alt="Renardo Tech" />
-          <img src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/work/icons/studio-lumen.svg" alt="Studio Lumen" />
-          <img class="wel" src="file:///Users/mathieu/Documents/development/client/tenex_studio_astro/public/work/icons/wel-logo.png" alt="wel" />
-        </span>
+        <svg class="glogo" width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="Google">
+          <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+          <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+          <path fill="#FBBC05" d="M11.69 28.18c-.44-1.32-.69-2.73-.69-4.18s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/>
+          <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+        </svg>
+        <span class="score">5/5</span>
+        <span class="gstars">★★★★★</span>
       </div>
     </div>
 
-    <div class="note">
-      <svg viewBox="0 0 92 46" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 11 C 28 4, 58 12, 82 33" />
-        <path d="M66 35 L85 33 L77 17" />
-      </svg>
-      <span>3 places / mois</span>
-    </div>
   </div>
 </body>
 </html>
