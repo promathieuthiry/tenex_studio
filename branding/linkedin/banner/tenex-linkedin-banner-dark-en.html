@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0f0f12;
+    --ink-soft: #1c1c1f;
+    --paper: #ffffff;
+    --paper-warm: #f5f5f5;
+    --paper-cool: #f5f6f8;
+    --paper-deep: #dee0e4;
+    --accent: #e2231a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #333; }
+
+  .banner {
+    position: relative;
+    width: 1584px;
+    height: 396px;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+    --bg: linear-gradient(165deg, var(--ink-soft) 0%, var(--ink) 60%);
+    --fg: var(--paper);
+    --fg-dim: rgba(255,255,255,0.72);
+    --grid: rgba(255,255,255,0.04);
+    --pill-bd: rgba(255,255,255,0.22);
+    --pill-fg: rgba(255,255,255,0.9);
+    --panel: #ffffff;
+    --panel-bd: rgba(0,0,0,0.07);
+    --panel-label: rgba(15,15,18,0.45);
+    --panel-fg: #0f0f12;
+    --pill-bg: rgba(255,255,255,0.08);
+    --pill-tx: #ffffff;
+    --pill-line: rgba(255,255,255,0.18);
+    background: var(--bg);
+    color: var(--fg);
+  }
+  body.light .banner {
+    --bg: linear-gradient(165deg, var(--paper-warm) 0%, var(--paper-cool) 55%, var(--paper-deep) 100%);
+    --fg: var(--ink);
+    --fg-dim: rgba(15,15,18,0.66);
+    --grid: rgba(15,15,18,0.045);
+    --pill-bd: rgba(15,15,18,0.2);
+    --pill-fg: rgba(15,15,18,0.82);
+    --panel: rgba(255,255,255,0.7);
+    --panel-bd: rgba(15,15,18,0.1);
+    --panel-label: rgba(15,15,18,0.45);
+    --panel-fg: #0f0f12;
+    --pill-bg: var(--ink);
+    --pill-tx: #ffffff;
+    --pill-line: transparent;
+  }
+
+  .banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(110% 130% at 75% 40%, #000 35%, transparent 78%);
+            mask-image: radial-gradient(110% 130% at 75% 40%, #000 35%, transparent 78%);
+  }
+  .bigmark {
+    position: absolute; right: -24px; top: 50%; transform: translateY(-50%);
+    font-family: 'Arimo', sans-serif; font-weight: 700;
+    font-size: 248px; line-height: 0.8; letter-spacing: -0.07em;
+    color: var(--fg); opacity: 0.07; white-space: nowrap; z-index: 0;
+  }
+
+  /* avatar reserved zone: left 0-320px stays empty */
+  .wordmark { position: absolute; top: 28px; left: 392px; display: flex; align-items: center; gap: 16px; }
+  .wordmark .mark {
+    font-family: 'Arimo', sans-serif; font-weight: 700;
+    font-size: 33px; letter-spacing: -1.5px; line-height: 1;
+    color: var(--fg); white-space: nowrap;
+  }
+  .wordmark .div { width: 1px; height: 28px; background: var(--pill-bd); }
+  .wordmark .tag {
+    font-family: 'Geist Mono', monospace; font-size: 20px; font-weight: 500;
+    letter-spacing: 1px; color: var(--fg-dim);
+  }
+
+  .content {
+    position: absolute; left: 392px; top: 60%; transform: translateY(-50%);
+    width: 1140px; z-index: 1;
+  }
+  h1 {
+    font-family: 'Arimo', sans-serif; font-weight: 700;
+    font-size: 57px; line-height: 1.07; letter-spacing: -1.6px; color: var(--fg);
+  }
+  h1 .accent { color: var(--accent); }
+
+  .pills { display: flex; gap: 12px; margin-top: 24px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 24px; border-radius: 9999px;
+    background: var(--pill-bg); color: var(--pill-tx);
+    border: 1px solid var(--pill-line);
+    font-size: 18px; font-weight: 700; letter-spacing: -0.3px; white-space: nowrap;
+  }
+  .pill .ico { font-size: 19px; line-height: 1; }
+
+  .trustbar {
+    margin-top: 26px;
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 12px 24px; border-radius: 9999px;
+    background: #ffffff; border: 1px solid rgba(15,15,18,0.08);
+  }
+  .trustbar .glogo { width: 32px; height: 32px; display: block; flex: none; }
+  .trustbar .score {
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 26px;
+    letter-spacing: -0.6px; color: var(--ink); line-height: 1;
+  }
+  .trustbar .gstars { font-size: 26px; letter-spacing: 4px; color: #f5b301; line-height: 1; }
+
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="bigmark">10x</div>
+
+    <div class="wordmark">
+      <span class="mark">TeneX Studio</span>
+      <span class="div"></span>
+      <span class="tag">Web & AI agency</span>
+    </div>
+
+    <div class="content">
+      <h1>We turn your website into<br /><span class="accent">your best sales pitch.</span></h1>
+
+      <div class="pills">
+        <span class="pill"><span class="ico">🎨</span>Design</span>
+        <span class="pill"><span class="ico">💶</span>Conversion</span>
+        <span class="pill"><span class="ico">🔍</span>Visibility</span>
+      </div>
+
+      <div class="trustbar">
+        <svg class="glogo" width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="Google">
+          <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+          <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+          <path fill="#FBBC05" d="M11.69 28.18c-.44-1.32-.69-2.73-.69-4.18s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/>
+          <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+        </svg>
+        <span class="score">5/5</span>
+        <span class="gstars">★★★★★</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
