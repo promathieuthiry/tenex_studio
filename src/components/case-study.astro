@@ -1,0 +1,195 @@
+---
+import type { Locale } from "@/lib/i18n";
+import { pathFor } from "@/lib/i18n";
+import {
+  WORK,
+  WORK_HEADER,
+  CASE_STUDY_LABELS,
+  workPath,
+  type WorkProject,
+} from "@/data/work";
+import { ContactCta } from "@/components/contact-cta";
+import { ArrowGlyph } from "@/components/arrow-glyph";
+import { BODY, BODY_SM, LEAD, META, TITLE_LG, TITLE_MD, TITLE_SM } from "@/lib/type";
+
+const { project, locale } = Astro.props as {
+  project: WorkProject;
+  locale: Locale;
+};
+
+const labels = CASE_STUDY_LABELS[locale];
+const workTitle = WORK_HEADER.title[locale];
+const study = project.study;
+
+const idx = WORK.findIndex((p) => p.slug === project.slug);
+const prev = WORK.length > 1 ? WORK[(idx - 1 + WORK.length) % WORK.length] : null;
+const next = WORK.length > 1 ? WORK[(idx + 1) % WORK.length] : null;
+
+const meta: ReadonlyArray<{ label: string; value: string; href?: string }> = [
+  { label: labels.client, value: project.name[locale] },
+  { label: labels.sector, value: project.sector[locale] },
+  ...(project.duration
+    ? [{ label: labels.type, value: project.duration[locale] }]
+    : []),
+  ...(project.liveUrl
+    ? [{ label: labels.site, value: labels.visitSite, href: project.liveUrl }]
+    : []),
+];
+---
+
+<article class="px-6 pb-24 pt-32 md:px-10 md:pb-32 md:pt-48">
+  <div class="mx-auto max-w-5xl">
+    <nav
+      aria-label="Breadcrumb"
+      class={`flex flex-wrap items-center gap-x-2 gap-y-1 ${META} text-ink/40`}
+    >
+      <a href={pathFor(locale)} class="transition-colors hover:text-ink">
+        {labels.home}
+      </a>
+      <span aria-hidden="true">/</span>
+      <a
+        href={`${pathFor(locale)}#work`}
+        class="transition-colors hover:text-ink"
+      >
+        {workTitle}
+      </a>
+      <span aria-hidden="true">/</span>
+      <span class="text-ink/70">{project.name[locale]}</span>
+    </nav>
+
+    <header class="mt-10">
+      <div class="mt-4 flex items-center gap-4">
+        <img
+          src={project.icon}
+          alt=""
+          class="size-10 shrink-0 rounded-xs md:size-14"
+          aria-hidden="true"
+        />
+        <h1 class={`${TITLE_LG} text-ink`}>{project.name[locale]}</h1>
+      </div>
+      <ul class={`mt-6 flex flex-wrap gap-2 ${META} text-ink/60`}>
+        {
+          project.tags.map((tag) => (
+            <li class="inline-flex rounded-full border border-ink/15 px-3 py-1">
+              {tag[locale]}
+            </li>
+          ))
+        }
+      </ul>
+    </header>
+
+    <figure class="relative mt-12 aspect-[16/10] overflow-hidden bg-paper-deep md:mt-16 rounded-lg">
+      <img
+        src={study.cover}
+        alt={project.name[locale]}
+        loading="eager"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover rounded-lg"
+      />
+    </figure>
+
+    <div class="mt-14 grid gap-10 md:mt-20 md:grid-cols-[1fr_auto] md:gap-16">
+      <p class={`max-w-prose ${LEAD} text-ink`}>{study.overview[locale]}</p>
+      <dl
+        class="grid content-start gap-5 border-t border-ink/10 pt-6 md:min-w-52 md:border-l md:border-t-0 md:pl-10 md:pt-1"
+      >
+        {
+          meta.map((item) => (
+            <div>
+              <dt class={`${META} text-ink/40`}>{item.label}</dt>
+              <dd class={`mt-1 ${BODY_SM} text-ink`}>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    class="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
+                  >
+                    {item.value}
+                    <ArrowGlyph size={14} />
+                  </a>
+                ) : (
+                  item.value
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <section class="mt-16 border-t border-ink/10 pt-10 md:mt-24">
+      <h2 class={`${TITLE_MD} text-ink`}>{labels.challenge}</h2>
+      <p class="mt-6 max-w-prose text-lg leading-8 text-ink/70">
+        {study.challenge[locale]}
+      </p>
+    </section>
+
+    <section class="mt-14 border-t border-ink/10 pt-10 md:mt-20">
+      <h2 class={`${TITLE_MD} text-ink`}>{labels.solution}</h2>
+      <p class="mt-6 max-w-prose text-lg leading-8 text-ink/70">
+        {study.solution[locale]}
+      </p>
+      <div class="mt-8">
+        <h3 class={`${META} text-ink/40`}>{labels.deliverables}</h3>
+        <ul class="mt-4 flex flex-col gap-3">
+          {
+            study.deliverables.map((item) => (
+              <li class={`flex items-baseline gap-3 ${BODY} text-ink/80`}>
+                <span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                {item[locale]}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    {
+      (prev || next) && (
+        <nav
+          aria-label={workTitle}
+          class="mt-16 grid gap-4 border-t border-ink/10 pt-10 sm:grid-cols-2 md:mt-24"
+        >
+          {prev ? (
+            <a
+              href={workPath(prev, locale)}
+              class="group flex flex-col gap-1"
+            >
+              <span class={`${META} text-ink/40`}>{labels.prev}</span>
+              <span class={`${TITLE_SM} text-ink transition-colors group-hover:text-accent`}>
+                {prev.name[locale]}
+              </span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <a
+              href={workPath(next, locale)}
+              class="group flex flex-col gap-1 sm:items-end sm:text-right"
+            >
+              <span class={`${META} text-ink/40`}>{labels.next}</span>
+              <span class={`${TITLE_SM} text-ink transition-colors group-hover:text-accent`}>
+                {next.name[locale]}
+              </span>
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )
+    }
+
+    <div class="mt-14">
+      <a
+        href={`${pathFor(locale)}#work`}
+        class={`${META} text-ink/60 transition-colors hover:text-ink`}
+      >
+        ← {labels.back}
+      </a>
+    </div>
+  </div>
+</article>
+
+<ContactCta client:visible locale={locale} />

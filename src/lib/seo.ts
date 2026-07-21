@@ -23,6 +23,7 @@ import {
   glossarySeo,
   type GlossaryTerm,
 } from '@/data/glossary'
+import { WORK_HEADER, workPath, type WorkProject } from '@/data/work'
 
 export type SeoProps = {
   title: string
@@ -419,6 +420,79 @@ export function buildArticleSeo(
       author: 'Mathieu Thiry',
       section: entry.data.category.join(', '),
     },
+  }
+}
+
+export function buildCaseStudySeo(
+  project: WorkProject,
+  locale: Locale,
+): SeoProps {
+  const canonical = workPath(project, locale)
+  const alternate: Locale = locale === 'fr' ? 'en' : 'fr'
+  const langTag = locale === 'fr' ? 'fr-FR' : 'en'
+  const businessId = `${SITE_ORIGIN}/#business`
+  const canonicalUrl = `${SITE_ORIGIN}${canonical}`
+  const description = project.study.overview[locale]
+
+  const creativeWork = {
+    '@type': 'CreativeWork',
+    '@id': `${canonicalUrl}#casestudy`,
+    name: project.name[locale],
+    headline: project.name[locale],
+    description,
+    image: `${SITE_ORIGIN}${project.study.cover}`,
+    url: canonicalUrl,
+    inLanguage: langTag,
+    creator: { '@id': businessId },
+    about: { '@type': 'Organization', name: project.name[locale] },
+    keywords: project.tags.map((tag) => tag[locale]).join(', '),
+    ...(project.liveUrl ? { sameAs: [project.liveUrl] } : {}),
+  }
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Tenex Studio',
+        item: `${SITE_ORIGIN}${pathFor(locale)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: WORK_HEADER.title[locale],
+        item: `${SITE_ORIGIN}${pathFor(locale)}#work`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.name[locale],
+        item: canonicalUrl,
+      },
+    ],
+  }
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [creativeWork, breadcrumb],
+  })
+
+  return {
+    title: `${project.name[locale]} — Tenex Studio`,
+    description,
+    canonical,
+    ogLocale: OG_LOCALE[locale],
+    ogLocaleAlternate: OG_LOCALE[alternate],
+    ogImage: project.study.cover,
+    ogImageAlt: project.name[locale],
+    hreflang: {
+      fr: workPath(project, 'fr'),
+      en: workPath(project, 'en'),
+      'x-default': workPath(project, 'fr'),
+    },
+    jsonLd,
   }
 }
 

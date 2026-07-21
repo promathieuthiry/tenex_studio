@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CaseStudy from "@/components/case-study.astro";
+import { WORK, type WorkProject } from "@/data/work";
+import { buildCaseStudySeo } from "@/lib/seo";
+
+export function getStaticPaths() {
+  return WORK.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const locale = "fr" as const;
+const { project } = Astro.props as { project: WorkProject };
+const seo = buildCaseStudySeo(project, locale);
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <CaseStudy project={project} locale={locale} />
+</BaseLayout>
