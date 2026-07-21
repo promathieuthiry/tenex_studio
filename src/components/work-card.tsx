@@ -53,18 +53,16 @@ export function WorkCard({ project, locale, priority = false }: WorkCardProps) {
         ) : null}
       </header>
 
-      <p className={`${META} text-ink/70`}>
-        {tags.map((tag, i) => (
-          <span key={tag}>
+      <ul className="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <li
+            key={tag}
+            className={`${META} rounded-full border border-ink/15 px-3 py-1.5 text-ink/55`}
+          >
             {tag}
-            {i < tags.length - 1 ? (
-              <span className="mx-2 text-ink/25" aria-hidden>
-                /
-              </span>
-            ) : null}
-          </span>
+          </li>
         ))}
-      </p>
+      </ul>
 
       <p className={`max-w-prose ${BODY} text-ink/70`}>
         {project.description[locale]}
