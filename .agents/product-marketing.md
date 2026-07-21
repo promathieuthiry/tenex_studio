@@ -4,9 +4,9 @@
 
 ## Product Overview
 
-**One-liner:** Tenex Studio builds custom websites and lightweight web apps for expert-service firms that need to make trust, taste and expertise visible before a client books a call.
+**One-liner:** TeneX Studio builds custom websites and lightweight web apps for expert-service firms that need to make trust, taste and expertise visible before a client books a call.
 
-**What it does:** Tenex Studio is a web agency based in Nantes. It designs, writes and ships premium websites, custom web apps and AI workflow integrations for expert-service businesses. The studio's main delivery surface is production frontends and lightweight web apps, not strategy decks or product platforms.
+**What it does:** TeneX Studio is a web agency based in Nantes. It designs, writes and ships premium websites, custom web apps and AI workflow integrations for expert-service businesses. The studio's main delivery surface is production frontends and lightweight web apps, not strategy decks or product platforms.
 
 **Product category:** Web agency, custom website studio, custom web app studio, AI integration studio, premium website design and development for expert services.
 
@@ -100,7 +100,7 @@
 - Bilingual FR/EN delivery.
 - Ability to make complex expertise clear without flattening it.
 
-**How we do it differently:** Tenex combines positioning, copy, design and engineering in one focused production workflow. The work starts from the firm's expertise, proof and client decision path, then turns that into page structure, editorial hierarchy, design system and implementation.
+**How we do it differently:** TeneX combines positioning, copy, design and engineering in one focused production workflow. The work starts from the firm's expertise, proof and client decision path, then turns that into page structure, editorial hierarchy, design system and implementation.
 
 **Why that's better:** The client gets a site that feels specific to the firm, is easier to trust and is built to qualify better inquiries. There is less coordination cost, less generic output and clearer ownership after launch.
 
@@ -110,7 +110,7 @@
 
 | Objection | Response |
 |-----------|----------|
-| "Can I get something cheaper with a template?" | Yes, if the website is not affecting trust or qualification. Tenex is for expert firms whose site needs to justify premium fees before a call. |
+| "Can I get something cheaper with a template?" | Yes, if the website is not affecting trust or qualification. TeneX is for expert firms whose site needs to justify premium fees before a call. |
 | "Do you understand our regulated or technical field?" | The work starts with structure, proof and plain-language explanation. Specialist review can be added where legal, medical or financial precision is required. |
 | "Can a small studio handle the full project?" | Yes. The studio is one accountable owner for design and engineering, with named specialists added only when needed. |
 | "Will I be dependent after delivery?" | No. The code belongs to the client, content can be edited through a CMS when included, and handover is part of the work. |

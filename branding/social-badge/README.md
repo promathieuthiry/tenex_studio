@@ -1,6 +1,6 @@
-# Tenex social badge — source files
+# TeneX social badge — source files
 
-Editable HTML/CSS templates for the Tenex ID-badge social graphics.
+Editable HTML/CSS templates for the TeneX ID-badge social graphics.
 Rendered to PNG via a headless browser (no build step, no deps).
 
 ## Files

@@ -25,8 +25,8 @@ const wordmarkChar = (rest: number): Variants => ({
 });
 
 const PORTRAIT_ALT: Readonly<Record<Locale, string>> = {
-  fr: "Portrait de Mathieu Thiry, fondateur de Tenex Studio",
-  en: "Portrait of Mathieu Thiry, founder of Tenex Studio",
+  fr: "Portrait de Mathieu Thiry, fondateur de TeneX Studio",
+  en: "Portrait of Mathieu Thiry, founder of TeneX Studio",
 };
 
 export function Hero({ locale }: { locale: Locale }) {

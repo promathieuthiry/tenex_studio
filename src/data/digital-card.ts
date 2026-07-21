@@ -16,7 +16,7 @@ export const DIGITAL_CARD: Bilingual<DigitalCardContent> = {
   fr: {
     name: "Mathieu Thiry",
     role: "Fondateur",
-    studio: "Tenex Studio",
+    studio: "TeneX Studio",
     emailLabel: "Email",
     phoneLabel: "Téléphone",
     websiteLabel: "Site web",
@@ -27,7 +27,7 @@ export const DIGITAL_CARD: Bilingual<DigitalCardContent> = {
   en: {
     name: "Mathieu Thiry",
     role: "Founder",
-    studio: "Tenex Studio",
+    studio: "TeneX Studio",
     emailLabel: "Email",
     phoneLabel: "Phone",
     websiteLabel: "Website",

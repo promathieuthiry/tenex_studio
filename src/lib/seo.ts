@@ -122,7 +122,7 @@ export function buildHomeSeo(locale: Locale): SeoProps {
   const business = {
     '@type': 'ProfessionalService',
     '@id': businessId,
-    name: 'Tenex Studio',
+    name: 'TeneX Studio',
     url: `${SITE_ORIGIN}${canonical}`,
     logo: `${SITE_ORIGIN}/icon-512.png`,
     image: `${SITE_ORIGIN}/icon-512.png`,
@@ -154,7 +154,7 @@ export function buildHomeSeo(locale: Locale): SeoProps {
     '@type': 'WebSite',
     '@id': `${SITE_ORIGIN}/#website`,
     url: `${SITE_ORIGIN}${canonical}`,
-    name: 'Tenex Studio',
+    name: 'TeneX Studio',
     inLanguage: langTag,
     publisher: { '@id': businessId },
   }
@@ -196,12 +196,12 @@ const BLOG_HREFLANG = {
 
 const blogSeo: Bilingual<{ title: string; description: string }> = {
   fr: {
-    title: 'Journal — Tenex Studio',
+    title: 'Journal — TeneX Studio',
     description:
       'Notes sur le design, la conversion et la construction de sites web sur mesure qui tiennent sous pression.',
   },
   en: {
-    title: 'Journal — Tenex Studio',
+    title: 'Journal — TeneX Studio',
     description:
       'Notes on design, conversion, and building custom websites that hold under pressure.',
   },
@@ -247,12 +247,12 @@ const RESOURCES_HREFLANG = {
 
 const resourcesSeo: Bilingual<{ title: string; description: string }> = {
   fr: {
-    title: 'Outils — Tenex Studio',
+    title: 'Outils — TeneX Studio',
     description:
       "Une sélection d'outils pour concevoir, construire et lancer un site web : inspiration, design, composants, animation et IA.",
   },
   en: {
-    title: 'Tools — Tenex Studio',
+    title: 'Tools — TeneX Studio',
     description:
       'A curated set of tools to design, build and ship a website: inspiration, design, components, motion and AI.',
   },
@@ -298,7 +298,7 @@ export function buildResourcesSeo(locale: Locale): SeoProps {
           {
             '@type': 'ListItem',
             position: 1,
-            name: 'Tenex Studio',
+            name: 'TeneX Studio',
             item: `${SITE_ORIGIN}${pathFor(locale)}`,
           },
           {
@@ -365,7 +365,7 @@ export function buildArticleSeo(
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Tenex Studio',
+        name: 'TeneX Studio',
         item: `${SITE_ORIGIN}${pathFor(locale)}`,
       },
       {
@@ -400,7 +400,7 @@ export function buildArticleSeo(
   })
 
   return {
-    title: `${entry.data.title} — Tenex Studio`,
+    title: `${entry.data.title} — TeneX Studio`,
     description: entry.data.excerpt,
     canonical,
     ogLocale: OG_LOCALE[locale],
@@ -456,7 +456,7 @@ export function buildCaseStudySeo(
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Tenex Studio',
+        name: 'TeneX Studio',
         item: `${SITE_ORIGIN}${pathFor(locale)}`,
       },
       {
@@ -480,7 +480,7 @@ export function buildCaseStudySeo(
   })
 
   return {
-    title: `${project.name[locale]} — Tenex Studio`,
+    title: `${project.name[locale]} — TeneX Studio`,
     description,
     canonical,
     ogLocale: OG_LOCALE[locale],
@@ -513,7 +513,7 @@ export function buildDigitalCardSeo(locale: Locale): SeoProps {
     email: DIGITAL_CARD_EMAIL,
     worksFor: {
       '@type': 'ProfessionalService',
-      name: 'Tenex Studio',
+      name: 'TeneX Studio',
       url: DIGITAL_CARD_WEBSITE,
     },
     inLanguage: langTag,
@@ -565,7 +565,7 @@ export function buildSeoLandingPageSeo(
           {
             '@type': 'ListItem',
             position: 1,
-            name: 'Tenex Studio',
+            name: 'TeneX Studio',
             item: `${SITE_ORIGIN}${pathFor(locale)}`,
           },
           {
@@ -653,7 +653,7 @@ export function buildGlossaryIndexSeo(locale: Locale): SeoProps {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Tenex Studio',
+        name: 'TeneX Studio',
         item: `${SITE_ORIGIN}${pathFor(locale)}`,
       },
       {
@@ -697,7 +697,7 @@ export function buildGlossaryTermSeo(
   const canonicalUrl = `${SITE_ORIGIN}${canonical}`
   const setId = `${SITE_ORIGIN}${glossaryIndexPath(locale)}#definedtermset`
   const suffix =
-    locale === 'fr' ? 'Glossaire Tenex Studio' : 'Tenex Studio Glossary'
+    locale === 'fr' ? 'Glossaire TeneX Studio' : 'TeneX Studio Glossary'
 
   const definedTerm = {
     '@type': 'DefinedTerm',
@@ -717,7 +717,7 @@ export function buildGlossaryTermSeo(
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Tenex Studio',
+        name: 'TeneX Studio',
         item: `${SITE_ORIGIN}${pathFor(locale)}`,
       },
       {

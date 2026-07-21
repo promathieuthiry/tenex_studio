@@ -1,6 +1,6 @@
-# Tenex email signature — source + install
+# TeneX email signature — source + install
 
-Paste-ready HTML signature for Gmail, on the Tenex design system
+Paste-ready HTML signature for Gmail, on the TeneX design system
 (Arimo display · Inter body · Geist Mono labels · ink/paper · one red rule).
 Adapted from the ID-badge work in `../social-badge/`.
 

@@ -5,7 +5,7 @@ export type HeroCopy = Readonly<{
   wordmark: string;
   monogram: string;
   monogramAriaLabel: Bilingual;
-  withTenexStudio: Bilingual;
+  withTeneXStudio: Bilingual;
   monogramTagline: Bilingual;
   headline: Bilingual;
   subheadline: Bilingual;
@@ -21,15 +21,15 @@ export type HeroCopy = Readonly<{
 }>;
 
 export const HERO: HeroCopy = {
-  wordmark: "Tenex Studio",
+  wordmark: "TeneX Studio",
   monogram: "10x",
   monogramAriaLabel: {
-    fr: "Dix fois. Tenex Studio.",
-    en: "Ten times. Tenex Studio.",
+    fr: "Dix fois. TeneX Studio.",
+    en: "Ten times. TeneX Studio.",
   },
-  withTenexStudio: {
-    fr: "Avec Tenex Studio.",
-    en: "With Tenex Studio.",
+  withTeneXStudio: {
+    fr: "Avec TeneX Studio.",
+    en: "With TeneX Studio.",
   },
   monogramTagline: {
     fr: "Dix fois l’impact.",

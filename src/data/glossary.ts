@@ -1802,12 +1802,12 @@ export const GLOSSARY_HEADER: Bilingual<{ title: string; subtitle: string }> = {
 
 export const glossarySeo: Bilingual<{ title: string; description: string }> = {
   fr: {
-    title: "Glossaire IA, SEO et web — Tenex Studio",
+    title: "Glossaire IA, SEO et web — TeneX Studio",
     description:
       "Définitions claires des termes de l'IA, du SEO, du GEO, du web et de l'UX. Le vocabulaire pour comprendre un site moderne.",
   },
   en: {
-    title: "AI, SEO and web glossary — Tenex Studio",
+    title: "AI, SEO and web glossary — TeneX Studio",
     description:
       "Clear definitions of AI, SEO, GEO, web and UX terms. The vocabulary to understand a modern website.",
   },

@@ -7,7 +7,7 @@ Date: 2026-07-21
 Give each `WORK` project a dedicated case study page, structured
 Description → Challenge → Solution → Impact. Inspired by
 `bycrawford.com/portfolio/<slug>` (hero → overview + meta → approach →
-prev/next → CTA), adapted to Tenex Studio's Swiss/editorial restraint.
+prev/next → CTA), adapted to TeneX Studio's Swiss/editorial restraint.
 
 Three pages ship: Osmosia, Renardo Tech, Studio Lumen.
 
@@ -89,14 +89,14 @@ Order:
 
 Mirrors `buildGlossaryTermSeo`. Returns `SeoProps`:
 
-- `title` = `${name} — Tenex Studio`, `description` = `study.overview[locale]`.
+- `title` = `${name} — TeneX Studio`, `description` = `study.overview[locale]`.
 - `canonical` = `workPath(project, locale)`; hreflang fr/en/x-default.
 - `ogImage` = `project.cover`, `ogImageAlt` = name.
 - `jsonLd` `@graph`:
   - `CreativeWork` — name, description, `image` = cover, `url` = canonical,
     `inLanguage`, `creator` = `{ '@id': businessId }`,
     `about` = `{ '@type': 'Organization', name }`, `keywords` = tags joined.
-  - `BreadcrumbList` — Tenex Studio → Réalisations (`/#work`) → name.
+  - `BreadcrumbList` — TeneX Studio → Réalisations (`/#work`) → name.
 
 ## Card linking — `src/components/work-card.tsx`
 

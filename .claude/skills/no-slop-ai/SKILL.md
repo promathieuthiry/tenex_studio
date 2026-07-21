@@ -22,7 +22,7 @@ None of these is a matter of taste. All three were removed from this codebase de
 ```
 SERVICES                          <- eyebrow. Banned.
 What you get when choosing        <- the headline
-Tenex Studio.
+TeneX Studio.
 ```
 
 A section opens on its headline. Nothing above it.

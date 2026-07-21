@@ -14,7 +14,7 @@ The highest-impact remaining issue is the homepage. Its metadata, schema descrip
 
 1. **Update homepage SEO metadata and schema description**
    - Impact: High
-   - Evidence: Rendered `/` title is `Tenex Studio - Agence web et IA à Nantes`; rendered `/en/` title is `Tenex Studio - Web and AI Studio in Nantes`. The homepage `ProfessionalService` schema description also repeats the old "Agence web et IA" positioning.
+   - Evidence: Rendered `/` title is `TeneX Studio - Agence web et IA à Nantes`; rendered `/en/` title is `TeneX Studio - Web and AI Studio in Nantes`. The homepage `ProfessionalService` schema description also repeats the old "Agence web et IA" positioning.
    - Fix: Update `src/data/seo.ts` so the homepage targets custom websites for expert-service firms. Keep FR and EN paired.
 
 2. **Replace old footer positioning**
@@ -121,12 +121,12 @@ Status: **Still needs repositioning**
 
 Rendered FR:
 
-- Title: `Tenex Studio - Agence web et IA à Nantes`
+- Title: `TeneX Studio - Agence web et IA à Nantes`
 - Description: `Agence web et IA à Nantes : sites, applications et automatisations sur mesure pour produire 10× plus.`
 
 Rendered EN:
 
-- Title: `Tenex Studio - Web and AI Studio in Nantes`
+- Title: `TeneX Studio - Web and AI Studio in Nantes`
 - Description: `Web and AI studio in Nantes: custom sites, apps and automations to produce 10× more.`
 
 Issue: This no longer matches the product-marketing context. The homepage should reinforce expert-service websites, not generic web and AI services.

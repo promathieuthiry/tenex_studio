@@ -46,12 +46,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Création site web sur mesure à Nantes - Tenex Studio",
+        title: "Création site web sur mesure à Nantes - TeneX Studio",
         description:
           "Création de sites web sur mesure pour cabinets, cliniques, studios et sociétés de conseil. Positionnement, UX, SEO, code et mise en ligne.",
       },
       en: {
-        title: "Custom Websites for Expert-Service Firms - Tenex Studio",
+        title: "Custom Websites for Expert-Service Firms - TeneX Studio",
         description:
           "Premium custom websites for firms, clinics, studios and consultancies. Positioning, UX, SEO, code and launch in one focused workflow.",
       },
@@ -157,16 +157,16 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
           en: "An investment that avoids bad tradeoffs",
         },
         body: {
-          fr: "Un site bon marché peut suffire pour exister. Il tient rarement quand l’enjeu est la confiance, le recrutement de meilleurs clients ou la montée en gamme. Tenex vise le site qui clarifie, qualifie et dure.",
-          en: "A cheap site can be enough to exist. It rarely holds when the stakes are trust, better clients or moving upmarket. Tenex focuses on a site that clarifies, qualifies and lasts.",
+          fr: "Un site bon marché peut suffire pour exister. Il tient rarement quand l’enjeu est la confiance, le recrutement de meilleurs clients ou la montée en gamme. TeneX vise le site qui clarifie, qualifie et dure.",
+          en: "A cheap site can be enough to exist. It rarely holds when the stakes are trust, better clients or moving upmarket. TeneX focuses on a site that clarifies, qualifies and lasts.",
         },
       },
     ],
     faq: [
       {
         question: {
-          fr: "Combien coûte un site web sur mesure avec Tenex Studio ?",
-          en: "How much does a custom website cost with Tenex Studio?",
+          fr: "Combien coûte un site web sur mesure avec TeneX Studio ?",
+          en: "How much does a custom website cost with TeneX Studio?",
         },
         answer: {
           fr: "L’offre cœur commence à 3 500 € pour un site complet sur mesure. Le prix dépend du nombre de pages, du niveau de contenu, des langues, du CMS et des besoins techniques.",
@@ -245,12 +245,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web cabinet avocat sur mesure - Tenex Studio",
+        title: "Site web cabinet avocat sur mesure - TeneX Studio",
         description:
           "Création de sites web premium pour cabinets d’avocats. Expertises, associés, références, SEO local, crédibilité et demandes qualifiées.",
       },
       en: {
-        title: "Custom Law Firm Websites - Tenex Studio",
+        title: "Custom Law Firm Websites - TeneX Studio",
         description:
           "Premium custom websites for law firms. Practice areas, partners, references, local SEO, credibility and qualified inquiries.",
       },
@@ -380,12 +380,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web expert-comptable sur mesure - Tenex Studio",
+        title: "Site web expert-comptable sur mesure - TeneX Studio",
         description:
           "Sites web premium pour experts-comptables et cabinets comptables. Conseil, fiscalité, CFO-as-a-service, crédibilité et demandes qualifiées.",
       },
       en: {
-        title: "Custom Accounting Firm Websites - Tenex Studio",
+        title: "Custom Accounting Firm Websites - TeneX Studio",
         description:
           "Premium websites for accounting firms. Advisory, tax, CFO-as-a-service, credibility and better-qualified inquiries.",
       },
@@ -483,12 +483,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web clinique privée sur mesure - Tenex Studio",
+        title: "Site web clinique privée sur mesure - TeneX Studio",
         description:
           "Sites web premium pour cliniques privées et médecins spécialistes. Parcours patient, SEO, confiance, expertises et prise de rendez-vous.",
       },
       en: {
-        title: "Custom Private Clinic Websites - Tenex Studio",
+        title: "Custom Private Clinic Websites - TeneX Studio",
         description:
           "Premium websites for private clinics and medical specialists. Patient journey, SEO, trust, expertise pages and booking paths.",
       },
@@ -618,12 +618,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web gestion de patrimoine sur mesure - Tenex Studio",
+        title: "Site web gestion de patrimoine sur mesure - TeneX Studio",
         description:
           "Sites web premium pour conseillers en gestion de patrimoine, family offices et boutiques d’investissement. Confiance, pédagogie, discrétion et demandes qualifiées.",
       },
       en: {
-        title: "Custom Wealth Management Websites - Tenex Studio",
+        title: "Custom Wealth Management Websites - TeneX Studio",
         description:
           "Premium websites for wealth advisors, family offices and investment boutiques. Trust, education, discretion and qualified inquiries.",
       },
@@ -721,12 +721,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web consultant sur mesure - Tenex Studio",
+        title: "Site web consultant sur mesure - TeneX Studio",
         description:
           "Sites web premium pour consultants et sociétés de conseil. Positionnement, offres, méthode, preuves, SEO et rendez-vous qualifiés.",
       },
       en: {
-        title: "Custom Consultant Websites - Tenex Studio",
+        title: "Custom Consultant Websites - TeneX Studio",
         description:
           "Premium websites for consultants and advisory firms. Positioning, offers, method, proof, SEO and qualified booking paths.",
       },
@@ -856,12 +856,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web immobilier premium sur mesure - Tenex Studio",
+        title: "Site web immobilier premium sur mesure - TeneX Studio",
         description:
           "Sites web premium pour agences immobilières haut de gamme, chasseurs, promoteurs et conseil immobilier. Biens, territoires, preuves et demandes qualifiées.",
       },
       en: {
-        title: "Custom Premium Real Estate Websites - Tenex Studio",
+        title: "Custom Premium Real Estate Websites - TeneX Studio",
         description:
           "Premium websites for high-end agencies, buyer agents, developers and real estate advisors. Properties, territories, proof and qualified inquiries.",
       },
@@ -959,12 +959,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web recrutement expert sur mesure - Tenex Studio",
+        title: "Site web recrutement expert sur mesure - TeneX Studio",
         description:
           "Sites web premium pour cabinets de recrutement et executive search. Spécialisation, confidentialité, méthode, crédibilité candidat et demandes qualifiées.",
       },
       en: {
-        title: "Custom Expert Recruitment Websites - Tenex Studio",
+        title: "Custom Expert Recruitment Websites - TeneX Studio",
         description:
           "Premium websites for recruitment and executive search firms. Specialization, confidentiality, method, candidate credibility and qualified inquiries.",
       },
@@ -1062,12 +1062,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web ingénierie et conseil technique - Tenex Studio",
+        title: "Site web ingénierie et conseil technique - TeneX Studio",
         description:
           "Sites web premium pour cabinets d’ingénierie, cybersécurité, data, conformité, énergie et infrastructure. Expertise complexe, preuve et demandes qualifiées.",
       },
       en: {
-        title: "Custom Engineering Consulting Websites - Tenex Studio",
+        title: "Custom Engineering Consulting Websites - TeneX Studio",
         description:
           "Premium websites for engineering, cybersecurity, data, compliance, energy and infrastructure consultancies. Complex expertise, proof and qualified inquiries.",
       },
@@ -1165,12 +1165,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web agence B2B experte sur mesure - Tenex Studio",
+        title: "Site web agence B2B experte sur mesure - TeneX Studio",
         description:
           "Sites web premium pour agences B2B expertes. Positionnement, offres, cas clients, méthode, spécialisation et demandes qualifiées.",
       },
       en: {
-        title: "Custom Expert B2B Agency Websites - Tenex Studio",
+        title: "Custom Expert B2B Agency Websites - TeneX Studio",
         description:
           "Premium websites for expert B2B agencies. Positioning, offers, client cases, method, specialization and qualified inquiries.",
       },
@@ -1268,12 +1268,12 @@ export const SEO_LANDING_PAGES: ReadonlyArray<SeoLandingPage> = [
     },
     meta: {
       fr: {
-        title: "Site web architecte sur mesure - Tenex Studio",
+        title: "Site web architecte sur mesure - TeneX Studio",
         description:
           "Sites web premium pour architectes et architectes d’intérieur. Portfolio, direction éditoriale, SEO, références et demandes qualifiées.",
       },
       en: {
-        title: "Custom Architecture Studio Websites - Tenex Studio",
+        title: "Custom Architecture Studio Websites - TeneX Studio",
         description:
           "Premium websites for architects and interior architecture studios. Portfolio, editorial direction, SEO, references and qualified inquiries.",
       },

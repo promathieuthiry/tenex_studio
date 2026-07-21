@@ -6,7 +6,7 @@
 
 ## Strategic Position
 
-Tenex Studio should not chase generic agency traffic first. The strongest SEO position is expert-service websites: custom sites for firms where trust, taste, credentials and clarity decide whether a prospect books a call.
+TeneX Studio should not chase generic agency traffic first. The strongest SEO position is expert-service websites: custom sites for firms where trust, taste, credentials and clarity decide whether a prospect books a call.
 
 The core SEO promise:
 
@@ -173,7 +173,7 @@ Initial articles:
 
 ### Pillar 4: Ownership And Custom Build
 
-Purpose: Differentiate Tenex from templates, no-code subscriptions and large agencies.
+Purpose: Differentiate TeneX from templates, no-code subscriptions and large agencies.
 
 Initial articles:
 
@@ -220,7 +220,7 @@ Every commercial or vertical page should follow this structure:
 1. H1 naming the service or vertical in plain language.
 2. One paragraph that names the buyer, trust problem and business outcome.
 3. Proof block with one relevant testimonial, case result or portfolio example.
-4. Service or page structure section with what Tenex actually delivers.
+4. Service or page structure section with what TeneX actually delivers.
 5. Trust section covering credentials, cases, portfolio, team or patient/client reassurance.
 6. Process section with timeline and decision points.
 7. Differentiation section against templates, sector vendors, large agencies or DIY.

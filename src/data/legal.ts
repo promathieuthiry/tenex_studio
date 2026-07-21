@@ -26,7 +26,7 @@ export const LEGAL: LegalCopy = {
         {
           heading: "Éditeur",
           body: [
-            "Tenex Studio",
+            "TeneX Studio",
             "40 Rue la Tour d'Auvergne, 44200 Nantes, France",
             "contact@tenex.studio",
             "SIRET : 981 657 992 00021",
@@ -48,7 +48,7 @@ export const LEGAL: LegalCopy = {
         {
           heading: "Propriété intellectuelle",
           body: [
-            "Tenex Studio détient les droits sur l'ensemble des éléments du site : textes, images, graphismes, logo et code.",
+            "TeneX Studio détient les droits sur l'ensemble des éléments du site : textes, images, graphismes, logo et code.",
             "Toute reproduction ou réutilisation, totale ou partielle, est interdite sans accord écrit préalable.",
           ],
         },
@@ -84,7 +84,7 @@ export const LEGAL: LegalCopy = {
         {
           heading: "Publisher",
           body: [
-            "Tenex Studio",
+            "TeneX Studio",
             "40 Rue la Tour d'Auvergne, 44200 Nantes, France",
             "contact@tenex.studio",
             "SIRET: 981 657 992 00021",
@@ -106,7 +106,7 @@ export const LEGAL: LegalCopy = {
         {
           heading: "Intellectual property",
           body: [
-            "Tenex Studio owns the rights to every element on this site: text, images, graphics, logo and code.",
+            "TeneX Studio owns the rights to every element on this site: text, images, graphics, logo and code.",
             "No part may be reproduced or reused, in whole or in part, without prior written consent.",
           ],
         },

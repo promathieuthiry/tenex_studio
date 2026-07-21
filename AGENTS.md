@@ -1,8 +1,8 @@
-# Tenex Studio — Codex Instructions
+# TeneX Studio — Codex Instructions
 
 ## What this is
 
-**FR.** Tenex Studio est une agence web spécialisée dans la création de sites et applications web sur mesures. Basée à Nantes, nous accompagnons les cabinets, studios, cliniques et sociétés de conseil dont l'expertise doit inspirer confiance avant le premier échange. Notre expertise couvre :
+**FR.** TeneX Studio est une agence web spécialisée dans la création de sites et applications web sur mesures. Basée à Nantes, nous accompagnons les cabinets, studios, cliniques et sociétés de conseil dont l'expertise doit inspirer confiance avant le premier échange. Notre expertise couvre :
 
 - 🎨 Design : démarquez-vous au premier regard
 - 💶 Conversion : transformez vos visiteurs en clients
@@ -10,7 +10,7 @@
 
 Notre approche centrée sur le client garantit des solutions 10× plus personnalisées qui répondent à vos besoins spécifiques.
 
-**EN.** Tenex Studio is a web agency specialized in building custom websites and web apps. Based in Nantes, we support firms, studios, clinics and consultancies whose expertise needs to build trust before the first conversation. Our expertise covers:
+**EN.** TeneX Studio is a web agency specialized in building custom websites and web apps. Based in Nantes, we support firms, studios, clinics and consultancies whose expertise needs to build trust before the first conversation. Our expertise covers:
 
 - 🎨 Design: stand out at first glance
 - 💶 Conversion: turn visitors into clients

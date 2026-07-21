@@ -34,13 +34,13 @@ export const RESOURCES_HEADER: Bilingual<{
     title: "Outils",
     subtitle:
       "Une sélection d'outils pour concevoir, construire et lancer un site.",
-    credit: "Sélection Tenex Studio",
+    credit: "Sélection TeneX Studio",
     countLabel: "outils",
   },
   en: {
     title: "Tools",
     subtitle: "A curated set of tools to design, build and ship a site.",
-    credit: "Curated by Tenex Studio",
+    credit: "Curated by TeneX Studio",
     countLabel: "tools",
   },
 } as const;

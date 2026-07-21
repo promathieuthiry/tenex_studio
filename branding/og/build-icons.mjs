@@ -1,4 +1,4 @@
-// App icon generator for Tenex Studio.
+// App icon generator for TeneX Studio.
 //
 // Builds the touch/PWA icons from the "10x" brand motif (white on Swiss red):
 //   public/apple-touch-icon.png  180x180

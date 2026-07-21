@@ -110,4 +110,4 @@ export const MENU_LABEL: Readonly<{
   close: { fr: "Fermer le menu", en: "Close menu" },
 } as const;
 
-export const WORDMARK = "Tenex Studio" as const;
+export const WORDMARK = "TeneX Studio" as const;

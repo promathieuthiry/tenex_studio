@@ -1,4 +1,4 @@
-# Tenex Studio
+# TeneX Studio
 
 AI-native studio in Nantes for expert-service firms. Bilingual FR/EN.
 

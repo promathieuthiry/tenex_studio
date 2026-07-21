@@ -32,7 +32,7 @@ export const BLOG_HEADER: Readonly<{ title: Bilingual }> = {
 
 export const BLOG_INDEX: Readonly<{ title: Bilingual }> = {
   title: {
-    fr: "Blog Tenex Studio.",
-    en: "Tenex Studio Blog.",
+    fr: "Blog TeneX Studio.",
+    en: "TeneX Studio Blog.",
   },
 };

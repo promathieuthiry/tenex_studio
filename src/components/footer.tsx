@@ -30,12 +30,12 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="col-span-2 flex flex-col gap-6 md:col-span-1">
             <a
               href={homeHref}
-              aria-label="Tenex Studio"
+              aria-label="TeneX Studio"
               className={`inline-flex shrink-0 self-start ${LINK}`}
             >
               <img
                 src="/brand/tenex-mark-light.svg"
-                alt="Tenex Studio"
+                alt="TeneX Studio"
                 className="h-7 w-auto md:h-8"
               />
             </a>
@@ -127,7 +127,7 @@ export function Footer({ locale }: { locale: Locale }) {
             className="h-20 w-auto opacity-60 transition-opacity duration-200 ease-out hover:opacity-100 md:h-26"
           />
           <p className={`${BODY_SM} text-center text-paper/50 md:text-left`}>
-            © {year} Tenex Studio. {FOOTER.rights[locale]}
+            © {year} TeneX Studio. {FOOTER.rights[locale]}
           </p>
         </div>
       </motion.div>

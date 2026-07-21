@@ -1,4 +1,4 @@
-// OpenGraph image generator for Tenex Studio.
+// OpenGraph image generator for TeneX Studio.
 //
 // Builds public/og/og-fr.png and og-en.png (1200x630) from:
 //   - the brand wordmark  public/brand/tenex-mark-dark.svg

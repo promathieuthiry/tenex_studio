@@ -224,7 +224,7 @@ export function MonogramReveal({ locale }: { locale: Locale }) {
           className="absolute inset-x-0 bottom-[14%] mx-auto max-w-md text-center font-mono text-[11px] uppercase tracking-[0.4em] text-paper/70 md:text-xs"
           style={reduced ? undefined : { opacity: taglineOpacity, y: taglineY }}
         >
-          {HERO.withTenexStudio[locale]}
+          {HERO.withTeneXStudio[locale]}
         </motion.p>
       </div>
     </section>
