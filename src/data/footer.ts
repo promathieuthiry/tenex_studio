@@ -12,6 +12,7 @@ export type FooterCopy = Readonly<{
   addressHeading: Bilingual;
   email: string;
   linkedin: string;
+  facebook: string;
   address: ReadonlyArray<string>;
   legalLinks: ReadonlyArray<FooterLink>;
   rights: Bilingual;
@@ -29,6 +30,7 @@ export const FOOTER: FooterCopy = {
   addressHeading: { fr: "Adresse", en: "Address" },
   email: "contact@tenex.studio",
   linkedin: "https://www.linkedin.com/company/113208945/",
+  facebook: "https://www.facebook.com/people/TeneX-Studio/61592457381105/",
   address: [
     "La Cantine x La French Tech Nantes",
     "40 Rue la Tour d'Auvergne",

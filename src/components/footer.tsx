@@ -117,6 +117,17 @@ export function Footer({ locale }: { locale: Locale }) {
                 ↗
               </span>
             </a>
+            <a
+              href={FOOTER.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-1 ${BODY_SM} text-paper ${LINK}`}
+            >
+              Facebook
+              <span aria-hidden="true" className="text-paper/50">
+                ↗
+              </span>
+            </a>
           </div>
         </div>
 
