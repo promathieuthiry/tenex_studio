@@ -61,6 +61,20 @@ export const TESTIMONIALS: ReadonlyArray<Testimonial> = [
     website: "https://studiolumen.fr",
   },
   {
+    id: "padel-day.vercel.app",
+    quote: {
+      fr: "Mathieu sait faire des choses complexes et créatives, là où d’autres se seraient arrêtés. Il nous a livré un site sur-mesure, fidèle à notre identité visuelle : un design soigné, une expérience utilisateur fluide, un site rapide et responsive sur mobile. Puis il nous a formés pour être autonomes : on met à jour le contenu nous-mêmes, quand on veut. Il a aussi pensé le référencement et le GEO dès le départ, prêt à être trouvé sur Google et recommandé par les IA. Résultat : on est 100% opérationnels, et on partage notre site avec fierté.",
+      en: "Mathieu pulls off complex, creative work where others would have stopped. He delivered a custom site true to our visual identity: clean design, a smooth user experience, fast and responsive on mobile. Then he trained us to run it ourselves: we update the content whenever we want. He also built in search and GEO from day one, ready to be found on Google and recommended by AI. The result: we’re fully operational, and we share our site with pride.",
+    },
+    name: { fr: "Julien Tessier", en: "Julien Tessier" },
+    role: {
+      fr: "Fondateur, Padel Day",
+      en: "Founder, Padel Day",
+    },
+    portrait: "/testimonials/julien-tessier_padel-day.webp",
+    website: "https://padel-day.vercel.app/",
+  },
+  {
     id: "ouiclient.fr",
     quote: {
       fr: "Je développe une solution de confirmation de réservations pour la restauration et j’avais besoin d’un outil fiable pour automatiser tout le process sans perdre des heures en gestion manuelle. Studio TeneX m’a développé une web app interne parfaitement adaptée à mon besoin : automatisation des SMS via API, dashboard par établissements et gestion centralisée des données. Mathieu a cette capacité à prendre une idée métier et à la transformer rapidement en un outil concret et exploitable au quotidien. Résultat pour les équipes : un gain de temps sur l'opérationnel et une base solide pour développer l'activité.",
